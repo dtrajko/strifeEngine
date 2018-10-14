@@ -19,7 +19,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\graph\Input.cpp" />
+    <ClCompile Include="src\engine\helloWorld\HelloWorld.cpp" />
+    <ClCompile Include="src\engine\GameEngine.cpp" />
+    <ClCompile Include="src\engine\helloWorld\MasterRendererHelloWorld.cpp" />
+    <ClCompile Include="src\engine\helloWorld\SceneHelloWorld.cpp" />
+    <ClCompile Include="src\engine\helloWorld\SimpleShader.cpp" />
+    <ClCompile Include="src\engine\interfaces\IGameLogic.h" />
+    <ClCompile Include="src\engine\interfaces\IMasterRenderer.h" />
+    <ClCompile Include="src\game\Application.cpp" />
     <ClCompile Include="src\game\Main.cpp" />
+    <ClCompile Include="src\engine\Timer.cpp" />
+    <ClCompile Include="src\engine\Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\engine\graph\Input.h" />
+    <ClInclude Include="src\engine\helloWorld\HelloWorld.h" />
+    <ClInclude Include="src\engine\GameEngine.h" />
+    <ClInclude Include="src\engine\WindowOptions.h" />
+    <ClInclude Include="src\engine\Timer.h" />
+    <ClInclude Include="src\engine\Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

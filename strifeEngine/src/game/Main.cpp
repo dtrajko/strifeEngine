@@ -1,46 +1,63 @@
 #include <iostream>
+#include <map>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include "../engine/GameEngine.h"
+#include "../engine/interfaces/IGameLogic.h"
+#include "../engine/WindowOptions.h"
+#include "../engine/helloWorld/HelloWorld.h"
+
+int width = 0;
+int height = 0;
+std::string app = "HelloWorld"; // ThinMatrix
+
+enum AppName
+{
+	HelloWorld,
+	ThinMatrix,
+};
+
+static std::map<std::string, AppName> mapAppNames;
+
+bool vSync = false;
+engine::interfaces::IGameLogic* gameLogic;
+engine::GameEngine* gameEng;
+engine::WindowOptions* opts = new engine::WindowOptions();
+
+void InitAppNames()
+{
+	mapAppNames["HelloWorld"] = HelloWorld;
+	mapAppNames["ThinMatrix"] = ThinMatrix;
+}
 
 int main(void)
 {
-	GLFWwindow* window;
+	InitAppNames();
 
-	/* Initialize the library */
-	if (!glfwInit())
-		return -1;
+	opts->cullFace = true;
+	opts->showFps = true;
+	opts->compatibleProfile = true;
 
-	/* Create a windowed mode window and its OpenGL context */
-	window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-	if (!window)
+	switch (mapAppNames[app])
 	{
-		glfwTerminate();
-		return -1;
+		case HelloWorld:
+		{
+			std::cout << "HelloWorld app name detected!" << std::endl;
+			break;
+		}
+		case ThinMatrix:
+		{
+			std::cout << "ThinMatrix app name detected!" << std::endl;
+			gameLogic = new engine::helloWorld::HelloWorld();
+			opts->mode3D = true;
+			opts->cullFace = false;
+			opts->antialiasing = true;
+			width = height = 0;
+			break;
+		}
 	}
 
-	/* Make the window's context current */
-	glfwMakeContextCurrent(window);
+	gameEng = new engine::GameEngine(app, width, height, vSync, opts, gameLogic);
 
-	if (glewInit() != GLEW_OK)
-	{
-		std::cout << "GLEW failed to initialize!" << std::endl;
-	}
-
-	std::cout << glGetString(GL_VERSION) << std::endl;
-
-	/* Loop until the user closes the window */
-	while (!glfwWindowShouldClose(window))
-	{
-		/* Render here */
-		glClear(GL_COLOR_BUFFER_BIT);
-
-		/* Swap front and back buffers */
-		glfwSwapBuffers(window);
-
-		/* Poll for and process events */
-		glfwPollEvents();
-	}
-
-	glfwTerminate();
-	return 0;
+	std::cin.get();
 }
