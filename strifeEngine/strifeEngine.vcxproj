@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\tm\shaders\ShaderProgram.cpp" />
+    <ClCompile Include="src\engine\helloWorld\SimpleShader.cpp" />
+    <ClCompile Include="src\engine\helloWorld\SceneHelloWorld.cpp" />
+    <ClCompile Include="src\engine\helloWorld\MasterRendererHelloWorld.cpp" />
+    <ClCompile Include="src\engine\tm\loaders\Loader.cpp" />
     <ClCompile Include="src\engine\graph\Input.cpp" />
     <ClCompile Include="src\engine\helloWorld\HelloWorld.cpp" />
     <ClCompile Include="src\engine\GameEngine.cpp" />
-    <ClCompile Include="src\engine\helloWorld\MasterRendererHelloWorld.cpp" />
-    <ClCompile Include="src\engine\helloWorld\SceneHelloWorld.cpp" />
-    <ClCompile Include="src\engine\helloWorld\SimpleShader.cpp" />
     <ClCompile Include="src\engine\interfaces\IGameLogic.h" />
     <ClCompile Include="src\engine\interfaces\IMasterRenderer.h" />
     <ClCompile Include="src\game\Application.cpp" />
@@ -33,9 +35,16 @@
     <ClCompile Include="src\engine\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\tm\shaders\ShaderProgram.h" />
+    <ClInclude Include="src\engine\helloWorld\SimpleShader.h" />
+    <ClInclude Include="src\engine\helloWorld\SceneHelloWorld.h" />
+    <ClInclude Include="src\engine\helloWorld\MasterRendererHelloWorld.h" />
+    <ClInclude Include="src\engine\tm\loaders\Loader.h" />
     <ClInclude Include="src\engine\graph\Input.h" />
     <ClInclude Include="src\engine\helloWorld\HelloWorld.h" />
     <ClInclude Include="src\engine\GameEngine.h" />
+    <ClInclude Include="src\engine\interfaces\ICamera.h" />
+    <ClInclude Include="src\engine\interfaces\IScene.h" />
     <ClInclude Include="src\engine\WindowOptions.h" />
     <ClInclude Include="src\engine\Timer.h" />
     <ClInclude Include="src\engine\Window.h" />

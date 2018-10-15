@@ -43,21 +43,30 @@ int main(void)
 		case HelloWorld:
 		{
 			std::cout << "HelloWorld app name detected!" << std::endl;
+			gameLogic = new engine::helloWorld::HelloWorld();
+			opts->mode3D = true;
+			opts->cullFace = false;
+			opts->antialiasing = true;
+			width = 1280;
+			height = 720;
 			break;
 		}
 		case ThinMatrix:
 		{
 			std::cout << "ThinMatrix app name detected!" << std::endl;
-			gameLogic = new engine::helloWorld::HelloWorld();
-			opts->mode3D = true;
-			opts->cullFace = false;
-			opts->antialiasing = true;
-			width = height = 0;
 			break;
 		}
 	}
 
 	gameEng = new engine::GameEngine(app, width, height, vSync, opts, gameLogic);
+	gameEng->init();
+	gameEng->start();
 
-	std::cin.get();
+	while (true)
+	{
+		gameEng->update(0.0f);
+		gameEng->render();
+	}
+
+	return 0;
 }
