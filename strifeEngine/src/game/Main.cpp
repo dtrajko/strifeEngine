@@ -74,7 +74,7 @@ int main(void)
 	std::string FRAGMENT_FILE = "resources/shaders/simpleFragment.glsl";
 	SimpleShader * simpleShader = new SimpleShader(VERTEX_FILE, FRAGMENT_FILE);
 
-	while (true)
+	while (!glfwWindowShouldClose(gameEng->getWindow()))
 	{
 		gameEng->update(0.0f);
 		sprite.Update();

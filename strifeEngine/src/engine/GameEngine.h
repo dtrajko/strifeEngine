@@ -32,6 +32,7 @@ namespace engine
 		void start();
 		void run();
 		bool init();
+		GLFWwindow * getWindow();
 		void gameLoop();
 		void sync();
 		void input();

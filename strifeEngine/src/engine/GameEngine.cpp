@@ -67,6 +67,11 @@ namespace engine
 		return true;
 	}
 
+	GLFWwindow * GameEngine::getWindow()
+	{
+		return window;
+	}
+
 	void GameEngine::update(float interval)
 	{
 		glfwPollEvents();
@@ -74,7 +79,7 @@ namespace engine
 
 	void GameEngine::BeginRender()
 	{
-		glClearColor(0, 0, 1, 1);
+		glClearColor(0.2f, 0.3f, 0.8f, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
