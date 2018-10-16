@@ -10,8 +10,13 @@ namespace engine
 	{
 		class SimpleShader : public ShaderProgram
 		{
+		private:
+			int location_transformationMatrix;
+			int location_projectionMatrix;
+			int location_viewMatrix;
+
 		public:
-			SimpleShader();
+			SimpleShader(std::string& vertexFile, std::string& fragmentFile);
 			virtual ~SimpleShader();
 		};
 	}

@@ -36,7 +36,8 @@ namespace engine
 		void sync();
 		void input();
 		void update(float interval);
-		void render();
+		void BeginRender();
+		void EndRender();
 		int getFPS();
 		engine::Timer getTimer();
 		void cleanup();

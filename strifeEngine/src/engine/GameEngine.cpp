@@ -38,6 +38,11 @@ namespace engine
 		glfwGetFramebufferSize(window, &width, &height);
 		glfwSwapInterval(1);
 
+		if (glewInit() != GLEW_OK)
+		{
+			std::cout << "GameEngine: Failed to initialize GLEW!" << std::endl;
+		}
+
 		const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 		int x_Pos = (mode->width - m_width) / 2;
 		int y_Pos = (mode->height - m_height) / 2;
@@ -67,11 +72,14 @@ namespace engine
 		glfwPollEvents();
 	}
 
-	void GameEngine::render()
+	void GameEngine::BeginRender()
 	{
 		glClearColor(0, 0, 1, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	}
 
+	void GameEngine::EndRender()
+	{
 		glfwSwapBuffers(window);
 	}
 

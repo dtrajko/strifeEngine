@@ -4,7 +4,8 @@ namespace engine
 {
 	namespace helloWorld
 	{
-		SimpleShader::SimpleShader()
+		SimpleShader::SimpleShader(std::string& vertexFile, std::string& fragmentFile)
+			: ShaderProgram(vertexFile, fragmentFile)
 		{
 
 		}
