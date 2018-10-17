@@ -12,6 +12,11 @@ namespace engine
 		{
 		public:
 			MasterRendererHelloWorld();
+			// void init(IScene * scene);
+			glm::mat4 getProjectionMatrix();
+			void prepare();
+			// void render(Window * window, IScene * scene);
+			void cleanUp();
 			virtual ~MasterRendererHelloWorld();
 		};
 	}

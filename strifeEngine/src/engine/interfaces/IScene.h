@@ -17,6 +17,7 @@ namespace engine
 		public:
 			virtual void init() = 0;
 			virtual void update(float interval, Input * input) = 0;
+			virtual void render(Window * window) = 0;
 			virtual void cleanUp() = 0;
 			virtual ICamera getCamera() = 0;
 			virtual Loader getLoader() = 0;

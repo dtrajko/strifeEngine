@@ -3,14 +3,17 @@
 namespace engine
 {
 	Window::Window(std::string _title, int _width, int _height, bool _vSync, WindowOptions * _opts)
+		
 	{
+		FOV = (60 * (float) M_PI) / 180;
 		title = _title;
 		width = _width;
 		height = _height;
 		vSync = _vSync;
 		resized = false;
 		opts = _opts;
-		// TODO: projectionMatrix = new Matrix4f();
+		projectionMatrix = new glm::mat4();
+		
 	}
 
 	bool Window::init()
@@ -129,14 +132,16 @@ namespace engine
 		glfwSetCursorPos(glfwWindow, xPos, yPos);
 	}
 
-	void Window::updateProjectionMatrix()
+	glm::mat4 * Window::updateProjectionMatrix()
 	{
-		// TODO
+		float aspectRatio = (float) width / (float) height;
+		projectionMatrix = & glm::perspective(FOV, aspectRatio, Z_NEAR, Z_FAR);
+		return projectionMatrix;
 	}
 
-	void Window::getProjectionMatrix()
+	glm::mat4 * Window::getProjectionMatrix()
 	{
-		// TODO
+		return projectionMatrix;
 	}
 
 	void Window::setClearColor(float r, float g, float b, float a)
@@ -173,7 +178,7 @@ namespace engine
 		}
 	}
 
-	GLFWwindow * Window::getWindowHandle()
+	GLFWwindow * Window::getHandle()
 	{
 		return glfwWindow;
 	}
@@ -232,5 +237,4 @@ namespace engine
 	{
 
 	}
-
 }

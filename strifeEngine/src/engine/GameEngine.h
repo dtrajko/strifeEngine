@@ -8,10 +8,13 @@
 #include "Timer.h"
 #include "WindowOptions.h"
 #include "../engine/graph/Input.h"
+#include "../engine/graph/Sprite.h"
+#include "../engine/helloWorld/SimpleShader.h"
 
 using namespace engine;
-using namespace engine::interfaces;
 using namespace engine::graph;
+using namespace engine::interfaces;
+using namespace engine::helloWorld;
 
 namespace engine
 {
@@ -28,21 +31,23 @@ namespace engine
 		std::string windowTitle;
 		Window * window;
 		IGameLogic * gameLogic;
-		Input * input;
+		Input * m_input;
 		Timer * timer;
+		double lastFps;
+		int fps;
+		// temporary
+		Sprite * sprite;
 
 	public:
 		GameEngine(std::string _windowTitle, int _width, int _height, bool _vSync, WindowOptions * _opts, IGameLogic * _gameLogic);
 		void start();
-		void run();
 		bool init();
 		GLFWwindow * getWindow();
 		void gameLoop();
 		void sync();
-		void Input();
+		void input();
 		void update(float interval);
-		void BeginRender();
-		void EndRender();
+		void render();
 		int getFPS();
 		engine::Timer getTimer();
 		void cleanup();

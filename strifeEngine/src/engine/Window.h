@@ -1,8 +1,12 @@
 #pragma once
 
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include <iostream>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include "../vendor/glm/glm.hpp"
+#include "../vendor/glm/gtc/matrix_transform.hpp"
 #include "../engine/WindowOptions.h"
 
 namespace engine
@@ -23,6 +27,7 @@ namespace engine
 		bool resized;
 		bool vSync;
 		WindowOptions * opts;
+		glm::mat4 * projectionMatrix;
 
 	public:
 		Window(std::string _title, int _width, int _height, bool _vSync, WindowOptions * _opts);
@@ -30,8 +35,8 @@ namespace engine
 		void close();
 		void setMousePositionCenter();
 		void setMousePosition(int xPos, int yPos);
-		void updateProjectionMatrix(); // TODO: return value Matrix4f
-		void getProjectionMatrix();; // TODO: return value Matrix4f
+		glm::mat4 * updateProjectionMatrix();
+		glm::mat4 * getProjectionMatrix();
 		void setClearColor(float r, float g, float b, float a);
 		bool isKeyPressed(int keyCode);
 		bool windowShouldClose();
@@ -41,7 +46,7 @@ namespace engine
 		virtual ~Window();
 
 		// getters / setters
-		GLFWwindow * getWindowHandle();
+		GLFWwindow * getHandle();
 		std::string getTitle();
 		void setTitle(std::string & title);
 		int getWidth();

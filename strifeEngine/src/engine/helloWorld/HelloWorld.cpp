@@ -11,27 +11,29 @@ namespace engine
 
 		void HelloWorld::init(Window * window)
 		{
-
+			scene = new SceneHelloWorld();
+			scene->init();
 		}
 
 		void HelloWorld::input(Window * window, Input * input)
 		{
-
+			m_input = input;
+			// TODO - IF input.isKeyReleased THEN window.close()
 		}
 
 		void HelloWorld::update(float interval, Input * input)
 		{
-
+			scene->update(interval, input);
 		}
 
 		void HelloWorld::render(Window * window)
 		{
-
+			scene->render(window);
 		}
 
 		Window * HelloWorld::getWindow()
 		{
-			return m_window;
+			return window;
 		}
 
 		Input * HelloWorld::getInput()
@@ -41,7 +43,7 @@ namespace engine
 
 		void HelloWorld::cleanUp()
 		{
-
+			scene->cleanUp();
 		}
 
 		HelloWorld::~HelloWorld()

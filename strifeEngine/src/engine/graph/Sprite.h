@@ -16,8 +16,8 @@ namespace engine
 			Sprite();
 			Sprite(std::string imagePath);
 			Sprite(std::string imagePath, float _xPos, float _yPos);
-			void Update();
-			void Render();
+			void update();
+			void render();
 			virtual ~Sprite();
 
 		private:

@@ -3,6 +3,7 @@
 #include "../interfaces/IGameLogic.h"
 #include "../interfaces/IScene.h"
 #include "../../engine/graph/Input.h"
+#include "../helloWorld/SceneHelloWorld.h"
 
 using namespace engine::interfaces;
 using namespace engine::graph;
@@ -14,14 +15,15 @@ namespace engine
 		class HelloWorld : public IGameLogic
 		{
 		private:
-			Window * m_window;
+			Window * window;
+			IScene * scene;
 			Input * m_input;
 
 		public:
 			HelloWorld();
 			void init(Window * window);
-			void input(Window* window, Input* input);
-			void update(float interval, Input* input);
+			void input(Window * window, Input * input);
+			void update(float interval, Input * input);
 			void render(Window* window);
 			Window * getWindow();
 			Input * getInput();

@@ -25,12 +25,12 @@ namespace engine
 			yPos = _yPos;
 		}
 
-		void Sprite::Update()
+		void Sprite::update()
 		{
 
 		}
 
-		void Sprite::Render()
+		void Sprite::render()
 		{
 			glEnable(GL_TEXTURE_2D);
 			glBindTexture(GL_TEXTURE_2D, texture.GetID());
