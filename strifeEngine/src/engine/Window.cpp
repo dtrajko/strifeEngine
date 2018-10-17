@@ -2,17 +2,235 @@
 
 namespace engine
 {
-	Window::Window(std::string title, int width, int height, bool vSync, WindowOptions * opts)
+	Window::Window(std::string _title, int _width, int _height, bool _vSync, WindowOptions * _opts)
 	{
-		m_title = title;
-		m_width = width;
-		m_height = height;
-		m_vSync = vSync;
-		m_opts = opts;
+		title = _title;
+		width = _width;
+		height = _height;
+		vSync = _vSync;
+		resized = false;
+		opts = _opts;
+		// TODO: projectionMatrix = new Matrix4f();
+	}
+
+	bool Window::init()
+	{
+		if (!glfwInit())
+		{
+			std::cout << "GameEngine: error initializing GLFW!" << std::endl;
+			return false;
+		}
+
+		glfwDefaultWindowHints(); // optional, the current window hints are already the default
+		glfwWindowHint(GLFW_VISIBLE, GL_FALSE); // the window will stay hidden after creation
+		glfwWindowHint(GLFW_RESIZABLE, GL_TRUE); // the window will be resizable
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+
+		if (opts->compatibleProfile) {
+			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
+		}
+		else {
+			glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+			glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+		}
+
+		// m_window = new Window(m_windowTitle, m_width, m_height, m_vSync, m_opts);
+		glfwWindow = glfwCreateWindow(width, height, title.c_str(), NULL, NULL);
+		if (glfwWindow == NULL)
+		{
+			std::cout << "GameEngine: error creating window!" << std::endl;
+			return false;
+		}
+
+		const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+		int x_Pos = (mode->width - width) / 2;
+		int y_Pos = (mode->height - height) / 2;
+		glfwSetWindowPos(glfwWindow, x_Pos, y_Pos);
+
+		// GLFW setup
+		// Make the OpenGL context current
+		glfwMakeContextCurrent(glfwWindow);
+		int width, height;
+		glfwGetFramebufferSize(glfwWindow, &width, &height);
+
+		if (isvSync()) {
+			// Enable v-sync
+			glfwSwapInterval(1);
+		}
+
+		// Make the window visible
+		glfwShowWindow(glfwWindow);
+
+		// Antialiasing
+		if (opts->antialiasing) {
+			glfwWindowHint(GLFW_SAMPLES, 4);
+			glEnable(GL_MULTISAMPLE);
+		}
+
+		glClearColor(0.2f, 0.3f, 0.8f, 1);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		if (opts->mode3D) {
+			glEnable(GL_DEPTH_TEST);
+		}
+
+		glEnable(GL_STENCIL_TEST);
+		if (opts->showTriangles) {
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		}
+
+		// Support for transparencies
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		if (opts->cullFace) {
+			glEnable(GL_CULL_FACE);
+			glCullFace(GL_BACK);
+		}
+
+		if (glewInit() != GLEW_OK)
+		{
+			std::cout << "GameEngine: Failed to initialize GLEW!" << std::endl;
+		}
+
+		// OpenGL setup
+		// Viewport
+		glViewport(0, 0, width, height);
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(0, width, 0, height, -10, 10);
+		glDepthRange(-10, 10);
+		glMatrixMode(GL_MODELVIEW);
+		// Alpha blending
+		glEnable(GL_ALPHA_TEST);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		std::cout << "GameEngine: init complete." << std::endl;
+
+		return true;
+	}
+
+	void Window::close()
+	{
+		glfwSetWindowShouldClose(glfwWindow, true);
+	}
+
+	void Window::setMousePositionCenter()
+	{
+		int xPos = width / 2;
+		int yPos = height / 2;
+		setMousePosition(xPos, yPos);
+	}
+
+	void Window::setMousePosition(int xPos, int yPos)
+	{
+		glfwSetCursorPos(glfwWindow, xPos, yPos);
+	}
+
+	void Window::updateProjectionMatrix()
+	{
+		// TODO
+	}
+
+	void Window::getProjectionMatrix()
+	{
+		// TODO
+	}
+
+	void Window::setClearColor(float r, float g, float b, float a)
+	{
+		glClearColor(r, g, b, a);
+	}
+
+	bool Window::isKeyPressed(int keyCode)
+	{
+		return glfwGetKey(glfwWindow, keyCode) == GLFW_PRESS;
+	}
+
+	bool Window::windowShouldClose()
+	{
+		return glfwWindowShouldClose(glfwWindow);
+	}
+
+	void Window::update()
+	{
+		glfwSwapBuffers(glfwWindow);
+		glfwPollEvents();
+	}
+
+	void Window::restoreState()
+	{
+		if (opts->mode3D) {
+			glEnable(GL_DEPTH_TEST);
+		}
+		glEnable(GL_STENCIL_TEST);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		if (opts->cullFace) {
+			glEnable(GL_CULL_FACE);
+			glCullFace(GL_BACK);
+		}
+	}
+
+	GLFWwindow * Window::getWindowHandle()
+	{
+		return glfwWindow;
+	}
+
+	std::string Window::getTitle()
+	{
+		return title;
+	}
+
+	void Window::setTitle(std::string & title)
+	{
+		glfwSetWindowTitle(glfwWindow, title.c_str());
+	}
+
+	int Window::getWidth()
+	{
+		return width;
+	}
+
+	int Window::getHeight()
+	{
+		return height;
+	}
+
+	WindowOptions * Window::getWindowOptions()
+	{
+		return opts;
+	}
+
+	bool Window::isResized()
+	{
+		return resized;
+	}
+
+	void Window::setResized(bool _resized)
+	{
+		resized = _resized;
+	}
+
+	bool Window::isvSync()
+	{
+		return vSync;
+	}
+
+	void Window::setvSync(bool _vSync)
+	{
+		vSync = _vSync;
+	}
+
+	void Window::cleanup()
+	{
+
 	}
 
 	Window::~Window()
 	{
 
 	}
+
 }

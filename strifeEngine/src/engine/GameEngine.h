@@ -1,41 +1,45 @@
 #pragma once
 
 #include <iostream>
-#include "interfaces\IGameLogic.h"
-#include "Window.h"
-#include "graph\Input.h"
-#include "Timer.h"
-#include "WindowOptions.h"
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include "interfaces\IGameLogic.h"
+#include "Window.h"
+#include "Timer.h"
+#include "WindowOptions.h"
+#include "../engine/graph/Input.h"
+
+using namespace engine;
+using namespace engine::interfaces;
+using namespace engine::graph;
 
 namespace engine
 {
 	class GameEngine
 	{
 	public:
-		int m_width;
-		int m_height;
-		bool m_vSync;
-		WindowOptions * m_opts;
+		int width;
+		int height;
+		bool vSync;
+		WindowOptions * opts;
 
 	private:
-		GLFWwindow * window;
-		std::string m_windowTitle;
-		engine::Window* m_window;
-		engine::interfaces::IGameLogic* m_gameLogic;
-		engine::graph::Input* m_input;
-		engine::Timer* m_timer;
+		GLFWwindow * glfwWindow;
+		std::string windowTitle;
+		Window * window;
+		IGameLogic * gameLogic;
+		Input * input;
+		Timer * timer;
 
 	public:
-		GameEngine(std::string windowTitle, int width, int height, bool vSync, WindowOptions* opts, interfaces::IGameLogic* gameLogic);
+		GameEngine(std::string _windowTitle, int _width, int _height, bool _vSync, WindowOptions * _opts, IGameLogic * _gameLogic);
 		void start();
 		void run();
 		bool init();
 		GLFWwindow * getWindow();
 		void gameLoop();
 		void sync();
-		void input();
+		void Input();
 		void update(float interval);
 		void BeginRender();
 		void EndRender();

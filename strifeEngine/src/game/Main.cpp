@@ -80,7 +80,6 @@ int main(void)
 		sprite.Update();
 		gameEng->BeginRender();
 		sprite.Render();
-		gameEng->EndRender();
 	}
 
 	return 0;

@@ -4,7 +4,7 @@ namespace engine
 {
 	namespace graph
 	{
-		Input::Input()
+		Input::Input(Window * window)
 		{
 
 		}

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../Window.h"
+
 namespace engine
 {
 	namespace graph
@@ -7,7 +9,7 @@ namespace engine
 		class Input
 		{
 		public:
-			Input();
+			Input(Window * window);
 			virtual ~Input();
 		};
 	}
