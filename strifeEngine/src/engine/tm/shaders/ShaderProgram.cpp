@@ -21,6 +21,26 @@ namespace engine
 				getAllUniformLocations();
 			}
 
+			void ShaderProgram::start()
+			{
+				glUseProgram(programID);
+			}
+
+			void ShaderProgram::stop()
+			{
+				glUseProgram(0);
+			}
+
+			void ShaderProgram::cleanUp()
+			{
+				stop();
+				glDetachShader(programID, vertexShaderID);
+				glDetachShader(programID, fragmentShaderID);
+				glDeleteShader(vertexShaderID);
+				glDeleteShader(fragmentShaderID);
+				glDeleteProgram(programID);
+			}
+
 			std::stringstream ShaderProgram::parseShader(const std::string& file)
 			{
 				std::ifstream stream(file);
@@ -81,6 +101,11 @@ namespace engine
 				glBindAttribLocation(programID, attribute, variableName.c_str());
 			}
 
+			void ShaderProgram::loadMatrix(const std::string& locationName, glm::mat4 matrix)
+			{
+				glUniformMatrix4fv(getUniformLocation(locationName), 1, GL_FALSE, &matrix[0][0]);
+			}
+
 			void ShaderProgram::bindAttributes()
 			{
 
@@ -89,6 +114,22 @@ namespace engine
 			void ShaderProgram::getAllUniformLocations()
 			{
 
+			}
+
+			int ShaderProgram::getUniformLocation(const std::string& name)
+			{
+				if (uniformLocationCache.find(name) != uniformLocationCache.end())
+					return uniformLocationCache[name];
+
+				int location = glGetUniformLocation(programID, name.c_str());
+				if (location == -1)
+				{
+					std::cout << "Name: " << name << ", programID: " << programID << ", Location: " << location << std::endl;
+					std::cout << "Warning: uniform '" << name << "' doesn't exist!" << std::endl;
+				}
+
+				uniformLocationCache[name] = location;
+				return location;
 			}
 
 			ShaderProgram::~ShaderProgram()

@@ -23,13 +23,6 @@ namespace engine
 		gameLogic->init(window);
 		lastFps = timer->getTime();
 		fps = 0;
-
-		// temporary
-		sprite = new Sprite("resources/assets/art/fortnite.png", 350, 100);
-		std::string VERTEX_FILE = "resources/shaders/simpleVertex.glsl";
-		std::string FRAGMENT_FILE = "resources/shaders/simpleFragment.glsl";
-		SimpleShader * simpleShader = new SimpleShader(VERTEX_FILE, FRAGMENT_FILE);
-
 		return true;
 	}
 
@@ -41,15 +34,12 @@ namespace engine
 	void GameEngine::update(float interval)
 	{
 		window->update();
-		sprite->update();
 	}
 
 	void GameEngine::render()
 	{
 		glClearColor(0.2f, 0.3f, 0.8f, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-		sprite->render();
 		gameLogic->render(window);
 	}
 

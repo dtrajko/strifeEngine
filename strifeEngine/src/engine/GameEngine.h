@@ -8,7 +8,6 @@
 #include "Timer.h"
 #include "WindowOptions.h"
 #include "../engine/graph/Input.h"
-#include "../engine/graph/Sprite.h"
 #include "../engine/helloWorld/SimpleShader.h"
 
 using namespace engine;
@@ -35,8 +34,6 @@ namespace engine
 		Timer * timer;
 		double lastFps;
 		int fps;
-		// temporary
-		Sprite * sprite;
 
 	public:
 		GameEngine(std::string _windowTitle, int _width, int _height, bool _vSync, WindowOptions * _opts, IGameLogic * _gameLogic);

@@ -4,24 +4,66 @@ namespace engine
 {
 	namespace helloWorld
 	{
-		MasterRendererHelloWorld::MasterRendererHelloWorld()
+		MasterRendererHelloWorld::MasterRendererHelloWorld(Window * window)
+		{
+			std::string vertexFile = "resources/shaders/simpleVertex.glsl";
+			std::string fragmentFile = "resources/shaders/simpleFragment.glsl";
+			shader = new SimpleShader(vertexFile, fragmentFile);
+			projectionMatrix = createProjectionMatrix(window);
+			shader->start();
+			shader->loadProjectionMatrix(projectionMatrix);
+			shader->stop();
+		}
+
+		void MasterRendererHelloWorld::init(IScene * scene)
 		{
 
 		}
 
-		glm::mat4 MasterRendererHelloWorld::getProjectionMatrix()
+		glm::mat4 MasterRendererHelloWorld::createProjectionMatrix(Window * window)
 		{
-			return glm::mat4();
+			float aspectRatio = (float) window->getWidth() / (float) window->getHeight();
+			projectionMatrix = glm::perspective(
+				glm::radians(FOV),
+				aspectRatio,
+				NEAR_PLANE,
+				FAR_PLANE
+			);
+			return projectionMatrix;
+		}
+
+		glm::mat4 MasterRendererHelloWorld::getProjectionMatrix(Window * window)
+		{
+			return projectionMatrix;
 		}
 
 		void MasterRendererHelloWorld::prepare()
+		{
+			glEnable(GL_DEPTH_TEST);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			glClearColor(RED, GREEN, BLUE, 1.0f);
+			// shader->start();
+		}
+
+		void MasterRendererHelloWorld::render(Window * window, IScene * scene)
+		{
+			glViewport(0, 0, window->getWidth(), window->getHeight());
+			prepare();
+			glm::mat4 viewMatrix;
+			shader->loadMatrix("viewMatrix", viewMatrix);
+			renderModel(scene->getEntity());
+
+			scene->getSprite()->render();
+		}
+
+		void MasterRendererHelloWorld::renderModel(Entity * entity)
 		{
 
 		}
 
 		void MasterRendererHelloWorld::cleanUp()
 		{
-
+			shader->cleanUp();
 		}
 
 		MasterRendererHelloWorld::~MasterRendererHelloWorld()

@@ -12,7 +12,7 @@ namespace engine
 		void HelloWorld::init(Window * window)
 		{
 			scene = new SceneHelloWorld();
-			scene->init();
+			scene->init(window);
 		}
 
 		void HelloWorld::input(Window * window, Input * input)

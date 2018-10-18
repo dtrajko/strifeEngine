@@ -10,6 +10,11 @@ namespace engine
 
 		}
 
+		void SimpleShader::loadProjectionMatrix(glm::mat4 projMatrix)
+		{
+			loadMatrix("projectionMatrix", projMatrix);
+		}
+
 		SimpleShader::~SimpleShader()
 		{
 

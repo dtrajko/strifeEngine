@@ -7,6 +7,7 @@
 #include "../engine/WindowOptions.h"
 #include "../engine/helloWorld/HelloWorld.h"
 #include "../engine/graph/Sprite.h"
+#include "../engine/tm/models/CubeMeshSimple.h"
 
 using namespace engine;
 using namespace engine::interfaces;

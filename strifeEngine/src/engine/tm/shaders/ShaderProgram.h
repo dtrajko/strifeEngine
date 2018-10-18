@@ -4,6 +4,9 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <unordered_map>
+#include "../../../vendor/glm/glm.hpp"
+#include "../../../vendor/glm/gtc/matrix_transform.hpp"
 
 namespace engine
 {
@@ -17,14 +20,20 @@ namespace engine
 				unsigned int programID;
 				unsigned int vertexShaderID;
 				unsigned int fragmentShaderID;
+				std::unordered_map<std::string, int> uniformLocationCache;
 
 			public:
 				ShaderProgram(std::string & vertexFile, std::string & fragmentFile);
+				void start();
+				void stop();
+				void cleanUp();
 				std::stringstream parseShader(const std::string & filepath);
 				unsigned int loadShader(std::string & file, unsigned int type);
 				void bindAttributes();
 				void getAllUniformLocations();
+				int getUniformLocation(const std::string& name);
 				void bindAttribute(int attribute, std::string variableName);
+				void loadMatrix(const std::string& locationName, glm::mat4 matrix);
 				virtual ~ShaderProgram();
 			};
 		}
