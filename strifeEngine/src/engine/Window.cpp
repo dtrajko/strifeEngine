@@ -217,7 +217,7 @@ namespace engine
 
 	void Window::cleanUp()
 	{
-
+		glfwTerminate();
 	}
 
 	Window::~Window()

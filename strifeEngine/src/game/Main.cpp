@@ -7,6 +7,7 @@
 #include "../engine/WindowOptions.h"
 #include "../engine/helloWorld/HelloWorld.h"
 #include "../engine/helloWorld/Cherno.h"
+#include "../engine/helloWorld/ThinMatrix.h"
 #include "../engine/graph/Sprite.h"
 #include "../engine/tm/models/CubeMeshSimple.h"
 
@@ -15,7 +16,7 @@ using namespace engine::interfaces;
 
 int width = 0;
 int height = 0;
-std::string app = "TheCherno"; // TheCherno, HelloWorld, ThinMatrix
+std::string app = "ThinMatrix"; // TheCherno, HelloWorld, ThinMatrix
 
 enum AppName
 {
@@ -55,7 +56,7 @@ int main(void)
 			opts->mode3D = true;
 			opts->cullFace = false;
 			opts->antialiasing = true;
-			opts->showTriangles = true;
+			opts->showTriangles = false;
 			width = 1280;
 			height = 720;
 			break;
@@ -67,7 +68,7 @@ int main(void)
 			opts->mode3D = true;
 			opts->cullFace = false;
 			opts->antialiasing = true;
-			opts->showTriangles = true;
+			opts->showTriangles = false;
 			width = 1280;
 			height = 720;
 			break;
@@ -75,6 +76,13 @@ int main(void)
 		case Thin_Matrix:
 		{
 			std::cout << "ThinMatrix app name detected!" << std::endl;
+			gameLogic = new engine::helloWorld::ThinMatrix();
+			opts->mode3D = false;
+			opts->cullFace = false;
+			opts->antialiasing = false;
+			opts->showTriangles = false;
+			width = 1280;
+			height = 720;
 			break;
 		}
 	}

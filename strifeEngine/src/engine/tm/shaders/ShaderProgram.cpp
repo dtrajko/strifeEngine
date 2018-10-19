@@ -101,9 +101,21 @@ namespace engine
 				glBindAttribLocation(programID, attribute, variableName.c_str());
 			}
 
-			void ShaderProgram::loadMatrix(const std::string& locationName, glm::mat4 matrix)
+			void ShaderProgram::loadMatrix(const std::string& name, glm::mat4 matrix)
 			{
-				glUniformMatrix4fv(getUniformLocation(locationName), 1, GL_FALSE, &matrix[0][0]);
+				glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, &matrix[0][0]);
+			}
+
+			void ShaderProgram::loadVec4f(const std::string& name, glm::vec4 vector)
+			{
+				int location = getUniformLocation(name);
+				glUniform4f(location, vector.x, vector.y, vector.z, vector.w);
+			}
+
+			void ShaderProgram::loadInt(const std::string& name, int value)
+			{
+				int location = getUniformLocation(name);
+				glUniform1i(location, value);
 			}
 
 			void ShaderProgram::bindAttributes()

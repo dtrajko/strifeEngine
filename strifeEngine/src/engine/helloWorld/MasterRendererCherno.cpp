@@ -6,9 +6,9 @@ namespace engine
 	{
 		MasterRendererCherno::MasterRendererCherno(Window * window)
 		{
-			std::string vertexFile = "resources/shaders/simpleVertex.glsl";
-			std::string fragmentFile = "resources/shaders/simpleFragment.glsl";
-			shader = new SimpleShader(vertexFile, fragmentFile);
+			std::string vertexFile = "resources/shaders/chernoVertex.glsl";
+			std::string fragmentFile = "resources/shaders/chernoFragment.glsl";
+			shader = new ChernoShader(vertexFile, fragmentFile);
 		}
 
 		void MasterRendererCherno::init(IScene * scene)
@@ -27,12 +27,13 @@ namespace engine
 
 		void MasterRendererCherno::render(Window * window, IScene * scene)
 		{
-			glViewport(0, 0, window->getWidth(), window->getHeight());
-			prepare();
+			prepare(window);
+			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 		}
 
-		void MasterRendererCherno::prepare()
+		void MasterRendererCherno::prepare(Window * window)
 		{
+			glViewport(0, 0, window->getWidth(), window->getHeight());
 			glEnable(GL_DEPTH_TEST);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glClearColor(RED, GREEN, BLUE, 1.0f);

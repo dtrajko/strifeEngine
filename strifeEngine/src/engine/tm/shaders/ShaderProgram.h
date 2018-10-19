@@ -34,7 +34,9 @@ namespace engine
 				void getAllUniformLocations();
 				int getUniformLocation(const std::string& name);
 				void bindAttribute(int attribute, std::string variableName);
+				void loadInt(const std::string& name, int value);
 				void loadMatrix(const std::string& locationName, glm::mat4 matrix);
+				void loadVec4f(const std::string& name, glm::vec4 vector);
 				virtual ~ShaderProgram();
 			};
 		}

@@ -3,6 +3,7 @@
 #include "../interfaces/IMasterRenderer.h"
 #include "../interfaces/IScene.h"
 #include "../helloWorld/SimpleShader.h"
+#include "../helloWorld/ChernoShader.h"
 #include "../tm/toolbox/Maths.h"
 #include "../../engine/tm/entities/Entity.h"
 #include "../../vendor/glm/glm.hpp"
@@ -22,7 +23,7 @@ namespace engine
 			float RED = 1.0f;
 			float GREEN = 0.4f;
 			float BLUE = 0.2f;
-			SimpleShader * shader;
+			ChernoShader * shader;
 			glm::mat4 projectionMatrix;
 
 		public:
@@ -30,7 +31,7 @@ namespace engine
 			void init(IScene * scene);
 			glm::mat4 createProjectionMatrix(Window * window);
 			glm::mat4 getProjectionMatrix(Window * window);
-			void prepare();
+			void prepare(Window * window);
 			void render(Window * window, IScene * scene);
 			void renderModel(Entity * entity);
 			void cleanUp();

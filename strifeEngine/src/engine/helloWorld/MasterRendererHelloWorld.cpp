@@ -39,14 +39,14 @@ namespace engine
 
 		void MasterRendererHelloWorld::render(Window * window, IScene * scene)
 		{
-			glViewport(0, 0, window->getWidth(), window->getHeight());
-			prepare();
+			prepare(window);
 			shader->loadMatrix("viewMatrix", scene->getCamera()->getViewMatrix());
 			renderModel(scene->getEntity());
 		}
 
-		void MasterRendererHelloWorld::prepare()
+		void MasterRendererHelloWorld::prepare(Window * window)
 		{
+			glViewport(0, 0, window->getWidth(), window->getHeight());
 			glEnable(GL_DEPTH_TEST);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glClearColor(RED, GREEN, BLUE, 1.0f);
@@ -64,7 +64,8 @@ namespace engine
 			shader->loadMatrix("transformationMatrix", transformationMatrix);
 			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE0, texturedModel->getTexture()->getID());
-			glDrawElements(GL_TRIANGLES, rawModel->getVertexCount(), GL_UNSIGNED_INT, 0);
+			shader->loadInt("textureSampler", 0);
+			glDrawElements(GL_TRIANGLES, rawModel->getVertexCount(), GL_UNSIGNED_INT, nullptr);
 			glDisableVertexAttribArray(0);
 			glDisableVertexAttribArray(1);
 			glBindVertexArray(0);

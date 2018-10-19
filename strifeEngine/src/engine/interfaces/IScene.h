@@ -24,6 +24,7 @@ namespace engine
 			virtual ICamera * getCamera() = 0;
 			virtual Loader * getLoader() = 0;
 			virtual Entity * getEntity() = 0;
+			virtual RawModel * getModel() = 0;
 		};
 	}
 }
