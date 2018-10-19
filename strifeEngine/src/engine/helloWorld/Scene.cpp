@@ -1,17 +1,17 @@
-#include "SceneThinMatrix.h"
+#include "Scene.h"
 
 namespace engine
 {
 	namespace helloWorld
 	{
-		SceneThinMatrix::SceneThinMatrix()
+		Scene::Scene()
 		{
 
 		}
 
-		void SceneThinMatrix::init(Window * window)
+		void Scene::init(Window * window)
 		{
-			masterRenderer = new MasterRendererThinMatrix(window);
+			masterRenderer = new MasterRenderer(window);
 			loader = new Loader();
 
 			float vertices[]= {
@@ -30,42 +30,42 @@ namespace engine
 			model = loader->loadToVAO(vertices, 4 * 3, indices, 6);
 		}
 
-		void SceneThinMatrix::update(float interval, Input * input)
+		void Scene::update(float interval, Input * input)
 		{
 		}
 
-		void SceneThinMatrix::render(Window * window)
+		void Scene::render(Window * window)
 		{
 			masterRenderer->render(window, this);
 		}
 
-		Entity * SceneThinMatrix::getEntity()
+		Entity * Scene::getEntity()
 		{
 			return entity;
 		}
 
-		RawModel * SceneThinMatrix::getModel()
+		RawModel * Scene::getModel()
 		{
 			return model;
 		}
 
-		void SceneThinMatrix::cleanUp()
+		void Scene::cleanUp()
 		{
 			loader->cleanUp();
 			masterRenderer->cleanUp();
 		}
 
-		ICamera * SceneThinMatrix::getCamera()
+		ICamera * Scene::getCamera()
 		{
 			return camera;
 		}
 
-		Loader * SceneThinMatrix::getLoader()
+		Loader * Scene::getLoader()
 		{
 			return loader;
 		}
 
-		SceneThinMatrix::~SceneThinMatrix()
+		Scene::~Scene()
 		{
 
 		}

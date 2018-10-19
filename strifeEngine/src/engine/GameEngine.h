@@ -8,12 +8,10 @@
 #include "Timer.h"
 #include "WindowOptions.h"
 #include "../engine/graph/Input.h"
-#include "../engine/helloWorld/SimpleShader.h"
 
 using namespace engine;
 using namespace engine::graph;
 using namespace engine::interfaces;
-using namespace engine::helloWorld;
 
 namespace engine
 {

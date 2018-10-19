@@ -3,7 +3,7 @@
 #include "../interfaces/IGameLogic.h"
 #include "../interfaces/IScene.h"
 #include "../../engine/graph/Input.h"
-#include "../helloWorld/SceneHelloWorld.h"
+#include "../helloWorld/Scene.h"
 
 using namespace engine::interfaces;
 using namespace engine::graph;

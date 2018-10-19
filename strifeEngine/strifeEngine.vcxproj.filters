@@ -21,9 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\game\Application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,9 +33,6 @@
     <ClCompile Include="src\engine\interfaces\IGameLogic.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\helloWorld\HelloWorld.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\engine\Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -49,15 +43,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\engine\tm\loaders\Loader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\helloWorld\MasterRendererHelloWorld.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\helloWorld\SceneHelloWorld.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\helloWorld\SimpleShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\engine\tm\shaders\ShaderProgram.cpp">
@@ -90,28 +75,16 @@
     <ClCompile Include="src\engine\tm\toolbox\Maths.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\helloWorld\MasterRendererCherno.cpp">
+    <ClCompile Include="src\engine\helloWorld\MasterRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\helloWorld\SceneCherno.cpp">
+    <ClCompile Include="src\engine\helloWorld\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\helloWorld\Cherno.cpp">
+    <ClCompile Include="src\engine\helloWorld\SimpleShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\helloWorld\ChernoShader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\helloWorld\SceneThinMatrix.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\helloWorld\ThinMatrix.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\helloWorld\ThinMatrixShader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\helloWorld\MasterRendererThinMatrix.cpp">
+    <ClCompile Include="src\engine\helloWorld\HelloWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -120,9 +93,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\WindowOptions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\helloWorld\HelloWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\Timer.h">
@@ -141,15 +111,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\tm\loaders\Loader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\helloWorld\MasterRendererHelloWorld.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\helloWorld\SceneHelloWorld.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\helloWorld\SimpleShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\tm\shaders\ShaderProgram.h">
@@ -182,28 +143,16 @@
     <ClInclude Include="src\engine\tm\toolbox\Maths.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\helloWorld\MasterRendererCherno.h">
+    <ClInclude Include="src\engine\helloWorld\MasterRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\helloWorld\SceneCherno.h">
+    <ClInclude Include="src\engine\helloWorld\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\helloWorld\Cherno.h">
+    <ClInclude Include="src\engine\helloWorld\SimpleShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\helloWorld\ChernoShader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\helloWorld\SceneThinMatrix.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\helloWorld\ThinMatrix.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\helloWorld\ThinMatrixShader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\helloWorld\MasterRendererThinMatrix.h">
+    <ClInclude Include="src\engine\helloWorld\HelloWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,8 +6,6 @@
 #include "../engine/interfaces/IGameLogic.h"
 #include "../engine/WindowOptions.h"
 #include "../engine/helloWorld/HelloWorld.h"
-#include "../engine/helloWorld/Cherno.h"
-#include "../engine/helloWorld/ThinMatrix.h"
 #include "../engine/graph/Sprite.h"
 #include "../engine/tm/models/CubeMeshSimple.h"
 
@@ -16,13 +14,11 @@ using namespace engine::interfaces;
 
 int width = 0;
 int height = 0;
-std::string app = "ThinMatrix"; // TheCherno, HelloWorld, ThinMatrix
+std::string app = "HelloWorld";
 
 enum AppName
 {
-	Hello_World,
-	Thin_Matrix,
-	The_Cherno,
+	Hello_World
 };
 
 static std::map<std::string, AppName> mapAppNames;
@@ -35,8 +31,6 @@ WindowOptions* opts = new WindowOptions();
 void InitAppNames()
 {
 	mapAppNames["HelloWorld"] = Hello_World;
-	mapAppNames["ThinMatrix"] = Thin_Matrix;
-	mapAppNames["TheCherno"] = The_Cherno;
 }
 
 int main(void)
@@ -49,34 +43,10 @@ int main(void)
 
 	switch (mapAppNames[app])
 	{
-		case The_Cherno:
-		{
-			std::cout << "Cherno app name detected!" << std::endl;
-			gameLogic = new engine::helloWorld::Cherno();
-			opts->mode3D = true;
-			opts->cullFace = false;
-			opts->antialiasing = true;
-			opts->showTriangles = false;
-			width = 1280;
-			height = 720;
-			break;
-		}
 		case Hello_World:
 		{
-			std::cout << "HelloWorld app name detected!" << std::endl;
-			gameLogic = new engine::helloWorld::HelloWorld();
-			opts->mode3D = true;
-			opts->cullFace = false;
-			opts->antialiasing = true;
-			opts->showTriangles = false;
-			width = 1280;
-			height = 720;
-			break;
-		}
-		case Thin_Matrix:
-		{
 			std::cout << "ThinMatrix app name detected!" << std::endl;
-			gameLogic = new engine::helloWorld::ThinMatrix();
+			gameLogic = new engine::helloWorld::HelloWorld();
 			opts->mode3D = false;
 			opts->cullFace = false;
 			opts->antialiasing = false;

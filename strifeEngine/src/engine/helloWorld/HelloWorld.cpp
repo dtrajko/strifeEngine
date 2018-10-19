@@ -11,14 +11,13 @@ namespace engine
 
 		void HelloWorld::init(Window * window)
 		{
-			scene = new SceneHelloWorld();
+			scene = new Scene();
 			scene->init(window);
 		}
 
 		void HelloWorld::input(Window * window, Input * input)
 		{
 			m_input = input;
-			// TODO - IF input.isKeyReleased THEN window.close()
 		}
 
 		void HelloWorld::update(float interval, Input * input)

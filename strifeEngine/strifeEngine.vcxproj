@@ -19,14 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\engine\helloWorld\Cherno.cpp" />
-    <ClCompile Include="src\engine\helloWorld\ChernoShader.cpp" />
-    <ClCompile Include="src\engine\helloWorld\MasterRendererCherno.cpp" />
-    <ClCompile Include="src\engine\helloWorld\MasterRendererThinMatrix.cpp" />
-    <ClCompile Include="src\engine\helloWorld\SceneCherno.cpp" />
-    <ClCompile Include="src\engine\helloWorld\SceneThinMatrix.cpp" />
-    <ClCompile Include="src\engine\helloWorld\ThinMatrix.cpp" />
-    <ClCompile Include="src\engine\helloWorld\ThinMatrixShader.cpp" />
+    <ClCompile Include="src\engine\helloWorld\MasterRenderer.cpp" />
+    <ClCompile Include="src\engine\helloWorld\Scene.cpp" />
+    <ClCompile Include="src\engine\helloWorld\HelloWorld.cpp" />
+    <ClCompile Include="src\engine\helloWorld\SimpleShader.cpp" />
     <ClCompile Include="src\engine\tm\entities\Camera.cpp" />
     <ClCompile Include="src\engine\tm\entities\Entity.cpp" />
     <ClCompile Include="src\engine\graph\Sprite.cpp" />
@@ -35,31 +31,22 @@
     <ClCompile Include="src\engine\tm\models\RawModel.cpp" />
     <ClCompile Include="src\engine\tm\models\TexturedModel.cpp" />
     <ClCompile Include="src\engine\tm\shaders\ShaderProgram.cpp" />
-    <ClCompile Include="src\engine\helloWorld\SimpleShader.cpp" />
-    <ClCompile Include="src\engine\helloWorld\SceneHelloWorld.cpp" />
-    <ClCompile Include="src\engine\helloWorld\MasterRendererHelloWorld.cpp" />
     <ClCompile Include="src\engine\tm\loaders\Loader.cpp" />
     <ClCompile Include="src\engine\graph\Input.cpp" />
-    <ClCompile Include="src\engine\helloWorld\HelloWorld.cpp" />
     <ClCompile Include="src\engine\GameEngine.cpp" />
     <ClCompile Include="src\engine\interfaces\IGameLogic.h" />
     <ClCompile Include="src\engine\interfaces\IMasterRenderer.h" />
     <ClCompile Include="src\engine\tm\textures\ModelTexture.cpp" />
     <ClCompile Include="src\engine\tm\toolbox\Maths.cpp" />
-    <ClCompile Include="src\game\Application.cpp" />
     <ClCompile Include="src\game\Main.cpp" />
     <ClCompile Include="src\engine\Timer.cpp" />
     <ClCompile Include="src\engine\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\engine\helloWorld\Cherno.h" />
-    <ClInclude Include="src\engine\helloWorld\ChernoShader.h" />
-    <ClInclude Include="src\engine\helloWorld\MasterRendererCherno.h" />
-    <ClInclude Include="src\engine\helloWorld\MasterRendererThinMatrix.h" />
-    <ClInclude Include="src\engine\helloWorld\SceneCherno.h" />
-    <ClInclude Include="src\engine\helloWorld\SceneThinMatrix.h" />
-    <ClInclude Include="src\engine\helloWorld\ThinMatrix.h" />
-    <ClInclude Include="src\engine\helloWorld\ThinMatrixShader.h" />
+    <ClInclude Include="src\engine\helloWorld\MasterRenderer.h" />
+    <ClInclude Include="src\engine\helloWorld\Scene.h" />
+    <ClInclude Include="src\engine\helloWorld\HelloWorld.h" />
+    <ClInclude Include="src\engine\helloWorld\SimpleShader.h" />
     <ClInclude Include="src\engine\tm\entities\Camera.h" />
     <ClInclude Include="src\engine\tm\entities\Entity.h" />
     <ClInclude Include="src\engine\graph\Sprite.h" />
@@ -68,12 +55,8 @@
     <ClInclude Include="src\engine\tm\models\RawModel.h" />
     <ClInclude Include="src\engine\tm\models\TexturedModel.h" />
     <ClInclude Include="src\engine\tm\shaders\ShaderProgram.h" />
-    <ClInclude Include="src\engine\helloWorld\SimpleShader.h" />
-    <ClInclude Include="src\engine\helloWorld\SceneHelloWorld.h" />
-    <ClInclude Include="src\engine\helloWorld\MasterRendererHelloWorld.h" />
     <ClInclude Include="src\engine\tm\loaders\Loader.h" />
     <ClInclude Include="src\engine\graph\Input.h" />
-    <ClInclude Include="src\engine\helloWorld\HelloWorld.h" />
     <ClInclude Include="src\engine\GameEngine.h" />
     <ClInclude Include="src\engine\interfaces\ICamera.h" />
     <ClInclude Include="src\engine\interfaces\IScene.h" />

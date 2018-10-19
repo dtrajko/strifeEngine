@@ -1,9 +1,8 @@
 #pragma once
 
 #include "../../engine/interfaces/IScene.h"
-#include "../helloWorld/MasterRendererHelloWorld.h"
+#include "../helloWorld/MasterRenderer.h"
 #include "../interfaces/IMasterRenderer.h"
-#include "../../engine/graph/Sprite.h"
 #include "../tm/textures/ModelTexture.h"
 #include "../tm/models/CubeMeshSimple.h"
 #include "../tm/models/RawModel.h"
@@ -20,24 +19,26 @@ namespace engine
 {
 	namespace helloWorld
 	{
-		class SceneHelloWorld : public IScene
+		class Scene : public IScene
 		{
 		private:
 			Loader * loader;
 			ICamera * camera;
 			IMasterRenderer * masterRenderer;
 			Entity * entity;
+			RawModel * model;
 
 		public:
-			SceneHelloWorld();
+			Scene();
 			void init(Window * window);
 			void update(float interval, Input * input);
 			void render(Window * window);
 			ICamera * getCamera();
 			Loader * getLoader();
 			Entity * getEntity();
+			RawModel * getModel();
 			void cleanUp();
-			virtual ~SceneHelloWorld();
+			virtual ~Scene();
 		};
 	}
 }

@@ -1,13 +1,8 @@
-#version 400 core
+#version 330 core
 
-in vec2 pass_textureCoords;
+layout(location = 0) out vec4 color;
 
-out vec4 out_Color;
-
-uniform sampler2D textureSampler;
-
-void main(void) {
-
-	out_Color = texture(textureSampler, pass_textureCoords);
-
-}
+void main()
+{
+	color = vec4(1.0, 1.0, 0.0, 1.0);
+};

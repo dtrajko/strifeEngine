@@ -3,8 +3,6 @@
 #include "../interfaces/IMasterRenderer.h"
 #include "../interfaces/IScene.h"
 #include "../helloWorld/SimpleShader.h"
-#include "../helloWorld/ChernoShader.h"
-#include "../helloWorld/ThinMatrixShader.h"
 #include "../tm/toolbox/Maths.h"
 #include "../../engine/tm/entities/Entity.h"
 #include "../../vendor/glm/glm.hpp"
@@ -18,17 +16,17 @@ namespace engine
 {
 	namespace helloWorld
 	{
-		class MasterRendererThinMatrix : public IMasterRenderer
+		class MasterRenderer : public IMasterRenderer
 		{
 		private:
 			float RED = 0.2f;
 			float GREEN = 0.8f;
 			float BLUE = 0.6f;
-			ThinMatrixShader * shader;
+			SimpleShader * shader;
 			glm::mat4 projectionMatrix;
 
 		public:
-			MasterRendererThinMatrix(Window * window);
+			MasterRenderer(Window * window);
 			void init(IScene * scene);
 			glm::mat4 createProjectionMatrix(Window * window);
 			glm::mat4 getProjectionMatrix(Window * window);
@@ -37,7 +35,7 @@ namespace engine
 			void renderModel(Entity * entity);
 			void renderModel(RawModel * model);
 			void cleanUp();
-			virtual ~MasterRendererThinMatrix();
+			virtual ~MasterRenderer();
 		};
 	}
 }
