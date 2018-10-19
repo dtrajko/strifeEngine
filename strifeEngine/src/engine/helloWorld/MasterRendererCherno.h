@@ -16,17 +16,17 @@ namespace engine
 {
 	namespace helloWorld
 	{
-		class MasterRendererHelloWorld : public IMasterRenderer
+		class MasterRendererCherno : public IMasterRenderer
 		{
 		private:
-			float RED = 0.2f;
-			float GREEN = 0.3f;
-			float BLUE = 0.6f;
+			float RED = 1.0f;
+			float GREEN = 0.4f;
+			float BLUE = 0.2f;
 			SimpleShader * shader;
 			glm::mat4 projectionMatrix;
 
 		public:
-			MasterRendererHelloWorld(Window * window);
+			MasterRendererCherno(Window * window);
 			void init(IScene * scene);
 			glm::mat4 createProjectionMatrix(Window * window);
 			glm::mat4 getProjectionMatrix(Window * window);
@@ -34,7 +34,7 @@ namespace engine
 			void render(Window * window, IScene * scene);
 			void renderModel(Entity * entity);
 			void cleanUp();
-			virtual ~MasterRendererHelloWorld();
+			virtual ~MasterRendererCherno();
 		};
 	}
 }

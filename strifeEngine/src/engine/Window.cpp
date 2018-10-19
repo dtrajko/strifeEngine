@@ -71,7 +71,7 @@ namespace engine
 			glEnable(GL_MULTISAMPLE);
 		}
 
-		glClearColor(0.2f, 0.3f, 0.8f, 1);
+		glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		if (opts->mode3D) {
@@ -96,19 +96,6 @@ namespace engine
 		{
 			std::cout << "GameEngine: Failed to initialize GLEW!" << std::endl;
 		}
-
-		// OpenGL setup
-		// Viewport
-		glViewport(0, 0, width, height);
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glOrtho(0, width, 0, height, -10, 10);
-		glDepthRange(-10, 10);
-		glMatrixMode(GL_MODELVIEW);
-		// Alpha blending
-		glEnable(GL_ALPHA_TEST);
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		std::cout << "GameEngine: init complete." << std::endl;
 
@@ -228,7 +215,7 @@ namespace engine
 		vSync = _vSync;
 	}
 
-	void Window::cleanup()
+	void Window::cleanUp()
 	{
 
 	}

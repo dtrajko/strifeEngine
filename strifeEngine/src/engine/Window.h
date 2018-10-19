@@ -42,7 +42,7 @@ namespace engine
 		bool windowShouldClose();
 		void update();
 		void restoreState();
-		void cleanup();
+		void cleanUp();
 		virtual ~Window();
 
 		// getters / setters

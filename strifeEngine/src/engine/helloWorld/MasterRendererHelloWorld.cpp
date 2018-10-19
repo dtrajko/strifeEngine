@@ -37,20 +37,20 @@ namespace engine
 			return projectionMatrix;
 		}
 
-		void MasterRendererHelloWorld::prepare()
-		{
-			glEnable(GL_DEPTH_TEST);
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			glClearColor(RED, GREEN, BLUE, 1.0f);
-			shader->start();
-		}
-
 		void MasterRendererHelloWorld::render(Window * window, IScene * scene)
 		{
 			glViewport(0, 0, window->getWidth(), window->getHeight());
 			prepare();
 			shader->loadMatrix("viewMatrix", scene->getCamera()->getViewMatrix());
 			renderModel(scene->getEntity());
+		}
+
+		void MasterRendererHelloWorld::prepare()
+		{
+			glEnable(GL_DEPTH_TEST);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			glClearColor(RED, GREEN, BLUE, 1.0f);
+			shader->start();
 		}
 
 		void MasterRendererHelloWorld::renderModel(Entity * entity)

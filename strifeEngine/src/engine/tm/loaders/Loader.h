@@ -18,8 +18,8 @@ namespace engine
 			class Loader
 			{
 			private:
-				std::vector<unsigned int> vaos;
-				std::vector<unsigned int> vbos;
+				std::vector<unsigned int> vaos = {};
+				std::vector<unsigned int> vbos = {};
 
 			public:
 				Loader();

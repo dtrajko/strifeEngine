@@ -47,7 +47,7 @@ namespace engine
 		void render();
 		int getFPS();
 		engine::Timer getTimer();
-		void cleanup();
+		void cleanUp();
 		virtual ~GameEngine();
 	};
 }

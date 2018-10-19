@@ -38,8 +38,6 @@ namespace engine
 
 	void GameEngine::render()
 	{
-		glClearColor(0.2f, 0.3f, 0.8f, 1);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		gameLogic->render(window);
 	}
 
@@ -48,7 +46,7 @@ namespace engine
 		std::cout << "GameEngine: started." << std::endl;
 		init();
 		gameLoop();
-		cleanup();
+		cleanUp();
 	}
 
 	void GameEngine::gameLoop()
@@ -82,7 +80,7 @@ namespace engine
 		return Timer();
 	}
 
-	void GameEngine::cleanup()
+	void GameEngine::cleanUp()
 	{
 		gameLogic->cleanUp();
 	}

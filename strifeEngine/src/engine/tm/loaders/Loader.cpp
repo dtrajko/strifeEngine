@@ -8,7 +8,6 @@ namespace engine
 		{
 			Loader::Loader()
 			{
-
 			}
 
 			int Loader::loadTexture(const std::string & filePath)
@@ -63,6 +62,7 @@ namespace engine
 				vbos.push_back(vboID);
 				glBindBuffer(GL_ARRAY_BUFFER, vboID);
 				glBufferData(GL_ARRAY_BUFFER, count * sizeof(unsigned int), data, GL_STATIC_DRAW);
+				// glEnableVertexAttribArray(0);
 				glVertexAttribPointer(attrNumber, size, GL_UNSIGNED_INT, false, 0, 0);
 				glBindBuffer(GL_ARRAY_BUFFER, 0);
 			}
@@ -73,6 +73,7 @@ namespace engine
 				vbos.push_back(vboID);
 				glBindBuffer(GL_ARRAY_BUFFER, vboID);
 				glBufferData(GL_ARRAY_BUFFER, count * sizeof(float), data, GL_STATIC_DRAW);
+				// glEnableVertexAttribArray(0);
 				glVertexAttribPointer(attrNumber, size, GL_FLOAT, false, 0, 0);
 				glBindBuffer(GL_ARRAY_BUFFER, 0);
 			}

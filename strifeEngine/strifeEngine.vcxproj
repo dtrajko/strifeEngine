@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\helloWorld\Cherno.cpp" />
+    <ClCompile Include="src\engine\helloWorld\MasterRendererCherno.cpp" />
+    <ClCompile Include="src\engine\helloWorld\SceneCherno.cpp" />
     <ClCompile Include="src\engine\tm\entities\Camera.cpp" />
     <ClCompile Include="src\engine\tm\entities\Entity.cpp" />
     <ClCompile Include="src\engine\graph\Sprite.cpp" />
@@ -44,6 +47,9 @@
     <ClCompile Include="src\engine\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\helloWorld\Cherno.h" />
+    <ClInclude Include="src\engine\helloWorld\MasterRendererCherno.h" />
+    <ClInclude Include="src\engine\helloWorld\SceneCherno.h" />
     <ClInclude Include="src\engine\tm\entities\Camera.h" />
     <ClInclude Include="src\engine\tm\entities\Entity.h" />
     <ClInclude Include="src\engine\graph\Sprite.h" />
