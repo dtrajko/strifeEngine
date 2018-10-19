@@ -13,32 +13,37 @@ namespace engine
 
 			glm::mat4 Camera::getViewMatrix()
 			{
-				return Maths().createViewMatrix(this);
+				return Maths::createViewMatrix(this);
 			}
 
 			glm::vec3 Camera::getPosition()
 			{
-				return glm::vec3();
+				return position;
 			}
 
 			glm::vec3 Camera::getRotation()
 			{
-				return glm::vec3();
+				return glm::vec3(pitch, yaw, roll);
 			}
 
 			glm::mat4 Camera::updateViewMatrix()
 			{
-				return glm::mat4();
-			}
-
-			glm::mat4 Camera::getProjectionViewMatrix()
-			{
-				return glm::mat4();
+				return Maths::createViewMatrix(this);
 			}
 
 			float Camera::getPitch()
 			{
-				return 0.0f;
+				return pitch;
+			}
+
+			float Camera::getYaw()
+			{
+				return yaw;
+			}
+
+			float Camera::getRoll()
+			{
+				return roll;
 			}
 
 			Camera::~Camera()

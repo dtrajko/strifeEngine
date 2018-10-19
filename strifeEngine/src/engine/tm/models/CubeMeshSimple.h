@@ -13,6 +13,10 @@ namespace engine
 				unsigned int * textureCoords;
 				unsigned int * indices;
 
+				unsigned int verticesCount;
+				unsigned int textureCoordsCount;
+				unsigned int indicesCount;
+
 				CubeMeshSimple();
 				~CubeMeshSimple();
 			};

@@ -40,7 +40,8 @@ namespace engine
 					0.5f,-0.5f, 0.5f
 				};
 				vertices = verticesList;
-
+				verticesCount = 6 * 4 * 3;
+				
 				unsigned int textureCoordsList[] = {
 					0, 0,
 					0, 1,
@@ -68,6 +69,7 @@ namespace engine
 					1, 0
 				};
 				textureCoords = textureCoordsList;
+				textureCoordsCount = 24 * 2;
 
 				unsigned int indicesList[] = {
 					0, 1, 3,
@@ -84,6 +86,7 @@ namespace engine
 					23, 21, 22
 				};
 				indices = indicesList;
+				indicesCount = 12 * 3;
 			}
 
 			CubeMeshSimple::~CubeMeshSimple()

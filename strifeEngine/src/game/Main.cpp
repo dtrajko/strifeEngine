@@ -52,6 +52,7 @@ int main(void)
 			opts->mode3D = true;
 			opts->cullFace = false;
 			opts->antialiasing = true;
+			opts->showTriangles = true;
 			width = 1280;
 			height = 720;
 			break;

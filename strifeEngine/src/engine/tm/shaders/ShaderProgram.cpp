@@ -9,10 +9,10 @@ namespace engine
 		{
 			ShaderProgram::ShaderProgram(std::string & vertexFile, std::string & fragmentFile)
 			{
-				programID = glCreateProgram();
 				std::cout << "ProgramID: " << programID << std::endl;
 				vertexShaderID = loadShader(vertexFile, GL_VERTEX_SHADER);
 				fragmentShaderID = loadShader(fragmentFile, GL_FRAGMENT_SHADER);
+				programID = glCreateProgram();
 				glAttachShader(programID, vertexShaderID);
 				glAttachShader(programID, fragmentShaderID);
 				bindAttributes();

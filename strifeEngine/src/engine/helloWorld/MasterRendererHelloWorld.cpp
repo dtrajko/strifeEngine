@@ -11,7 +11,7 @@ namespace engine
 			shader = new SimpleShader(vertexFile, fragmentFile);
 			projectionMatrix = createProjectionMatrix(window);
 			shader->start();
-			shader->loadProjectionMatrix(projectionMatrix);
+			shader->loadMatrix("projectionMatrix", projectionMatrix);
 			shader->stop();
 		}
 
@@ -42,23 +42,32 @@ namespace engine
 			glEnable(GL_DEPTH_TEST);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glClearColor(RED, GREEN, BLUE, 1.0f);
-			// shader->start();
+			shader->start();
 		}
 
 		void MasterRendererHelloWorld::render(Window * window, IScene * scene)
 		{
 			glViewport(0, 0, window->getWidth(), window->getHeight());
 			prepare();
-			glm::mat4 viewMatrix;
-			shader->loadMatrix("viewMatrix", viewMatrix);
+			shader->loadMatrix("viewMatrix", scene->getCamera()->getViewMatrix());
 			renderModel(scene->getEntity());
-
-			scene->getSprite()->render();
 		}
 
 		void MasterRendererHelloWorld::renderModel(Entity * entity)
 		{
-
+			TexturedModel * texturedModel = entity->getTexturedModel();
+			RawModel * rawModel = texturedModel->getRawModel();
+			glBindVertexArray(rawModel->getVaoID());
+			glEnableVertexAttribArray(0);
+			glEnableVertexAttribArray(1);
+			glm::mat4 transformationMatrix = Maths::createTransformationMatrix(entity->getPosition(), entity->getRotX(), entity->getRotY(), entity->getRotZ(), entity->getScale());
+			shader->loadMatrix("transformationMatrix", transformationMatrix);
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE0, texturedModel->getTexture()->getID());
+			glDrawElements(GL_TRIANGLES, rawModel->getVertexCount(), GL_UNSIGNED_INT, 0);
+			glDisableVertexAttribArray(0);
+			glDisableVertexAttribArray(1);
+			glBindVertexArray(0);
 		}
 
 		void MasterRendererHelloWorld::cleanUp()

@@ -15,10 +15,8 @@ namespace engine
 			class Maths
 			{
 			public:
-				static glm::mat4 createViewMatrix(ICamera * camera)
-				{
-					return glm::mat4();
-				}
+				static glm::mat4 createViewMatrix(ICamera * camera);
+				static glm::mat4 createTransformationMatrix(glm::vec3 translation, float rotX, float rotY, float rotZ, float scale);
 			};
 		}
 	}

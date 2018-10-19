@@ -22,7 +22,7 @@ namespace engine
 			virtual void render(Window * window) = 0;
 			virtual void cleanUp() = 0;
 			virtual ICamera * getCamera() = 0;
-			virtual Loader getLoader() = 0;
+			virtual Loader * getLoader() = 0;
 			virtual Entity * getEntity() = 0;
 			virtual Sprite * getSprite() = 0; // temporary
 		};

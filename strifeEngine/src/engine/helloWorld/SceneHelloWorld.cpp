@@ -12,20 +12,21 @@ namespace engine
 		void SceneHelloWorld::init(Window * window)
 		{
 			masterRenderer = new MasterRendererHelloWorld(window);
-			// temporary
-			sprite = new Sprite("resources/assets/art/fortnite.png", 350, 100);
-
-			Loader * loader = new Loader();
+			camera = new Camera();
+			loader = new Loader();
 			CubeMeshSimple * cubeMesh = new CubeMeshSimple();
 			ModelTexture * texture = new ModelTexture(loader->loadTexture("resources/assets/textures/tiles.png"));
-			RawModel * model = loader->loadToVAO(cubeMesh->vertices, cubeMesh->textureCoords, cubeMesh->indices);
+			RawModel * model = loader->loadToVAO(
+				cubeMesh->vertices, cubeMesh->verticesCount,
+				cubeMesh->textureCoords, cubeMesh->textureCoordsCount,
+				cubeMesh->indices, cubeMesh->indicesCount);
 			TexturedModel * texturedModel = new TexturedModel(model, texture);
-			entity = new Entity(texturedModel, glm::vec3(0, -0.8f, -5), 0, 0, 0, 1);
+			entity = new Entity(texturedModel, glm::vec3(0, -1.0f, 0), 0, 0, 0, 1);
 		}
 
 		void SceneHelloWorld::update(float interval, Input * input)
 		{
-			sprite->update();
+			entity->setRotation(entity->getRotX(), entity->getRotY() + 0.1f, entity->getRotZ());
 		}
 
 		void SceneHelloWorld::render(Window * window)
@@ -38,15 +39,10 @@ namespace engine
 			return entity;
 		}
 
-		/* a temporary method */
-		Sprite * SceneHelloWorld::getSprite()
-		{
-			return sprite;
-		}
-
 		void SceneHelloWorld::cleanUp()
 		{
-
+			loader->cleanUp();
+			masterRenderer->cleanUp();
 		}
 
 		ICamera * SceneHelloWorld::getCamera()
@@ -54,9 +50,9 @@ namespace engine
 			return camera;
 		}
 
-		Loader SceneHelloWorld::getLoader()
+		Loader * SceneHelloWorld::getLoader()
 		{
-			return Loader();
+			return loader;
 		}
 
 		SceneHelloWorld::~SceneHelloWorld()

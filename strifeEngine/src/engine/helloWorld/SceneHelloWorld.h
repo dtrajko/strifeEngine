@@ -8,11 +8,13 @@
 #include "../tm/models/CubeMeshSimple.h"
 #include "../tm/models/RawModel.h"
 #include "../tm/models/TexturedModel.h"
+#include "../tm/entities/Camera.h"
 
 using namespace engine::interfaces;
 using namespace engine::graph;
 using namespace engine::tm::textures;
 using namespace engine::tm::models;
+using namespace engine::tm::entities;
 
 namespace engine
 {
@@ -21,20 +23,19 @@ namespace engine
 		class SceneHelloWorld : public IScene
 		{
 		private:
+			Loader * loader;
 			ICamera * camera;
 			IMasterRenderer * masterRenderer;
-			// temporary
-			Sprite * sprite;
 			Entity * entity;
+
 		public:
 			SceneHelloWorld();
 			void init(Window * window);
 			void update(float interval, Input * input);
 			void render(Window * window);
 			ICamera * getCamera();
-			Loader getLoader();
+			Loader * getLoader();
 			Entity * getEntity();
-			Sprite * getSprite(); // temporary
 			void cleanUp();
 			virtual ~SceneHelloWorld();
 		};

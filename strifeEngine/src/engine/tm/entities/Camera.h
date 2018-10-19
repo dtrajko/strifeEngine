@@ -19,7 +19,7 @@ namespace engine
 	{
 		namespace entities
 		{
-			class Camera : ICamera
+			class Camera : public ICamera
 			{
 			private:
 				glm::vec3 position;
@@ -34,8 +34,9 @@ namespace engine
 				glm::vec3 getPosition();
 				glm::vec3 getRotation();
 				glm::mat4 updateViewMatrix();
-				glm::mat4 getProjectionViewMatrix();
 				float getPitch();
+				float getYaw();
+				float getRoll();
 				~Camera();
 			};
 		}
