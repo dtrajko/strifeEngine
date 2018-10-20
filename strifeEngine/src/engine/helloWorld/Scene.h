@@ -26,7 +26,8 @@ namespace engine
 			ICamera * camera;
 			IMasterRenderer * masterRenderer;
 			Entity * entity;
-			RawModel * model;
+			RawModel * rawModel;
+			TexturedModel * texturedModel;
 
 		public:
 			Scene();
@@ -37,6 +38,7 @@ namespace engine
 			Loader * getLoader();
 			Entity * getEntity();
 			RawModel * getModel();
+			TexturedModel * getTexturedModel();
 			void cleanUp();
 			virtual ~Scene();
 		};

@@ -25,6 +25,7 @@ namespace engine
 			virtual Loader * getLoader() = 0;
 			virtual Entity * getEntity() = 0;
 			virtual RawModel * getModel() = 0;
+			virtual TexturedModel * getTexturedModel() = 0;
 		};
 	}
 }

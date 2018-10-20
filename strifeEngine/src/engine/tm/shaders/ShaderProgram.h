@@ -31,9 +31,9 @@ namespace engine
 				std::stringstream parseShader(const std::string & filepath);
 				unsigned int loadShader(std::string & file, unsigned int type);
 				void bindAttributes();
+				void bindAttribute(int attribute, std::string variableName);
 				void getAllUniformLocations();
 				int getUniformLocation(const std::string& name);
-				void bindAttribute(int attribute, std::string variableName);
 				void loadInt(const std::string& name, int value);
 				void loadMatrix(const std::string& locationName, glm::mat4 matrix);
 				void loadVec4f(const std::string& name, glm::vec4 vector);

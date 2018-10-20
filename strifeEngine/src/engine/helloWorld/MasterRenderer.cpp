@@ -28,7 +28,9 @@ namespace engine
 		void MasterRenderer::render(Window * window, IScene * scene)
 		{
 			prepare(window);
-			renderModel(scene->getModel());
+			shader->start();
+			renderTexturedModel(scene->getTexturedModel());
+			shader->stop();
 		}
 
 		void MasterRenderer::prepare(Window * window)
@@ -37,15 +39,28 @@ namespace engine
 			glClearColor(RED, GREEN, BLUE, 1.0f);
 			glViewport(0, 0, window->getWidth(), window->getHeight());
 			glEnable(GL_DEPTH_TEST);
-			// shader->start();
 		}
 
-		void MasterRenderer::renderModel(RawModel * model)
+		void MasterRenderer::renderRawModel(RawModel * model)
 		{
 			glBindVertexArray(model->getVaoID());
 			glEnableVertexAttribArray(0);
 			glDrawElements(GL_TRIANGLES, model->getVertexCount(), GL_UNSIGNED_INT, 0);
 			glDisableVertexAttribArray(0);
+			glBindVertexArray(0);
+		}
+
+		void MasterRenderer::renderTexturedModel(TexturedModel * texturedModel)
+		{
+			RawModel * model = texturedModel->getRawModel();
+			glBindVertexArray(model->getVaoID());
+			glEnableVertexAttribArray(0);
+			glEnableVertexAttribArray(1);
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, texturedModel->getTexture()->getID());
+			glDrawElements(GL_TRIANGLES, model->getVertexCount(), GL_UNSIGNED_INT, 0);
+			glDisableVertexAttribArray(0);
+			glDisableVertexAttribArray(1);
 			glBindVertexArray(0);
 		}
 
@@ -55,6 +70,7 @@ namespace engine
 
 		void MasterRenderer::cleanUp()
 		{
+			shader->cleanUp();
 		}
 
 		MasterRenderer::~MasterRenderer()

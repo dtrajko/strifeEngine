@@ -14,6 +14,7 @@ namespace engine
 		{
 		public:
 			SimpleShader(std::string& vertexFile, std::string& fragmentFile);
+			void bindAttributes();
 			virtual ~SimpleShader();
 		};
 	}

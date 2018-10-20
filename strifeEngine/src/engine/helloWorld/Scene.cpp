@@ -27,11 +27,21 @@ namespace engine
 				3, 1, 2   // bottom right triangle (V3, V1, V2)
 			};
 
-			model = loader->loadToVAO(vertices, 4 * 3, indices, 6);
+			float texturedCoords[] = {
+				0, 0,  // V0
+				0, 1,  // V1
+				1, 1,  // V2
+				1, 0,  // V3
+			};
+
+			rawModel = loader->loadToVAO(vertices, 4 * 3, texturedCoords, 4 * 2, indices, 2 * 3);
+			ModelTexture * modelTexture = new ModelTexture(loader->loadTexture("resources/assets/textures/tiles.png"));
+			texturedModel = new TexturedModel(rawModel, modelTexture);
 		}
 
 		void Scene::update(float interval, Input * input)
 		{
+
 		}
 
 		void Scene::render(Window * window)
@@ -46,7 +56,12 @@ namespace engine
 
 		RawModel * Scene::getModel()
 		{
-			return model;
+			return rawModel;
+		}
+
+		TexturedModel * Scene::getTexturedModel()
+		{
+			return texturedModel;
 		}
 
 		void Scene::cleanUp()

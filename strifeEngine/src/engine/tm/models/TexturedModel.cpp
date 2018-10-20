@@ -7,10 +7,10 @@ namespace engine
 	{
 		namespace models
 		{
-			TexturedModel::TexturedModel(RawModel* model, ModelTexture* texture)
+			TexturedModel::TexturedModel(RawModel * _rawModel, ModelTexture * _modelTexture)
 			{
-				rawModel = model;
-				modelTexture = texture;
+				rawModel = _rawModel;
+				modelTexture = _modelTexture;
 			}
 
 			RawModel* TexturedModel::getRawModel()

@@ -18,7 +18,7 @@ namespace engine
 				ModelTexture* modelTexture;
 
 			public:
-				TexturedModel(RawModel* model, ModelTexture* texture);
+				TexturedModel(RawModel * _rawModel, ModelTexture * _modelTexture);
 				RawModel* getRawModel();
 				ModelTexture* getTexture();
 				~TexturedModel();

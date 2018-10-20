@@ -21,38 +21,6 @@ namespace engine
 				getAllUniformLocations();
 			}
 
-			void ShaderProgram::start()
-			{
-				glUseProgram(programID);
-			}
-
-			void ShaderProgram::stop()
-			{
-				glUseProgram(0);
-			}
-
-			void ShaderProgram::cleanUp()
-			{
-				stop();
-				glDetachShader(programID, vertexShaderID);
-				glDetachShader(programID, fragmentShaderID);
-				glDeleteShader(vertexShaderID);
-				glDeleteShader(fragmentShaderID);
-				glDeleteProgram(programID);
-			}
-
-			std::stringstream ShaderProgram::parseShader(const std::string& file)
-			{
-				std::ifstream stream(file);
-				std::string line;
-				std::stringstream shaderSource;
-				while (getline(stream, line))
-				{
-					shaderSource << line << "\n";
-				}
-				return shaderSource;
-			}
-
 			unsigned int ShaderProgram::loadShader(std::string& file, unsigned int type)
 			{
 				std::stringstream shaderSourceStream = parseShader(file);
@@ -96,9 +64,36 @@ namespace engine
 				return shaderID;
 			}
 
-			void ShaderProgram::bindAttribute(int attribute, std::string variableName)
+			std::stringstream ShaderProgram::parseShader(const std::string& file)
 			{
-				glBindAttribLocation(programID, attribute, variableName.c_str());
+				std::ifstream stream(file);
+				std::string line;
+				std::stringstream shaderSource;
+				while (getline(stream, line))
+				{
+					shaderSource << line << "\n";
+				}
+				return shaderSource;
+			}
+
+			void ShaderProgram::start()
+			{
+				glUseProgram(programID);
+			}
+
+			void ShaderProgram::stop()
+			{
+				glUseProgram(0);
+			}
+
+			void ShaderProgram::cleanUp()
+			{
+				stop();
+				glDetachShader(programID, vertexShaderID);
+				glDetachShader(programID, fragmentShaderID);
+				glDeleteShader(vertexShaderID);
+				glDeleteShader(fragmentShaderID);
+				glDeleteProgram(programID);
 			}
 
 			void ShaderProgram::loadMatrix(const std::string& name, glm::mat4 matrix)
@@ -121,6 +116,11 @@ namespace engine
 			void ShaderProgram::bindAttributes()
 			{
 
+			}
+
+			void ShaderProgram::bindAttribute(int attribute, std::string variableName)
+			{
+				glBindAttribLocation(programID, attribute, variableName.c_str());
 			}
 
 			void ShaderProgram::getAllUniformLocations()

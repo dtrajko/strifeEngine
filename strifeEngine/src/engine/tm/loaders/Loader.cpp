@@ -14,10 +14,10 @@ namespace engine
 			int Loader::loadTexture(const std::string & filePath)
 			{
 				float bias = 0.0f;
-				int textureID = -1;
-				unsigned char * localBuffer(nullptr);
+				int textureID = NULL;
 				Texture * texture = new Texture(filePath);
 				textureID = texture->GetID();
+				textures.push_back(textureID);
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 				glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_LOD_BIAS, bias);
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -27,11 +27,15 @@ namespace engine
 				return textureID;
 			}
 
-			RawModel * Loader::loadToVAO(float * positions, unsigned int positionsCount, unsigned int * indices, unsigned int indicesCount)
+			RawModel * Loader::loadToVAO(
+				float * positions, unsigned int positionsCount, 
+				float * textureCoords, unsigned int textureCoordsCount,
+				unsigned int * indices, unsigned int indicesCount)
 			{
 				unsigned int vaoID = createVAO();
 				bindIndicesBuffer(indices, indicesCount);
-				storeDataInAttributeList(0, positions, positionsCount);
+				storeDataInAttributeList(0, 3, positions, positionsCount);
+				storeDataInAttributeList(1, 2, textureCoords, textureCoordsCount);
 				unbindVAO();
 				return new RawModel(vaoID, indicesCount);
 			}
@@ -45,14 +49,14 @@ namespace engine
 				return vaoID;
 			}
 
-			void Loader::storeDataInAttributeList(int attributeNumber, float * data, unsigned int count)
+			void Loader::storeDataInAttributeList(int attrNumber, unsigned int coordSize, float * data, unsigned int count)
 			{
 				unsigned int vboID;
 				glGenBuffers(1, &vboID);
 				vbos.push_back(vboID);
 				glBindBuffer(GL_ARRAY_BUFFER, vboID);
 				glBufferData(GL_ARRAY_BUFFER, count * sizeof(float), data, GL_STATIC_DRAW);
-				glVertexAttribPointer(attributeNumber, 3, GL_FLOAT, GL_FALSE, 0, 0);
+				glVertexAttribPointer(attrNumber, coordSize, GL_FLOAT, GL_FALSE, 0, 0);
 				glBindBuffer(GL_ARRAY_BUFFER, 0);
 			}
 
@@ -63,47 +67,11 @@ namespace engine
 				vbos.push_back(vboID);
 				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboID);
 				glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(unsigned int), indices, GL_STATIC_DRAW);
-				// TODO
-			}
-
-			RawModel * Loader::loadToVAO(
-				float * vertices, unsigned int verticesCount,
-				unsigned int * textureCoords, unsigned int textureCoordsCount,
-				unsigned int * indices, unsigned int indicesCount)
-			{
-				int vaoID = createVAO();
-				storeDataInAttrListFloat(0, 3, vertices, indicesCount);
-				storeDataInAttrListUInt(1, 2, textureCoords, textureCoordsCount);
-				bindIndicesBuffer(indices, indicesCount);
-				unbindVAO();
-				return new RawModel(vaoID, indicesCount);
 			}
 
 			void Loader::unbindVAO()
 			{
 				glBindVertexArray(0);
-			}
-
-			void Loader::storeDataInAttrListUInt(int attrNumber, int size, unsigned int * data, unsigned int count) {
-				unsigned int vboID;
-				glGenBuffers(1, &vboID);
-				vbos.push_back(vboID);
-				glBindBuffer(GL_ARRAY_BUFFER, vboID);
-				glBufferData(GL_ARRAY_BUFFER, count * sizeof(unsigned int), data, GL_STATIC_DRAW);
-				glEnableVertexAttribArray(0);
-				glVertexAttribPointer(attrNumber, size, GL_UNSIGNED_INT, GL_FALSE, 0, 0);
-				glBindBuffer(GL_ARRAY_BUFFER, 0);
-			}
-
-			void Loader::storeDataInAttrListFloat(int attrNumber, int size, float * data, unsigned int count) {
-				unsigned int vboID;
-				glGenBuffers(1, &vboID);
-				vbos.push_back(vboID);
-				glBindBuffer(GL_ARRAY_BUFFER, vboID);
-				glBufferData(GL_ARRAY_BUFFER, count * 3 * sizeof(float), data, GL_STATIC_DRAW);
-				glEnableVertexAttribArray(0);
-				glVertexAttribPointer(attrNumber, size, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
-				glBindBuffer(GL_ARRAY_BUFFER, 0);
 			}
 
 			std::vector<unsigned int> Loader::getVAOs()
@@ -125,6 +93,10 @@ namespace engine
 				for (const unsigned int vboID : vbos)
 				{
 					glDeleteVertexArrays(1, &vboID);
+				}
+				for (const unsigned int textureID : textures)
+				{
+					glDeleteTextures(1, &textureID);
 				}
 			}
 
