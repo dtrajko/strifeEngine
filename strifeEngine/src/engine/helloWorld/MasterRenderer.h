@@ -35,8 +35,6 @@ namespace engine
 			void prepare(Window * window);
 			void render(Window * window, IScene * scene);
 			void renderModel(Entity * entity);
-			void renderRawModel(RawModel * model);
-			void renderTexturedModel(TexturedModel * model);
 			void cleanUp();
 			virtual ~MasterRenderer();
 		};

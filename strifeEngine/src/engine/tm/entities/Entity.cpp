@@ -17,6 +17,20 @@ namespace engine
 				solid = false;
 			}
 
+			void Entity::increasePosition(float dx, float dy, float dz)
+			{
+				position.x += dx;
+				position.y += dy;
+				position.z += dz;
+			}
+
+			void Entity::increaseRotation(float dx, float dy, float dz)
+			{
+				rotX += dx;
+				rotY += dy;
+				rotZ += dz;
+			}
+
 			glm::vec3 Entity::getPosition()
 			{
 				return position;
@@ -40,13 +54,6 @@ namespace engine
 			float Entity::getScale()
 			{
 				return scale;
-			}
-
-			void Entity::setRotation(float _rotX, float _rotY, float _rotZ)
-			{
-				rotX = _rotX;
-				rotY = _rotY;
-				rotZ = _rotZ;
 			}
 
 			TexturedModel * Entity::getTexturedModel()

@@ -28,6 +28,7 @@
     <ClCompile Include="src\engine\graph\Sprite.cpp" />
     <ClCompile Include="src\engine\graph\Texture.cpp" />
     <ClCompile Include="src\engine\tm\models\CubeMeshSimple.cpp" />
+    <ClCompile Include="src\engine\tm\models\QuadMeshSimple.cpp" />
     <ClCompile Include="src\engine\tm\models\RawModel.cpp" />
     <ClCompile Include="src\engine\tm\models\TexturedModel.cpp" />
     <ClCompile Include="src\engine\tm\shaders\ShaderProgram.cpp" />
@@ -52,6 +53,7 @@
     <ClInclude Include="src\engine\graph\Sprite.h" />
     <ClInclude Include="src\engine\graph\Texture.h" />
     <ClInclude Include="src\engine\tm\models\CubeMeshSimple.h" />
+    <ClInclude Include="src\engine\tm\models\QuadMeshSimple.h" />
     <ClInclude Include="src\engine\tm\models\RawModel.h" />
     <ClInclude Include="src\engine\tm\models\TexturedModel.h" />
     <ClInclude Include="src\engine\tm\shaders\ShaderProgram.h" />

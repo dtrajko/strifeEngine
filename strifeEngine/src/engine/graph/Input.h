@@ -8,6 +8,13 @@ namespace engine
 	{
 		class Input
 		{
+		private:
+			GLFWwindow * windowHandle;
+			glm::vec2 displayVector;
+			glm::vec2 currentPosition;
+			bool * keys;
+			bool * buttons;
+
 		public:
 			Input(Window * window);
 			void init(Window * window);

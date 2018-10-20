@@ -11,6 +11,10 @@ namespace engine
 
 			}
 
+			void Camera::move(Window * window, Input * input)
+			{
+			}
+
 			glm::mat4 Camera::getViewMatrix()
 			{
 				return Maths::createViewMatrix(this);

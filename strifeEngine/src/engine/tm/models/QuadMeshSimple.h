@@ -6,7 +6,7 @@ namespace engine
 	{
 		namespace models
 		{
-			class CubeMeshSimple
+			class QuadMeshSimple
 			{
 			public:
 				float * vertices;
@@ -17,8 +17,8 @@ namespace engine
 				unsigned int textureCoordsCount;
 				unsigned int indicesCount;
 
-				CubeMeshSimple();
-				~CubeMeshSimple();
+				QuadMeshSimple();
+				~QuadMeshSimple();
 			};
 		}
 	}

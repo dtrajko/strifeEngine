@@ -1,5 +1,8 @@
 #pragma once
 
+#include <iostream>
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include "../../interfaces/ICamera.h"
 #include "../../Window.h"
 #include "../../graph/Input.h"
@@ -22,17 +25,18 @@ namespace engine
 			class Camera : public ICamera
 			{
 			private:
-				glm::vec3 position;
-				float pitch;
-				float yaw;
-				float roll;
+				glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
+				float pitch = 0;
+				float yaw = 0;
+				float roll = 0;
 				glm::mat4 projectionMatrix;
 				glm::mat4 viewMatrix;
 			public:
 				Camera();
-				glm::mat4 getViewMatrix();
+				void move(Window * window, Input * input);
 				glm::vec3 getPosition();
 				glm::vec3 getRotation();
+				glm::mat4 getViewMatrix();
 				glm::mat4 updateViewMatrix();
 				float getPitch();
 				float getYaw();

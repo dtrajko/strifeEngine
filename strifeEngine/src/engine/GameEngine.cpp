@@ -11,7 +11,7 @@ namespace engine
 		opts = _opts;
 		gameLogic = _gameLogic;
 		window = new Window(windowTitle, width, height, vSync, opts);
-		m_input = new engine::graph::Input(window);
+		m_input = new Input(window);
 		timer = new Timer();
 		std::cout << "GameEngine object initialized! Window size " << width << "x" << height << std::endl;
 	}
@@ -33,6 +33,7 @@ namespace engine
 
 	void GameEngine::update(float interval)
 	{
+		gameLogic->update(interval, m_input);
 		window->update();
 	}
 

@@ -11,7 +11,8 @@ namespace engine
 
 		void Input::init(Window * window)
 		{
-			// TODO
+			windowHandle = window->getHandle();
+			// TODO: glfwSetCursorPosCallback
 		}
 
 		void Input::input(Window * window)

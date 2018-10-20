@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include "../../interfaces/ICamera.h"
 #include "../../../vendor/glm/glm.hpp"
 #include "../../../vendor/glm/gtc/matrix_transform.hpp"

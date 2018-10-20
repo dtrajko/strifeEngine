@@ -22,7 +22,7 @@ namespace engine
 
 		void HelloWorld::update(float interval, Input * input)
 		{
-			scene->update(interval, input);
+			scene->update(interval, window, input);
 		}
 
 		void HelloWorld::render(Window * window)

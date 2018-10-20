@@ -17,19 +17,22 @@ namespace engine
 			private:
 				TexturedModel * texturedModel;
 				glm::vec3 position;
-				float rotX, rotY, rotZ;
+				float rotX;
+				float rotY;
+				float rotZ;
 				float scale;
 				bool solid;
 				int textureIndex = 0;
 
 			public:
 				Entity(TexturedModel * model, glm::vec3 _position, float _rotX, float _rotY, float _rotZ, float _scale);
+				void increasePosition(float dx, float dy, float dz);
+				void increaseRotation(float dx, float dy, float dz);
 				glm::vec3 getPosition();
 				float getRotX();
 				float getRotY();
 				float getRotZ();
 				float getScale();
-				void setRotation(float rx, float ry, float rz);
 				TexturedModel * getTexturedModel();
 				virtual ~Entity();
 			};

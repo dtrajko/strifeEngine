@@ -5,6 +5,7 @@
 #include "../interfaces/IMasterRenderer.h"
 #include "../tm/textures/ModelTexture.h"
 #include "../tm/models/CubeMeshSimple.h"
+#include "../tm/models/QuadMeshSimple.h"
 #include "../tm/models/RawModel.h"
 #include "../tm/models/TexturedModel.h"
 #include "../tm/entities/Camera.h"
@@ -32,7 +33,7 @@ namespace engine
 		public:
 			Scene();
 			void init(Window * window);
-			void update(float interval, Input * input);
+			void update(float interval, Window * window, Input * input);
 			void render(Window * window);
 			ICamera * getCamera();
 			Loader * getLoader();
