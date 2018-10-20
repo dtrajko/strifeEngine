@@ -9,15 +9,30 @@ namespace engine
 			std::string vertexFile = "resources/shaders/simpleVertex.glsl";
 			std::string fragmentFile = "resources/shaders/simpleFragment.glsl";
 			shader = new SimpleShader(vertexFile, fragmentFile);
+			shader->start();
+			projectionMatrix = createProjectionMatrix(window);
+			shader->loadMatrix("projectionMatrix", projectionMatrix);
+			shader->stop();
 		}
 
 		void MasterRenderer::init(IScene * scene)
 		{
+
 		}
 
 		glm::mat4 MasterRenderer::createProjectionMatrix(Window * window)
 		{
-			return glm::mat4();
+			glm::mat4 projectionMatrix;
+			/*
+			float aspectRatio = (float)window->getWidth() / (float)window->getHeight();
+			projectionMatrix = glm::perspective(
+				glm::radians(FOV),
+				aspectRatio,
+				NEAR_PLANE,
+				FAR_PLANE
+			);
+			*/
+			return projectionMatrix;
 		}
 
 		glm::mat4 MasterRenderer::getProjectionMatrix(Window * window)
@@ -35,10 +50,10 @@ namespace engine
 
 		void MasterRenderer::prepare(Window * window)
 		{
+			glEnable(GL_DEPTH_TEST);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glClearColor(RED, GREEN, BLUE, 1.0f);
 			glViewport(0, 0, window->getWidth(), window->getHeight());
-			glEnable(GL_DEPTH_TEST);
 		}
 
 		void MasterRenderer::renderRawModel(RawModel * model)
@@ -58,6 +73,8 @@ namespace engine
 			glEnableVertexAttribArray(1);
 			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE_2D, texturedModel->getTexture()->getID());
+			shader->loadMatrix("transformationMatrix", glm::mat4());
+			shader->loadMatrix("viewMatrix", glm::mat4());
 			glDrawElements(GL_TRIANGLES, model->getVertexCount(), GL_UNSIGNED_INT, 0);
 			glDisableVertexAttribArray(0);
 			glDisableVertexAttribArray(1);

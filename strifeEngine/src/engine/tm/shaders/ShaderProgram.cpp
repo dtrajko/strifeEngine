@@ -21,6 +21,44 @@ namespace engine
 				getAllUniformLocations();
 			}
 
+			void ShaderProgram::bindAttributes() {}
+			void ShaderProgram::getAllUniformLocations() {}
+
+			int ShaderProgram::getUniformLocation(const std::string& uniformName)
+			{
+				if (uniformLocationCache.find(uniformName) != uniformLocationCache.end())
+					return uniformLocationCache[uniformName];
+
+				int location = glGetUniformLocation(programID, uniformName.c_str());
+				if (location == -1)
+				{
+					std::cout << "Warning: uniform '" << uniformName << "' doesn't exist! [programID: " << programID  << ", location: " << location  << "]" << std::endl;
+				}
+				uniformLocationCache[uniformName] = location;
+				return location;
+			}
+
+			void ShaderProgram::loadFloat(const std::string & locationName, float value)
+			{
+				glUniform1f(getUniformLocation(locationName), value);
+			}
+
+			void ShaderProgram::loadInt(const std::string& locationName, int value)
+			{
+				glUniform1i(getUniformLocation(locationName), value);
+			}
+
+			void ShaderProgram::loadVector(const std::string& locationName, glm::vec4 vector)
+			{
+				int location = getUniformLocation(locationName);
+				glUniform4f(location, vector.x, vector.y, vector.z, vector.w);
+			}
+
+			void ShaderProgram::loadMatrix(const std::string& name, glm::mat4 matrix)
+			{
+				glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, &matrix[0][0]);
+			}
+
 			unsigned int ShaderProgram::loadShader(std::string& file, unsigned int type)
 			{
 				std::stringstream shaderSourceStream = parseShader(file);
@@ -96,53 +134,11 @@ namespace engine
 				glDeleteProgram(programID);
 			}
 
-			void ShaderProgram::loadMatrix(const std::string& name, glm::mat4 matrix)
-			{
-				glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, &matrix[0][0]);
-			}
-
-			void ShaderProgram::loadVec4f(const std::string& name, glm::vec4 vector)
-			{
-				int location = getUniformLocation(name);
-				glUniform4f(location, vector.x, vector.y, vector.z, vector.w);
-			}
-
-			void ShaderProgram::loadInt(const std::string& name, int value)
-			{
-				int location = getUniformLocation(name);
-				glUniform1i(location, value);
-			}
-
-			void ShaderProgram::bindAttributes()
-			{
-
-			}
-
 			void ShaderProgram::bindAttribute(int attribute, std::string variableName)
 			{
 				glBindAttribLocation(programID, attribute, variableName.c_str());
 			}
 
-			void ShaderProgram::getAllUniformLocations()
-			{
-
-			}
-
-			int ShaderProgram::getUniformLocation(const std::string& name)
-			{
-				if (uniformLocationCache.find(name) != uniformLocationCache.end())
-					return uniformLocationCache[name];
-
-				int location = glGetUniformLocation(programID, name.c_str());
-				if (location == -1)
-				{
-					std::cout << "Name: " << name << ", programID: " << programID << ", Location: " << location << std::endl;
-					std::cout << "Warning: uniform '" << name << "' doesn't exist!" << std::endl;
-				}
-
-				uniformLocationCache[name] = location;
-				return location;
-			}
 
 			ShaderProgram::~ShaderProgram()
 			{

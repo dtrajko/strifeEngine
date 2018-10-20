@@ -24,6 +24,8 @@ namespace engine
 			float BLUE = 0.6f;
 			SimpleShader * shader;
 			glm::mat4 projectionMatrix;
+			glm::mat4 viewMatrix;
+			glm::mat4 transformationMatrix;
 
 		public:
 			MasterRenderer(Window * window);
