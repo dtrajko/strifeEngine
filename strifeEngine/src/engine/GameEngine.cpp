@@ -19,6 +19,7 @@ namespace engine
 	bool GameEngine::init()
 	{
 		window->init();
+		m_input->init(window);
 		timer->init();
 		gameLogic->init(window);
 		lastFps = timer->getTime();
