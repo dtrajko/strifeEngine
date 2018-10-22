@@ -4,9 +4,9 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "interfaces\IGameLogic.h"
-#include "Window.h"
 #include "Timer.h"
 #include "WindowOptions.h"
+#include "../engine/graph/Window.h"
 #include "../engine/graph/Input.h"
 
 using namespace engine;

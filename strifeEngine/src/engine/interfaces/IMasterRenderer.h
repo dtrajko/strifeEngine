@@ -1,7 +1,7 @@
 #pragma once
 
 #include "IScene.h"
-#include "../../engine/Window.h"
+#include "../../engine/graph/Window.h"
 #include "../../vendor/glm/glm.hpp"
 #include "../../vendor/glm/gtc/matrix_transform.hpp"
 

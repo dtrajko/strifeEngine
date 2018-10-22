@@ -127,7 +127,7 @@ namespace engine
 		void Scene::update(float interval, Window * window, Input * input)
 		{
 			entity->increaseRotation(0.001f, 0.001f, 0);
-			camera->move(window, input);
+			camera->move(window);
 		}
 
 		void Scene::render(Window * window)

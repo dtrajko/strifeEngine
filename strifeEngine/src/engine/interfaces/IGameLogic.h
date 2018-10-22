@@ -1,10 +1,9 @@
 #pragma once
 
 #include "IScene.h"
-#include "../../engine/Window.h"
+#include "../../engine/graph/Window.h"
 #include "../../engine/graph/Input.h"
 
-using namespace engine;
 using namespace engine::graph;
 
 namespace engine

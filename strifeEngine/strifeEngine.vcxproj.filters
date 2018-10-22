@@ -36,9 +36,6 @@
     <ClCompile Include="src\engine\Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\engine\graph\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -90,6 +87,12 @@
     <ClCompile Include="src\engine\tm\models\QuadMeshSimple.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\engine\utils\Log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\graph\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\GameEngine.h">
@@ -99,9 +102,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\Timer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\graph\Input.h">
@@ -159,6 +159,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\tm\models\QuadMeshSimple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\utils\Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\graph\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

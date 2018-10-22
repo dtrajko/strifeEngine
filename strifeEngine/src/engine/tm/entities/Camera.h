@@ -3,11 +3,11 @@
 #include <iostream>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include "../../interfaces/ICamera.h"
-#include "../../Window.h"
-#include "../../graph/Input.h"
 #include "../loaders/Loader.h"
 #include "../entities/Entity.h"
+#include "../../interfaces/ICamera.h"
+#include "../../graph/Window.h"
+#include "../../graph/Input.h"
 #include "../../../engine/tm/toolbox/Maths.h"
 
 using namespace engine;
@@ -33,7 +33,7 @@ namespace engine
 				glm::mat4 viewMatrix;
 			public:
 				Camera();
-				void move(Window * window, Input * input);
+				void move(Window * window);
 				glm::vec3 getPosition();
 				glm::vec3 getRotation();
 				glm::mat4 getViewMatrix();

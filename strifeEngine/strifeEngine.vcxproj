@@ -39,9 +39,10 @@
     <ClCompile Include="src\engine\interfaces\IMasterRenderer.h" />
     <ClCompile Include="src\engine\tm\textures\ModelTexture.cpp" />
     <ClCompile Include="src\engine\tm\toolbox\Maths.cpp" />
+    <ClCompile Include="src\engine\utils\Log.cpp" />
     <ClCompile Include="src\game\Main.cpp" />
     <ClCompile Include="src\engine\Timer.cpp" />
-    <ClCompile Include="src\engine\Window.cpp" />
+    <ClCompile Include="src\engine\graph\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\helloWorld\MasterRenderer.h" />
@@ -64,9 +65,10 @@
     <ClInclude Include="src\engine\interfaces\IScene.h" />
     <ClInclude Include="src\engine\tm\textures\ModelTexture.h" />
     <ClInclude Include="src\engine\tm\toolbox\Maths.h" />
+    <ClInclude Include="src\engine\utils\Log.h" />
     <ClInclude Include="src\engine\WindowOptions.h" />
     <ClInclude Include="src\engine\Timer.h" />
-    <ClInclude Include="src\engine\Window.h" />
+    <ClInclude Include="src\engine\graph\Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

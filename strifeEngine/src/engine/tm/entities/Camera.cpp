@@ -11,8 +11,9 @@ namespace engine
 
 			}
 
-			void Camera::move(Window * window, Input * input)
+			void Camera::move(Window * window)
 			{
+
 			}
 
 			glm::mat4 Camera::getViewMatrix()
