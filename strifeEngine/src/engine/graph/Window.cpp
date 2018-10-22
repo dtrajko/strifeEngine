@@ -41,6 +41,12 @@ namespace engine
 			resized = false;
 			opts = _opts;
 			projectionMatrix = new glm::mat4();
+			m_input = new Input();
+		}
+
+		Input * Window::getInput()
+		{
+			return m_input;
 		}
 
 		bool Window::init()
@@ -140,6 +146,8 @@ namespace engine
 			{
 				std::cout << "GameEngine: Failed to initialize GLEW!" << std::endl;
 			}
+
+			m_input->init();
 
 			std::cout << "GameEngine: init complete." << std::endl;
 

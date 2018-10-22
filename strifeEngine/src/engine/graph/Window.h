@@ -1,12 +1,10 @@
 #pragma once
 
 #define _USE_MATH_DEFINES
+#define MAX_KEYS  1024
+#define MAX_BUTTONS 32
 #include <math.h>
 #include <iostream>
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include "../../vendor/glm/glm.hpp"
-#include "../../vendor/glm/gtc/matrix_transform.hpp"
 #include "../../engine/WindowOptions.h"
 #include "../../engine/graph/Input.h"
 
@@ -14,14 +12,9 @@ namespace engine
 {
 	namespace graph
 	{
-		#define MAX_KEYS  1024
-		#define MAX_BUTTONS 32
-
 		class Window
 		{
 		public:
-			Input * m_input;
-
 			bool m_Keys[MAX_KEYS];
 			bool m_MouseButtons[MAX_BUTTONS];
 			double mouseX;
@@ -36,6 +29,7 @@ namespace engine
 
 		private:
 			GLFWwindow * glfwWindow;
+			Input * m_input;
 			std::string title;
 			bool resized;
 			bool vSync;
@@ -44,6 +38,7 @@ namespace engine
 
 		public:
 			Window(std::string _title, int _width, int _height, bool _vSync, WindowOptions * _opts);
+			Input * getInput();
 			bool init();
 			void close();
 			void setMousePositionCenter();
