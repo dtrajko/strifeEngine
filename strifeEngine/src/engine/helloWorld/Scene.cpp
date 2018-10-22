@@ -124,7 +124,7 @@ namespace engine
 			entity = new Entity(texturedModel, glm::vec3(0, 0, -3), 0, 0, 0, 1);
 		}
 
-		void Scene::update(float interval, Window * window, Input * input)
+		void Scene::update(float interval, Window * window)
 		{
 			entity->increaseRotation(0.001f, 0.001f, 0);
 			camera->move(window);

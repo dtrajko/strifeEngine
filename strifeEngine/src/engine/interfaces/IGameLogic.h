@@ -19,11 +19,10 @@ namespace engine
 
 		public:
 			virtual void init(Window* window) = 0;
-			virtual void input(Window* window, Input * input) = 0;
-			virtual void update(float interval, Input * input) = 0;
+			virtual void input(Window* window) = 0;
+			virtual void update(float interval) = 0;
 			virtual void render(Window* window) = 0;
 			virtual Window * getWindow() = 0;
-			virtual Input * getInput() = 0;
 			virtual void cleanUp() = 0;
 		};
 	}

@@ -1,6 +1,9 @@
 #pragma once
 
-#include "./Window.h"
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+#include "../../vendor/glm/glm.hpp"
+#include "../../vendor/glm/gtc/matrix_transform.hpp"
 
 namespace engine
 {
@@ -16,10 +19,10 @@ namespace engine
 			bool * buttons;
 
 		public:
-			Input(Window * window);
-			void init(Window * window);
-			void input(Window * window);
-			void update(Window * window);
+			Input();
+			void init();
+			void input();
+			void update();
 			virtual ~Input();
 
 			// TODO: 

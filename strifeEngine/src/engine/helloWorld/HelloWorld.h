@@ -17,16 +17,14 @@ namespace engine
 		private:
 			Window * window;
 			IScene * scene;
-			Input * m_input;
 
 		public:
 			HelloWorld();
 			void init(Window * window);
-			void input(Window * window, Input * input);
-			void update(float interval, Input * input);
+			void input(Window * window);
+			void update(float interval);
 			void render(Window* window);
 			Window * getWindow();
-			Input * getInput();
 			void cleanUp();
 			virtual ~HelloWorld();
 		};

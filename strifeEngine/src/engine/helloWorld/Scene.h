@@ -33,7 +33,7 @@ namespace engine
 		public:
 			Scene();
 			void init(Window * window);
-			void update(float interval, Window * window, Input * input);
+			void update(float interval, Window * window);
 			void render(Window * window);
 			ICamera * getCamera();
 			Loader * getLoader();

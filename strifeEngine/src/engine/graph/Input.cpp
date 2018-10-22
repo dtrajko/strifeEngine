@@ -4,23 +4,22 @@ namespace engine
 {
 	namespace graph
 	{
-		Input::Input(Window * window)
+		Input::Input()
 		{
 			// TODO
 		}
 
-		void Input::init(Window * window)
+		void Input::init()
 		{
-			windowHandle = window->getHandle();
 			// TODO: glfwSetCursorPosCallback
 		}
 
-		void Input::input(Window * window)
+		void Input::input()
 		{
 			// TODO
 		}
 
-		void Input::update(Window * window)
+		void Input::update()
 		{
 			// TODO
 		}

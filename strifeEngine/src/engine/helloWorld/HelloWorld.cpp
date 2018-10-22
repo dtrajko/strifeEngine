@@ -15,14 +15,13 @@ namespace engine
 			scene->init(window);
 		}
 
-		void HelloWorld::input(Window * window, Input * input)
+		void HelloWorld::input(Window * window)
 		{
-			m_input = input;
 		}
 
-		void HelloWorld::update(float interval, Input * input)
+		void HelloWorld::update(float interval)
 		{
-			scene->update(interval, window, input);
+			scene->update(interval, window);
 		}
 
 		void HelloWorld::render(Window * window)
@@ -33,11 +32,6 @@ namespace engine
 		Window * HelloWorld::getWindow()
 		{
 			return window;
-		}
-
-		Input * HelloWorld::getInput()
-		{
-			return m_input;
 		}
 
 		void HelloWorld::cleanUp()

@@ -8,6 +8,7 @@
 #include "../../vendor/glm/glm.hpp"
 #include "../../vendor/glm/gtc/matrix_transform.hpp"
 #include "../../engine/WindowOptions.h"
+#include "../../engine/graph/Input.h"
 
 namespace engine
 {
@@ -19,6 +20,8 @@ namespace engine
 		class Window
 		{
 		public:
+			Input * m_input;
+
 			bool m_Keys[MAX_KEYS];
 			bool m_MouseButtons[MAX_BUTTONS];
 			double mouseX;
