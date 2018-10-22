@@ -28,7 +28,6 @@ namespace engine
 		std::string windowTitle;
 		Window * window;
 		IGameLogic * gameLogic;
-		Input * m_input;
 		Timer * timer;
 		double lastFps;
 		int fps;

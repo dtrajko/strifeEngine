@@ -8,7 +8,8 @@ namespace engine
 	{
 		class Log
 		{
-			void debug(const char * message);
+		public:
+			static void debug(const char * message);
 		};
 	}
 }

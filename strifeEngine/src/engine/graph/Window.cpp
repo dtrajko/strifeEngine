@@ -4,32 +4,6 @@ namespace engine
 {
 	namespace graph
 	{
-		void Window::key_callback(GLFWwindow * glfwWindow, int key, int scancode, int action, int mods)
-		{
-			Window* window = (Window*)glfwGetWindowUserPointer(glfwWindow);
-			window->m_Keys[key] = action != GLFW_RELEASE;
-		}
-
-		void Window::mouse_button_callback(GLFWwindow * glfwWindow, int button, int action, int mods)
-		{
-			Window* window = (Window*)glfwGetWindowUserPointer(glfwWindow);
-			window->m_MouseButtons[button] = action != GLFW_RELEASE;
-		}
-
-		void Window::cursor_position_callback(GLFWwindow * glfwWindow, double xpos, double ypos)
-		{
-			Window* window = (Window*)glfwGetWindowUserPointer(glfwWindow);
-			window->mouseX = xpos;
-			window->mouseY = ypos;
-		}
-
-		void Window::window_resize(GLFWwindow * glfwWindow, int width, int height)
-		{
-			Window* window = (Window*)glfwGetWindowUserPointer(glfwWindow);
-			window->setWidth(width);
-			window->setHeight(height);
-		}
-
 		Window::Window(std::string _title, int _width, int _height, bool _vSync, WindowOptions * _opts)
 
 		{
@@ -95,23 +69,6 @@ namespace engine
 				glfwSwapInterval(1);
 			}
 
-			for (int indKeys = 0; indKeys < MAX_KEYS; indKeys++)
-			{
-				m_Keys[indKeys] = false;
-			}
-
-			for (int indButtons = 0; indButtons < MAX_BUTTONS; indButtons++)
-			{
-				m_MouseButtons[indButtons] = false;
-			}
-
-			// GLFW callbacks
-			glfwSetWindowUserPointer(glfwWindow, this);
-			glfwSetWindowSizeCallback(glfwWindow, window_resize);
-			glfwSetKeyCallback(glfwWindow, key_callback);
-			glfwSetMouseButtonCallback(glfwWindow, mouse_button_callback);
-			glfwSetCursorPosCallback(glfwWindow, cursor_position_callback);
-
 			// Make the window visible
 			glfwShowWindow(glfwWindow);
 
@@ -147,7 +104,7 @@ namespace engine
 				std::cout << "GameEngine: Failed to initialize GLEW!" << std::endl;
 			}
 
-			m_input->init();
+			m_input->init(this);
 
 			std::cout << "GameEngine: init complete." << std::endl;
 
@@ -188,29 +145,6 @@ namespace engine
 			glClearColor(r, g, b, a);
 		}
 
-		bool Window::isKeyPressed(unsigned int keyCode) const
-		{
-			if (keyCode >= MAX_KEYS)
-			{
-				return false;
-			}
-			return m_Keys[keyCode];
-		}
-
-		bool Window::isMouseButtonPressed(unsigned int buttonCode) const
-		{
-			if (buttonCode >= MAX_BUTTONS)
-			{
-				return false;
-			}
-			return m_MouseButtons[buttonCode];
-		}
-
-		glm::vec2 Window::getMousePosition() const
-		{
-			return glm::vec2(mouseX, mouseY);
-		}
-
 		bool Window::windowShouldClose()
 		{
 			return glfwWindowShouldClose(glfwWindow);
@@ -218,14 +152,6 @@ namespace engine
 
 		void Window::update()
 		{
-			for (int indKey = 32; indKey < GLFW_KEY_LAST; indKey++)
-			{
-				m_Keys[indKey] = isKeyPressed(indKey);
-			}
-			for (int indButton = 0; indButton < GLFW_MOUSE_BUTTON_LAST; indButton++)
-			{
-				m_MouseButtons[indButton] = isMouseButtonPressed(indButton);
-			}
 			glfwSwapBuffers(glfwWindow);
 			glfwPollEvents();
 		}

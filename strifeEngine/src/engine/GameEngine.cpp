@@ -11,7 +11,6 @@ namespace engine
 		opts = _opts;
 		gameLogic = _gameLogic;
 		window = new Window(windowTitle, width, height, vSync, opts);
-		m_input = new Input();
 		timer = new Timer();
 		std::cout << "GameEngine object initialized! Window size " << width << "x" << height << std::endl;
 	}
@@ -19,7 +18,6 @@ namespace engine
 	bool GameEngine::init()
 	{
 		window->init();
-		m_input->init();
 		timer->init();
 		gameLogic->init(window);
 		lastFps = timer->getTime();
@@ -68,7 +66,6 @@ namespace engine
 
 	void GameEngine::input()
 	{
-		m_input->input();
 		gameLogic->input(window);
 	}
 
