@@ -31,12 +31,12 @@ namespace engine
 			TerrainTexture * bTexture = new TerrainTexture(loader->loadTexture("resources/ThinMatrix/textures/terrain_1/3.png"));
 			TerrainTexturePack * texturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
 			TerrainTexture * blendMap = new TerrainTexture(loader->loadTexture("resources/ThinMatrix/textures/terrain_1/blendMap.png"));
-			// Terrain terrain = new Terrain(0.0f, 0.0f, loader, texturePack, blendMap, "resources/ThinMatrix/textures/terrain_1/heightmap");
+			Terrain * terrain = new Terrain(0.0f, 0.0f, loader, texturePack, blendMap, "resources/ThinMatrix/textures/terrain_1/heightmap");
 		}
 
 		void Scene::update(float interval, Window * window)
 		{
-			entity->increaseRotation(0, 0.001f, 0);
+			entity->increaseRotation(0.001f, 0, 0.001f);
 			camera->move(window);
 		}
 

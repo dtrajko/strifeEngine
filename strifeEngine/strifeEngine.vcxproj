@@ -27,6 +27,7 @@
     <ClCompile Include="src\engine\tm\entities\Entity.cpp" />
     <ClCompile Include="src\engine\graph\Sprite.cpp" />
     <ClCompile Include="src\engine\graph\Texture.cpp" />
+    <ClCompile Include="src\engine\tm\loaders\OBJLoader.cpp" />
     <ClCompile Include="src\engine\tm\models\CubeMeshSimple.cpp" />
     <ClCompile Include="src\engine\tm\models\QuadMeshSimple.cpp" />
     <ClCompile Include="src\engine\tm\models\RawModel.cpp" />
@@ -57,6 +58,7 @@
     <ClInclude Include="src\engine\tm\entities\Entity.h" />
     <ClInclude Include="src\engine\graph\Sprite.h" />
     <ClInclude Include="src\engine\graph\Texture.h" />
+    <ClInclude Include="src\engine\tm\loaders\OBJLoader.h" />
     <ClInclude Include="src\engine\tm\models\CubeMeshSimple.h" />
     <ClInclude Include="src\engine\tm\models\QuadMeshSimple.h" />
     <ClInclude Include="src\engine\tm\models\RawModel.h" />

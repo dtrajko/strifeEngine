@@ -30,8 +30,8 @@ namespace engine
 				float heights[10][10];
 
 			public:
-				Terrain(float gridX, float gridZ, Loader loader, TerrainTexturePack texturePack, TerrainTexture blendMap, std::string & heightMap);
-				RawModel * generateTerrain(Loader loader, std::string & heightMap);
+				Terrain(float gridX, float gridZ, Loader * loader, TerrainTexturePack * texturePack, TerrainTexture * blendMap, std::string heightMap);
+				RawModel * generateTerrain(Loader * loader, std::string heightMap);
 				float getX();
 				float getZ();
 				RawModel * getModel();

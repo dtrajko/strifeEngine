@@ -6,17 +6,17 @@ namespace engine
 	{
 		namespace terrains
 		{
-			Terrain::Terrain(float gridX, float gridZ, Loader loader, TerrainTexturePack texturePack, TerrainTexture blendMap, std::string & heightMap)
+			Terrain::Terrain(float gridX, float gridZ, Loader * loader, TerrainTexturePack * texturePack, TerrainTexture * blendMap, std::string heightMap)
 			{
-				m_texturePack = &texturePack;
-				m_blendMap = &blendMap;
+				m_texturePack = texturePack;
+				m_blendMap = blendMap;
 				m_heightMap = heightMap;
 				m_x = gridX * SIZE;
 				m_z = gridZ * SIZE;
 				model = generateTerrain(loader, heightMap);
 			}
 
-			RawModel * Terrain::generateTerrain(Loader loader, std::string & heightMap)
+			RawModel * Terrain::generateTerrain(Loader * loader, std::string heightMap)
 			{
 				return nullptr;
 			}

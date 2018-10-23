@@ -24,7 +24,7 @@ namespace engine
 		{
 			glm::mat4 projectionMatrix;
 			float aspectRatio = (float) window->getWidth() / (float) window->getHeight();
-			float scaleY = 1.0f / glm::tan(glm::radians(FOV / 2.0f));
+			float scaleY = (1.0f / glm::tan(glm::radians(FOV / 2.0f))) * aspectRatio;
 			float scaleX = scaleY / aspectRatio;
 			float frustrumLength = FAR_PLANE - NEAR_PLANE;
 			projectionMatrix[0][0] = scaleX;

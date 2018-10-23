@@ -14,8 +14,8 @@ namespace engine
 		{
 		protected:
 			float FOV = 70; // field of view angle
-			float NEAR_PLANE = 0.1f;
-			float FAR_PLANE = 3000;
+			float NEAR_PLANE = 1.0f;
+			float FAR_PLANE = 1000;
 			float RED = 0.832f;
 			float GREEN = 0.961f;
 			float BLUE = 0.996f;
