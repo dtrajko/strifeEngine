@@ -11,15 +11,11 @@ namespace engine
 
 		void HelloWorld::init(Window * window)
 		{
-			scene = new Scene();
-			scene->init(window);
+			std::cout << "HelloWorld init" << std::endl;
+			scene = new Scene(window);
 		}
 
-		void HelloWorld::input(Window * window)
-		{
-		}
-
-		void HelloWorld::update(float interval)
+		void HelloWorld::update(float interval, Window * window)
 		{
 			scene->update(interval, window);
 		}
@@ -27,11 +23,6 @@ namespace engine
 		void HelloWorld::render(Window * window)
 		{
 			scene->render(window);
-		}
-
-		Window * HelloWorld::getWindow()
-		{
-			return window;
 		}
 
 		void HelloWorld::cleanUp()

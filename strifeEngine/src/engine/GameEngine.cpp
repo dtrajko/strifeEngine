@@ -17,7 +17,6 @@ namespace engine
 
 	bool GameEngine::init()
 	{
-		window->init();
 		timer->init();
 		gameLogic->init(window);
 		lastFps = timer->getTime();
@@ -30,10 +29,10 @@ namespace engine
 		return window->getHandle();
 	}
 
-	void GameEngine::update(float interval)
+	void GameEngine::update(float interval, Window * window)
 	{
-		gameLogic->update(interval);
 		window->update();
+		gameLogic->update(interval, window);
 	}
 
 	void GameEngine::render()
@@ -46,15 +45,13 @@ namespace engine
 		std::cout << "GameEngine: started." << std::endl;
 		init();
 		gameLoop();
-		cleanUp();
 	}
 
 	void GameEngine::gameLoop()
 	{
 		while (!glfwWindowShouldClose(window->getHandle()))
 		{
-			input();
-			update(0.0f);
+			update(0.0f, window);
 			render();
 		}
 	}
@@ -62,11 +59,6 @@ namespace engine
 	void GameEngine::sync()
 	{
 
-	}
-
-	void GameEngine::input()
-	{
-		gameLogic->input(window);
 	}
 
 	int GameEngine::getFPS()

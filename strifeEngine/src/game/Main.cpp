@@ -11,6 +11,7 @@
 
 using namespace engine;
 using namespace engine::interfaces;
+using namespace engine::helloWorld;
 
 int width = 0;
 int height = 0;
@@ -45,8 +46,8 @@ int main(void)
 	{
 		case Hello_World:
 		{
-			std::cout << "ThinMatrix app name detected!" << std::endl;
-			gameLogic = new engine::helloWorld::HelloWorld();
+			std::cout << "HelloWorld app name detected!" << std::endl;
+			gameLogic = new HelloWorld();
 			opts->mode3D = false;
 			opts->cullFace = false;
 			opts->antialiasing = false;

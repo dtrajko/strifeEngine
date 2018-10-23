@@ -3,6 +3,7 @@
 #define MAX_KEYS  1024
 #define MAX_BUTTONS 32
 
+#include <iostream>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "../../vendor/glm/glm.hpp"
@@ -19,7 +20,9 @@ namespace engine
 		{
 		private:
 			GLFWwindow * glfwWindow;
+			Window * window;
 			glm::vec2 displayVector;
+			glm::vec2 previousPosition;
 			glm::vec2 currentPosition;
 			bool * keys;
 			bool * buttons;
@@ -31,14 +34,16 @@ namespace engine
 			double mouseY;
 
 		public:
-			Input();
-			void init(Window * window);
+			Input(Window * window);
+			void init();
 			void input();
 			void update();
 			bool isKeyPressed(unsigned int keyCode) const;
+			bool isKeyDown(unsigned int keyCode) const;
 			bool isMouseButtonPressed(unsigned int button) const;
 			glm::vec2 getMousePosition() const;
 			void setMousePosition(double xpos, double ypos);
+			glm::vec2 getDisplayVector();
 			virtual ~Input();
 
 			static void key_callback(GLFWwindow * glfwWindow, int key, int scancode, int action, int mods);
@@ -47,7 +52,7 @@ namespace engine
 			static void window_resize(GLFWwindow * glfwWindow, int width, int height);
 
 			// TODO: 
-			// getDisplVec()
+			// getDisplayVector()
 			// getMousePosition()
 			// getMouseWheelDelta()
 			// isLeftButtonPressed()

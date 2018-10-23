@@ -32,13 +32,20 @@ namespace engine
 			window->setHeight(height);
 		}
 
-		Input::Input()
+		Input::Input(Window * _window)
 		{
+			displayVector = glm::vec2();
+			previousPosition = glm::vec2();
+			currentPosition = glm::vec2();
+			window = _window;
 			mouseX = 0.0;
 			mouseY = 0.0;
+			init();
+
+			std::cout << "Input object instanced and initialized!" << std::endl;
 		}
 
-		void Input::init(Window * window)
+		void Input::init()
 		{
 			for (int indKeys = 0; indKeys < MAX_KEYS; indKeys++)
 			{
@@ -74,6 +81,23 @@ namespace engine
 			{
 				m_MouseButtons[indButton] = isMouseButtonPressed(indButton);
 			}
+
+			displayVector.x = 0;
+			displayVector.y = 0;
+			if (previousPosition.x != 0 && previousPosition.y != 0) {
+				double deltaX = currentPosition.x - previousPosition.x;
+				double deltaY = currentPosition.y - previousPosition.y;
+				bool rotateX = deltaX != 0;
+				bool rotateY = deltaY != 0;
+				if (rotateX) {
+					displayVector.y = (float) deltaX;
+				}
+				if (rotateY) {
+					displayVector.x = (float) deltaY;
+				}
+			}
+			previousPosition.x = currentPosition.x;
+			previousPosition.y = currentPosition.y;
 		}
 
 		bool Input::isKeyPressed(unsigned int keyCode) const
@@ -83,6 +107,11 @@ namespace engine
 				return false;
 			}
 			return m_Keys[keyCode];
+		}
+
+		bool Input::isKeyDown(unsigned int keyCode) const
+		{
+			return glfwGetKey(glfwWindow, keyCode) == GL_TRUE;
 		}
 
 		bool Input::isMouseButtonPressed(unsigned int buttonCode) const
@@ -103,6 +132,11 @@ namespace engine
 		{
 			mouseX = xpos;
 			mouseY = ypos;
+		}
+
+		glm::vec2 Input::getDisplayVector()
+		{
+			return displayVector;
 		}
 
 		Input::~Input()

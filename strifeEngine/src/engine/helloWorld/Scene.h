@@ -9,6 +9,7 @@
 #include "../tm/models/RawModel.h"
 #include "../tm/models/TexturedModel.h"
 #include "../tm/entities/Camera.h"
+#include "../graph/Window.h"
 
 using namespace engine::interfaces;
 using namespace engine::graph;
@@ -31,7 +32,7 @@ namespace engine
 			TexturedModel * texturedModel;
 
 		public:
-			Scene();
+			Scene(Window * window);
 			void init(Window * window);
 			void update(float interval, Window * window);
 			void render(Window * window);

@@ -22,9 +22,10 @@ namespace engine
 			int width;
 			int height;
 
+			Input * m_input;
+
 		private:
 			GLFWwindow * glfwWindow;
-			Input * m_input;
 			std::string title;
 			bool resized;
 			bool vSync;

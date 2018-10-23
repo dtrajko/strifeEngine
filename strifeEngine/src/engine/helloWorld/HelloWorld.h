@@ -14,17 +14,11 @@ namespace engine
 	{
 		class HelloWorld : public IGameLogic
 		{
-		private:
-			Window * window;
-			IScene * scene;
-
 		public:
 			HelloWorld();
 			void init(Window * window);
-			void input(Window * window);
-			void update(float interval);
-			void render(Window* window);
-			Window * getWindow();
+			void update(float interval, Window * window);
+			void render(Window * window);
 			void cleanUp();
 			virtual ~HelloWorld();
 		};

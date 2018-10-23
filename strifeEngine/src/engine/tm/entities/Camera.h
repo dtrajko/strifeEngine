@@ -31,6 +31,9 @@ namespace engine
 				float roll = 0;
 				glm::mat4 projectionMatrix;
 				glm::mat4 viewMatrix;
+				glm::vec3 cameraInc;
+				glm::vec2 displVector;
+				float speed;
 			public:
 				Camera();
 				void move(Window * window);
@@ -38,6 +41,7 @@ namespace engine
 				glm::vec3 getRotation();
 				glm::mat4 getViewMatrix();
 				glm::mat4 updateViewMatrix();
+				glm::vec3 calculateNewPosition(float offsetX, float offsetY, float offsetZ);
 				float getPitch();
 				float getYaw();
 				float getRoll();

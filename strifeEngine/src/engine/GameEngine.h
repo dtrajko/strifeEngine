@@ -25,8 +25,8 @@ namespace engine
 
 	private:
 		GLFWwindow * glfwWindow;
-		std::string windowTitle;
 		Window * window;
+		std::string windowTitle;
 		IGameLogic * gameLogic;
 		Timer * timer;
 		double lastFps;
@@ -39,8 +39,7 @@ namespace engine
 		GLFWwindow * getWindow();
 		void gameLoop();
 		void sync();
-		void input();
-		void update(float interval);
+		void update(float interval, Window * window);
 		void render();
 		int getFPS();
 		engine::Timer getTimer();

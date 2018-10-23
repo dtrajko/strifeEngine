@@ -4,9 +4,9 @@ namespace engine
 {
 	namespace helloWorld
 	{
-		Scene::Scene()
+		Scene::Scene(Window * window)
 		{
-
+			init(window);
 		}
 
 		void Scene::init(Window * window)
