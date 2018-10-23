@@ -2,7 +2,7 @@
 
 namespace engine
 {
-	GameEngine::GameEngine(std::string _windowTitle, int _width, int _height, bool _vSync, WindowOptions * _opts, IGameLogic * _gameLogic)
+	GameEngine::GameEngine(std::string & _windowTitle, int _width, int _height, bool _vSync, WindowOptions * _opts, IGameLogic * _gameLogic)
 	{
 		windowTitle = _windowTitle;
 		width = _width;

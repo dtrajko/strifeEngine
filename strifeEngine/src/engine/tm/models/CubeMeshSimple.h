@@ -9,15 +9,18 @@ namespace engine
 			class CubeMeshSimple
 			{
 			public:
-				float * vertices;
-				float * textureCoords;
-				unsigned int * indices;
+				unsigned int verticesCount = 6 * 4 * 3;
+				unsigned int textureCoordsCount = 24 * 2;
+				unsigned int indicesCount = 12 * 3;
 
-				unsigned int verticesCount;
-				unsigned int textureCoordsCount;
-				unsigned int indicesCount;
+				float vertices[6 * 4 * 3];
+				float textureCoords[24 * 2];
+				unsigned int indices[12 * 3];
 
 				CubeMeshSimple();
+				void SetVertices(float * ptr);
+				void SetTextureCoords(float * ptr);
+				void SetIndices(unsigned int * ptr);
 				~CubeMeshSimple();
 			};
 		}

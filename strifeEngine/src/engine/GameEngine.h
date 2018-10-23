@@ -33,7 +33,7 @@ namespace engine
 		int fps;
 
 	public:
-		GameEngine(std::string _windowTitle, int _width, int _height, bool _vSync, WindowOptions * _opts, IGameLogic * _gameLogic);
+		GameEngine(std::string & _windowTitle, int _width, int _height, bool _vSync, WindowOptions * _opts, IGameLogic * _gameLogic);
 		void start();
 		bool init();
 		GLFWwindow * getWindow();

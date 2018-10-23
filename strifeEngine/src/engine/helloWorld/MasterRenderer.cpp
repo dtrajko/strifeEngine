@@ -38,7 +38,7 @@ namespace engine
 
 		glm::mat4 MasterRenderer::getProjectionMatrix(Window * window)
 		{
-			return glm::mat4();
+			return projectionMatrix;
 		}
 
 		void MasterRenderer::render(Window * window, IScene * scene)

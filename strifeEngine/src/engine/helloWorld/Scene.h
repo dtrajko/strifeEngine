@@ -10,6 +10,8 @@
 #include "../tm/models/TexturedModel.h"
 #include "../tm/entities/Camera.h"
 #include "../graph/Window.h"
+#include "../tm/textures/TerrainTexture.h"
+#include "../tm/textures/TerrainTexturePack.h"
 
 using namespace engine::interfaces;
 using namespace engine::graph;

@@ -25,9 +25,9 @@ enum AppName
 static std::map<std::string, AppName> mapAppNames;
 
 bool vSync = false;
-IGameLogic* gameLogic;
+IGameLogic * gameLogic;
 GameEngine * gameEng;
-WindowOptions* opts = new WindowOptions();
+WindowOptions opts = WindowOptions();
 
 void InitAppNames()
 {
@@ -38,9 +38,9 @@ int main(void)
 {
 	InitAppNames();
 
-	opts->cullFace = true;
-	opts->showFps = true;
-	opts->compatibleProfile = true;
+	opts.cullFace = true;
+	opts.showFps = true;
+	opts.compatibleProfile = true;
 
 	switch (mapAppNames[app])
 	{
@@ -48,18 +48,21 @@ int main(void)
 		{
 			std::cout << "HelloWorld app name detected!" << std::endl;
 			gameLogic = new HelloWorld();
-			opts->mode3D = false;
-			opts->cullFace = false;
-			opts->antialiasing = false;
-			opts->showTriangles = false;
+			opts.mode3D = false;
+			opts.cullFace = false;
+			opts.antialiasing = false;
+			opts.showTriangles = false;
 			width = 1280;
 			height = 720;
 			break;
 		}
 	}
 
-	gameEng = new GameEngine(app, width, height, vSync, opts, gameLogic);
+	std::string appTitle = app.append(" [C++/OpenGL 3D graphics engine]");
+	gameEng = new GameEngine(app, width, height, vSync, &opts, gameLogic);
 	gameEng->start();
+	gameEng->cleanUp();
+	delete gameEng;
 
 	return 0;
 }

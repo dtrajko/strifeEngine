@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _MASTER_RENDERER_H
+#define _MASTER_RENDERER_H
 
 #include "../interfaces/IMasterRenderer.h"
 #include "../interfaces/IScene.h"
@@ -40,3 +41,5 @@ namespace engine
 		};
 	}
 }
+
+#endif

@@ -8,7 +8,7 @@ namespace engine
 		{
 			CubeMeshSimple::CubeMeshSimple()
 			{
-				float verticesList[] = {
+				float vertices[6 * 4 * 3] = {
 					-0.5f,  0.5f, -0.5f,
 					-0.5f, -0.5f, -0.5f,
 					 0.5f, -0.5f, -0.5f,
@@ -39,10 +39,9 @@ namespace engine
 					 0.5f, -0.5f, -0.5f,
 					 0.5f, -0.5f,  0.5f
 				};
-				vertices = verticesList;
-				verticesCount = 6 * 4 * 3;
-				
-				float textureCoordsList[] = {
+				SetVertices(vertices);
+
+				float textureCoords[24 * 2] = {
 					0, 0,
 					0, 1,
 					1, 1,
@@ -68,10 +67,9 @@ namespace engine
 					1, 1,
 					1, 0
 				};
-				textureCoords = textureCoordsList;
-				textureCoordsCount = 24 * 2;
+				SetTextureCoords(textureCoords);
 
-				unsigned int indicesList[] = {
+				unsigned int indices[12 * 3] = {
 					0, 1, 3,
 					3, 1, 2,
 					4, 5, 7,
@@ -85,8 +83,31 @@ namespace engine
 					20, 21, 23,
 					23, 21, 22
 				};
-				indices = indicesList;
-				indicesCount = 12 * 3;
+				SetIndices(indices);
+			}
+
+			void CubeMeshSimple::SetVertices(float * arrayPtr)
+			{
+				for (unsigned int i = 0; i < verticesCount; ++i)
+				{
+					this->vertices[i] = arrayPtr[i];
+				}
+			}
+
+			void CubeMeshSimple::SetTextureCoords(float * arrayPtr)
+			{
+				for (unsigned int i = 0; i < textureCoordsCount; ++i)
+				{
+					this->textureCoords[i] = arrayPtr[i];
+				}
+			}
+
+			void CubeMeshSimple::SetIndices(unsigned int * arrayPtr)
+			{
+				for (unsigned int i = 0; i < indicesCount; ++i)
+				{
+					this->indices[i] = arrayPtr[i];
+				}
 			}
 
 			CubeMeshSimple::~CubeMeshSimple()

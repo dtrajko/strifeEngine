@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _I_MASTER_RENDERER_H
+#define _I_MASTER_RENDERER_H
 
 #include "IScene.h"
 #include "../../engine/graph/Window.h"
@@ -13,7 +14,7 @@ namespace engine
 		{
 		protected:
 			float FOV = 70; // field of view angle
-			float NEAR_PLANE = 1.0f;
+			float NEAR_PLANE = 0.1f;
 			float FAR_PLANE = 3000;
 			float RED = 0.832f;
 			float GREEN = 0.961f;
@@ -28,3 +29,5 @@ namespace engine
 		};
 	}
 }
+
+#endif // !_I_MASTER_RENDERER_H
