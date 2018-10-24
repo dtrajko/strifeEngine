@@ -11,15 +11,11 @@ namespace engine
 			class QuadMeshSimple
 			{
 			public:
-				// unsigned int verticesCount = 1 * 4 * 3;
-				// unsigned int textureCoordsCount = 4 * 2;
-				// unsigned int indicesCount = 2 * 3;
-
 				std::vector<float> vecVertices = {
 					-0.5f,  0.5f, 0.0f,  // V0
 					-0.5f, -0.5f, 0.0f,  // V1
-					0.5f, -0.5f, 0.0f,  // V2
-					0.5f,  0.5f, 0.0f,  // V3
+					 0.5f, -0.5f, 0.0f,  // V2
+					 0.5f,  0.5f, 0.0f,  // V3
 				};
 
 				std::vector<float> vecTextureCoords = {

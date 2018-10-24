@@ -11,10 +11,6 @@ namespace engine
 			class CubeMeshSimple
 			{
 			public:
-				// unsigned int verticesCount = 1 * 4 * 3;
-				// unsigned int textureCoordsCount = 4 * 2;
-				// unsigned int indicesCount = 2 * 3;
-
 				std::vector<float> vecVertices = {
 					-0.5f,  0.5f, -0.5f,
 					-0.5f, -0.5f, -0.5f,
