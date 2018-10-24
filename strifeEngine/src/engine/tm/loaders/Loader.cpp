@@ -40,6 +40,21 @@ namespace engine
 				return new RawModel(vaoID, indicesCount);
 			}
 
+			RawModel * Loader::loadToVAO(
+				float * positions, unsigned int positionsCount,
+				float * textureCoords, unsigned int textureCoordsCount,
+				float * normals, unsigned int normalsCount,
+				unsigned int * indices, unsigned int indicesCount)
+			{
+				unsigned int vaoID = createVAO();
+				bindIndicesBuffer(indices, indicesCount);
+				storeDataInAttributeList(0, 3, positions, positionsCount);
+				storeDataInAttributeList(1, 2, textureCoords, textureCoordsCount);
+				storeDataInAttributeList(2, 3, normals, normalsCount);
+				unbindVAO();
+				return new RawModel(vaoID, indicesCount);
+			}
+
 			unsigned int Loader::createVAO()
 			{
 				unsigned int vaoID;

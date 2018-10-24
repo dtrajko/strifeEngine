@@ -29,6 +29,11 @@ namespace engine
 					float * positions, unsigned int positionsCount,
 					float * textureCoords, unsigned int textureCoordsCount,
 					unsigned int * indices, unsigned int indicesCount);
+				RawModel * loadToVAO(
+					float * positions, unsigned int positionsCount,
+					float * textureCoords, unsigned int textureCoordsCount,
+					float * normals, unsigned int normalsCount,
+					unsigned int * indices, unsigned int indicesCount);
 				unsigned int createVAO();
 				std::vector<unsigned int> getVAOs();
 				std::vector<unsigned int> getVBOs();
