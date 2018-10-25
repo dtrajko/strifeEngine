@@ -20,7 +20,7 @@ namespace engine
 
 		Texture::Texture(std::string path)
 		{
-			id = SOIL_load_OGL_texture(path.c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MULTIPLY_ALPHA | SOIL_FLAG_INVERT_Y);
+			id = SOIL_load_OGL_texture(path.c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y & SOIL_FLAG_MULTIPLY_ALPHA);
 			if (!GetTextureParams())
 			{
 				std::cout << "Texture: error loading image [" << path << "]" << std::endl;

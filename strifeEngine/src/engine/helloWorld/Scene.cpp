@@ -16,18 +16,10 @@ namespace engine
 			masterRenderer = new MasterRenderer(window);
 			loader = new Loader();
 
-			// QuadMeshSimple mesh = QuadMeshSimple();
-			CubeMeshSimple mesh = CubeMeshSimple();
-
-			// ModelTexture * modelTexture = new ModelTexture(loader->loadTexture("resources/assets/textures/tiles.png"));
-			// rawModel = loader->loadToVAO(mesh.getVertices(), mesh.vecVertices.size(), mesh.getTextureCoords(), mesh.vecTextureCoords.size(), mesh.getIndices(), mesh.vecIndices.size());
-			// ModelTexture * modelTexture = new ModelTexture(loader->loadTexture("resources/ThinMatrix/textures/tiles.png"));
-			// rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/cube.obj", loader);
-			ModelTexture * modelTexture = new ModelTexture(loader->loadTexture("resources/ThinMatrix/textures/pine.png"));
-			rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/pine.obj", loader);
-
-			texturedModel = new TexturedModel(rawModel, modelTexture);
-			entity = new Entity(texturedModel, glm::vec3(0, 0, -10), 0, 0, 0, 1);
+			ModelTexture * modelTexture = new ModelTexture(loader->loadTexture("resources/ThinMatrix/textures/dragon.png"));
+			RawModel * rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/dragon.obj", loader);
+			TexturedModel * texturedModel = new TexturedModel(rawModel, modelTexture);
+			entity = new Entity(texturedModel, glm::vec3(0, -5.0f, -27), 0, 0, 0, 1);
 
 			TerrainTexture * backgroundTexture = new TerrainTexture(loader->loadTexture("resources/ThinMatrix/textures/terrain_1/bg.png"));
 			TerrainTexture * rTexture = new TerrainTexture(loader->loadTexture("resources/ThinMatrix/textures/terrain_1/1.png"));
