@@ -19,11 +19,16 @@ namespace engine
 			// QuadMeshSimple mesh = QuadMeshSimple();
 			CubeMeshSimple mesh = CubeMeshSimple();
 
-			rawModel = loader->loadToVAO(mesh.getVertices(), mesh.vecVertices.size(), mesh.getTextureCoords(), mesh.vecTextureCoords.size(), mesh.getIndices(), mesh.vecIndices.size());
+			// ModelTexture * modelTexture = new ModelTexture(loader->loadTexture("resources/assets/textures/tiles.png"));
+			// rawModel = loader->loadToVAO(mesh.getVertices(), mesh.vecVertices.size(), mesh.getTextureCoords(), mesh.vecTextureCoords.size(), mesh.getIndices(), mesh.vecIndices.size());
+			// ModelTexture * modelTexture = new ModelTexture(loader->loadTexture("resources/ThinMatrix/textures/pine.png"));
+			// rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/pine.obj", loader);
 
-			ModelTexture * modelTexture = new ModelTexture(loader->loadTexture("resources/assets/textures/tiles.png"));
+			ModelTexture * modelTexture = new ModelTexture(loader->loadTexture("resources/ThinMatrix/textures/tiles.png"));
+			rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/cube.obj", loader);
+
 			texturedModel = new TexturedModel(rawModel, modelTexture);
-			entity = new Entity(texturedModel, glm::vec3(0, 0, -5), 0, 0, 0, 1);
+			entity = new Entity(texturedModel, glm::vec3(0, 0, -10), 0, 0, 0, 1);
 
 			TerrainTexture * backgroundTexture = new TerrainTexture(loader->loadTexture("resources/ThinMatrix/textures/terrain_1/bg.png"));
 			TerrainTexture * rTexture = new TerrainTexture(loader->loadTexture("resources/ThinMatrix/textures/terrain_1/1.png"));
@@ -32,13 +37,11 @@ namespace engine
 			TerrainTexturePack * texturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
 			TerrainTexture * blendMap = new TerrainTexture(loader->loadTexture("resources/ThinMatrix/textures/terrain_1/blendMap.png"));
 			Terrain * terrain = new Terrain(0.0f, 0.0f, loader, texturePack, blendMap, "resources/ThinMatrix/textures/terrain_1/heightmap");
-
-			RawModel * objModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/pine.obj", loader);
 		}
 
 		void Scene::update(float interval, Window * window)
 		{
-			entity->increaseRotation(0.001f, 0, 0.001f);
+			entity->increaseRotation(0, 0.001f, 0);
 			camera->move(window);
 		}
 
