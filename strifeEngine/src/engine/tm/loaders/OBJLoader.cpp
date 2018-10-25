@@ -48,7 +48,6 @@ namespace engine
 					}
 					else if (line.compare(0, 2, "f ") == 0)
 					{
-						std::cout << "LINE FACE: " << line << std::endl;
 						if (!faceArraysInitialized)
 						{
 							textureArray = new float[vecVertices.size() * 2];
@@ -66,7 +65,6 @@ namespace engine
 								vertexData.push_back(tokenChunk);
 							}
 							processVertex(vertexData, vecIndices, vecTextureCoords, vecNormals, textureArray, normalsArray);
-							std::cout << "OUT textureArray[10] = " << textureArray[10] << std::endl;
 						}						
 					}
 				}
@@ -89,29 +87,6 @@ namespace engine
 					indicesArray[indIndex] = vecIndices.at(indIndex);
 				}
 
-				/*
-				std::cout << "Vertices: " << verticesCount << std::endl;
-				for (unsigned int i = 0; i < verticesCount; i++)
-				{
-					std::cout << "verticesArray[" << i << "] = " << verticesArray[i] << std::endl;
-				}
-				std::cout << "Texture coords: " << textureCoordsCount << std::endl;
-				for (unsigned int i = 0; i < textureCoordsCount; i++)
-				{
-					std::cout << "textureArray[" << i << "] = " << textureArray[i] << std::endl;
-				}
-				std::cout << "Normals: " << normalsCount << std::endl;
-				for (unsigned int i = 0; i < normalsCount; i++)
-				{
-					std::cout << "normalsArray[" << i << "] = " << normalsArray[i] << std::endl;
-				}
-				std::cout << "Indices: " << indicesCount << std::endl;
-				for (unsigned int i = 0; i < indicesCount; i++)
-				{
-					std::cout << "indicesArray[" << i << "] = " << indicesArray[i] << std::endl;
-				}
-				*/
-
 				return loader->loadToVAO(verticesArray, verticesCount, textureArray, textureCoordsCount, normalsArray, normalsCount, indicesArray, indicesCount);
 			}
 
@@ -130,13 +105,6 @@ namespace engine
 				normalsArray[currentVertexPointer * 3]     = currentNormal.x;
 				normalsArray[currentVertexPointer * 3 + 1] = currentNormal.y;
 				normalsArray[currentVertexPointer * 3 + 2] = currentNormal.z;
-
-				if (currentVertexPointer == 5)
-				{				
-					std::cout << "IN Vertex data: [ " << vertexData[0] << ", " << vertexData[1] << ", " << vertexData[2] << " ]" << std::endl;
-					std::cout << "IN textureArray[" << currentVertexPointer * 2 << "] = " << currentTextureCoord.x << std::endl;
-					std::cout << "IN textureArray[" << currentVertexPointer * 2 + 1 << "] = " << 1 - currentTextureCoord.y << std::endl;
-				}
 			}
 		}
 	}
