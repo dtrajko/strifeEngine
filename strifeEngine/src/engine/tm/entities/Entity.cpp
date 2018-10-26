@@ -36,6 +36,11 @@ namespace engine
 				return position;
 			}
 
+			void Entity::setPosition(glm::vec3 _position)
+			{
+				position = _position;
+			}
+
 			float Entity::getRotX()
 			{
 				return rotX;

@@ -26,6 +26,12 @@ namespace engine
 			loadVec3f("lightColor", light->getColor());
 		}
 
+		void SimpleShader::loadShineVariables(float shineDamper, float reflectivity)
+		{
+			loadFloat("shineDamper", shineDamper);
+			loadFloat("reflectivity", reflectivity);
+		}
+
 		SimpleShader::~SimpleShader()
 		{
 

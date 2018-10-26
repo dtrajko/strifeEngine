@@ -48,6 +48,7 @@ namespace engine
 		{
 			TexturedModel * texturedModel = entity->getTexturedModel();
 			RawModel * model = texturedModel->getRawModel();
+			ModelTexture * modelTexture = texturedModel->getTexture();
 			glBindVertexArray(model->getVaoID());
 			glEnableVertexAttribArray(0);
 			glEnableVertexAttribArray(1);
@@ -55,8 +56,9 @@ namespace engine
 			transformationMatrix = Maths::createTransformationMatrix(
 				entity->getPosition(), entity->getRotX(), entity->getRotY(), entity->getRotZ(), entity->getScale());
 			shader->loadMatrix("transformationMatrix", transformationMatrix);
+			shader->loadShineVariables(modelTexture->getShineDumper(), modelTexture->getReflectivity());
 			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, texturedModel->getTexture()->getID());
+			glBindTexture(GL_TEXTURE_2D, modelTexture->getID());
 			glDrawElements(GL_TRIANGLES, model->getVertexCount(), GL_UNSIGNED_INT, 0);
 			glDisableVertexAttribArray(0);
 			glDisableVertexAttribArray(1);

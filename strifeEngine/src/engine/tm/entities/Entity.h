@@ -29,6 +29,7 @@ namespace engine
 				void increasePosition(float dx, float dy, float dz);
 				void increaseRotation(float dx, float dy, float dz);
 				glm::vec3 getPosition();
+				void setPosition(glm::vec3 _position);
 				float getRotX();
 				float getRotY();
 				float getRotZ();

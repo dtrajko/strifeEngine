@@ -38,10 +38,13 @@ namespace engine
 			Light * light;
 			TexturedModel * texturedModel;
 
+			float counter = 0;
+
 		public:
 			Scene(Window * window);
 			void init(Window * window);
 			void update(float interval, Window * window);
+			void entityCircularMotion();
 			void render(Window * window);
 			ICamera * getCamera();
 			Loader * getLoader();

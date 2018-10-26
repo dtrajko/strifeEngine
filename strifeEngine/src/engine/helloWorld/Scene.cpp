@@ -12,12 +12,14 @@ namespace engine
 		void Scene::init(Window * window)
 		{
 			camera = new Camera();
-			light = new Light(glm::vec3(1000, 1000, 1000), glm::vec3(1, 1, 1));
+			light = new Light(glm::vec3(0, 10, 0), glm::vec3(1, 1, 1));
 			masterRenderer = new MasterRenderer(window);
 			loader = new Loader();
 
-			ModelTexture * modelTexture = new ModelTexture(loader->loadTexture("resources/ThinMatrix/textures/stall.png"));
-			RawModel * rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/stall.obj", loader);
+			ModelTexture * modelTexture = new ModelTexture(loader->loadTexture("resources/ThinMatrix/textures/normalMaps/barrel.png"));
+			modelTexture->setShineDumper(1);
+			modelTexture->setReflectivity(0);
+			RawModel * rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/barrel.obj", loader);
 			TexturedModel * texturedModel = new TexturedModel(rawModel, modelTexture);
 			entity = new Entity(texturedModel, glm::vec3(0, -3.0f, -30), 0, 180, 0, 1);
 
@@ -32,12 +34,21 @@ namespace engine
 
 		void Scene::update(float interval, Window * window)
 		{
-			entity->increaseRotation(0, 0, 0);
 			camera->move(window);
 			if (window->getInput()->isKeyPressed(GLFW_KEY_ESCAPE))
 			{
 				window->close();
 			}
+			entityCircularMotion();
+		}
+
+		void Scene::entityCircularMotion()
+		{
+			glm::vec3 posVec = glm::vec3(entity->getPosition());
+			posVec.x = glm::sin(counter) * 20;
+			posVec.z = glm::cos(counter) * 20;
+			counter += 0.001f;
+			entity->setPosition(glm::vec3(posVec));
 		}
 
 		void Scene::render(Window * window)
