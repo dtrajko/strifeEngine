@@ -21,8 +21,8 @@ namespace engine
 		{
 		private:
 			float RED = 0.2f;
-			float GREEN = 0.8f;
-			float BLUE = 0.6f;
+			float GREEN = 0.1f;
+			float BLUE = 0.3f;
 			SimpleShader * shader;
 			glm::mat4 projectionMatrix;
 			glm::mat4 viewMatrix;
