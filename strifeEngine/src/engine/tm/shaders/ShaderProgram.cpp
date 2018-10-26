@@ -21,9 +21,6 @@ namespace engine
 				getAllUniformLocations();
 			}
 
-			void ShaderProgram::bindAttributes() {}
-			void ShaderProgram::getAllUniformLocations() {}
-
 			int ShaderProgram::getUniformLocation(const std::string& uniformName)
 			{
 				if (uniformLocationCache.find(uniformName) != uniformLocationCache.end())
@@ -48,10 +45,16 @@ namespace engine
 				glUniform1i(getUniformLocation(locationName), value);
 			}
 
-			void ShaderProgram::loadVector(const std::string& locationName, glm::vec4 vector)
+			void ShaderProgram::loadVec4f(const std::string& locationName, glm::vec4 vector)
 			{
 				int location = getUniformLocation(locationName);
 				glUniform4f(location, vector.x, vector.y, vector.z, vector.w);
+			}
+
+			void ShaderProgram::loadVec3f(const std::string& locationName, glm::vec3 vector)
+			{
+				int location = getUniformLocation(locationName);
+				glUniform3f(location, vector.x, vector.y, vector.z);
 			}
 
 			void ShaderProgram::loadMatrix(const std::string& name, glm::mat4 matrix)

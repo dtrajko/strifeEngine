@@ -20,9 +20,9 @@ namespace engine
 		class MasterRenderer : public IMasterRenderer
 		{
 		private:
-			float RED = 0.2f;
-			float GREEN = 0.1f;
-			float BLUE = 0.3f;
+			float RED = 0.15f;
+			float GREEN = 0.0f;
+			float BLUE = 0.15f;
 			SimpleShader * shader;
 			glm::mat4 projectionMatrix;
 			glm::mat4 viewMatrix;
@@ -35,7 +35,7 @@ namespace engine
 			glm::mat4 getProjectionMatrix(Window * window);
 			void prepare(Window * window);
 			void render(Window * window, IScene * scene);
-			void renderModel(Entity * entity);
+			void renderModel(Entity * entity, IScene * scene);
 			void cleanUp();
 			virtual ~MasterRenderer();
 		};

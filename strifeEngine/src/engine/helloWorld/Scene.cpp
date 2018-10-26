@@ -12,7 +12,7 @@ namespace engine
 		void Scene::init(Window * window)
 		{
 			camera = new Camera();
-
+			light = new Light(glm::vec3(1000, 1000, 1000), glm::vec3(1, 1, 1));
 			masterRenderer = new MasterRenderer(window);
 			loader = new Loader();
 
@@ -53,6 +53,11 @@ namespace engine
 		RawModel * Scene::getModel()
 		{
 			return rawModel;
+		}
+
+		Light * Scene::getLight()
+		{
+			return light;
 		}
 
 		TexturedModel * Scene::getTexturedModel()

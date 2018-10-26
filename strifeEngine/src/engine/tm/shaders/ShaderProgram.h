@@ -30,13 +30,14 @@ namespace engine
 				void cleanUp();
 				std::stringstream parseShader(const std::string & filepath);
 				unsigned int loadShader(std::string & file, unsigned int type);
-				void bindAttributes();
+				void bindAttributes() {};
+				void getAllUniformLocations() {};
 				void bindAttribute(int attribute, std::string variableName);
-				void getAllUniformLocations();
 				int getUniformLocation(const std::string& name);
 				void loadFloat(const std::string & locationName, float value);
 				void loadInt(const std::string& locationName, int value);
-				void loadVector(const std::string& locationName, glm::vec4 vector);
+				void loadVec4f(const std::string& locationName, glm::vec4 vector);
+				void loadVec3f(const std::string& locationName, glm::vec3 vector);
 				void loadMatrix(const std::string& name, glm::mat4 matrix);
 				virtual ~ShaderProgram();
 			};

@@ -5,6 +5,7 @@
 #include "../../engine/tm/loaders/Loader.h"
 #include "../../engine/tm/entities/Entity.h"
 #include "../../engine/graph/Sprite.h"
+#include "../../engine/tm/entities/Light.h"
 
 using namespace engine::graph;
 using namespace engine::tm::loaders;
@@ -25,6 +26,7 @@ namespace engine
 			virtual Loader * getLoader() = 0;
 			virtual Entity * getEntity() = 0;
 			virtual RawModel * getModel() = 0;
+			virtual Light * getLight() = 0;
 			virtual TexturedModel * getTexturedModel() = 0;
 		};
 	}

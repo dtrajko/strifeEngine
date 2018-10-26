@@ -35,6 +35,7 @@ namespace engine
 			IMasterRenderer * masterRenderer;
 			Entity * entity;
 			RawModel * rawModel;
+			Light * light;
 			TexturedModel * texturedModel;
 
 		public:
@@ -46,6 +47,7 @@ namespace engine
 			Loader * getLoader();
 			Entity * getEntity();
 			RawModel * getModel();
+			Light * getLight();
 			TexturedModel * getTexturedModel();
 			void cleanUp();
 			virtual ~Scene();
