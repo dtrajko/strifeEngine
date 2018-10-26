@@ -1,5 +1,4 @@
 #include "ShaderProgram.h"
-#include "GL/glew.h"
 
 namespace engine
 {
@@ -19,6 +18,18 @@ namespace engine
 				glLinkProgram(programID);
 				glValidateProgram(programID);
 				getAllUniformLocations();
+			}
+
+			void ShaderProgram::bindAttributes()
+			{
+				bindAttribute(0, "position");
+				bindAttribute(1, "textureCoords");
+				bindAttribute(2, "normal");
+			}
+
+			void ShaderProgram::getAllUniformLocations()
+			{
+
 			}
 
 			int ShaderProgram::getUniformLocation(const std::string& uniformName)

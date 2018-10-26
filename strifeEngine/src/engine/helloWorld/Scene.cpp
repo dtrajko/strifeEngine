@@ -19,7 +19,7 @@ namespace engine
 			ModelTexture * modelTexture = new ModelTexture(loader->loadTexture("resources/ThinMatrix/textures/stall.png"));
 			RawModel * rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/stall.obj", loader);
 			TexturedModel * texturedModel = new TexturedModel(rawModel, modelTexture);
-			entity = new Entity(texturedModel, glm::vec3(0, -2.5f, -30), 0, 0, 0, 1);
+			entity = new Entity(texturedModel, glm::vec3(0, -3.0f, -30), 0, 180, 0, 1);
 
 			TerrainTexture * backgroundTexture = new TerrainTexture(loader->loadTexture("resources/ThinMatrix/textures/terrain_1/bg.png"));
 			TerrainTexture * rTexture = new TerrainTexture(loader->loadTexture("resources/ThinMatrix/textures/terrain_1/1.png"));
@@ -32,7 +32,7 @@ namespace engine
 
 		void Scene::update(float interval, Window * window)
 		{
-			entity->increaseRotation(0, 0.001f, 0);
+			entity->increaseRotation(0, 0, 0);
 			camera->move(window);
 			if (window->getInput()->isKeyPressed(GLFW_KEY_ESCAPE))
 			{

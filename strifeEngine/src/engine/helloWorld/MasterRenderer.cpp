@@ -10,6 +10,7 @@ namespace engine
 			std::string fragmentFile = "resources/shaders/simpleFragment.glsl";
 			shader = new SimpleShader(vertexFile, fragmentFile);
 			shader->start();
+			shader->bindAttributes();
 			projectionMatrix = createProjectionMatrix(window);
 			shader->loadMatrix("projectionMatrix", projectionMatrix);
 			shader->stop();

@@ -8,6 +8,7 @@
 #include "../../../vendor/glm/glm.hpp"
 #include "../../../vendor/glm/gtc/matrix_transform.hpp"
 #include "../../../vendor/glm/gtc/type_ptr.hpp"
+#include "GL/glew.h"
 
 namespace engine
 {
@@ -17,7 +18,7 @@ namespace engine
 		{
 			class ShaderProgram
 			{
-			private:
+			protected:
 				unsigned int programID;
 				unsigned int vertexShaderID;
 				unsigned int fragmentShaderID;
@@ -30,8 +31,8 @@ namespace engine
 				void cleanUp();
 				std::stringstream parseShader(const std::string & filepath);
 				unsigned int loadShader(std::string & file, unsigned int type);
-				void bindAttributes() {};
-				void getAllUniformLocations() {};
+				void bindAttributes();
+				void getAllUniformLocations();
 				void bindAttribute(int attribute, std::string variableName);
 				int getUniformLocation(const std::string& name);
 				void loadFloat(const std::string & locationName, float value);

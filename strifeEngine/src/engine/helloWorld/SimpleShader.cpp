@@ -4,15 +4,12 @@ namespace engine
 {
 	namespace helloWorld
 	{
-		SimpleShader::SimpleShader(std::string& vertexFile, std::string& fragmentFile)
-			: ShaderProgram(vertexFile, fragmentFile)
+		SimpleShader::SimpleShader(std::string& vertexFile, std::string& fragmentFile) : ShaderProgram(vertexFile, fragmentFile)
 		{
-
 		}
 
 		void SimpleShader::bindAttributes()
 		{
-			std::cout << "SimpleShader::bindAttributes CALLED!" << std::endl;
 			bindAttribute(0, "position");
 			bindAttribute(1, "textureCoords");
 			bindAttribute(2, "normal");
