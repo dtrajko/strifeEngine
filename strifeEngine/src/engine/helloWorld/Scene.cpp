@@ -12,24 +12,21 @@ namespace engine
 		void Scene::init(Window * window)
 		{
 			camera = new Camera();
-			light = new Light(glm::vec3(0, 10, 0), glm::vec3(1, 1, 1));
+			light = new Light(glm::vec3(-20, 10, -20), glm::vec3(1, 1, 1));
 			masterRenderer = new MasterRenderer(window);
 			loader = new Loader();
 
 			ModelTexture * modelTexture = new ModelTexture(loader->loadTexture("resources/ThinMatrix/textures/normalMaps/barrel.png"));
-			modelTexture->setShineDumper(1);
-			modelTexture->setReflectivity(0);
-			RawModel * rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/barrel.obj", loader);
-			TexturedModel * texturedModel = new TexturedModel(rawModel, modelTexture);
-			entity = new Entity(texturedModel, glm::vec3(0, -3.0f, -30), 0, 180, 0, 1);
+			// ModelTexture * modelTexture = new ModelTexture(loader->loadTexture("resources/ThinMatrix/textures/dragon.png"));
+			modelTexture->setShineDumper(10);
+			modelTexture->setReflectivity(1);
 
-			TerrainTexture * backgroundTexture = new TerrainTexture(loader->loadTexture("resources/ThinMatrix/textures/terrain_1/bg.png"));
-			TerrainTexture * rTexture = new TerrainTexture(loader->loadTexture("resources/ThinMatrix/textures/terrain_1/1.png"));
-			TerrainTexture * gTexture = new TerrainTexture(loader->loadTexture("resources/ThinMatrix/textures/terrain_1/2.png"));
-			TerrainTexture * bTexture = new TerrainTexture(loader->loadTexture("resources/ThinMatrix/textures/terrain_1/3.png"));
-			TerrainTexturePack * texturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
-			TerrainTexture * blendMap = new TerrainTexture(loader->loadTexture("resources/ThinMatrix/textures/terrain_1/blendMap.png"));
-			Terrain * terrain = new Terrain(0.0f, 0.0f, loader, texturePack, blendMap, "resources/ThinMatrix/textures/terrain_1/heightmap");
+			std::cout << "BEFORE OBJLoader::loadOBJModel() " << Util::printTime() << std::endl;
+			RawModel * rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/barrel.obj", loader); // barrel, dragon
+			std::cout << "AFTER OBJLoader::loadOBJModel() " << Util::printTime() << std::endl;
+
+			TexturedModel * texturedModel = new TexturedModel(rawModel, modelTexture);
+			entity = new Entity(texturedModel, glm::vec3(0.0f, 0.0f, -40.0f), 0, 180, 0, 1);
 		}
 
 		void Scene::update(float interval, Window * window)
@@ -44,9 +41,11 @@ namespace engine
 
 		void Scene::entityCircularMotion()
 		{
+			glm::vec3 initVec = glm::vec3(glm::vec3(0.0f, 0.0f, -40.0f));
+			entity->increaseRotation(0, 0.1f, 0);
 			glm::vec3 posVec = glm::vec3(entity->getPosition());
-			posVec.x = glm::sin(counter) * 20;
-			posVec.z = glm::cos(counter) * 20;
+			posVec.x = initVec.x + glm::sin(counter) * 5;
+			posVec.z = initVec.z + glm::cos(counter) * 5;
 			counter += 0.001f;
 			entity->setPosition(glm::vec3(posVec));
 		}

@@ -1,11 +1,12 @@
 #pragma once
 
-#include <string>
-#include "../../interfaces/ITerrain.h"
+#include "../../tm/models/RawModel.h"
 #include "../../tm/loaders/Loader.h"
+#include "../../tm/textures/ModelTexture.h"
 
-using namespace engine::interfaces;
+using namespace engine::tm::models;
 using namespace engine::tm::loaders;
+using namespace engine::tm::textures;
 
 namespace engine
 {
@@ -13,32 +14,24 @@ namespace engine
 	{
 		namespace terrains
 		{
-			class Terrain : public ITerrain
+			class Terrain
 			{
-			public:
-				int SIZE = 800;
 			private:
-				int MAX_HEIGHT = 30;
-				int MAX_PIXEL_COLOR = 256 * 256 * 256;
-				int vertexCount = 63;
-				float m_x;
-				float m_z;
-				RawModel * model;
-				TerrainTexturePack * m_texturePack;
-				TerrainTexture * m_blendMap;
-				std::string m_heightMap;
-				float heights[10][10];
+				float m_Size = 800;
+				unsigned int m_VertexCount = 128;
+				float m_X;
+				float m_Z;
+				RawModel * m_Model;
+				ModelTexture * m_Texture;
 
 			public:
-				Terrain(float gridX, float gridZ, Loader * loader, TerrainTexturePack * texturePack, TerrainTexture * blendMap, std::string heightMap);
-				RawModel * generateTerrain(Loader * loader, std::string heightMap);
+				Terrain(int gridX, int gridZ, Loader * loader, ModelTexture * texture);
+				RawModel * generateTerrain(Loader * loader);
+				void generateTerrainIndices(unsigned int * indices);
 				float getX();
 				float getZ();
 				RawModel * getModel();
-				TerrainTexturePack * getTexturePack();
-				TerrainTexture * getBlendMap();
-				float getHeightOfTerrain(float coordX, float coordZ);
-				float getWaterHeight();
+				ModelTexture * getTexture();
 			};
 		}
 	}

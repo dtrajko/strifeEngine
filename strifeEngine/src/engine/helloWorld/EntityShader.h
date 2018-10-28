@@ -13,15 +13,15 @@ namespace engine
 {
 	namespace helloWorld
 	{
-		class SimpleShader : public ShaderProgram
+		class EntityShader : public ShaderProgram
 		{
 		public:
-			SimpleShader(std::string& vertexFile, std::string& fragmentFile);
+			EntityShader(std::string& vertexFile, std::string& fragmentFile);
 			void bindAttributes();
 			void getAllUniformLocations();
 			void loadLight(Light * light);
 			void loadShineVariables(float shineDamper, float reflectivity);
-			virtual ~SimpleShader();
+			virtual ~EntityShader();
 		};
 	}
 }

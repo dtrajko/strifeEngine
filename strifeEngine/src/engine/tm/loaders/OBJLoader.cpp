@@ -21,11 +21,18 @@ namespace engine
 				std::stringstream fileContent;
 
 				bool faceArraysInitialized = false;
+				std::vector<std::string> tokens;
+				glm::vec3 vertex;
+				glm::vec2 texture;
+				glm::vec3 normal;
+				std::vector<std::string> vertexData = {};
+				std::string tokenChunk;
+
 				while (getline(stream, line))
 				{
 					// split line into chunks/tokens
 					std::istringstream iss(line);
-					std::vector<std::string> tokens
+					tokens =
 					{
 						std::istream_iterator<std::string>{iss},
 						std::istream_iterator<std::string>{}
@@ -33,17 +40,17 @@ namespace engine
 
 					if (line.compare(0, 2, "v ") == 0)
 					{
-						glm::vec3 vertex = glm::vec3(std::atof(tokens[1].c_str()), std::atof(tokens[2].c_str()), std::atof(tokens[3].c_str()));
+						vertex = glm::vec3(std::atof(tokens[1].c_str()), std::atof(tokens[2].c_str()), std::atof(tokens[3].c_str()));
 						vecVertices.push_back(vertex);
 					}
 					else if (line.compare(0, 3, "vt ") == 0)
 					{
-						glm::vec2 texture = glm::vec2(std::atof(tokens[1].c_str()), std::atof(tokens[2].c_str()));
+						texture = glm::vec2(std::atof(tokens[1].c_str()), std::atof(tokens[2].c_str()));
 						vecTextureCoords.push_back(texture);
 					}
 					else if (line.compare(0, 3, "vn ") == 0)
 					{
-						glm::vec3 normal = glm::vec3(std::atof(tokens[1].c_str()), std::atof(tokens[2].c_str()), std::atof(tokens[3].c_str()));
+						normal = glm::vec3(std::atof(tokens[1].c_str()), std::atof(tokens[2].c_str()), std::atof(tokens[3].c_str()));
 						vecNormals.push_back(normal);
 					}
 					else if (line.compare(0, 2, "f ") == 0)
@@ -56,11 +63,11 @@ namespace engine
 						}
 						for (unsigned int index = 1; index <= 3; index++)
 						{
-							std::vector<std::string> vertexData = {};
+							vertexData = {};
 							std::stringstream token_chunk_ss(tokens[index]);
 							while (token_chunk_ss.good())
 							{
-								std::string tokenChunk;
+								tokenChunk = "";
 								getline(token_chunk_ss, tokenChunk, '/');
 								vertexData.push_back(tokenChunk);
 							}

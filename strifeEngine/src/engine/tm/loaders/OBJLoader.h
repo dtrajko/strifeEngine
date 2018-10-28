@@ -11,8 +11,10 @@
 #include "../../../vendor/glm/glm.hpp"
 #include "../../../vendor/glm/gtc/matrix_transform.hpp"
 #include "../../../vendor/glm/gtc/type_ptr.hpp"
+#include "../../../engine/utils/Util.h"
 
 using namespace engine::tm::models;
+using namespace engine::utils;
 
 namespace engine
 {

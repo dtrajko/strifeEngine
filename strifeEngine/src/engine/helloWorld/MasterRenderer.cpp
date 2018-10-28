@@ -6,34 +6,27 @@ namespace engine
 	{
 		MasterRenderer::MasterRenderer(Window * window)
 		{
-			std::string vertexFile = "resources/shaders/simpleVertex.glsl";
-			std::string fragmentFile = "resources/shaders/simpleFragment.glsl";
-			shader = new SimpleShader(vertexFile, fragmentFile);
-			shader->start();
-			shader->bindAttributes();
-			projectionMatrix = createProjectionMatrix(window);
-			shader->loadMatrix("projectionMatrix", projectionMatrix);
-			shader->stop();
+			m_ProjectionMatrix = createProjectionMatrix(window);
+			m_EntityRenderer = new EntityRenderer(window, m_ProjectionMatrix);
+			m_TerrainRenderer = new TerrainRenderer(window, m_ProjectionMatrix);
 		}
 
 		void MasterRenderer::init(IScene * scene)
 		{
-
+			m_EntityRenderer->init(scene);
+			m_TerrainRenderer->init(scene);
 		}
 
 		glm::mat4 MasterRenderer::getProjectionMatrix(Window * window)
 		{
-			return projectionMatrix;
+			return m_ProjectionMatrix;
 		}
 
 		void MasterRenderer::render(Window * window, IScene * scene)
 		{
 			prepare(window);
-			shader->start();
-			shader->loadLight(scene->getLight());
-			shader->loadMatrix("viewMatrix", Maths::createViewMatrix(scene->getCamera()));
-			renderModel(scene->getEntity(), scene);
-			shader->stop();
+			m_EntityRenderer->render(window, scene);
+			m_TerrainRenderer->render(window, scene);
 		}
 
 		void MasterRenderer::prepare(Window * window)
@@ -42,28 +35,6 @@ namespace engine
 			glEnable(GL_DEPTH_TEST);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glClearColor(RED, GREEN, BLUE, 1.0f);
-		}
-
-		void MasterRenderer::renderModel(Entity * entity, IScene * scene)
-		{
-			TexturedModel * texturedModel = entity->getTexturedModel();
-			RawModel * model = texturedModel->getRawModel();
-			ModelTexture * modelTexture = texturedModel->getTexture();
-			glBindVertexArray(model->getVaoID());
-			glEnableVertexAttribArray(0);
-			glEnableVertexAttribArray(1);
-			glEnableVertexAttribArray(2);
-			transformationMatrix = Maths::createTransformationMatrix(
-				entity->getPosition(), entity->getRotX(), entity->getRotY(), entity->getRotZ(), entity->getScale());
-			shader->loadMatrix("transformationMatrix", transformationMatrix);
-			shader->loadShineVariables(modelTexture->getShineDumper(), modelTexture->getReflectivity());
-			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, modelTexture->getID());
-			glDrawElements(GL_TRIANGLES, model->getVertexCount(), GL_UNSIGNED_INT, 0);
-			glDisableVertexAttribArray(0);
-			glDisableVertexAttribArray(1);
-			glDisableVertexAttribArray(2);
-			glBindVertexArray(0);
 		}
 
 		glm::mat4 MasterRenderer::createProjectionMatrix(Window * window)
@@ -84,7 +55,8 @@ namespace engine
 
 		void MasterRenderer::cleanUp()
 		{
-			shader->cleanUp();
+			m_EntityRenderer->cleanUp();
+			m_TerrainRenderer->cleanUp();
 		}
 
 		MasterRenderer::~MasterRenderer()

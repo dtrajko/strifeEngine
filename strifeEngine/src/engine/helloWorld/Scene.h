@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include "../../engine/interfaces/IScene.h"
 #include "../helloWorld/MasterRenderer.h"
 #include "../interfaces/IMasterRenderer.h"
@@ -10,18 +11,16 @@
 #include "../tm/models/TexturedModel.h"
 #include "../tm/entities/Camera.h"
 #include "../graph/Window.h"
-#include "../tm/textures/TerrainTexture.h"
-#include "../tm/textures/TerrainTexturePack.h"
-#include "../tm/terrains/Terrain.h"
 #include "../tm/loaders/OBJLoader.h"
+#include "../../engine/utils/Util.h"
 
 using namespace engine::interfaces;
 using namespace engine::graph;
-using namespace engine::tm::terrains;
 using namespace engine::tm::textures;
 using namespace engine::tm::models;
 using namespace engine::tm::entities;
 using namespace engine::tm::loaders;
+using namespace engine::utils;
 
 namespace engine
 {

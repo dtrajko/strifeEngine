@@ -1,38 +1,38 @@
-#include "SimpleShader.h"
+#include "EntityShader.h"
 
 namespace engine
 {
 	namespace helloWorld
 	{
-		SimpleShader::SimpleShader(std::string& vertexFile, std::string& fragmentFile) : ShaderProgram(vertexFile, fragmentFile)
+		EntityShader::EntityShader(std::string& vertexFile, std::string& fragmentFile) : ShaderProgram(vertexFile, fragmentFile)
 		{
 		}
 
-		void SimpleShader::bindAttributes()
+		void EntityShader::bindAttributes()
 		{
 			bindAttribute(0, "position");
 			bindAttribute(1, "textureCoords");
 			bindAttribute(2, "normal");
 		}
 
-		void SimpleShader::getAllUniformLocations()
+		void EntityShader::getAllUniformLocations()
 		{
 
 		}
 
-		void SimpleShader::loadLight(Light * light)
+		void EntityShader::loadLight(Light * light)
 		{
 			loadVec3f("lightPosition", light->getPosition());
 			loadVec3f("lightColor", light->getColor());
 		}
 
-		void SimpleShader::loadShineVariables(float shineDamper, float reflectivity)
+		void EntityShader::loadShineVariables(float shineDamper, float reflectivity)
 		{
 			loadFloat("shineDamper", shineDamper);
 			loadFloat("reflectivity", reflectivity);
 		}
 
-		SimpleShader::~SimpleShader()
+		EntityShader::~EntityShader()
 		{
 
 		}
