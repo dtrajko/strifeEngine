@@ -26,37 +26,29 @@ namespace engine
 
 		void TerrainRenderer::render(Window * window, IScene * scene)
 		{
+			std::vector<ITerrain *> terrains = scene->getTerrains();
+
 			m_Shader->start();
 			m_Shader->loadLight(scene->getLight());
 			m_Shader->loadMatrix("viewMatrix", Maths::createViewMatrix(scene->getCamera()));
-			renderModel(scene->getEntity(), scene);
+
+			for (ITerrain * terrain : terrains) {
+				renderTerrain(terrain, scene);
+			}
+
 			m_Shader->stop();
+		}
+
+		void TerrainRenderer::renderTerrain(ITerrain * terrain, IScene * scene)
+		{
+			RawModel * model = terrain->getModel();
+			m_TransformationMatrix = Maths::createTransformationMatrix(
+				glm::vec3(terrain->getX(), 0, terrain->getZ()), 0, 0, 0, 1);
+			m_Shader->loadMatrix("transformationMatrix", m_TransformationMatrix);
 		}
 
 		void TerrainRenderer::prepare(Window * window)
 		{
-		}
-
-		void TerrainRenderer::renderModel(Entity * entity, IScene * scene)
-		{
-			TexturedModel * texturedModel = entity->getTexturedModel();
-			RawModel * model = texturedModel->getRawModel();
-			ModelTexture * modelTexture = texturedModel->getTexture();
-			glBindVertexArray(model->getVaoID());
-			glEnableVertexAttribArray(0);
-			glEnableVertexAttribArray(1);
-			glEnableVertexAttribArray(2);
-			m_TransformationMatrix = Maths::createTransformationMatrix(
-				entity->getPosition(), entity->getRotX(), entity->getRotY(), entity->getRotZ(), entity->getScale());
-			m_Shader->loadMatrix("transformationMatrix", m_TransformationMatrix);
-			m_Shader->loadShineVariables(modelTexture->getShineDumper(), modelTexture->getReflectivity());
-			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, modelTexture->getID());
-			glDrawElements(GL_TRIANGLES, model->getVertexCount(), GL_UNSIGNED_INT, 0);
-			glDisableVertexAttribArray(0);
-			glDisableVertexAttribArray(1);
-			glDisableVertexAttribArray(2);
-			glBindVertexArray(0);
 		}
 
 		void TerrainRenderer::cleanUp()

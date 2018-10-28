@@ -1,9 +1,11 @@
 #pragma once
 
-#include "../../tm/models/RawModel.h"
-#include "../../tm/loaders/Loader.h"
-#include "../../tm/textures/ModelTexture.h"
+#include "../../../engine/interfaces/ITerrain.h"
+#include "../../../engine/tm/models/RawModel.h"
+#include "../../../engine/tm/loaders/Loader.h"
+#include "../../../engine/tm/textures/ModelTexture.h"
 
+using namespace engine::interfaces;
 using namespace engine::tm::models;
 using namespace engine::tm::loaders;
 using namespace engine::tm::textures;
@@ -14,7 +16,7 @@ namespace engine
 	{
 		namespace terrains
 		{
-			class Terrain
+			class Terrain : public ITerrain
 			{
 			private:
 				float m_Size = 800;
@@ -26,12 +28,18 @@ namespace engine
 
 			public:
 				Terrain(int gridX, int gridZ, Loader * loader, ModelTexture * texture);
-				RawModel * generateTerrain(Loader * loader);
-				void generateTerrainIndices(unsigned int * indices);
 				float getX();
 				float getZ();
 				RawModel * getModel();
 				ModelTexture * getTexture();
+				TerrainTexturePack * getTexturePack();
+				TerrainTexture * getBlendMap();
+				float getHeightOfTerrain(float coordX, float coordZ);
+				float getWaterHeight();
+
+			private:
+				RawModel * generateTerrain(Loader * loader);
+				void generateTerrainIndices(unsigned int * indices);
 			};
 		}
 	}

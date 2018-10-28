@@ -1,8 +1,9 @@
 #pragma once
 
-#include "../tm/models/RawModel.h"
-#include "../tm/textures/TerrainTexture.h"
-#include "../tm/textures/TerrainTexturePack.h"
+#include "../../engine/tm/models/RawModel.h"
+#include "../../engine/tm/textures/TerrainTexture.h"
+#include "../../engine/tm/textures/TerrainTexturePack.h"
+#include "../../engine/tm/models/RawModel.h"
 
 using namespace engine::tm::models;
 using namespace engine::tm::textures;
@@ -13,6 +14,10 @@ namespace engine
 	{
 		class ITerrain
 		{
+		private:
+			RawModel * m_Model;
+
+		public:
 			virtual float getX() = 0;
 			virtual float getZ() = 0;
 			virtual RawModel * getModel() = 0;

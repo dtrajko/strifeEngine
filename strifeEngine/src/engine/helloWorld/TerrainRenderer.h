@@ -1,15 +1,18 @@
 #ifndef _TERRAIN_RENDERER_H
 #define _TERRAIN_RENDERER_H
 
-#include "../interfaces/IRenderer.h"
-#include "../interfaces/IScene.h"
-#include "../helloWorld/TerrainShader.h"
-#include "../tm/toolbox/Maths.h"
 #include "../../vendor/glm/glm.hpp"
 #include "../../vendor/glm/gtc/matrix_transform.hpp"
+#include "../../engine/interfaces/IScene.h"
+#include "../../engine/interfaces/IRenderer.h"
+#include "../../engine/interfaces/ITerrain.h"
+#include "../../engine/helloWorld/TerrainShader.h"
+#include "../../engine/tm/toolbox/Maths.h"
+#include "../../engine/tm/terrains/Terrain.h"
 
 using namespace engine::interfaces;
 using namespace engine::tm::toolbox;
+using namespace engine::tm::terrains;
 
 namespace engine
 {
@@ -31,7 +34,7 @@ namespace engine
 			void init(IScene * scene);
 			void prepare(Window * window);
 			void render(Window * window, IScene * scene);
-			void renderModel(Entity * entity, IScene * scene);
+			void renderTerrain(ITerrain * terrain, IScene * scene);
 			void cleanUp();
 			virtual ~TerrainRenderer();
 		};

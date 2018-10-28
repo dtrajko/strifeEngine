@@ -86,6 +86,26 @@ namespace engine
 			{
 				return m_Texture;
 			}
+
+			TerrainTexturePack * Terrain::getTexturePack()
+			{
+				return nullptr;
+			}
+
+			TerrainTexture * Terrain::getBlendMap()
+			{
+				return nullptr;
+			}
+
+			float Terrain::getHeightOfTerrain(float coordX, float coordZ)
+			{
+				return 0.0f;
+			}
+
+			float Terrain::getWaterHeight()
+			{
+				return 0.0f;
+			}
 		}
 	}
 }

@@ -2,25 +2,28 @@
 
 #include <iostream>
 #include "../../engine/interfaces/IScene.h"
-#include "../helloWorld/MasterRenderer.h"
-#include "../interfaces/IMasterRenderer.h"
-#include "../tm/textures/ModelTexture.h"
-#include "../tm/models/CubeMeshSimple.h"
-#include "../tm/models/QuadMeshSimple.h"
-#include "../tm/models/RawModel.h"
-#include "../tm/models/TexturedModel.h"
-#include "../tm/entities/Camera.h"
-#include "../graph/Window.h"
-#include "../tm/loaders/OBJLoader.h"
+#include "../../engine/interfaces/IMasterRenderer.h"
+#include "../../engine/interfaces/ITerrain.h"
+#include "../../engine/graph/Window.h"
+#include "../../engine/helloWorld/MasterRenderer.h"
 #include "../../engine/utils/Util.h"
+#include "../../engine/tm/models/CubeMeshSimple.h"
+#include "../../engine/tm/models/QuadMeshSimple.h"
+#include "../../engine/tm/models/RawModel.h"
+#include "../../engine/tm/models/TexturedModel.h"
+#include "../../engine/tm/entities/Camera.h"
+#include "../../engine/tm/textures/ModelTexture.h"
+#include "../../engine/tm/loaders/OBJLoader.h"
+#include "../../engine/tm/terrains/Terrain.h"
 
-using namespace engine::interfaces;
 using namespace engine::graph;
-using namespace engine::tm::textures;
+using namespace engine::interfaces;
+using namespace engine::utils;
+using namespace engine::tm::loaders;
 using namespace engine::tm::models;
 using namespace engine::tm::entities;
-using namespace engine::tm::loaders;
-using namespace engine::utils;
+using namespace engine::tm::textures;
+using namespace engine::tm::terrains;
 
 namespace engine
 {
@@ -29,15 +32,15 @@ namespace engine
 		class Scene : public IScene
 		{
 		private:
-			Loader * loader;
-			ICamera * camera;
-			IMasterRenderer * masterRenderer;
-			Entity * entity;
-			RawModel * rawModel;
-			Light * light;
-			TexturedModel * texturedModel;
-
-			float counter = 0;
+			Loader * m_Loader;
+			ICamera * m_Camera;
+			IMasterRenderer * m_MasterRenderer;
+			Entity * m_Entity;
+			RawModel * m_RawModel;
+			Light * m_Light;
+			TexturedModel * m_TexturedModel;
+			std::vector<ITerrain *> m_Terrains;
+			float m_Counter = 0;
 
 		public:
 			Scene(Window * window);
@@ -51,6 +54,7 @@ namespace engine
 			RawModel * getModel();
 			Light * getLight();
 			TexturedModel * getTexturedModel();
+			std::vector<ITerrain *> getTerrains();
 			void cleanUp();
 			virtual ~Scene();
 		};
