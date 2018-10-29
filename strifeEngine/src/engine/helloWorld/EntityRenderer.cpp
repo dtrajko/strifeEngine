@@ -29,7 +29,11 @@ namespace engine
 			m_Shader->start();
 			m_Shader->loadLight(scene->getLight());
 			m_Shader->loadMatrix("viewMatrix", Maths::createViewMatrix(scene->getCamera()));
-			renderModel(scene->getEntity(), scene);
+			std::vector<Entity *> entities = scene->getEntities();
+			for (Entity * entity : entities)
+			{
+				renderModel(entity);
+			}
 			m_Shader->stop();
 		}
 
@@ -37,22 +41,26 @@ namespace engine
 		{
 		}
 
-		void EntityRenderer::renderModel(Entity * entity, IScene * scene)
+		void EntityRenderer::renderModel(Entity * entity)
 		{
 			TexturedModel * texturedModel = entity->getTexturedModel();
 			RawModel * model = texturedModel->getRawModel();
-			ModelTexture * modelTexture = texturedModel->getTexture();
 			glBindVertexArray(model->getVaoID());
 			glEnableVertexAttribArray(0);
 			glEnableVertexAttribArray(1);
 			glEnableVertexAttribArray(2);
+
 			m_TransformationMatrix = Maths::createTransformationMatrix(
 				entity->getPosition(), entity->getRotX(), entity->getRotY(), entity->getRotZ(), entity->getScale());
 			m_Shader->loadMatrix("transformationMatrix", m_TransformationMatrix);
+
+			ModelTexture * modelTexture = texturedModel->getTexture();
 			m_Shader->loadShineVariables(modelTexture->getShineDumper(), modelTexture->getReflectivity());
 			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE_2D, modelTexture->getID());
+
 			glDrawElements(GL_TRIANGLES, model->getVertexCount(), GL_UNSIGNED_INT, 0);
+
 			glDisableVertexAttribArray(0);
 			glDisableVertexAttribArray(1);
 			glDisableVertexAttribArray(2);

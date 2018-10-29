@@ -48,7 +48,7 @@ int main(void)
 		{
 			std::cout << "HelloWorld app name detected!" << std::endl;
 			gameLogic = new HelloWorld();
-			opts.mode3D = false;
+			opts.mode3D = true;
 			opts.cullFace = true;
 			opts.antialiasing = false;
 			opts.showTriangles = false;

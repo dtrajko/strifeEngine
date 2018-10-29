@@ -36,7 +36,6 @@ namespace engine
 		public:
 			Input(Window * window);
 			void init();
-			void input();
 			void update();
 			bool isKeyPressed(unsigned int keyCode) const;
 			bool isKeyDown(unsigned int keyCode) const;

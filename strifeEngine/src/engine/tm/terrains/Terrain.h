@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include "../../../engine/interfaces/ITerrain.h"
 #include "../../../engine/tm/models/RawModel.h"
 #include "../../../engine/tm/loaders/Loader.h"
@@ -20,7 +21,7 @@ namespace engine
 			{
 			private:
 				float m_Size = 800;
-				unsigned int m_VertexCount = 128;
+				unsigned int m_VertexCount = 64;
 				float m_X;
 				float m_Z;
 				RawModel * m_Model;

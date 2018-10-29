@@ -35,6 +35,8 @@ namespace engine
 			glEnable(GL_DEPTH_TEST);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glClearColor(RED, GREEN, BLUE, 1.0f);
+			m_EntityRenderer->prepare(window);
+			m_TerrainRenderer->prepare(window);
 		}
 
 		glm::mat4 MasterRenderer::createProjectionMatrix(Window * window)

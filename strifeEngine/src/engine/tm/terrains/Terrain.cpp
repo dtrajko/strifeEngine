@@ -33,25 +33,26 @@ namespace engine
 						vertices[vertexPointer * 3]     = (float) j / ((float) m_VertexCount - 1) * m_Size;
 						vertices[vertexPointer * 3 + 1] = 0;
 						vertices[vertexPointer * 3 + 2] = (float) i / ((float) m_VertexCount - 1) * m_Size;
-						normals[vertexPointer * 3] = 0;
+						normals[vertexPointer * 3]     = 0;
 						normals[vertexPointer * 3 + 1] = 1;
 						normals[vertexPointer * 3 + 2] = 0;
-						textureCoords[vertexPointer * 2] = (float) j / ((float)m_VertexCount - 1);
+						textureCoords[vertexPointer * 2]     = (float) j / ((float)m_VertexCount - 1);
 						textureCoords[vertexPointer * 2 + 1] = (float) i / ((float)m_VertexCount - 1);
 						vertexPointer++;
 					}
 				}
 
 				generateTerrainIndices(indices);
-				return loader->loadToVAO(vertices, verticesCount, textureCoords, textureCoordsCount, normals, normalsCount, indices, indicesCount);
+				RawModel * rawModel = loader->loadToVAO(vertices, verticesCount, textureCoords, textureCoordsCount, normals, normalsCount, indices, indicesCount);
+				return rawModel;
 			}
 
 			void Terrain::generateTerrainIndices(unsigned int * indices)
 			{
 				unsigned int pointer = 0;
-				for (unsigned int gz = 0; gz < m_VertexCount; gz++)
+				for (unsigned int gz = 0; gz < m_VertexCount - 1; gz++)
 				{
-					for (unsigned int gx = 0; gx < m_VertexCount; gx++)
+					for (unsigned int gx = 0; gx < m_VertexCount - 1; gx++)
 					{
 						unsigned int topLeft = (gz * m_VertexCount) + gx;
 						unsigned int topRight = topLeft + 1;

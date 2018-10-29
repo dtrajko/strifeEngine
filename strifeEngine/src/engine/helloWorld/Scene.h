@@ -35,10 +35,8 @@ namespace engine
 			Loader * m_Loader;
 			ICamera * m_Camera;
 			IMasterRenderer * m_MasterRenderer;
-			Entity * m_Entity;
-			RawModel * m_RawModel;
 			Light * m_Light;
-			TexturedModel * m_TexturedModel;
+			std::vector<Entity *> m_Entities;
 			std::vector<ITerrain *> m_Terrains;
 			float m_Counter = 0;
 
@@ -50,10 +48,10 @@ namespace engine
 			void render(Window * window);
 			ICamera * getCamera();
 			Loader * getLoader();
-			Entity * getEntity();
-			RawModel * getModel();
 			Light * getLight();
-			TexturedModel * getTexturedModel();
+			void processEntity(Entity * entity);
+			void processTerrain(ITerrain * terrain);
+			std::vector<Entity *> getEntities();
 			std::vector<ITerrain *> getTerrains();
 			void cleanUp();
 			virtual ~Scene();

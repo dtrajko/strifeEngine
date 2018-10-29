@@ -66,13 +66,9 @@ namespace engine
 			glfwSetCursorPosCallback(glfwWindow, cursor_position_callback);
 		}
 
-		void Input::input()
-		{
-			// TODO
-		}
-
 		void Input::update()
 		{
+
 			for (int indKey = 0; indKey < GLFW_KEY_LAST; indKey++)
 			{
 				m_Keys[indKey] = isKeyPressed(indKey);
@@ -90,10 +86,10 @@ namespace engine
 				bool rotateX = deltaX != 0;
 				bool rotateY = deltaY != 0;
 				if (rotateX) {
-					displayVector.y = (float) deltaX;
+					displayVector.y = (float)deltaX;
 				}
 				if (rotateY) {
-					displayVector.x = (float) deltaY;
+					displayVector.x = (float)deltaY;
 				}
 			}
 			previousPosition.x = currentPosition.x;
@@ -132,6 +128,8 @@ namespace engine
 		{
 			mouseX = xpos;
 			mouseY = ypos;
+			currentPosition.x = (float) xpos;
+			currentPosition.y = (float) ypos;
 		}
 
 		glm::vec2 Input::getDisplayVector()

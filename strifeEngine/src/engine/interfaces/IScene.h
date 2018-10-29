@@ -25,11 +25,9 @@ namespace engine
 			virtual void cleanUp() = 0;
 			virtual ICamera * getCamera() = 0;
 			virtual Loader * getLoader() = 0;
-			virtual Entity * getEntity() = 0;
-			virtual RawModel * getModel() = 0;
-			virtual Light * getLight() = 0;
-			virtual TexturedModel * getTexturedModel() = 0;
+			virtual std::vector<Entity *> getEntities() = 0;
 			virtual std::vector<ITerrain *> getTerrains() = 0;
+			virtual Light * getLight() = 0;
 		};
 	}
 }

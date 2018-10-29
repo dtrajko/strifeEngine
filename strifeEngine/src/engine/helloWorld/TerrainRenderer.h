@@ -9,8 +9,10 @@
 #include "../../engine/helloWorld/TerrainShader.h"
 #include "../../engine/tm/toolbox/Maths.h"
 #include "../../engine/tm/terrains/Terrain.h"
+#include "../../engine/utils/Log.h"
 
 using namespace engine::interfaces;
+using namespace engine::utils;
 using namespace engine::tm::toolbox;
 using namespace engine::tm::terrains;
 

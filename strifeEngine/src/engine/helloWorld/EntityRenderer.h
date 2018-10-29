@@ -10,6 +10,7 @@
 #include "../../vendor/glm/gtc/matrix_transform.hpp"
 
 using namespace engine::interfaces;
+using namespace engine::helloWorld;
 using namespace engine::tm::entities;
 using namespace engine::tm::toolbox;
 
@@ -33,7 +34,7 @@ namespace engine
 			void init(IScene * scene);
 			void prepare(Window * window);
 			void render(Window * window, IScene * scene);
-			void renderModel(Entity * entity, IScene * scene);
+			void renderModel(Entity * entity);
 			void cleanUp();
 			virtual ~EntityRenderer();
 		};

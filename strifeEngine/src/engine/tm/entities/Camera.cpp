@@ -31,8 +31,8 @@ namespace engine
 				}
 
 				glm::vec2 rotVec = input->getDisplayVector();
-				pitch += rotVec.x;
-				yaw += rotVec.y;
+				pitch += rotVec.x * cursorSensitivity;
+				yaw += rotVec.y * cursorSensitivity;
 
 				glm::vec3 newPos = calculateNewPosition(cameraInc.x, cameraInc.y, cameraInc.z);
 				position.x = newPos.x;
