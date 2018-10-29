@@ -15,6 +15,8 @@ namespace engine
 		{
 		public:
 			virtual void move(Window * window) = 0;
+			virtual void setPosition(float x, float y, float z) = 0;
+			virtual void setRotation(float rx, float ry, float rz) = 0;
 			virtual glm::vec3 getPosition() = 0;
 			virtual glm::vec3 getRotation() = 0;
 			virtual glm::mat4 getViewMatrix() = 0;

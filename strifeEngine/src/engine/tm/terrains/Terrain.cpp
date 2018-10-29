@@ -36,8 +36,8 @@ namespace engine
 						normals[vertexPointer * 3]     = 0;
 						normals[vertexPointer * 3 + 1] = 1;
 						normals[vertexPointer * 3 + 2] = 0;
-						textureCoords[vertexPointer * 2]     = (float) j / ((float)m_VertexCount - 1);
-						textureCoords[vertexPointer * 2 + 1] = (float) i / ((float)m_VertexCount - 1);
+						textureCoords[vertexPointer * 2]     = (float) j / ((float) m_VertexCount - 1);
+						textureCoords[vertexPointer * 2 + 1] = (float) i / ((float) m_VertexCount - 1);
 						vertexPointer++;
 					}
 				}

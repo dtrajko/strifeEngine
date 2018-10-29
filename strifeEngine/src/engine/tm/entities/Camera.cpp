@@ -8,7 +8,7 @@ namespace engine
 		{
 			Camera::Camera()
 			{
-				speed = 0.005f;
+				speed = 0.5f;
 			}
 
 			void Camera::move(Window * window)
@@ -42,15 +42,15 @@ namespace engine
 				yaw += rotVec.y * cursorSensitivity;
 
 				glm::vec3 newPos = calculateNewPosition(cameraInc.x, cameraInc.y, cameraInc.z);
-				position.x = newPos.x;
-				position.y = newPos.y;
-				position.z = newPos.z;
+				m_Position.x = newPos.x;
+				m_Position.y = newPos.y;
+				m_Position.z = newPos.z;
 
 				updateViewMatrix();
 			}
 
 			glm::vec3 Camera::calculateNewPosition(float offsetX, float offsetY, float offsetZ) {
-				glm::vec3 newPos = glm::vec3(position.x, position.y, position.z);
+				glm::vec3 newPos = glm::vec3(m_Position.x, m_Position.y, m_Position.z);
 				if (offsetZ != 0) {
 					newPos.x += (float) glm::sin(glm::radians(yaw)) * -1.0f * offsetZ;
 					newPos.z += (float) glm::cos(glm::radians(yaw)) * offsetZ;
@@ -70,7 +70,21 @@ namespace engine
 
 			glm::vec3 Camera::getPosition()
 			{
-				return position;
+				return m_Position;
+			}
+
+			void Camera::setPosition(float x, float y, float z)
+			{
+				m_Position.x = x;
+				m_Position.y = y;
+				m_Position.z = z;
+			}
+
+			void Camera::setRotation(float rx, float ry, float rz)
+			{
+				pitch = rx;
+				yaw   = ry;
+				roll  = rz;
 			}
 
 			glm::vec3 Camera::getRotation()

@@ -24,22 +24,22 @@ namespace engine
 			return m_ProjectionMatrix;
 		}
 
+		void TerrainRenderer::prepare(Window * window)
+		{
+		}
+
 		void TerrainRenderer::render(Window * window, IScene * scene)
 		{
-			std::vector<ITerrain *> terrains = scene->getTerrains();
-
 			m_Shader->start();
 			m_Shader->loadLight(scene->getLight());
 			m_Shader->loadMatrix("viewMatrix", Maths::createViewMatrix(scene->getCamera()));
+
+			std::vector<ITerrain *> terrains = scene->getTerrains();
 			for (ITerrain * terrain : terrains)
 			{
 				renderTerrain(terrain, scene);
 			}
 			m_Shader->stop();
-		}
-
-		void TerrainRenderer::prepare(Window * window)
-		{
 		}
 
 		void TerrainRenderer::renderTerrain(ITerrain * terrain, IScene * scene)

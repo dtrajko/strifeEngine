@@ -25,7 +25,7 @@ namespace engine
 			class Camera : public ICamera
 			{
 			private:
-				glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
+				glm::vec3 m_Position = glm::vec3(0.0f, 0.0f, 0.0f);
 				float pitch = 0;
 				float yaw = 0;
 				float roll = 0;
@@ -38,6 +38,8 @@ namespace engine
 			public:
 				Camera();
 				void move(Window * window);
+				void setPosition(float x, float y, float z);
+				void setRotation(float rx, float ry, float rz);
 				glm::vec3 getPosition();
 				glm::vec3 getRotation();
 				glm::mat4 getViewMatrix();

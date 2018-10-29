@@ -12,7 +12,9 @@ namespace engine
 		void Scene::init(Window * window)
 		{
 			m_Camera = new Camera();
-			m_Light = new Light(glm::vec3(-20, 10, -20), glm::vec3(1, 1, 1));
+			m_Camera->setPosition(0.0f, 10.0f, 0.0f);
+			m_Camera->setRotation(0.0f, 0.0f, 0.0f);
+			m_Light = new Light(glm::vec3(2000, 2000, 2000), glm::vec3(1, 1, 1));
 			m_MasterRenderer = new MasterRenderer(window);
 			m_Loader = new Loader();
 
@@ -22,18 +24,22 @@ namespace engine
 			modelTexture->setReflectivity(1);
 			RawModel * rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/barrel.obj", m_Loader); // barrel, dragon
 			TexturedModel * texturedModel = new TexturedModel(rawModel, modelTexture);
-			Entity * entity = new Entity(texturedModel, glm::vec3(0.0f, 0.0f, -40.0f), 0, 180, 0, 1);
+			Entity * entity = new Entity(texturedModel, glm::vec3(0.0f, 12.0f, -40.0f), 0, 180, 0, 1);
 			processEntity(entity);
 
 			ModelTexture * terrainTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/terrain_0/bg.png"));
-			ITerrain * terrain = new Terrain(0, 0, m_Loader, terrainTexture);
-			processTerrain(terrain);
+			ITerrain * terrain_1 = new Terrain(0, 0, m_Loader, terrainTexture);
+			ITerrain * terrain_2 = new Terrain(0, -1, m_Loader, terrainTexture);
+			ITerrain * terrain_3 = new Terrain(-1, 0, m_Loader, terrainTexture);
+			ITerrain * terrain_4 = new Terrain(-1, -1, m_Loader, terrainTexture);
+			processTerrain(terrain_1);
+			processTerrain(terrain_2);
+			processTerrain(terrain_3);
+			processTerrain(terrain_4);
 
 			std::cout << "Scene rawModel vaoID: " << rawModel->getVaoID() << std::endl;
-			std::cout << "Scene terrain vaoID: " << terrain->getModel()->getVaoID() << std::endl;
 			std::cout << "Scene modelTexture ID: " << modelTexture->getID() << std::endl;
 			std::cout << "Scene terrainTexture ID: " << terrainTexture->getID() << std::endl;
-			
 		}
 
 		void Scene::update(float interval, Window * window)

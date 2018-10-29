@@ -8,7 +8,6 @@ namespace engine
 		{
 			ShaderProgram::ShaderProgram(std::string & vertexFile, std::string & fragmentFile)
 			{
-				std::cout << "ProgramID: " << programID << std::endl;
 				vertexShaderID = loadShader(vertexFile, GL_VERTEX_SHADER);
 				fragmentShaderID = loadShader(fragmentFile, GL_FRAGMENT_SHADER);
 				programID = glCreateProgram();
@@ -18,6 +17,8 @@ namespace engine
 				glLinkProgram(programID);
 				glValidateProgram(programID);
 				getAllUniformLocations();
+				std::cout << "ProgramID: " << programID << std::endl;
+
 			}
 
 			void ShaderProgram::bindAttributes()
