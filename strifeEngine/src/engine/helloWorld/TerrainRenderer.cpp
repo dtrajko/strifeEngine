@@ -28,11 +28,11 @@ namespace engine
 		{
 		}
 
-		void TerrainRenderer::render(Window * window, IScene * scene)
+		void TerrainRenderer::render(Window * window, IScene * scene, glm::mat4 & viewMatrix)
 		{
 			m_Shader->start();
 			m_Shader->loadLight(scene->getLight());
-			m_Shader->loadMatrix("viewMatrix", Maths::createViewMatrix(scene->getCamera()));
+			m_Shader->loadMatrix("viewMatrix", viewMatrix);
 
 			std::vector<ITerrain *> terrains = scene->getTerrains();
 			for (ITerrain * terrain : terrains)

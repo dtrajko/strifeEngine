@@ -41,6 +41,7 @@ int main(void)
 	opts.cullFace = true;
 	opts.showFps = true;
 	opts.compatibleProfile = true;
+	opts.maximized = false;
 
 	switch (mapAppNames[app])
 	{
@@ -52,8 +53,9 @@ int main(void)
 			opts.cullFace = true;
 			opts.antialiasing = false;
 			opts.showTriangles = false;
-			width = 1280;
-			height = 720;
+			opts.maximized = true;
+			width = 1920;
+			height = 1020;
 			break;
 		}
 	}

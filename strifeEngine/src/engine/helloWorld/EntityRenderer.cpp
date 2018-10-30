@@ -24,11 +24,11 @@ namespace engine
 			return m_ProjectionMatrix;
 		}
 
-		void EntityRenderer::render(Window * window, IScene * scene)
+		void EntityRenderer::render(Window * window, IScene * scene, glm::mat4 & viewMatrix)
 		{
 			m_Shader->start();
 			m_Shader->loadLight(scene->getLight());
-			m_Shader->loadMatrix("viewMatrix", Maths::createViewMatrix(scene->getCamera()));
+			m_Shader->loadMatrix("viewMatrix", viewMatrix);
 			std::vector<Entity *> entities = scene->getEntities();
 			for (Entity * entity : entities)
 			{
@@ -54,8 +54,10 @@ namespace engine
 				entity->getPosition(), entity->getRotX(), entity->getRotY(), entity->getRotZ(), entity->getScale());
 			m_Shader->loadMatrix("transformationMatrix", m_TransformationMatrix);
 
+
 			ModelTexture * modelTexture = texturedModel->getTexture();
 			m_Shader->loadShineVariables(modelTexture->getShineDumper(), modelTexture->getReflectivity());
+			m_Shader->loadBool("useFakeLighting", modelTexture->usesFakeLighting());
 			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE_2D, modelTexture->getID());
 

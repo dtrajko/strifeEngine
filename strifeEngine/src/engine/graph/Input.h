@@ -20,7 +20,7 @@ namespace engine
 		{
 		private:
 			GLFWwindow * glfwWindow;
-			Window * window;
+			Window * m_Window;
 			glm::vec2 displayVector;
 			glm::vec2 previousPosition;
 			glm::vec2 currentPosition;

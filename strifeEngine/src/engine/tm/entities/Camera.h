@@ -34,7 +34,7 @@ namespace engine
 				glm::vec3 cameraInc;
 				glm::vec2 displVector;
 				float speed;
-				float cursorSensitivity = 0.1f;
+				float cursorSensitivity = 0.2f;
 			public:
 				Camera();
 				void move(Window * window);

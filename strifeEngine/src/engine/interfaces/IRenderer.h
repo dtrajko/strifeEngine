@@ -18,7 +18,7 @@ namespace engine
 			virtual void init(IScene * scene) = 0;
 			virtual glm::mat4 getProjectionMatrix(Window * window) = 0;
 			virtual void prepare(Window * window) = 0;
-			virtual void render(Window * window, IScene * scene) = 0;
+			virtual void render(Window * window, IScene * scene, glm::mat4 & viewMatrix) = 0;
 			virtual void cleanUp() = 0;
 		};
 	}

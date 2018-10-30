@@ -8,7 +8,7 @@ namespace engine
 		{
 			Camera::Camera()
 			{
-				speed = 0.5f;
+				speed = 0.2f;
 			}
 
 			void Camera::move(Window * window)
@@ -29,12 +29,11 @@ namespace engine
 				if (input->isKeyDown(GLFW_KEY_S) || input->isKeyDown(GLFW_KEY_DOWN)) {
 					cameraInc.z += +speed;
 				}
-
-				if (input->isKeyDown(GLFW_KEY_1)) {
-					yaw += -0.1f;
+				if (input->isKeyDown(GLFW_KEY_SPACE)) {
+					m_Position.y += 0.1f;
 				}
-				if (input->isKeyDown(GLFW_KEY_2)) {
-					yaw += 0.1f;
+				if (input->isKeyDown(GLFW_KEY_LEFT_SHIFT)) {
+					m_Position.y += -0.1f;
 				}
 
 				glm::vec2 rotVec = input->getDisplayVector();

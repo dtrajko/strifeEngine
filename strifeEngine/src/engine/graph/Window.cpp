@@ -75,6 +75,11 @@ namespace engine
 			// Make the window visible
 			glfwShowWindow(glfwWindow);
 
+			if (opts->maximized)
+			{
+				glfwMaximizeWindow(glfwWindow);
+			}
+
 			// Antialiasing
 			if (opts->antialiasing) {
 				glfwWindowHint(GLFW_SAMPLES, 4);

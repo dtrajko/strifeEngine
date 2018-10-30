@@ -6,6 +6,7 @@ namespace engine
 	{
 		MasterRenderer::MasterRenderer(Window * window)
 		{
+			enableCulling();
 			m_ProjectionMatrix = createProjectionMatrix(window);
 			m_EntityRenderer = new EntityRenderer(window, m_ProjectionMatrix);
 			m_TerrainRenderer = new TerrainRenderer(window, m_ProjectionMatrix);
@@ -25,8 +26,20 @@ namespace engine
 		void MasterRenderer::render(Window * window, IScene * scene)
 		{
 			prepare(window);
-			m_EntityRenderer->render(window, scene);
-			m_TerrainRenderer->render(window, scene);
+			m_ViewMatrix = Maths::createViewMatrix(scene->getCamera());
+			m_EntityRenderer->render(window, scene, m_ViewMatrix);
+			m_TerrainRenderer->render(window, scene, m_ViewMatrix);
+		}
+
+		void MasterRenderer::enableCulling()
+		{
+			glEnable(GL_CULL_FACE);
+			glCullFace(GL_BACK);
+		}
+
+		void MasterRenderer::disableCulling()
+		{
+			glDisable(GL_CULL_FACE);
 		}
 
 		void MasterRenderer::prepare(Window * window)

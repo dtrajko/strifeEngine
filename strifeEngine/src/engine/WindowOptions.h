@@ -12,5 +12,6 @@ namespace engine
 		bool antialiasing;
 		bool frustumCulling;
 		bool mode3D;
+		bool maximized;
 	};
 }

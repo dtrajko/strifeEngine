@@ -22,9 +22,9 @@ namespace engine
 		class MasterRenderer : public IMasterRenderer
 		{
 		private:
-			float RED = 0.15f;
-			float GREEN = 0.0f;
-			float BLUE = 0.15f;
+			float RED   = 0.53f;
+			float GREEN = 0.81f;
+			float BLUE  = 0.98f;
 			glm::mat4 m_ProjectionMatrix;
 			glm::mat4 m_ViewMatrix;
 			glm::mat4 m_TransformationMatrix;
@@ -39,6 +39,8 @@ namespace engine
 			glm::mat4 getProjectionMatrix(Window * window);
 			void prepare(Window * window);
 			void render(Window * window, IScene * scene);
+			static void enableCulling();
+			static void disableCulling();
 			void cleanUp();
 			virtual ~MasterRenderer();
 		};

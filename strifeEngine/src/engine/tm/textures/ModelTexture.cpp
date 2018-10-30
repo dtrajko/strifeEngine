@@ -38,6 +38,28 @@ namespace engine
 				return this;
 			}
 
+			bool ModelTexture::isTransparent()
+			{
+				return m_IsTransparent;
+			}
+
+			ModelTexture * ModelTexture::setTransparency(bool isTransparent)
+			{
+				m_IsTransparent = isTransparent;
+				return this;
+			}
+
+			bool ModelTexture::usesFakeLighting()
+			{
+				return m_UseFakeLighting;
+			}
+
+			ModelTexture * ModelTexture::setUsesFakeLighting(bool useFakeLighting)
+			{
+				m_UseFakeLighting = useFakeLighting;
+				return this;
+			}
+
 			ModelTexture::~ModelTexture()
 			{
 

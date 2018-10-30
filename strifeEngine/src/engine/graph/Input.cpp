@@ -32,12 +32,12 @@ namespace engine
 			window->setHeight(height);
 		}
 
-		Input::Input(Window * _window)
+		Input::Input(Window * window)
 		{
 			displayVector = glm::vec2();
 			previousPosition = glm::vec2();
 			currentPosition = glm::vec2();
-			window = _window;
+			m_Window = window;
 			mouseX = 0.0;
 			mouseY = 0.0;
 			init();
@@ -58,12 +58,18 @@ namespace engine
 			}
 
 			// GLFW callbacks
-			glfwWindow = window->getHandle();
-			glfwSetWindowUserPointer(glfwWindow, window);
+			glfwWindow = m_Window->getHandle();
+			glfwSetWindowUserPointer(glfwWindow, m_Window);
 			glfwSetWindowSizeCallback(glfwWindow, window_resize);
 			glfwSetKeyCallback(glfwWindow, key_callback);
 			glfwSetMouseButtonCallback(glfwWindow, mouse_button_callback);
 			glfwSetCursorPosCallback(glfwWindow, cursor_position_callback);
+
+			if (m_Window->getWindowOptions()->mode3D) {
+				glfwSetInputMode(glfwWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+				glfwSetCursorPos(glfwWindow, m_Window->getWidth() / 2, m_Window->getHeight() / 2);
+			}
+
 		}
 
 		void Input::update()

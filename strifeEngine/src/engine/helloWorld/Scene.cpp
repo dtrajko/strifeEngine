@@ -12,20 +12,26 @@ namespace engine
 		void Scene::init(Window * window)
 		{
 			m_Camera = new Camera();
-			m_Camera->setPosition(0.0f, 10.0f, 0.0f);
+			m_Camera->setPosition(0.0f, 12.0f, 0.0f);
 			m_Camera->setRotation(0.0f, 0.0f, 0.0f);
 			m_Light = new Light(glm::vec3(2000, 2000, 2000), glm::vec3(1, 1, 1));
 			m_MasterRenderer = new MasterRenderer(window);
 			m_Loader = new Loader();
 
 			ModelTexture * modelTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/normalMaps/barrel.png"));
-			// ModelTexture * modelTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/dragon.png"));
 			modelTexture->setShineDumper(10);
 			modelTexture->setReflectivity(1);
-			RawModel * rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/barrel.obj", m_Loader); // barrel, dragon
+			RawModel * rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/barrel.obj", m_Loader);
 			TexturedModel * texturedModel = new TexturedModel(rawModel, modelTexture);
-			Entity * entity = new Entity(texturedModel, glm::vec3(0.0f, 12.0f, -40.0f), 0, 180, 0, 1);
+			Entity * entity = new Entity(texturedModel, glm::vec3(0.0f, 12.0f, -40.0f), 0, 0, 0, 1);
 			processEntity(entity);
+
+			modelTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/fern.png"));
+			modelTexture->setTransparency(1);
+			rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/fern.obj", m_Loader);
+			texturedModel = new TexturedModel(rawModel, modelTexture);
+			Entity * entityFern = new Entity(texturedModel, glm::vec3(-40.0f, 0.0f, -80.0f), 0, 0, 0, 2);
+			processEntity(entityFern);
 
 			ModelTexture * terrainTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/terrain_0/bg.png"));
 			ITerrain * terrain_1 = new Terrain(0, 0, m_Loader, terrainTexture);
@@ -56,15 +62,13 @@ namespace engine
 		void Scene::entityCircularMotion()
 		{
 			glm::vec3 initVec = glm::vec3(glm::vec3(0.0f, 0.0f, -40.0f));
-			for (Entity * entity : m_Entities)
-			{
-				entity->increaseRotation(0, 0.1f, 0);
-				glm::vec3 posVec = glm::vec3(entity->getPosition());
-				posVec.x = initVec.x + glm::sin(m_Counter) * 5;
-				posVec.z = initVec.z + glm::cos(m_Counter) * 5;
-				m_Counter += 0.001f;
-				entity->setPosition(glm::vec3(posVec));
-			}
+			Entity * entity = m_Entities.at(0);
+			entity->increaseRotation(0, 0.1f, 0);
+			glm::vec3 posVec = glm::vec3(entity->getPosition());
+			posVec.x = initVec.x + glm::sin(m_Counter) * 5;
+			posVec.z = initVec.z + glm::cos(m_Counter) * 5;
+			m_Counter += 0.001f;
+			entity->setPosition(glm::vec3(posVec));
 		}
 
 		void Scene::render(Window * window)
