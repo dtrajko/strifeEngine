@@ -34,14 +34,18 @@ namespace engine
 			processEntity(entityFern);
 
 			ModelTexture * terrainTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/terrain_0/bg.png"));
-			ITerrain * terrain_1 = new Terrain(0, 0, m_Loader, terrainTexture);
-			ITerrain * terrain_2 = new Terrain(0, -1, m_Loader, terrainTexture);
-			ITerrain * terrain_3 = new Terrain(-1, 0, m_Loader, terrainTexture);
-			ITerrain * terrain_4 = new Terrain(-1, -1, m_Loader, terrainTexture);
-			processTerrain(terrain_1);
-			processTerrain(terrain_2);
-			processTerrain(terrain_3);
-			processTerrain(terrain_4);
+			ITerrain * flatTerrain_1 = new FlatTerrain( 0,  0, m_Loader, terrainTexture);
+			ITerrain * flatTerrain_2 = new FlatTerrain( 0, -1, m_Loader, terrainTexture);
+			ITerrain * flatTerrain_3 = new FlatTerrain(-1,  0, m_Loader, terrainTexture);
+			ITerrain * flatTerrain_4 = new FlatTerrain(-1, -1, m_Loader, terrainTexture);
+			processTerrain(flatTerrain_1);
+			processTerrain(flatTerrain_2);
+			processTerrain(flatTerrain_3);
+			processTerrain(flatTerrain_4);
+
+			// ITerrain * terrain = new Terrain(0, 0, m_Loader, terrainTexture, "resources/ThinMatrix/textures/heightmap.png");
+			ITerrain * terrain = new Terrain(0, 0, m_Loader, terrainTexture, "resources/ThinMatrix/textures/basic_colors.png");
+			processTerrain(terrain);
 
 			std::cout << "Scene rawModel vaoID: " << rawModel->getVaoID() << std::endl;
 			std::cout << "Scene modelTexture ID: " << modelTexture->getID() << std::endl;

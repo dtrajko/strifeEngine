@@ -1,4 +1,4 @@
-#include "Terrain.h"
+#include "FlatTerrain.h"
 
 namespace engine
 {
@@ -6,32 +6,16 @@ namespace engine
 	{
 		namespace terrains
 		{
-			Terrain::Terrain(int gridX, int gridZ, Loader * loader, ModelTexture * texture, const std::string & heightMap)
+			FlatTerrain::FlatTerrain(int gridX, int gridZ, Loader * loader, ModelTexture * texture)
 			{
 				m_Texture = texture;
 				m_X = gridX * m_Size;
 				m_Z = gridZ * m_Size;
-				m_Model = generateTerrain(loader, heightMap);
+				m_Model = generateTerrain(loader);
 			}
 
-			RawModel * Terrain::generateTerrain(Loader * loader, const std::string & heightMap)
+			RawModel * FlatTerrain::generateTerrain(Loader * loader)
 			{
-				int imageWidth;
-				int imageHeight;
-				int imageChannels;
-				unsigned char* image = SOIL_load_image(heightMap.c_str(), &imageWidth, &imageHeight, &imageChannels, SOIL_LOAD_RGBA);
-
-				std::cout << "Image width: " << imageWidth << " height: " << imageHeight << " num channels: " << imageChannels << std::endl;
-
-				for (int i = 0; i < imageWidth * imageHeight * imageChannels; i += imageChannels)
-				{
-					std::cout << "Pixel " << i / imageChannels << " R=" << (int) image[i] << " G=" << (int) image[i + 1] << " B=" << (int) image[i + 2] << " A=" << (int) image[i + 3] << std::endl;
-				}
-
-				m_VertexCount = imageWidth;
-
-				getHeight(10, 10, image, imageWidth, imageHeight);
-
 				unsigned int count = m_VertexCount * m_VertexCount;
 				unsigned int verticesCount = count * 3;
 				unsigned int normalsCount = count * 3;
@@ -63,19 +47,7 @@ namespace engine
 				return rawModel;
 			}
 
-			float Terrain::getHeight(int x, int z, unsigned char* image, int imageWidth, int imageHeight)
-			{
-				if (x < 0 || x >= imageWidth || z < 0 || z >= imageHeight)
-				{
-					return 0.0f;
-				}
-
-				float height = 0; // image.getRGB()
-
-				return height;
-			}
-
-			void Terrain::generateTerrainIndices(unsigned int * indices)
+			void FlatTerrain::generateTerrainIndices(unsigned int * indices)
 			{
 				unsigned int pointer = 0;
 				for (unsigned int gz = 0; gz < m_VertexCount - 1; gz++)
@@ -96,44 +68,49 @@ namespace engine
 				}
 			}
 
-			float Terrain::getX()
+			float FlatTerrain::getX()
 			{
 				return m_X;
 			}
 
-			float Terrain::getZ()
+			float FlatTerrain::getZ()
 			{
 				return m_Z;
 			}
 
-			RawModel * Terrain::getModel()
+			RawModel * FlatTerrain::getModel()
 			{
 				return m_Model;
 			}
 
-			ModelTexture * Terrain::getTexture()
+			ModelTexture * FlatTerrain::getTexture()
 			{
 				return m_Texture;
 			}
 
-			TerrainTexturePack * Terrain::getTexturePack()
+			TerrainTexturePack * FlatTerrain::getTexturePack()
 			{
 				return nullptr;
 			}
 
-			TerrainTexture * Terrain::getBlendMap()
+			TerrainTexture * FlatTerrain::getBlendMap()
 			{
 				return nullptr;
 			}
 
-			float Terrain::getHeightOfTerrain(float coordX, float coordZ)
+			float FlatTerrain::getHeightOfTerrain(float coordX, float coordZ)
 			{
 				return 0.0f;
 			}
 
-			float Terrain::getWaterHeight()
+			float FlatTerrain::getWaterHeight()
 			{
 				return 0.0f;
+			}
+
+			FlatTerrain::~FlatTerrain()
+			{
+
 			}
 		}
 	}

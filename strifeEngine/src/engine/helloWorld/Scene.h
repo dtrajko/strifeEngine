@@ -14,6 +14,7 @@
 #include "../../engine/tm/entities/Camera.h"
 #include "../../engine/tm/textures/ModelTexture.h"
 #include "../../engine/tm/loaders/OBJLoader.h"
+#include "../../engine/tm/terrains/FlatTerrain.h"
 #include "../../engine/tm/terrains/Terrain.h"
 
 using namespace engine::graph;

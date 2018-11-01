@@ -42,6 +42,7 @@
     <ClCompile Include="src\engine\GameEngine.cpp" />
     <ClCompile Include="src\engine\interfaces\IGameLogic.h" />
     <ClCompile Include="src\engine\interfaces\IMasterRenderer.h" />
+    <ClCompile Include="src\engine\tm\terrains\FlatTerrain.cpp" />
     <ClCompile Include="src\engine\tm\terrains\Terrain.cpp" />
     <ClCompile Include="src\engine\tm\terrains\TerrainHeightMap.cpp" />
     <ClCompile Include="src\engine\tm\textures\ModelTexture.cpp" />
@@ -79,6 +80,7 @@
     <ClInclude Include="src\engine\GameEngine.h" />
     <ClInclude Include="src\engine\interfaces\ICamera.h" />
     <ClInclude Include="src\engine\interfaces\IScene.h" />
+    <ClInclude Include="src\engine\tm\terrains\FlatTerrain.h" />
     <ClInclude Include="src\engine\tm\terrains\Terrain.h" />
     <ClInclude Include="src\engine\tm\terrains\TerrainHeightMap.h" />
     <ClInclude Include="src\engine\tm\textures\ModelTexture.h" />
