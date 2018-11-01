@@ -123,6 +123,9 @@
     <ClCompile Include="src\engine\tm\terrains\FlatTerrain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\engine\graph\Image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\GameEngine.h">
@@ -234,6 +237,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\tm\terrains\FlatTerrain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\graph\Image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -41,7 +41,8 @@ namespace engine
 			processEntity(entityPine);
 
 			ModelTexture * terrainTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/terrain_1/2.png"));
-
+			// terrainTexture->setShineDumper(20);
+			// terrainTexture->setReflectivity(1);
 			ITerrain * terrain = new Terrain(-0.5f, -0.5f, m_Loader, terrainTexture, "resources/ThinMatrix/textures/heightmap.png");
 			processTerrain(terrain);
 

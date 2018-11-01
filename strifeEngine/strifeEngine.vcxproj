@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\graph\Image.cpp" />
     <ClCompile Include="src\engine\helloWorld\EntityRenderer.cpp" />
     <ClCompile Include="src\engine\helloWorld\MasterRenderer.cpp" />
     <ClCompile Include="src\engine\helloWorld\Scene.cpp" />
@@ -55,6 +56,7 @@
     <ClCompile Include="src\engine\graph\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\graph\Image.h" />
     <ClInclude Include="src\engine\helloWorld\EntityRenderer.h" />
     <ClInclude Include="src\engine\helloWorld\MasterRenderer.h" />
     <ClInclude Include="src\engine\helloWorld\Scene.h" />

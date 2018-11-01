@@ -1,14 +1,15 @@
 #pragma once
 
 #include <iostream>
+#include "../../../engine/graph/Image.h"
 #include "../../../engine/interfaces/ITerrain.h"
 #include "../../../engine/tm/models/RawModel.h"
 #include "../../../engine/tm/loaders/Loader.h"
 #include "../../../engine/tm/textures/ModelTexture.h"
-#include "../../../vendor/stb_image/stb_image.h"
 #include "../../../vendor/glm/glm.hpp"
 #include "../../../vendor/glm/gtc/matrix_transform.hpp"
 
+using namespace engine::graph;
 using namespace engine::interfaces;
 using namespace engine::tm::models;
 using namespace engine::tm::loaders;
@@ -47,8 +48,8 @@ namespace engine
 			private:
 				RawModel * generateTerrain(Loader * loader, const std::string & heightMap);
 				void generateTerrainIndices(unsigned int * indices);
-				float getHeight(int x, int z, unsigned char* image, int imageWidth, int imageHeight, int imageChannels);
-				glm::vec3 calculateNormal(int x, int z, unsigned char* image, int imageWidth, int imageHeight, int imageChannels);
+				float getHeight(int x, int z, Image * image);
+				glm::vec3 calculateNormal(int x, int z, Image * image);
 			};
 		}
 	}
