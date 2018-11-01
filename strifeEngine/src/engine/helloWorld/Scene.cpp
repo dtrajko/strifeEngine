@@ -42,8 +42,8 @@ namespace engine
 
 			ModelTexture * terrainTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/terrain_1/2.png"));
 
-			ITerrain * terrain_1 = new Terrain( -0.5f, -0.5f, m_Loader, terrainTexture, "resources/ThinMatrix/textures/heightmap.png");
-			processTerrain(terrain_1);
+			ITerrain * terrain = new Terrain(-0.5f, -0.5f, m_Loader, terrainTexture, "resources/ThinMatrix/textures/heightmap.png");
+			processTerrain(terrain);
 
 			std::cout << "Scene rawModel vaoID: " << rawModel->getVaoID() << std::endl;
 			std::cout << "Scene modelTexture ID: " << modelTexture->getID() << std::endl;
