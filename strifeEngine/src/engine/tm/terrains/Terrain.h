@@ -6,6 +6,8 @@
 #include "../../../engine/tm/loaders/Loader.h"
 #include "../../../engine/tm/textures/ModelTexture.h"
 #include "../../../vendor/stb_image/stb_image.h"
+#include "../../../vendor/glm/glm.hpp"
+#include "../../../vendor/glm/gtc/matrix_transform.hpp"
 
 using namespace engine::interfaces;
 using namespace engine::tm::models;
@@ -21,18 +23,18 @@ namespace engine
 			class Terrain : public ITerrain
 			{
 			private:
-				float m_Size = 800;
+				float m_Size = 400;
 				float MAX_HEIGHT = 40;
-				float MAX_PIXEL_COLOR = 256 * 256 * 256;
+				float MAX_PIXEL_COLOR = 255;
 
-				unsigned int m_VertexCount = 64;
+				unsigned int m_VertexCount = 32;
 				float m_X;
 				float m_Z;
 				RawModel * m_Model;
 				ModelTexture * m_Texture;
 
 			public:
-				Terrain(int gridX, int gridZ, Loader * loader, ModelTexture * texture, const std::string & heightMap);
+				Terrain(float gridX, float gridZ, Loader * loader, ModelTexture * texture, const std::string & heightMap);
 				float getX();
 				float getZ();
 				RawModel * getModel();
@@ -45,7 +47,8 @@ namespace engine
 			private:
 				RawModel * generateTerrain(Loader * loader, const std::string & heightMap);
 				void generateTerrainIndices(unsigned int * indices);
-				float getHeight(int x, int z, unsigned char* image, int imageWidth, int imageHeight);
+				float getHeight(int x, int z, unsigned char* image, int imageWidth, int imageHeight, int imageChannels);
+				glm::vec3 calculateNormal(int x, int z, unsigned char* image, int imageWidth, int imageHeight, int imageChannels);
 			};
 		}
 	}

@@ -8,7 +8,7 @@ namespace engine
 		{
 			Camera::Camera()
 			{
-				speed = 0.2f;
+				speed = 0.6f;
 			}
 
 			void Camera::move(Window * window)

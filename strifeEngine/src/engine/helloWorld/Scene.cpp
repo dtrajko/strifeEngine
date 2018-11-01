@@ -12,7 +12,7 @@ namespace engine
 		void Scene::init(Window * window)
 		{
 			m_Camera = new Camera();
-			m_Camera->setPosition(0.0f, 12.0f, 0.0f);
+			m_Camera->setPosition(0.0f, 20.0f, 0.0f);
 			m_Camera->setRotation(0.0f, 0.0f, 0.0f);
 			m_Light = new Light(glm::vec3(2000, 2000, 2000), glm::vec3(1, 1, 1));
 			m_MasterRenderer = new MasterRenderer(window);
@@ -30,22 +30,20 @@ namespace engine
 			modelTexture->setTransparency(1);
 			rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/fern.obj", m_Loader);
 			texturedModel = new TexturedModel(rawModel, modelTexture);
-			Entity * entityFern = new Entity(texturedModel, glm::vec3(-40.0f, 0.0f, -80.0f), 0, 0, 0, 2);
+			Entity * entityFern = new Entity(texturedModel, glm::vec3(-40.0f, 0.0f, -20.0f), 0, 0, 0, 2);
 			processEntity(entityFern);
 
-			ModelTexture * terrainTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/terrain_0/bg.png"));
-			ITerrain * flatTerrain_1 = new FlatTerrain( 0,  0, m_Loader, terrainTexture);
-			ITerrain * flatTerrain_2 = new FlatTerrain( 0, -1, m_Loader, terrainTexture);
-			ITerrain * flatTerrain_3 = new FlatTerrain(-1,  0, m_Loader, terrainTexture);
-			ITerrain * flatTerrain_4 = new FlatTerrain(-1, -1, m_Loader, terrainTexture);
-			processTerrain(flatTerrain_1);
-			processTerrain(flatTerrain_2);
-			processTerrain(flatTerrain_3);
-			processTerrain(flatTerrain_4);
+			modelTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/pine.png"));
+			modelTexture->setTransparency(1);
+			rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/pine.obj", m_Loader);
+			texturedModel = new TexturedModel(rawModel, modelTexture);
+			Entity * entityPine = new Entity(texturedModel, glm::vec3(40.0f, 0.0f, -180.0f), 0, 0, 0, 4);
+			processEntity(entityPine);
 
-			// ITerrain * terrain = new Terrain(0, 0, m_Loader, terrainTexture, "resources/ThinMatrix/textures/heightmap.png");
-			ITerrain * terrain = new Terrain(0, 0, m_Loader, terrainTexture, "resources/ThinMatrix/textures/basic_colors.png");
-			processTerrain(terrain);
+			ModelTexture * terrainTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/terrain_1/2.png"));
+
+			ITerrain * terrain_1 = new Terrain( -0.5f, -0.5f, m_Loader, terrainTexture, "resources/ThinMatrix/textures/heightmap.png");
+			processTerrain(terrain_1);
 
 			std::cout << "Scene rawModel vaoID: " << rawModel->getVaoID() << std::endl;
 			std::cout << "Scene modelTexture ID: " << modelTexture->getID() << std::endl;

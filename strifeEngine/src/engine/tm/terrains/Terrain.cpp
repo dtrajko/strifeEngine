@@ -6,7 +6,7 @@ namespace engine
 	{
 		namespace terrains
 		{
-			Terrain::Terrain(int gridX, int gridZ, Loader * loader, ModelTexture * texture, const std::string & heightMap)
+			Terrain::Terrain(float gridX, float gridZ, Loader * loader, ModelTexture * texture, const std::string & heightMap)
 			{
 				m_Texture = texture;
 				m_X = gridX * m_Size;
@@ -21,16 +21,7 @@ namespace engine
 				int imageChannels;
 				unsigned char* image = SOIL_load_image(heightMap.c_str(), &imageWidth, &imageHeight, &imageChannels, SOIL_LOAD_RGBA);
 
-				std::cout << "Image width: " << imageWidth << " height: " << imageHeight << " num channels: " << imageChannels << std::endl;
-
-				for (int i = 0; i < imageWidth * imageHeight * imageChannels; i += imageChannels)
-				{
-					std::cout << "Pixel " << i / imageChannels << " R=" << (int) image[i] << " G=" << (int) image[i + 1] << " B=" << (int) image[i + 2] << " A=" << (int) image[i + 3] << std::endl;
-				}
-
 				m_VertexCount = imageWidth;
-
-				getHeight(10, 10, image, imageWidth, imageHeight);
 
 				unsigned int count = m_VertexCount * m_VertexCount;
 				unsigned int verticesCount = count * 3;
@@ -47,11 +38,12 @@ namespace engine
 					for (unsigned int j = 0; j < m_VertexCount; j++)
 					{
 						vertices[vertexPointer * 3]     = (float) j / ((float) m_VertexCount - 1) * m_Size;
-						vertices[vertexPointer * 3 + 1] = 0;
+						vertices[vertexPointer * 3 + 1] = getHeight(j, i, image, imageWidth, imageHeight, imageChannels);
 						vertices[vertexPointer * 3 + 2] = (float) i / ((float) m_VertexCount - 1) * m_Size;
-						normals[vertexPointer * 3]     = 0;
-						normals[vertexPointer * 3 + 1] = 1;
-						normals[vertexPointer * 3 + 2] = 0;
+						glm::vec3 normal = calculateNormal(j, i, image, imageWidth, imageHeight, imageChannels);
+						normals[vertexPointer * 3]     = normal.x;
+						normals[vertexPointer * 3 + 1] = normal.y;
+						normals[vertexPointer * 3 + 2] = normal.z;
 						textureCoords[vertexPointer * 2]     = (float) j / ((float) m_VertexCount - 1);
 						textureCoords[vertexPointer * 2 + 1] = (float) i / ((float) m_VertexCount - 1);
 						vertexPointer++;
@@ -63,16 +55,33 @@ namespace engine
 				return rawModel;
 			}
 
-			float Terrain::getHeight(int x, int z, unsigned char* image, int imageWidth, int imageHeight)
+			float Terrain::getHeight(int x, int z, unsigned char* image, int imageWidth, int imageHeight, int imageChannels)
 			{
 				if (x < 0 || x >= imageWidth || z < 0 || z >= imageHeight)
 				{
-					return 0.0f;
+					return 0;
 				}
 
-				float height = 0; // image.getRGB()
+				int red   = (int) image[((z * imageWidth + x) * imageChannels) + 0];
+				int green = (int) image[((z * imageWidth + x) * imageChannels) + 1];
+				int blue  = (int) image[((z * imageWidth + x) * imageChannels) + 2];
+				int alpha = (int) image[((z * imageWidth + x) * imageChannels) + 3];
 
+				float height = (float) ((red + green + blue) / 3);
+				height *= ((MAX_HEIGHT * 2) / MAX_PIXEL_COLOR);
+				height -= MAX_HEIGHT;
 				return height;
+			}
+
+			glm::vec3 Terrain::calculateNormal(int x, int z, unsigned char* image, int imageWidth, int imageHeight, int imageChannels)
+			{
+				float heightL = getHeight(x - 1, z, image, imageWidth, imageHeight, imageChannels);
+				float heightR = getHeight(x + 1, z, image, imageWidth, imageHeight, imageChannels);
+				float heightD = getHeight(x, z - 1, image, imageWidth, imageHeight, imageChannels);
+				float heightU = getHeight(x, z + 1, image, imageWidth, imageHeight, imageChannels);
+				glm::vec3 normal = glm::vec3(heightL - heightR, 2.0f, heightD - heightU);
+				glm::normalize(normal);
+				return normal;
 			}
 
 			void Terrain::generateTerrainIndices(unsigned int * indices)
