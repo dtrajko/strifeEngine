@@ -25,6 +25,7 @@ namespace engine
 			class Camera : public ICamera
 			{
 			private:
+				const float cursorSensitivity = 0.2f;
 				glm::vec3 m_Position = glm::vec3(0.0f, 0.0f, 0.0f);
 				float pitch = 0;
 				float yaw = 0;
@@ -34,7 +35,6 @@ namespace engine
 				glm::vec3 cameraInc;
 				glm::vec2 displVector;
 				float speed;
-				float cursorSensitivity = 0.2f;
 			public:
 				Camera();
 				void move(Window * window);

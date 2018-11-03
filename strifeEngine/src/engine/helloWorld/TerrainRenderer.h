@@ -23,8 +23,8 @@ namespace engine
 		class TerrainRenderer : public IRenderer
 		{
 		private:
-			std::string m_VertexFile = "resources/shaders/terrainVertex.glsl";
-			std::string m_FragmentFile = "resources/shaders/terrainFragment.glsl";
+			const std::string m_VertexFile = "resources/shaders/terrainVertex.glsl";
+			const std::string m_FragmentFile = "resources/shaders/terrainFragment.glsl";
 			TerrainShader * m_Shader;
 			glm::mat4 m_ProjectionMatrix;
 			glm::mat4 m_ViewMatrix;

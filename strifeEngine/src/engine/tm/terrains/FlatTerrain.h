@@ -20,8 +20,8 @@ namespace engine
 			class FlatTerrain : public ITerrain
 			{
 			private:
-				float m_Size = 800;
-				unsigned int m_VertexCount = 64;
+				const float m_Size = 800;
+				const unsigned int m_VertexCount = 64;
 				float m_X;
 				float m_Z;
 				RawModel * m_Model;

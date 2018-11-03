@@ -24,9 +24,9 @@ namespace engine
 			class Terrain : public ITerrain
 			{
 			private:
-				float m_Size = 400;
-				float MAX_HEIGHT = 40;
-				float MAX_PIXEL_COLOR = 255;
+				const float m_Size = 400;
+				const float MAX_HEIGHT = 40;
+				const float MAX_PIXEL_COLOR = 255;
 
 				unsigned int m_VertexCount = 32;
 				float m_X;

@@ -4,7 +4,7 @@ namespace engine
 {
 	namespace helloWorld
 	{
-		TerrainShader::TerrainShader(std::string& vertexFile, std::string& fragmentFile) : ShaderProgram(vertexFile, fragmentFile)
+		TerrainShader::TerrainShader(const std::string& vertexFile, const std::string& fragmentFile) : ShaderProgram(vertexFile, fragmentFile)
 		{
 		}
 

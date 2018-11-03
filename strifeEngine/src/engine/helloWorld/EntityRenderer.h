@@ -21,8 +21,8 @@ namespace engine
 		class EntityRenderer : public IRenderer
 		{
 		private:
-			std::string m_VertexFile = "resources/shaders/entityVertex.glsl";
-			std::string m_FragmentFile = "resources/shaders/entityFragment.glsl";
+			const std::string m_VertexFile = "resources/shaders/entityVertex.glsl";
+			const std::string m_FragmentFile = "resources/shaders/entityFragment.glsl";
 			EntityShader * m_Shader;
 			glm::mat4 m_ProjectionMatrix;
 			glm::mat4 m_ViewMatrix;

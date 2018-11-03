@@ -4,7 +4,7 @@ namespace engine
 {
 	namespace helloWorld
 	{
-		EntityShader::EntityShader(std::string& vertexFile, std::string& fragmentFile) : ShaderProgram(vertexFile, fragmentFile)
+		EntityShader::EntityShader(const std::string& vertexFile, const std::string& fragmentFile) : ShaderProgram(vertexFile, fragmentFile)
 		{
 		}
 

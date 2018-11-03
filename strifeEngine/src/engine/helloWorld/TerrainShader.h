@@ -16,7 +16,7 @@ namespace engine
 		class TerrainShader : public ShaderProgram
 		{
 		public:
-			TerrainShader(std::string& vertexFile, std::string& fragmentFile);
+			TerrainShader(const std::string& vertexFile, const std::string& fragmentFile);
 			void bindAttributes();
 			void getAllUniformLocations();
 			void loadLight(Light * light);

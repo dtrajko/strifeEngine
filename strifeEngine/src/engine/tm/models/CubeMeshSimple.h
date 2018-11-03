@@ -11,7 +11,7 @@ namespace engine
 			class CubeMeshSimple
 			{
 			public:
-				std::vector<float> vecVertices = {
+				const std::vector<float> vecVertices = {
 					-0.5f,  0.5f, -0.5f,
 					-0.5f, -0.5f, -0.5f,
 					0.5f, -0.5f, -0.5f,
@@ -43,7 +43,7 @@ namespace engine
 					0.5f, -0.5f,  0.5f
 				};
 
-				std::vector<float> vecTextureCoords = {
+				const std::vector<float> vecTextureCoords = {
 					0, 0,
 					0, 1,
 					1, 1,
@@ -70,7 +70,7 @@ namespace engine
 					1, 0
 				};
 
-				std::vector<unsigned int> vecIndices = {
+				const std::vector<unsigned int> vecIndices = {
 					0, 1, 3,
 					3, 1, 2,
 					4, 5, 7,

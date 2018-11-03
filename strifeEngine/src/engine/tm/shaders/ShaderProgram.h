@@ -25,12 +25,12 @@ namespace engine
 				std::unordered_map<std::string, int> uniformLocationCache;
 
 			public:
-				ShaderProgram(std::string & vertexFile, std::string & fragmentFile);
+				ShaderProgram(const std::string & vertexFile, const std::string & fragmentFile);
 				void start();
 				void stop();
 				void cleanUp();
 				std::stringstream parseShader(const std::string & filepath);
-				unsigned int loadShader(std::string & file, unsigned int type);
+				unsigned int loadShader(const std::string & file, unsigned int type);
 				void bindAttributes();
 				void getAllUniformLocations();
 				void bindAttribute(int attribute, std::string variableName);

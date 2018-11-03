@@ -16,7 +16,7 @@ namespace engine
 		class EntityShader : public ShaderProgram
 		{
 		public:
-			EntityShader(std::string& vertexFile, std::string& fragmentFile);
+			EntityShader(const std::string& vertexFile, const std::string& fragmentFile);
 			void bindAttributes();
 			void getAllUniformLocations();
 			void loadLight(Light * light);

@@ -6,7 +6,7 @@ namespace engine
 	{
 		namespace shaders
 		{
-			ShaderProgram::ShaderProgram(std::string & vertexFile, std::string & fragmentFile)
+			ShaderProgram::ShaderProgram(const std::string & vertexFile, const std::string & fragmentFile)
 			{
 				vertexShaderID = loadShader(vertexFile, GL_VERTEX_SHADER);
 				fragmentShaderID = loadShader(fragmentFile, GL_FRAGMENT_SHADER);
@@ -27,7 +27,7 @@ namespace engine
 				bindAttribute(2, "normal");
 			}
 
-			unsigned int ShaderProgram::loadShader(std::string& file, unsigned int type)
+			unsigned int ShaderProgram::loadShader(const std::string & file, unsigned int type)
 			{
 				std::stringstream shaderSourceStream = parseShader(file);
 
