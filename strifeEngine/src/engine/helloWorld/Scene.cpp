@@ -40,6 +40,24 @@ namespace engine
 			Entity * entityPine = new Entity(texturedModel, glm::vec3(40.0f, 0.0f, -180.0f), 0, 0, 0, 4);
 			processEntity(entityPine);
 
+			CubeMeshSimple meshCube = CubeMeshSimple();
+			rawModel = m_Loader->loadToVAO(meshCube.getVertices(), meshCube.getVerticesCount(),
+				meshCube.getTextureCoords(), meshCube.getTextureCoordsCount(),
+				meshCube.getIndices(), meshCube.getIndicesCount());
+			modelTexture = new ModelTexture(m_Loader->loadTexture("resources/assets/textures/tiles.png"));
+			texturedModel = new TexturedModel(rawModel, modelTexture);
+			Entity * entityCube = new Entity(texturedModel, glm::vec3(-80, 40, -80), 0, 0, 0, 20);
+			processEntity(entityCube);
+
+			QuadMeshSimple meshQuad = QuadMeshSimple();
+			rawModel = m_Loader->loadToVAO(meshQuad.getVertices(), meshQuad.getVerticesCount(),
+				meshQuad.getTextureCoords(), meshQuad.getTextureCoordsCount(),
+				meshQuad.getIndices(), meshQuad.getIndicesCount());
+			modelTexture = new ModelTexture(m_Loader->loadTexture("resources/assets/textures/tiles.png"));
+			texturedModel = new TexturedModel(rawModel, modelTexture);
+			Entity * entityQuad = new Entity(texturedModel, glm::vec3(-80, 60, -80), 90, 0, 0, 40);
+			processEntity(entityQuad);
+
 			ModelTexture * terrainTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/terrain_1/2.png"));
 			// terrainTexture->setShineDumper(20);
 			// terrainTexture->setReflectivity(1);

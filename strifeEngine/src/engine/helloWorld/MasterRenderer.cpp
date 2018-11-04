@@ -6,7 +6,7 @@ namespace engine
 	{
 		MasterRenderer::MasterRenderer(Window * window)
 		{
-			enableCulling();
+			// enableCulling();
 			m_ProjectionMatrix = createProjectionMatrix(window);
 			m_EntityRenderer = new EntityRenderer(window, m_ProjectionMatrix);
 			m_TerrainRenderer = new TerrainRenderer(window, m_ProjectionMatrix);

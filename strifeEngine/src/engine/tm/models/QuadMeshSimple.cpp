@@ -8,6 +8,7 @@ namespace engine
 		{
 			QuadMeshSimple::QuadMeshSimple()
 			{
+
 			}
 
 			float * QuadMeshSimple::getVertices()
@@ -23,6 +24,21 @@ namespace engine
 			unsigned int * QuadMeshSimple::getIndices()
 			{
 				return (unsigned int *)&vecIndices[0];
+			}
+
+			unsigned int QuadMeshSimple::getVerticesCount()
+			{
+				return vecVertices.size();
+			}
+
+			unsigned int QuadMeshSimple::getTextureCoordsCount()
+			{
+				return vecTextureCoords.size();
+			}
+
+			unsigned int QuadMeshSimple::getIndicesCount()
+			{
+				return vecIndices.size();
 			}
 
 			QuadMeshSimple::~QuadMeshSimple()

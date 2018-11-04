@@ -25,6 +25,21 @@ namespace engine
 				return (unsigned int *) &vecIndices[0];
 			}
 
+			unsigned int CubeMeshSimple::getVerticesCount()
+			{
+				return vecVertices.size();
+			}
+
+			unsigned int CubeMeshSimple::getTextureCoordsCount()
+			{
+				return vecTextureCoords.size();
+			}
+
+			unsigned int CubeMeshSimple::getIndicesCount()
+			{
+				return vecIndices.size();
+			}
+
 			CubeMeshSimple::~CubeMeshSimple()
 			{
 

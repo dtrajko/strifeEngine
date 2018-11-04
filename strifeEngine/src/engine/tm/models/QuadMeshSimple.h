@@ -10,7 +10,7 @@ namespace engine
 		{
 			class QuadMeshSimple
 			{
-			public:
+			private:
 				const std::vector<float> vecVertices = {
 					-0.5f,  0.5f, 0.0f,  // V0
 					-0.5f, -0.5f, 0.0f,  // V1
@@ -30,10 +30,14 @@ namespace engine
 					3, 1, 2   // bottom right triangle (V3, V1, V2)
 				};
 
+			public:
 				QuadMeshSimple();
 				float * getVertices();
 				float * getTextureCoords();
 				unsigned int * getIndices();
+				unsigned int getVerticesCount();
+				unsigned int getTextureCoordsCount();
+				unsigned int getIndicesCount();
 				~QuadMeshSimple();
 			};
 		}

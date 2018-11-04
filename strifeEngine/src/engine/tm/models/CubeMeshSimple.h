@@ -10,7 +10,7 @@ namespace engine
 		{
 			class CubeMeshSimple
 			{
-			public:
+			private:
 				const std::vector<float> vecVertices = {
 					-0.5f,  0.5f, -0.5f,
 					-0.5f, -0.5f, -0.5f,
@@ -85,10 +85,14 @@ namespace engine
 					23, 21, 22
 				};
 
+			public:
 				CubeMeshSimple();
 				float * getVertices();
 				float * getTextureCoords();
 				unsigned int * getIndices();
+				unsigned int getVerticesCount();
+				unsigned int getTextureCoordsCount();
+				unsigned int getIndicesCount();
 				~CubeMeshSimple();
 			};
 		}
