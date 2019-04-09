@@ -28,6 +28,14 @@ namespace engine
 				return textureID;
 			}
 
+			RawModel * Loader::loadToVAO(float * positions, unsigned int positionsCount, unsigned int dimensions)
+			{
+				unsigned int vaoID = createVAO();
+				storeDataInAttributeList(0, dimensions, positions, positionsCount);
+				unbindVAO();
+				return new RawModel(vaoID, positionsCount / dimensions);
+			}
+
 			RawModel * Loader::loadToVAO(
 				float * positions, unsigned int positionsCount, 
 				float * textureCoords, unsigned int textureCoordsCount,

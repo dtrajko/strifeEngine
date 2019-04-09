@@ -26,6 +26,9 @@ namespace engine
 				Loader();
 				int loadTexture(const std::string & filePath);
 				RawModel * loadToVAO(
+					float * positions, unsigned int positionsCount, 
+					unsigned int dimensions);
+				RawModel * loadToVAO(
 					float * positions, unsigned int positionsCount,
 					float * textureCoords, unsigned int textureCoordsCount,
 					unsigned int * indices, unsigned int indicesCount);

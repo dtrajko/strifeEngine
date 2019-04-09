@@ -17,13 +17,13 @@ namespace engine { namespace tm { namespace water {
 		std::string DUDV_MAP = "resources/ThinMatrix/textures/water/waterDUDV.png";
 		std::string NORMAL_MAP = "resources/ThinMatrix/textures/water/normal.png";
 
-		RawModel* rawModel;
+		RawModel * quad;
 		int dudvTexture;
 		int normalMap;
 
 	public:
 		Water(Loader * loader);
-		RawModel getQuad();
+		RawModel * getQuad();
 		int getDuDvTexture();
 		int getNormalMap();
 
