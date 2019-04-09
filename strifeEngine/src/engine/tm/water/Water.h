@@ -23,7 +23,7 @@ namespace engine { namespace tm { namespace water {
 
 	public:
 		Water(Loader * loader);
-		RawModel * getQuad();
+		RawModel *  getQuad();
 		int getDuDvTexture();
 		int getNormalMap();
 

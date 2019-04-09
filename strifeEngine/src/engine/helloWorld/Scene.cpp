@@ -65,8 +65,8 @@ namespace engine
 			processTerrain(terrain);
 
 			Water * water = new Water(m_Loader);
-			// WaterTile * waterTile = new WaterTile(0, Water::HEIGHT, 0);
-			// processWaterTile(waterTile);
+			WaterTile * waterTile = new WaterTile(0, Water::HEIGHT, 0);
+			processWaterTile(waterTile);
 
 			std::cout << "Scene rawModel vaoID: " << rawModel->getVaoID() << std::endl;
 			std::cout << "Scene modelTexture ID: " << modelTexture->getID() << std::endl;
@@ -116,6 +116,11 @@ namespace engine
 			m_Terrains.push_back(terrain);
 		}
 
+		void Scene::processWaterTile(WaterTile * waterTile)
+		{
+			m_WaterTiles.push_back(waterTile);
+		}
+
 		std::vector<Entity*> Scene::getEntities()
 		{
 			return m_Entities;
@@ -132,6 +137,7 @@ namespace engine
 			m_MasterRenderer->cleanUp();
 			m_Entities.clear();
 			m_Terrains.clear();
+			m_WaterTiles.clear();
 		}
 
 		ICamera * Scene::getCamera()

@@ -17,6 +17,7 @@
 #include "../../engine/tm/terrains/FlatTerrain.h"
 #include "../../engine/tm/terrains/Terrain.h"
 #include "../../engine/tm/water/Water.h"
+#include "../../engine/tm/water/WaterTile.h"
 
 using namespace engine::graph;
 using namespace engine::interfaces;
@@ -41,6 +42,7 @@ namespace engine
 			Light * m_Light;
 			std::vector<Entity *> m_Entities;
 			std::vector<ITerrain *> m_Terrains;
+			std::vector<WaterTile *> m_WaterTiles;
 			float m_Counter = 0;
 
 		public:
@@ -54,6 +56,7 @@ namespace engine
 			Light * getLight();
 			void processEntity(Entity * entity);
 			void processTerrain(ITerrain * terrain);
+			void processWaterTile(WaterTile * waterTile);
 			std::vector<Entity *> getEntities();
 			std::vector<ITerrain *> getTerrains();
 			void cleanUp();

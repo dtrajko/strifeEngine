@@ -129,6 +129,9 @@
     <ClCompile Include="src\engine\tm\water\Water.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\engine\tm\water\WaterTile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\GameEngine.h">
@@ -246,6 +249,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\tm\water\Water.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\tm\water\WaterTile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
