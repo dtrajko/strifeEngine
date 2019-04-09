@@ -15,17 +15,18 @@ namespace engine
 			class Entity
 			{
 			private:
-				TexturedModel * texturedModel;
+				TexturedModel * m_TexturedModel;
 				glm::vec3 position;
 				float rotX;
 				float rotY;
 				float rotZ;
 				float scale;
 				bool solid;
-				int textureIndex = 0;
+				unsigned int m_TextureIndex = 0;
 
 			public:
 				Entity(TexturedModel * model, glm::vec3 _position, float _rotX, float _rotY, float _rotZ, float _scale);
+				Entity(TexturedModel * model, unsigned int textureIndex, glm::vec3 _position, float _rotX, float _rotY, float _rotZ, float _scale);
 				void increasePosition(float dx, float dy, float dz);
 				void increaseRotation(float dx, float dy, float dz);
 				glm::vec3 getPosition();
@@ -35,6 +36,8 @@ namespace engine
 				float getRotZ();
 				float getScale();
 				TexturedModel * getTexturedModel();
+				float getTextureOffsetX();
+				float getTextureOffsetY();
 				virtual ~Entity();
 			};
 		}

@@ -33,6 +33,14 @@ namespace engine
 			Entity * entityFern = new Entity(texturedModel, glm::vec3(-40.0f, 0.0f, -20.0f), 0, 0, 0, 2);
 			processEntity(entityFern);
 
+			ModelTexture * fernTextureAtlas = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/fern_atlas.png"));
+			fernTextureAtlas->setNumberOfRows(2);
+			fernTextureAtlas->setTransparency(true);
+			fernTextureAtlas->setUsesFakeLighting(true);
+			TexturedModel * fernModel = new TexturedModel(OBJLoader::loadOBJModel("fern", m_Loader), fernTextureAtlas);
+			Entity * entityFernTexAtlas = new Entity(fernModel, 0, glm::vec3(-80.0f, 20.0f, -40.0f), 0, 0, 0, 2);
+			processEntity(entityFernTexAtlas);
+
 			modelTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/pine.png"));
 			modelTexture->setTransparency(1);
 			rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/pine.obj", m_Loader);

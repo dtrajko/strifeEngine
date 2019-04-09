@@ -14,18 +14,21 @@ namespace engine
 				float m_reflectivity = 0;
 				bool m_IsTransparent = false;
 				bool m_UseFakeLighting = false;
+				unsigned int m_NumberOfRows = 0;
 
 			public:
 				ModelTexture(int id);
-				int getID();
-				float getShineDumper();
+				int getID() const;
+				float getShineDumper() const;
 				ModelTexture * setShineDumper(float shineDumper);
-				float getReflectivity();
+				float getReflectivity() const;
 				ModelTexture * setReflectivity(float reflectivity);
-				bool isTransparent();
+				bool isTransparent() const;
 				ModelTexture * setTransparency(bool isTransparent);
-				bool usesFakeLighting();
+				bool usesFakeLighting() const;
 				ModelTexture * setUsesFakeLighting(bool useFakeLighting);
+				ModelTexture * setNumberOfRows(unsigned int numberOfRows);
+				unsigned int getNumberOfRows() const;
 				~ModelTexture();
 			};
 		}

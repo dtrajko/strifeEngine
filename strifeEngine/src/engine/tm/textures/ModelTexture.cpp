@@ -11,12 +11,12 @@ namespace engine
 				m_textureID = id;
 			}
 
-			int ModelTexture::getID()
+			int ModelTexture::getID() const
 			{
 				return m_textureID;
 			}
 
-			float ModelTexture::getShineDumper()
+			float ModelTexture::getShineDumper() const
 			{
 				return m_shineDumper;
 			}
@@ -27,7 +27,7 @@ namespace engine
 				return this;
 			}
 
-			float ModelTexture::getReflectivity()
+			float ModelTexture::getReflectivity() const
 			{
 				return m_reflectivity;
 			}
@@ -38,7 +38,7 @@ namespace engine
 				return this;
 			}
 
-			bool ModelTexture::isTransparent()
+			bool ModelTexture::isTransparent() const
 			{
 				return m_IsTransparent;
 			}
@@ -49,7 +49,7 @@ namespace engine
 				return this;
 			}
 
-			bool ModelTexture::usesFakeLighting()
+			bool ModelTexture::usesFakeLighting() const
 			{
 				return m_UseFakeLighting;
 			}
@@ -58,6 +58,17 @@ namespace engine
 			{
 				m_UseFakeLighting = useFakeLighting;
 				return this;
+			}
+
+			ModelTexture * ModelTexture::setNumberOfRows(unsigned int numberOfRows)
+			{
+				m_NumberOfRows = numberOfRows;
+				return this;
+			}
+
+			unsigned int ModelTexture::getNumberOfRows() const
+			{
+				return m_NumberOfRows;
 			}
 
 			ModelTexture::~ModelTexture()

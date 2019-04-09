@@ -8,13 +8,19 @@ namespace engine
 		{
 			Entity::Entity(TexturedModel * model, glm::vec3 _position, float _rotX, float _rotY, float _rotZ, float _scale)
 			{
-				texturedModel = model;
+				m_TexturedModel = model;
 				position = _position;
 				rotX = _rotX;
 				rotY = _rotY;
 				rotZ = _rotZ;
 				scale = _scale;
 				solid = false;
+			}
+
+			Entity::Entity(TexturedModel * model, unsigned int textureIndex, glm::vec3 _position, float _rotX, float _rotY, float _rotZ, float _scale):
+				Entity(model, _position, _rotX, _rotY, _rotZ, _scale)
+			{
+				m_TextureIndex = textureIndex;
 			}
 
 			void Entity::increasePosition(float dx, float dy, float dz)
@@ -63,7 +69,21 @@ namespace engine
 
 			TexturedModel * Entity::getTexturedModel()
 			{
-				return texturedModel;
+				return m_TexturedModel;
+			}
+
+			float Entity::getTextureOffsetX()
+			{
+				unsigned int column = m_TextureIndex % m_TexturedModel->getTexture()->getNumberOfRows();
+				float offsetX = (float)column / (float)m_TexturedModel->getTexture()->getNumberOfRows();
+				return offsetX;
+			}
+
+			float Entity::getTextureOffsetY()
+			{
+				unsigned int row = m_TextureIndex / m_TexturedModel->getTexture()->getNumberOfRows();
+				float offsetY = (float)row / (float)m_TexturedModel->getTexture()->getNumberOfRows();
+				return offsetY;
 			}
 
 			Entity::~Entity()
