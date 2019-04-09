@@ -8,7 +8,7 @@ namespace engine
 		{
 			Camera::Camera()
 			{
-				speed = 0.6f;
+				speed = 0.4f;
 			}
 
 			void Camera::move(Window * window)
@@ -29,8 +29,9 @@ namespace engine
 				if (input->isKeyDown(GLFW_KEY_S) || input->isKeyDown(GLFW_KEY_DOWN)) {
 					cameraInc.z += +speed;
 				}
-				if (input->isKeyDown(GLFW_KEY_SPACE)) {
-					m_Position.y += 0.1f;
+
+				if (input->isKeyDown(GLFW_KEY_E)) {
+				    m_Position.y += 0.1f;
 				}
 				if (input->isKeyDown(GLFW_KEY_LEFT_SHIFT)) {
 					m_Position.y += -0.1f;

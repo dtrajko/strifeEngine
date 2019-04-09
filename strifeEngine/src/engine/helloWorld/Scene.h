@@ -16,6 +16,7 @@
 #include "../../engine/tm/loaders/OBJLoader.h"
 #include "../../engine/tm/terrains/FlatTerrain.h"
 #include "../../engine/tm/terrains/Terrain.h"
+#include "../../engine/tm/water/Water.h"
 
 using namespace engine::graph;
 using namespace engine::interfaces;
@@ -25,6 +26,7 @@ using namespace engine::tm::models;
 using namespace engine::tm::entities;
 using namespace engine::tm::textures;
 using namespace engine::tm::terrains;
+using namespace engine::tm::water;
 
 namespace engine
 {

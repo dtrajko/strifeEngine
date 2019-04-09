@@ -50,6 +50,7 @@
     <ClCompile Include="src\engine\tm\textures\TerrainTexture.cpp" />
     <ClCompile Include="src\engine\tm\textures\TerrainTexturePack.cpp" />
     <ClCompile Include="src\engine\tm\toolbox\Maths.cpp" />
+    <ClCompile Include="src\engine\tm\water\Water.cpp" />
     <ClCompile Include="src\engine\utils\Log.cpp" />
     <ClCompile Include="src\game\Main.cpp" />
     <ClCompile Include="src\engine\Timer.cpp" />
@@ -89,6 +90,7 @@
     <ClInclude Include="src\engine\tm\textures\TerrainTexture.h" />
     <ClInclude Include="src\engine\tm\textures\TerrainTexturePack.h" />
     <ClInclude Include="src\engine\tm\toolbox\Maths.h" />
+    <ClInclude Include="src\engine\tm\water\Water.h" />
     <ClInclude Include="src\engine\utils\Log.h" />
     <ClInclude Include="src\engine\utils\Util.h" />
     <ClInclude Include="src\engine\WindowOptions.h" />
