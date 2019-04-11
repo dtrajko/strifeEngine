@@ -30,7 +30,7 @@ namespace engine
 					cameraInc.z += +speed;
 				}
 
-				if (input->isKeyDown(GLFW_KEY_E)) {
+				if (input->isKeyDown(GLFW_KEY_E) || input->isKeyDown(GLFW_KEY_SPACE)) {
 				    m_Position.y += 0.1f;
 				}
 				if (input->isKeyDown(GLFW_KEY_LEFT_SHIFT)) {
