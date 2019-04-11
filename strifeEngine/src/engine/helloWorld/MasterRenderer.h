@@ -9,6 +9,7 @@
 #include "../../vendor/glm/gtc/matrix_transform.hpp"
 #include "../../engine/helloWorld/EntityRenderer.h"
 #include "../../engine/helloWorld/TerrainRenderer.h"
+#include "../../engine/helloWorld/WaterRenderer.h"
 
 using namespace engine::interfaces;
 using namespace engine::helloWorld;
@@ -31,6 +32,7 @@ namespace engine
 
 			EntityRenderer * m_EntityRenderer;
 			TerrainRenderer * m_TerrainRenderer;
+			WaterRenderer * m_WaterRenderer;
 
 		public:
 			MasterRenderer(Window * window);

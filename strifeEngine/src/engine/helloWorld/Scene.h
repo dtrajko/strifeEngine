@@ -16,7 +16,6 @@
 #include "../../engine/tm/loaders/OBJLoader.h"
 #include "../../engine/tm/terrains/FlatTerrain.h"
 #include "../../engine/tm/terrains/Terrain.h"
-#include "../../engine/tm/water/Water.h"
 #include "../../engine/tm/water/WaterTile.h"
 
 using namespace engine::graph;
@@ -59,6 +58,7 @@ namespace engine
 			void processWaterTile(WaterTile * waterTile);
 			std::vector<Entity *> getEntities();
 			std::vector<ITerrain *> getTerrains();
+			std::vector<WaterTile *> getWaterTiles();
 			void cleanUp();
 			virtual ~Scene();
 		};

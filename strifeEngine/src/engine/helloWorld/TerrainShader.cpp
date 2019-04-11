@@ -6,6 +6,7 @@ namespace engine
 	{
 		TerrainShader::TerrainShader(const std::string& vertexFile, const std::string& fragmentFile) : ShaderProgram(vertexFile, fragmentFile)
 		{
+
 		}
 
 		void TerrainShader::bindAttributes()

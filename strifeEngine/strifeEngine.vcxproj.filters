@@ -126,10 +126,13 @@
     <ClCompile Include="src\engine\graph\Image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\tm\water\Water.cpp">
+    <ClCompile Include="src\engine\tm\water\WaterTile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\tm\water\WaterTile.cpp">
+    <ClCompile Include="src\engine\helloWorld\WaterRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\helloWorld\WaterShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -248,10 +251,13 @@
     <ClInclude Include="src\engine\graph\Image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\tm\water\Water.h">
+    <ClInclude Include="src\engine\tm\water\WaterTile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\tm\water\WaterTile.h">
+    <ClInclude Include="src\engine\helloWorld\WaterRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\helloWorld\WaterShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

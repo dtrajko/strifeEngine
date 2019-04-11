@@ -67,14 +67,13 @@ namespace engine
 			processEntity(entityQuad);
 
 			ModelTexture * terrainTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/terrain_1/2.png"));
-			// terrainTexture->setShineDumper(20);
-			// terrainTexture->setReflectivity(1);
+			// terrainTexture.setShineDumper(20);
+			// terrainTexture.setReflectivity(1);
 			ITerrain * terrain = new Terrain(-0.5f, -0.5f, m_Loader, terrainTexture, "resources/ThinMatrix/textures/heightmap.png");
 			processTerrain(terrain);
 
-			Water * water = new Water(m_Loader);
-			WaterTile * waterTile = new WaterTile(0, Water::HEIGHT, 0);
-			processWaterTile(waterTile);
+			WaterTile waterTile = WaterTile(m_Loader, 0, WaterTile::HEIGHT, 0);
+			processWaterTile(&waterTile);
 
 			std::cout << "Scene rawModel vaoID: " << rawModel->getVaoID() << std::endl;
 			std::cout << "Scene modelTexture ID: " << modelTexture->getID() << std::endl;
@@ -137,6 +136,11 @@ namespace engine
 		std::vector<ITerrain *> Scene::getTerrains()
 		{
 			return m_Terrains;
+		}
+
+		std::vector<WaterTile*> Scene::getWaterTiles()
+		{
+			return m_WaterTiles;
 		}
 
 		void Scene::cleanUp()
