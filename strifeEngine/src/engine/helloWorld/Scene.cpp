@@ -72,12 +72,14 @@ namespace engine
 			ITerrain * terrain = new Terrain(-0.5f, -0.5f, m_Loader, terrainTexture, "resources/ThinMatrix/textures/heightmap.png");
 			processTerrain(terrain);
 
-			WaterTile waterTile = WaterTile(m_Loader, 0, WaterTile::HEIGHT, 0);
-			processWaterTile(&waterTile);
+			WaterTile * waterTile = new WaterTile(m_Loader, 0, WaterTile::HEIGHT, 0);
+			processWaterTile(waterTile);
 
 			std::cout << "Scene rawModel vaoID: " << rawModel->getVaoID() << std::endl;
 			std::cout << "Scene modelTexture ID: " << modelTexture->getID() << std::endl;
 			std::cout << "Scene terrainTexture ID: " << terrainTexture->getID() << std::endl;
+			std::cout << "Scene WaterTile DuDvTexture: " << waterTile->getDuDvTexture() << std::endl;
+			std::cout << "Scene WaterTile NormalMap: " << waterTile->getNormalMap() << std::endl;
 		}
 
 		void Scene::update(float interval, Window * window)

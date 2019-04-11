@@ -16,7 +16,6 @@ namespace engine
 
 		void TerrainRenderer::init(IScene * scene)
 		{
-
 		}
 
 		glm::mat4 TerrainRenderer::getProjectionMatrix(Window * window)

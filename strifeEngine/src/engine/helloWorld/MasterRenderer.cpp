@@ -10,17 +10,30 @@ namespace engine
 			m_ProjectionMatrix = createProjectionMatrix(window);
 			m_EntityRenderer = new EntityRenderer(window, m_ProjectionMatrix);
 			m_TerrainRenderer = new TerrainRenderer(window, m_ProjectionMatrix);
+			m_WaterRenderer = new WaterRenderer(window, m_ProjectionMatrix);
 		}
 
 		void MasterRenderer::init(IScene * scene)
 		{
 			m_EntityRenderer->init(scene);
 			m_TerrainRenderer->init(scene);
+			m_WaterRenderer->init(scene);
 		}
 
 		glm::mat4 MasterRenderer::getProjectionMatrix(Window * window)
 		{
 			return m_ProjectionMatrix;
+		}
+
+		void MasterRenderer::prepare(Window * window)
+		{
+			glViewport(0, 0, window->getWidth(), window->getHeight());
+			glEnable(GL_DEPTH_TEST);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			glClearColor(RED, GREEN, BLUE, 1.0f);
+			m_EntityRenderer->prepare(window);
+			m_TerrainRenderer->prepare(window);
+			m_WaterRenderer->prepare(window);
 		}
 
 		void MasterRenderer::render(Window * window, IScene * scene)
@@ -29,6 +42,7 @@ namespace engine
 			m_ViewMatrix = Maths::createViewMatrix(scene->getCamera());
 			m_EntityRenderer->render(window, scene, m_ViewMatrix);
 			m_TerrainRenderer->render(window, scene, m_ViewMatrix);
+			m_WaterRenderer->render(window, scene, m_ViewMatrix);
 		}
 
 		void MasterRenderer::enableCulling()
@@ -40,16 +54,6 @@ namespace engine
 		void MasterRenderer::disableCulling()
 		{
 			glDisable(GL_CULL_FACE);
-		}
-
-		void MasterRenderer::prepare(Window * window)
-		{
-			glViewport(0, 0, window->getWidth(), window->getHeight());
-			glEnable(GL_DEPTH_TEST);
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			glClearColor(RED, GREEN, BLUE, 1.0f);
-			m_EntityRenderer->prepare(window);
-			m_TerrainRenderer->prepare(window);
 		}
 
 		glm::mat4 MasterRenderer::createProjectionMatrix(Window * window)
@@ -72,6 +76,7 @@ namespace engine
 		{
 			m_EntityRenderer->cleanUp();
 			m_TerrainRenderer->cleanUp();
+			m_WaterRenderer->cleanUp();
 		}
 
 		MasterRenderer::~MasterRenderer()

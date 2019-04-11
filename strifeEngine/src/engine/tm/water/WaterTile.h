@@ -14,31 +14,29 @@ namespace engine { namespace tm { namespace water {
 	class WaterTile
 	{
 	public:
-		const static int HEIGHT = -6;
-		const static int TILE_SIZE = 400;
+		const static int HEIGHT = 2;
+		const static int TILE_SIZE = 240;
 
 	private:
 		std::string DUDV_MAP = "resources/ThinMatrix/textures/water/waterDUDV.png";
 		std::string NORMAL_MAP = "resources/ThinMatrix/textures/water/normal.png";
 
 		float x, y, z;
-		RawModel * m_Quad;
-		ModelTexture * m_Texture;
 		unsigned int dudvTexture;
 		unsigned int normalMap;
+		RawModel * m_Quad;
 
 	public:
 		WaterTile(Loader * loader, float centerX, float Y, float centerZ);
-		float getX();
-		float getY();
-		float getZ();
-		unsigned int getDuDvTexture();
-		unsigned int getNormalMap();
-		RawModel * getModel();
-		ModelTexture * getTexture();
+		float getX() const;
+		float getY() const;
+		float getZ() const;
+		unsigned int getDuDvTexture() const;
+		unsigned int getNormalMap() const;
+		RawModel * getModel() const;
 
 	private:
-		void setUpVao(Loader * loader);
+		RawModel * setUpVao(Loader * loader);
 	};
 
 } } }

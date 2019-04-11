@@ -7,49 +7,52 @@ namespace engine { namespace tm { namespace water {
 	{
 		dudvTexture = loader->loadTexture(DUDV_MAP);
 		normalMap = loader->loadTexture(NORMAL_MAP);
-		setUpVao(loader);
+		m_Quad = setUpVao(loader);
 	}
 
-	float WaterTile::getX()
+	RawModel * WaterTile::setUpVao(Loader * loader)
+	{
+		// Just x and z vertex positions here, y is set to 0 in v.shader
+		const std::vector<float> vertices = {
+			-1, -1,
+			-1,  1,
+			 1, -1,
+			 1, -1,
+			-1,  1,
+			 1,  1
+		};
+		RawModel * quad = loader->loadToVAO((float *)& vertices[0], vertices.size(), 2);
+		return quad;
+	}
+
+	float WaterTile::getX() const
 	{
 		return x;
 	}
 
-	float WaterTile::getY()
+	float WaterTile::getY() const
 	{
 		return y;
 	}
 
-	float WaterTile::getZ()
+	float WaterTile::getZ() const
 	{
 		return z;
 	}
 
-	RawModel * WaterTile::getModel()
+	RawModel * WaterTile::getModel() const
 	{
 		return m_Quad;
 	}
 
-	ModelTexture * WaterTile::getTexture()
-	{
-		return m_Texture;
-	}
-
-	unsigned int WaterTile::getDuDvTexture()
+	unsigned int WaterTile::getDuDvTexture() const
 	{
 		return dudvTexture;
 	}
 
-	unsigned int WaterTile::getNormalMap()
+	unsigned int WaterTile::getNormalMap() const
 	{
 		return normalMap;
-	}
-
-	void WaterTile::setUpVao(Loader * loader)
-	{
-		// Just x and z vertex positions here, y is set to 0 in v.shader
-		const std::vector<float> vertices = { -1, -1, -1, 1, 1, -1, 1, -1, -1, 1, 1, 1 };
-		m_Quad = loader->loadToVAO((float *)& vertices[0], vertices.size(), 2);
 	}
 
 } } }

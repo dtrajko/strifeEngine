@@ -31,6 +31,9 @@ namespace engine
 			RawModel * Loader::loadToVAO(float * positions, unsigned int positionsCount, unsigned int dimensions)
 			{
 				unsigned int vaoID = createVAO();
+
+				std::cout << "positionsCount: " << positionsCount << " dimensions: " << dimensions << " vaoID: " << vaoID << std::endl;
+
 				storeDataInAttributeList(0, dimensions, positions, positionsCount);
 				unbindVAO();
 				return new RawModel(vaoID, positionsCount / dimensions);

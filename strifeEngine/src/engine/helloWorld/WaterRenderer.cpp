@@ -14,13 +14,13 @@ namespace engine
 			m_Shader->stop();
 		}
 
+		void WaterRenderer::init(IScene * scene)
+		{
+		}
+
 		glm::mat4 WaterRenderer::getProjectionMatrix(Window * window)
 		{
 			return m_ProjectionMatrix;
-		}
-
-		void WaterRenderer::init(IScene * scene)
-		{
 		}
 
 		void WaterRenderer::prepare(Window * window)
@@ -50,15 +50,16 @@ namespace engine
 			glEnableVertexAttribArray(2);
 
 			m_TransformationMatrix = Maths::createTransformationMatrix(
-				glm::vec3(waterTile->getX(), 0, waterTile->getZ()), 0, 0, 0, 1);
+				glm::vec3(waterTile->getX(), waterTile->getY(), waterTile->getZ()), 0, 0, 0, WaterTile::TILE_SIZE);
 			m_Shader->loadMatrix("transformationMatrix", m_TransformationMatrix);
 
-			ModelTexture * texture = waterTile->getTexture();
-			m_Shader->loadShineVariables(texture->getShineDumper(), texture->getReflectivity());
 			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, texture->getID());
+			glBindTexture(GL_TEXTURE_2D, waterTile->getDuDvTexture());
+			glActiveTexture(GL_TEXTURE1);
+			glBindTexture(GL_TEXTURE_2D, waterTile->getNormalMap());
 
-			glDrawElements(GL_TRIANGLES, rawModel->getVertexCount(), GL_UNSIGNED_INT, 0);
+			glDrawArrays(GL_TRIANGLES, 0, rawModel->getVertexCount());
+			// glDrawElements(GL_TRIANGLES, rawModel->getVertexCount(), GL_UNSIGNED_INT, 0);
 
 			glDisableVertexAttribArray(0);
 			glDisableVertexAttribArray(1);
