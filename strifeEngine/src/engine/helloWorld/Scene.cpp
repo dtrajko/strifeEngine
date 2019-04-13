@@ -95,9 +95,11 @@ namespace engine
 
 		void Scene::entityCircularMotion()
 		{
-			glm::vec3 initVec = glm::vec3(glm::vec3(0.0f, 0.0f, -40.0f));
+			if (m_Entities.size() == 0) return;
+
 			Entity * entity = m_Entities.at(0);
 			entity->increaseRotation(0, 0.1f, 0);
+			glm::vec3 initVec = glm::vec3(glm::vec3(0.0f, 0.0f, -40.0f));
 			glm::vec3 posVec = glm::vec3(entity->getPosition());
 			posVec.x = initVec.x + glm::sin(m_Counter) * 5;
 			posVec.z = initVec.z + glm::cos(m_Counter) * 5;
