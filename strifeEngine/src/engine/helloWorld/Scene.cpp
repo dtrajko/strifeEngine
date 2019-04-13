@@ -18,6 +18,12 @@ namespace engine
 			m_MasterRenderer = new MasterRenderer(window);
 			m_Loader = new Loader();
 
+			ModelTexture * terrainTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/terrain_1/2.png"));
+			// terrainTexture.setShineDumper(20);
+			// terrainTexture.setReflectivity(1);
+			ITerrain * terrain = new Terrain(-0.5f, -0.5f, m_Loader, terrainTexture, "resources/ThinMatrix/textures/heightmap.png");
+			processTerrain(terrain);
+
 			ModelTexture * modelTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/normalMaps/barrel.png"));
 			modelTexture->setShineDumper(10);
 			modelTexture->setReflectivity(1);
@@ -65,12 +71,6 @@ namespace engine
 			texturedModel = new TexturedModel(rawModel, modelTexture);
 			Entity * entityQuad = new Entity(texturedModel, glm::vec3(-80, 60, -80), 90, 0, 0, 40);
 			processEntity(entityQuad);
-
-			ModelTexture * terrainTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/terrain_1/2.png"));
-			// terrainTexture.setShineDumper(20);
-			// terrainTexture.setReflectivity(1);
-			ITerrain * terrain = new Terrain(-0.5f, -0.5f, m_Loader, terrainTexture, "resources/ThinMatrix/textures/heightmap.png");
-			processTerrain(terrain);
 
 			WaterTile * waterTile = new WaterTile(m_Loader, 0, WaterTile::HEIGHT, 0);
 			processWaterTile(waterTile);

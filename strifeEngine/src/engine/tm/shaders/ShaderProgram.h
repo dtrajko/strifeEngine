@@ -32,7 +32,6 @@ namespace engine
 				std::stringstream parseShader(const std::string & filepath);
 				unsigned int loadShader(const std::string & file, unsigned int type);
 				void bindAttributes();
-				void getAllUniformLocations();
 				void bindAttribute(int attribute, std::string variableName);
 				int getUniformLocation(const std::string& name);
 				void loadFloat(const std::string & locationName, float value);

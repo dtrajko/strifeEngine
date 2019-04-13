@@ -16,7 +16,6 @@ namespace engine
 				bindAttributes();
 				glLinkProgram(programID);
 				glValidateProgram(programID);
-				getAllUniformLocations();
 				std::cout << "Program [ID=" << programID << "]" << std::endl;
 			}
 
@@ -68,11 +67,6 @@ namespace engine
 				// std::cout << shaderSource << std::endl;
 
 				return shaderID;
-			}
-
-			void ShaderProgram::getAllUniformLocations()
-			{
-
 			}
 
 			int ShaderProgram::getUniformLocation(const std::string& uniformName)

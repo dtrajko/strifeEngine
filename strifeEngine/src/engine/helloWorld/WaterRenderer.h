@@ -24,7 +24,10 @@ namespace engine
 		private:
 			const std::string m_VertexFile = "resources/shaders/waterVertex.glsl";
 			const std::string m_FragmentFile = "resources/shaders/waterFragment.glsl";
+			const float WAVE_SPEED = 0.01f;
+			float moveFactor = 0;
 			WaterShader * m_Shader;
+			// WaterFrameBuffers * m_FBOs;
 			glm::mat4 m_ProjectionMatrix;
 			glm::mat4 m_ViewMatrix;
 			glm::mat4 m_TransformationMatrix;
@@ -34,8 +37,10 @@ namespace engine
 			glm::mat4 getProjectionMatrix(Window * window);
 			void init(IScene * scene);
 			void prepare(Window * window);
+			void prepare(Window * window, IScene * scene, glm::mat4 & viewMatrix, WaterTile * waterTile, RawModel * rawModel);
 			void render(Window * window, IScene * scene, glm::mat4 & viewMatrix);
-			void renderWaterTile(WaterTile * waterTile, IScene * scene);
+			void renderWaterTile(IScene * scene, WaterTile * waterTile, RawModel * rawModel);
+			void unbind();
 			void cleanUp();
 			virtual ~WaterRenderer();
 		};

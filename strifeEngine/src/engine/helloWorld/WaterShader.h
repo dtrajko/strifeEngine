@@ -19,7 +19,8 @@ namespace engine
 		public:
 			WaterShader(const std::string& vertexFile, const std::string& fragmentFile);
 			void bindAttributes();
-			void getAllUniformLocations();
+			void connectTextureUnits();
+			void loadMoveFactor(float moveFactor);
 			void loadLight(Light * light);
 			void loadShineVariables(float shineDamper, float reflectivity);
 			virtual ~WaterShader();

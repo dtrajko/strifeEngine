@@ -15,11 +15,6 @@ namespace engine
 			bindAttribute(2, "normal");
 		}
 
-		void EntityShader::getAllUniformLocations()
-		{
-
-		}
-
 		void EntityShader::loadLight(Light * light)
 		{
 			loadVec3f("lightPosition", light->getPosition());

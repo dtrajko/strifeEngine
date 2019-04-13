@@ -12,13 +12,20 @@ namespace engine
 		void WaterShader::bindAttributes()
 		{
 			bindAttribute(0, "position");
-			bindAttribute(1, "textureCoords");
-			bindAttribute(2, "normal");
 		}
 
-		void WaterShader::getAllUniformLocations()
+		void WaterShader::connectTextureUnits()
 		{
+			loadInt("reflectionTexture", 0);
+			loadInt("refractionTexture", 1);
+			loadInt("dudvMap",           2);
+			loadInt("normalMap",         3);
+			loadInt("depthMap",          4);
+		}
 
+		void WaterShader::loadMoveFactor(float moveFactor)
+		{
+			loadFloat("moveFactor", moveFactor);
 		}
 
 		void WaterShader::loadLight(Light * light)

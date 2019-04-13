@@ -16,11 +16,6 @@ namespace engine
 			bindAttribute(2, "normal");
 		}
 
-		void TerrainShader::getAllUniformLocations()
-		{
-
-		}
-
 		void TerrainShader::loadLight(Light * light)
 		{
 			loadVec3f("lightPosition", light->getPosition());

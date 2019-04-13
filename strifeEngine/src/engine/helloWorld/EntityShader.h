@@ -18,7 +18,6 @@ namespace engine
 		public:
 			EntityShader(const std::string& vertexFile, const std::string& fragmentFile);
 			void bindAttributes();
-			void getAllUniformLocations();
 			void loadLight(Light * light);
 			void loadShineVariables(float shineDamper, float reflectivity);
 			virtual ~EntityShader();
