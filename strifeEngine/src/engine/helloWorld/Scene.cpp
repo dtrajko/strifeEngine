@@ -51,7 +51,7 @@ namespace engine
 			modelTexture->setTransparency(1);
 			rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/pine.obj", m_Loader);
 			texturedModel = new TexturedModel(rawModel, modelTexture);
-			Entity * entityPine = new Entity(texturedModel, glm::vec3(40.0f, 0.0f, -180.0f), 0, 0, 0, 4);
+			Entity * entityPine = new Entity(texturedModel, glm::vec3(155.0f, 10.0f, -140.0f), 0, 0, 0, 4);
 			processEntity(entityPine);
 
 			CubeMeshSimple meshCube = CubeMeshSimple();

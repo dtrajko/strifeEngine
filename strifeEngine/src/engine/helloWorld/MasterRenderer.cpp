@@ -38,11 +38,43 @@ namespace engine
 
 		void MasterRenderer::render(Window * window, IScene * scene)
 		{
+			glm::vec4 clipPlane;
+			ICamera * camera = scene->getCamera();
+
+			// render reflection texture
+			glEnable(GL_CLIP_DISTANCE0);
+			m_WaterRenderer->getFBOs()->bindReflectionFrameBuffer();
+			float distance = 2 * (camera->getPosition().y - WaterTile::HEIGHT);
+			camera->setPosition(
+				camera->getPosition().x,
+				camera->getPosition().y - distance,
+				camera->getPosition().z);
+			camera->invertPitch();
+			camera->invertRoll();
+			clipPlane = glm::vec4(0, 1, 0, -WaterTile::HEIGHT);
+
 			prepare(window);
-			m_ViewMatrix = Maths::createViewMatrix(scene->getCamera());
-			m_EntityRenderer->render(window, scene, m_ViewMatrix);
-			m_TerrainRenderer->render(window, scene, m_ViewMatrix);
+			m_ViewMatrix = Maths::createViewMatrix(camera);
+			m_EntityRenderer->render(window, scene, m_ViewMatrix, clipPlane);
+			m_TerrainRenderer->render(window, scene, m_ViewMatrix, clipPlane);
+			camera->setPosition(
+				camera->getPosition().x,
+				camera->getPosition().y + distance,
+				camera->getPosition().z);
+			camera->invertPitch();
+			camera->invertRoll();
+
+			// render to screen
+			clipPlane = glm::vec4(0, 0, 0, 0);
+			glDisable(GL_CLIP_DISTANCE0);
+			m_WaterRenderer->getFBOs()->unbindCurrentFrameBuffer(window);
+			prepare(window);
+			m_ViewMatrix = Maths::createViewMatrix(camera);
+			m_EntityRenderer->render(window, scene, m_ViewMatrix, clipPlane);
+			m_TerrainRenderer->render(window, scene, m_ViewMatrix, clipPlane);
 			m_WaterRenderer->render(window, scene, m_ViewMatrix);
+
+			glDisable(GL_CLIP_DISTANCE0);
 		}
 
 		void MasterRenderer::enableCulling()

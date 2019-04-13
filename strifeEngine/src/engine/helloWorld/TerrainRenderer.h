@@ -35,7 +35,7 @@ namespace engine
 			glm::mat4 getProjectionMatrix(Window * window);
 			void init(IScene * scene);
 			void prepare(Window * window);
-			void render(Window * window, IScene * scene, glm::mat4 & viewMatrix);
+			void render(Window * window, IScene * scene, glm::mat4 & viewMatrix, glm::vec4 clipPlane);
 			void renderTerrain(ITerrain * terrain, IScene * scene);
 			void cleanUp();
 			virtual ~TerrainRenderer();

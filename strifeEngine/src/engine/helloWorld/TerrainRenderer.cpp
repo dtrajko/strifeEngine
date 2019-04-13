@@ -27,9 +27,10 @@ namespace engine
 		{
 		}
 
-		void TerrainRenderer::render(Window * window, IScene * scene, glm::mat4 & viewMatrix)
+		void TerrainRenderer::render(Window * window, IScene * scene, glm::mat4 & viewMatrix, glm::vec4 clipPlane)
 		{
 			m_Shader->start();
+			m_Shader->loadClipPlane(clipPlane);
 			m_Shader->loadLight(scene->getLight());
 			m_Shader->loadMatrix("viewMatrix", viewMatrix);
 

@@ -27,9 +27,9 @@ namespace engine
 			private:
 				const float cursorSensitivity = 0.2f;
 				glm::vec3 m_Position = glm::vec3(0.0f, 0.0f, 0.0f);
-				float pitch = 0;
-				float yaw = 0;
-				float roll = 0;
+				float m_Pitch = 0;
+				float m_Yaw = 0;
+				float m_Roll = 0;
 				glm::mat4 projectionMatrix;
 				glm::mat4 viewMatrix;
 				glm::vec3 cameraInc;
@@ -48,6 +48,8 @@ namespace engine
 				float getPitch();
 				float getYaw();
 				float getRoll();
+				void invertPitch();
+				void invertRoll();
 				~Camera();
 			};
 		}

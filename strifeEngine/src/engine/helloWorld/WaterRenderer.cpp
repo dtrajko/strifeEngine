@@ -7,6 +7,7 @@ namespace engine
 		WaterRenderer::WaterRenderer(Window * window, glm::mat4 projectionMatrix)
 		{
 			m_Shader = new WaterShader(m_VertexFile, m_FragmentFile);
+			m_FBOs = new WaterFrameBuffers(window);
 			m_Shader->start();
 			m_Shader->bindAttributes();
 			m_Shader->connectTextureUnits();
@@ -41,8 +42,10 @@ namespace engine
 			glEnableVertexAttribArray(0);
 
 			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, waterTile->getDuDvTexture());
+			glBindTexture(GL_TEXTURE_2D, m_FBOs->getReflectionTexture());
 			glActiveTexture(GL_TEXTURE1);
+			glBindTexture(GL_TEXTURE_2D, waterTile->getDuDvTexture());
+			glActiveTexture(GL_TEXTURE2);
 			glBindTexture(GL_TEXTURE_2D, waterTile->getNormalMap());
 
 			glEnable(GL_BLEND);
@@ -61,12 +64,9 @@ namespace engine
 			unbind();
 		}
 
-		void WaterRenderer::unbind()
+		void WaterRenderer::render(Window * window, IScene * scene, glm::mat4 & viewMatrix, glm::vec4 clipPlane)
 		{
-			glDisable(GL_BLEND);
-			glDisableVertexAttribArray(0);
-			glBindVertexArray(0);
-			m_Shader->stop();
+			render(window, scene, viewMatrix);
 		}
 
 		void WaterRenderer::renderWaterTile(IScene * scene, WaterTile * waterTile, RawModel * rawModel)
@@ -76,6 +76,19 @@ namespace engine
 			m_Shader->loadMatrix("transformationMatrix", m_TransformationMatrix);
 
 			glDrawArrays(GL_TRIANGLES, 0, rawModel->getVertexCount());
+		}
+
+		void WaterRenderer::unbind()
+		{
+			glDisable(GL_BLEND);
+			glDisableVertexAttribArray(0);
+			glBindVertexArray(0);
+			m_Shader->stop();
+		}
+
+		WaterFrameBuffers * WaterRenderer::getFBOs() const
+		{
+			return m_FBOs;
 		}
 
 		void WaterRenderer::cleanUp()

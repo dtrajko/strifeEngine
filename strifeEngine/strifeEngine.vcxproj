@@ -27,6 +27,7 @@
     <ClCompile Include="src\engine\helloWorld\EntityShader.cpp" />
     <ClCompile Include="src\engine\helloWorld\TerrainRenderer.cpp" />
     <ClCompile Include="src\engine\helloWorld\TerrainShader.cpp" />
+    <ClCompile Include="src\engine\helloWorld\WaterFrameBuffers.cpp" />
     <ClCompile Include="src\engine\helloWorld\WaterRenderer.cpp" />
     <ClCompile Include="src\engine\helloWorld\WaterShader.cpp" />
     <ClCompile Include="src\engine\tm\entities\Camera.cpp" />
@@ -67,6 +68,7 @@
     <ClInclude Include="src\engine\helloWorld\EntityShader.h" />
     <ClInclude Include="src\engine\helloWorld\TerrainRenderer.h" />
     <ClInclude Include="src\engine\helloWorld\TerrainShader.h" />
+    <ClInclude Include="src\engine\helloWorld\WaterFrameBuffers.h" />
     <ClInclude Include="src\engine\helloWorld\WaterRenderer.h" />
     <ClInclude Include="src\engine\helloWorld\WaterShader.h" />
     <ClInclude Include="src\engine\interfaces\IRenderer.h" />

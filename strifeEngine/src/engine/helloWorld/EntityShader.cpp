@@ -6,6 +6,7 @@ namespace engine
 	{
 		EntityShader::EntityShader(const std::string& vertexFile, const std::string& fragmentFile) : ShaderProgram(vertexFile, fragmentFile)
 		{
+
 		}
 
 		void EntityShader::bindAttributes()
@@ -13,6 +14,11 @@ namespace engine
 			bindAttribute(0, "position");
 			bindAttribute(1, "textureCoords");
 			bindAttribute(2, "normal");
+		}
+
+		void EntityShader::loadClipPlane(glm::vec4 clipPlane)
+		{
+			loadVec4f("clipPlane", clipPlane);
 		}
 
 		void EntityShader::loadLight(Light * light)

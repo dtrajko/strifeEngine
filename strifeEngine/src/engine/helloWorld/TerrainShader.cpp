@@ -16,6 +16,11 @@ namespace engine
 			bindAttribute(2, "normal");
 		}
 
+		void TerrainShader::loadClipPlane(glm::vec4 clipPlane)
+		{
+			loadVec4f("clipPlane", clipPlane);
+		}
+
 		void TerrainShader::loadLight(Light * light)
 		{
 			loadVec3f("lightPosition", light->getPosition());

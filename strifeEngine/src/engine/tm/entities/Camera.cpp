@@ -38,8 +38,8 @@ namespace engine
 				}
 
 				glm::vec2 rotVec = input->getDisplayVector();
-				pitch += rotVec.x * cursorSensitivity;
-				yaw += rotVec.y * cursorSensitivity;
+				m_Pitch += rotVec.x * cursorSensitivity;
+				m_Yaw += rotVec.y * cursorSensitivity;
 
 				glm::vec3 newPos = calculateNewPosition(cameraInc.x, cameraInc.y, cameraInc.z);
 				m_Position.x = newPos.x;
@@ -52,12 +52,12 @@ namespace engine
 			glm::vec3 Camera::calculateNewPosition(float offsetX, float offsetY, float offsetZ) {
 				glm::vec3 newPos = glm::vec3(m_Position.x, m_Position.y, m_Position.z);
 				if (offsetZ != 0) {
-					newPos.x += (float) glm::sin(glm::radians(yaw)) * -1.0f * offsetZ;
-					newPos.z += (float) glm::cos(glm::radians(yaw)) * offsetZ;
+					newPos.x += (float) glm::sin(glm::radians(m_Yaw)) * -1.0f * offsetZ;
+					newPos.z += (float) glm::cos(glm::radians(m_Yaw)) * offsetZ;
 				}
 				if (offsetX != 0) {
-					newPos.x += (float) glm::sin(glm::radians(yaw - 90)) * -1.0f * offsetX;
-					newPos.z += (float) glm::cos(glm::radians(yaw - 90)) * offsetX;
+					newPos.x += (float) glm::sin(glm::radians(m_Yaw - 90)) * -1.0f * offsetX;
+					newPos.z += (float) glm::cos(glm::radians(m_Yaw - 90)) * offsetX;
 				}
 				newPos.y += offsetY;
 				return newPos;
@@ -82,14 +82,14 @@ namespace engine
 
 			void Camera::setRotation(float rx, float ry, float rz)
 			{
-				pitch = rx;
-				yaw   = ry;
-				roll  = rz;
+				m_Pitch = rx;
+				m_Yaw   = ry;
+				m_Roll  = rz;
 			}
 
 			glm::vec3 Camera::getRotation()
 			{
-				return glm::vec3(pitch, yaw, roll);
+				return glm::vec3(m_Pitch, m_Yaw, m_Roll);
 			}
 
 			glm::mat4 Camera::updateViewMatrix()
@@ -99,17 +99,27 @@ namespace engine
 
 			float Camera::getPitch()
 			{
-				return pitch;
+				return m_Pitch;
 			}
 
 			float Camera::getYaw()
 			{
-				return yaw;
+				return m_Yaw;
 			}
 
 			float Camera::getRoll()
 			{
-				return roll;
+				return m_Roll;
+			}
+
+			void Camera::invertPitch()
+			{
+				m_Pitch = -m_Pitch;
+			}
+
+			void Camera::invertRoll()
+			{
+				m_Roll = -m_Roll;
 			}
 
 			Camera::~Camera()

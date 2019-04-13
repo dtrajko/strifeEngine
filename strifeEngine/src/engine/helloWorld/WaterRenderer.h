@@ -6,6 +6,7 @@
 #include "../../engine/interfaces/IScene.h"
 #include "../../engine/interfaces/IRenderer.h"
 #include "../../engine/helloWorld/WaterShader.h"
+#include "../../engine/helloWorld/WaterFrameBuffers.h"
 #include "../../engine/tm/water/WaterTile.h"
 #include "../../engine/tm/toolbox/Maths.h"
 #include "../../engine/utils/Log.h"
@@ -27,7 +28,7 @@ namespace engine
 			const float WAVE_SPEED = 0.01f;
 			float moveFactor = 0;
 			WaterShader * m_Shader;
-			// WaterFrameBuffers * m_FBOs;
+			WaterFrameBuffers * m_FBOs;
 			glm::mat4 m_ProjectionMatrix;
 			glm::mat4 m_ViewMatrix;
 			glm::mat4 m_TransformationMatrix;
@@ -39,8 +40,10 @@ namespace engine
 			void prepare(Window * window);
 			void prepare(Window * window, IScene * scene, glm::mat4 & viewMatrix, WaterTile * waterTile, RawModel * rawModel);
 			void render(Window * window, IScene * scene, glm::mat4 & viewMatrix);
+			void render(Window * window, IScene * scene, glm::mat4 & viewMatrix, glm::vec4 clipPlane);
 			void renderWaterTile(IScene * scene, WaterTile * waterTile, RawModel * rawModel);
 			void unbind();
+			WaterFrameBuffers * getFBOs() const;
 			void cleanUp();
 			virtual ~WaterRenderer();
 		};

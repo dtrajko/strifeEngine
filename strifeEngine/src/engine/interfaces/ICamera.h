@@ -24,6 +24,8 @@ namespace engine
 			virtual float getPitch() = 0;
 			virtual float getYaw() = 0;
 			virtual float getRoll() = 0;
+			virtual void invertPitch() = 0;
+			virtual void invertRoll() = 0;
 		};
 	}
 }

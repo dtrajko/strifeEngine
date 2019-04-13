@@ -18,6 +18,7 @@ namespace engine
 		public:
 			EntityShader(const std::string& vertexFile, const std::string& fragmentFile);
 			void bindAttributes();
+			void loadClipPlane(glm::vec4 clipPlane);
 			void loadLight(Light * light);
 			void loadShineVariables(float shineDamper, float reflectivity);
 			virtual ~EntityShader();

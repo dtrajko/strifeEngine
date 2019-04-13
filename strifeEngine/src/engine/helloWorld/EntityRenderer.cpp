@@ -24,9 +24,10 @@ namespace engine
 			return m_ProjectionMatrix;
 		}
 
-		void EntityRenderer::render(Window * window, IScene * scene, glm::mat4 & viewMatrix)
+		void EntityRenderer::render(Window * window, IScene * scene, glm::mat4 & viewMatrix, glm::vec4 clipPlane)
 		{
 			m_Shader->start();
+			m_Shader->loadClipPlane(clipPlane);
 			m_Shader->loadLight(scene->getLight());
 			m_Shader->loadMatrix("viewMatrix", viewMatrix);
 			std::vector<Entity *> entities = scene->getEntities();
