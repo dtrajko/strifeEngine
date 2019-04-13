@@ -8,7 +8,10 @@ namespace engine
 		{
 			m_ReflectionWidth = window->getWidth();
 			m_ReflectionHeight = window->getHeight();
+			m_RefractionWidth = window->getWidth();
+			m_RefractionHeight = window->getHeight();
 			initializeFrameBufferReflection(window);
+			initializeFrameBufferRefraction(window);
 		}
 
 		WaterFrameBuffers::~WaterFrameBuffers()
@@ -21,6 +24,14 @@ namespace engine
 			m_FrameBufferReflection = createFrameBuffer();
 			m_TextureReflection = createTextureAttachment(m_ReflectionWidth, m_ReflectionHeight);
 			m_DepthBufferReflection = createDepthBufferAttachment(m_ReflectionWidth, m_ReflectionHeight);
+			unbindCurrentFrameBuffer(window);
+		}
+
+		void WaterFrameBuffers::initializeFrameBufferRefraction(Window * window)
+		{
+			m_FrameBufferRefraction = createFrameBuffer();
+			m_TextureRefraction = createTextureAttachment(m_RefractionWidth, m_RefractionHeight);
+			m_DepthTextureRefraction = createDepthTextureAttachment(m_RefractionWidth, m_RefractionHeight);
 			unbindCurrentFrameBuffer(window);
 		}
 
@@ -48,7 +59,7 @@ namespace engine
 			return textureID;
 		}
 
-		unsigned int WaterFrameBuffers::createDepthBufferAttachment(unsigned int width, unsigned int height)
+		unsigned int WaterFrameBuffers::createDepthTextureAttachment(unsigned int width, unsigned int height)
 		{
 			unsigned int textureID;
 			glGenTextures(1, &textureID);
@@ -58,6 +69,16 @@ namespace engine
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, textureID, 0);
 			return textureID;
+		}
+
+		unsigned int WaterFrameBuffers::createDepthBufferAttachment(unsigned int width, unsigned int height)
+		{
+			unsigned int depthBufferID;
+			glGenRenderbuffers(1, &depthBufferID);
+			glBindRenderbuffer(GL_RENDERBUFFER, depthBufferID);
+			glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, width, height);
+			glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthBufferID);
+			return depthBufferID;
 		}
 
 		/*
@@ -72,9 +93,17 @@ namespace engine
 		/*
          * call before rendering to this FBO
          */
-		void WaterFrameBuffers::bindReflectionFrameBuffer()
+		void WaterFrameBuffers::bindFrameBufferReflection()
 		{
 			bindFrameBuffer(m_FrameBufferReflection, m_ReflectionWidth, m_ReflectionHeight);
+		}
+
+		/*
+         * call before rendering to this FBO
+         */
+		void WaterFrameBuffers::bindFrameBufferRefraction()
+		{
+			bindFrameBuffer(m_FrameBufferRefraction, m_RefractionWidth, m_RefractionHeight);
 		}
 
 		void WaterFrameBuffers::bindFrameBuffer(unsigned int frameBuffer, unsigned int width, unsigned int height)
@@ -84,9 +113,19 @@ namespace engine
 			glViewport(0, 0, width, height);
 		}
 
-		unsigned int WaterFrameBuffers::getReflectionTexture() const
+		unsigned int WaterFrameBuffers::getTextureReflection() const
 		{
 			return m_TextureReflection;
+		}
+
+		unsigned int WaterFrameBuffers::getTextureRefraction() const
+		{
+			return m_TextureRefraction;
+		}
+
+		unsigned int WaterFrameBuffers::getDepthTextureRefraction() const
+		{
+			return m_DepthTextureRefraction;
 		}
 
 		/*
@@ -97,6 +136,9 @@ namespace engine
 			glDeleteFramebuffers(1, &m_FrameBufferReflection);
 			glDeleteTextures(1, &m_TextureReflection);
 			glDeleteRenderbuffers(1, &m_DepthBufferReflection);
+			glDeleteFramebuffers(1, &m_FrameBufferRefraction);
+			glDeleteTextures(1, &m_TextureRefraction);
+			glDeleteTextures(1, &m_DepthTextureRefraction);
 		}
 	}
 }

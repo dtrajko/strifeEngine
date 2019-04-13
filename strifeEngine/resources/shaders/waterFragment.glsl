@@ -16,9 +16,9 @@ uniform sampler2D depthMap;
 uniform vec3 lightColor;
 uniform float moveFactor;
 
-const float waveStrength = 0.02;
-const float shineDamper = 20.0;
-const float reflectivity = 0.5;
+const float waveStrength = 0.01;
+const float shineDamper = 36.0;
+const float reflectivity = 1.0;
 
 void main(void) {
 
@@ -34,7 +34,7 @@ void main(void) {
 	depth = gl_FragCoord.z;
 	float waterDistance = 2.0 * near * far / (far + near - (2.0 * depth - 1.0) * (far - near));
 	float waterDepth = floorDistance - waterDistance;
-	waterDepth = clamp(waterDepth / 5.0, 0.3, 1.0);
+	waterDepth = clamp(waterDepth / 5.0, 0.1, 1.0);
 	vec2 distortedTexCoords = texture(dudvMap, vec2(textureCoords.x + moveFactor, textureCoords.y)).rg * 0.1;
 	distortedTexCoords = textureCoords + vec2(distortedTexCoords.x, distortedTexCoords.y + moveFactor);
 	vec2 totalDistortion = (texture(dudvMap, distortedTexCoords).rg * 2.0 - 1.0) * waveStrength * waterDepth;
@@ -57,8 +57,8 @@ void main(void) {
 
 	vec3 viewVector = normalize(toCameraVector);
 	float refractiveFactor = dot(viewVector, vec3(0.0, 1.0, 0.0));
-	refractiveFactor = pow(refractiveFactor, 0.5);
-	refractiveFactor = clamp(refractiveFactor, 0.0, 1.0);
+	refractiveFactor = pow(refractiveFactor, 0.1);
+	refractiveFactor = clamp(refractiveFactor, 0.5, 1.0);
 
 	vec3 reflectedLight = reflect(normalize(fromLightVector), normal);
 	float specular = max(dot(reflectedLight, viewVector), 0.0);

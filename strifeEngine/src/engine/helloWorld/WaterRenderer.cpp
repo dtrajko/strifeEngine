@@ -34,7 +34,7 @@ namespace engine
 			m_Shader->start();
 			m_Shader->loadMatrix("viewMatrix", viewMatrix);
 			moveFactor += WAVE_SPEED * 0.05f;
-			moveFactor = std::fmodf(moveFactor, 1.);
+			moveFactor = std::fmodf(moveFactor, 1.f);
 			m_Shader->loadMoveFactor(moveFactor);
 			m_Shader->loadLight(scene->getLight());
 
@@ -42,11 +42,15 @@ namespace engine
 			glEnableVertexAttribArray(0);
 
 			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, m_FBOs->getReflectionTexture());
+			glBindTexture(GL_TEXTURE_2D, m_FBOs->getTextureReflection());
 			glActiveTexture(GL_TEXTURE1);
-			glBindTexture(GL_TEXTURE_2D, waterTile->getDuDvTexture());
+			glBindTexture(GL_TEXTURE_2D, m_FBOs->getTextureRefraction());
 			glActiveTexture(GL_TEXTURE2);
+			glBindTexture(GL_TEXTURE_2D, waterTile->getDuDvTexture());
+			glActiveTexture(GL_TEXTURE3);
 			glBindTexture(GL_TEXTURE_2D, waterTile->getNormalMap());
+			glActiveTexture(GL_TEXTURE4);
+			glBindTexture(GL_TEXTURE_2D, m_FBOs->getDepthTextureRefraction());
 
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

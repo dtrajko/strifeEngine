@@ -43,7 +43,7 @@ namespace engine
 
 			// render reflection texture
 			glEnable(GL_CLIP_DISTANCE0);
-			m_WaterRenderer->getFBOs()->bindReflectionFrameBuffer();
+			m_WaterRenderer->getFBOs()->bindFrameBufferReflection();
 			float distance = 2 * (camera->getPosition().y - WaterTile::HEIGHT);
 			camera->setPosition(
 				camera->getPosition().x,
@@ -63,6 +63,14 @@ namespace engine
 				camera->getPosition().z);
 			camera->invertPitch();
 			camera->invertRoll();
+
+			// render refraction texture
+			m_WaterRenderer->getFBOs()->bindFrameBufferRefraction();
+			clipPlane = glm::vec4(0, -1, 0, WaterTile::HEIGHT);
+			prepare(window);
+			m_ViewMatrix = Maths::createViewMatrix(camera);
+			m_EntityRenderer->render(window, scene, m_ViewMatrix, clipPlane);
+			m_TerrainRenderer->render(window, scene, m_ViewMatrix, clipPlane);
 
 			// render to screen
 			clipPlane = glm::vec4(0, 0, 0, 0);
