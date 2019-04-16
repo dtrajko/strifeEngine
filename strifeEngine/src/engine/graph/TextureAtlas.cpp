@@ -6,6 +6,8 @@ namespace engine { namespace graph {
 		{
 			m_Rows = 1;
 			m_Columns = 1;
+
+			std::cout << "TextureAtlas constuctor: m_ID: " << m_ID << " Width: " << m_Width << " Height: " << m_Height << std::endl;
 		}
 
 		TextureAtlas::TextureAtlas(std::string fileName, unsigned int columns, unsigned int rows) : TextureAtlas(fileName)

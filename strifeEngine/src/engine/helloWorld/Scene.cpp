@@ -74,6 +74,10 @@ namespace engine
 
 			RawModel * meshCobble = OBJLoader::loadOBJModel("resources/Minecraft/models/cube.obj", m_Loader);
 			TextureAtlas * textureCobble = new TextureAtlas("resources/Minecraft/textures/terrain_texture_cobble.png", 2, 1);
+			Material * materialCobble = new Material(textureCobble);
+			// materialCobble->setReflectance(1.0f);
+			// materialCobble->setTransparency(1.0f);
+			// meshCobble->setMaterial(materialCobble);
 
 			WaterTile * waterTile = new WaterTile(m_Loader, 0, WaterTile::HEIGHT, 0);
 			processWaterTile(waterTile);
