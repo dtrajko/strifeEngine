@@ -6,21 +6,21 @@ namespace engine
 	{
 		Texture::Texture()
 		{
-			id = -1;
+			m_ID = -1;
 		}
 
-		Texture::Texture(int _id)
+		Texture::Texture(int id)
 		{
-			id = _id;
+			m_ID = id;
 			if (!GetTextureParams())
 			{
-				std::cout << "Texture: error loading image with ID [" << id << "]" << std::endl;
+				std::cout << "Texture: error loading image with ID [" << m_ID << "]" << std::endl;
 			}
 		}
 
 		Texture::Texture(std::string path)
 		{
-			id = SOIL_load_OGL_texture(path.c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y & SOIL_FLAG_MULTIPLY_ALPHA);
+			m_ID = SOIL_load_OGL_texture(path.c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y & SOIL_FLAG_MULTIPLY_ALPHA);
 			if (!GetTextureParams())
 			{
 				std::cout << "Texture: error loading image [" << path << "]" << std::endl;
@@ -29,12 +29,12 @@ namespace engine
 
 		bool Texture::GetTextureParams()
 		{
-			if (id > 0)
+			if (m_ID > 0)
 			{
 				int mipLevel = 0;
-				glBindTexture(GL_TEXTURE_2D, id);
-				glGetTexLevelParameteriv(GL_TEXTURE_2D, mipLevel, GL_TEXTURE_WIDTH, &width);
-				glGetTexLevelParameteriv(GL_TEXTURE_2D, mipLevel, GL_TEXTURE_HEIGHT, &height);
+				glBindTexture(GL_TEXTURE_2D, m_ID);
+				glGetTexLevelParameteriv(GL_TEXTURE_2D, mipLevel, GL_TEXTURE_WIDTH, &m_Width);
+				glGetTexLevelParameteriv(GL_TEXTURE_2D, mipLevel, GL_TEXTURE_HEIGHT, &m_Height);
 				return true;
 			}
 
@@ -48,17 +48,17 @@ namespace engine
 
 		int Texture::GetID()
 		{
-			return id;
+			return m_ID;
 		}
 
 		int Texture::GetWidth()
 		{
-			return width;
+			return m_Width;
 		}
 
 		int Texture::GetHeight()
 		{
-			return height;
+			return m_Height;
 		}
 	}
 }

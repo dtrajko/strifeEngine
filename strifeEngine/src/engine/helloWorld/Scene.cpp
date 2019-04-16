@@ -72,6 +72,9 @@ namespace engine
 			Entity * entityQuad = new Entity(texturedModel, glm::vec3(-80, 60, -80), 90, 0, 0, 40);
 			processEntity(entityQuad);
 
+			RawModel * meshCobble = OBJLoader::loadOBJModel("resources/Minecraft/models/cube.obj", m_Loader);
+			TextureAtlas * textureCobble = new TextureAtlas("resources/Minecraft/textures/terrain_texture_cobble.png", 2, 1);
+
 			WaterTile * waterTile = new WaterTile(m_Loader, 0, WaterTile::HEIGHT, 0);
 			processWaterTile(waterTile);
 

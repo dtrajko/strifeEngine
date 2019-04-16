@@ -12,9 +12,14 @@ namespace engine
 	{
 		class Texture
 		{
+		protected:
+			int m_ID;
+			int m_Width;
+			int m_Height;
+
 		public:
 			Texture();
-			Texture(int _id);
+			Texture(int id);
 			Texture(std::string path);
 			virtual ~Texture();
 
@@ -22,11 +27,8 @@ namespace engine
 			int GetWidth();
 			int GetHeight();
 
-		private:
+		protected:
 			bool GetTextureParams();
-			int id;
-			int width;
-			int height;
 
 		};
 	}

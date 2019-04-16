@@ -138,6 +138,9 @@
     <ClCompile Include="src\engine\helloWorld\WaterFrameBuffers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\engine\graph\TextureAtlas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\GameEngine.h">
@@ -264,6 +267,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\helloWorld\WaterFrameBuffers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\graph\TextureAtlas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
