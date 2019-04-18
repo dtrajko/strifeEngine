@@ -8,7 +8,7 @@
 #include "../../interfaces/ICamera.h"
 #include "../../graph/Window.h"
 #include "../../graph/Input.h"
-#include "../../../engine/tm/toolbox/Maths.h"
+#include "../../tm/toolbox/Maths.h"
 
 using namespace engine;
 using namespace engine::graph;

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _ENTITY_SHADER_H
+#define _ENTITY_SHADER_H
 
 #include <iostream>
 #include "../../engine/tm/shaders/ShaderProgram.h"
@@ -25,3 +26,5 @@ namespace engine
 		};
 	}
 }
+
+#endif

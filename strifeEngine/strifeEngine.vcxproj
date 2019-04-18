@@ -21,12 +21,17 @@
   <ItemGroup>
     <ClCompile Include="src\engine\graph\Image.cpp" />
     <ClCompile Include="src\engine\graph\Material.cpp" />
+    <ClCompile Include="src\engine\graph\Mesh.cpp" />
     <ClCompile Include="src\engine\graph\TextureAtlas.cpp" />
     <ClCompile Include="src\engine\helloWorld\EntityRenderer.cpp" />
     <ClCompile Include="src\engine\helloWorld\MasterRenderer.cpp" />
     <ClCompile Include="src\engine\helloWorld\Scene.cpp" />
     <ClCompile Include="src\engine\helloWorld\HelloWorld.cpp" />
     <ClCompile Include="src\engine\helloWorld\EntityShader.cpp" />
+    <ClCompile Include="src\engine\helloWorld\SceneRenderer.cpp" />
+    <ClCompile Include="src\engine\helloWorld\SceneShader.cpp" />
+    <ClCompile Include="src\engine\helloWorld\SkyBoxRenderer.cpp" />
+    <ClCompile Include="src\engine\helloWorld\SkyBoxShader.cpp" />
     <ClCompile Include="src\engine\helloWorld\TerrainRenderer.cpp" />
     <ClCompile Include="src\engine\helloWorld\TerrainShader.cpp" />
     <ClCompile Include="src\engine\helloWorld\WaterFrameBuffers.cpp" />
@@ -64,12 +69,17 @@
   <ItemGroup>
     <ClInclude Include="src\engine\graph\Image.h" />
     <ClInclude Include="src\engine\graph\Material.h" />
+    <ClInclude Include="src\engine\graph\Mesh.h" />
     <ClInclude Include="src\engine\graph\TextureAtlas.h" />
     <ClInclude Include="src\engine\helloWorld\EntityRenderer.h" />
     <ClInclude Include="src\engine\helloWorld\MasterRenderer.h" />
     <ClInclude Include="src\engine\helloWorld\Scene.h" />
     <ClInclude Include="src\engine\helloWorld\HelloWorld.h" />
     <ClInclude Include="src\engine\helloWorld\EntityShader.h" />
+    <ClInclude Include="src\engine\helloWorld\SceneRenderer.h" />
+    <ClInclude Include="src\engine\helloWorld\SceneShader.h" />
+    <ClInclude Include="src\engine\helloWorld\SkyBoxRenderer.h" />
+    <ClInclude Include="src\engine\helloWorld\SkyBoxShader.h" />
     <ClInclude Include="src\engine\helloWorld\TerrainRenderer.h" />
     <ClInclude Include="src\engine\helloWorld\TerrainShader.h" />
     <ClInclude Include="src\engine\helloWorld\WaterFrameBuffers.h" />
