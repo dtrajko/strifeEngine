@@ -8,13 +8,14 @@
 #include "../../vendor/glm/glm.hpp"
 #include "../../vendor/glm/gtc/matrix_transform.hpp"
 #include "../../engine/helloWorld/EntityRenderer.h"
-#include "../../engine/helloWorld/TerrainRenderer.h"
-#include "../../engine/helloWorld/WaterRenderer.h"
+#include "../../engine/tm/terrains/TerrainRenderer.h"
+#include "../../engine/tm/water/WaterRenderer.h"
 
 using namespace engine::interfaces;
 using namespace engine::helloWorld;
 using namespace engine::tm::entities;
 using namespace engine::tm::toolbox;
+using namespace engine::tm::terrains;
 
 namespace engine
 {
