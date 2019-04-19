@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\graph\AABB.cpp" />
     <ClCompile Include="src\engine\graph\Image.cpp" />
     <ClCompile Include="src\engine\graph\Material.cpp" />
     <ClCompile Include="src\engine\graph\Mesh.cpp" />
+    <ClCompile Include="src\engine\graph\Pawn.cpp" />
     <ClCompile Include="src\engine\graph\TextureAtlas.cpp" />
     <ClCompile Include="src\engine\helloWorld\EntityRenderer.cpp" />
     <ClCompile Include="src\engine\helloWorld\MasterRenderer.cpp" />
@@ -68,9 +70,11 @@
     <ClCompile Include="src\engine\graph\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\graph\AABB.h" />
     <ClInclude Include="src\engine\graph\Image.h" />
     <ClInclude Include="src\engine\graph\Material.h" />
     <ClInclude Include="src\engine\graph\Mesh.h" />
+    <ClInclude Include="src\engine\graph\Pawn.h" />
     <ClInclude Include="src\engine\graph\TextureAtlas.h" />
     <ClInclude Include="src\engine\helloWorld\EntityRenderer.h" />
     <ClInclude Include="src\engine\helloWorld\MasterRenderer.h" />

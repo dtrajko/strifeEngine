@@ -2,17 +2,16 @@
 #define _SKYBOX_H
 
 #include <string>
+#include "../../../engine/graph/Pawn.h"
 
 namespace engine { namespace minecraft { namespace skybox {
 
-	class SkyBox
+	class SkyBox : public Pawn
 	{
 	private:
-		float m_Scale;
 
 	public:
 		SkyBox(std::string objModel, std::string textureFile);
-		SkyBox * setScale(float skyBoxScale);
 		~SkyBox();
 
 	};

@@ -7,6 +7,7 @@
 #include "../../engine/graph/Window.h"
 #include "../../engine/graph/TextureAtlas.h"
 #include "../../engine/graph/Material.h"
+#include "../../engine/graph/Mesh.h"
 #include "../../engine/helloWorld/MasterRenderer.h"
 #include "../../engine/utils/Util.h"
 #include "../../engine/tm/models/CubeMeshSimple.h"
