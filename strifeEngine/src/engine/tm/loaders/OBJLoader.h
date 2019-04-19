@@ -16,20 +16,15 @@
 using namespace engine::tm::models;
 using namespace engine::utils;
 
-namespace engine
-{
-	namespace tm
+namespace engine { namespace tm { namespace loaders {
+
+	class OBJLoader
 	{
-		namespace loaders
-		{
-			class OBJLoader
-			{
-			public:
-				static RawModel * loadOBJModel(std::string fileName, Loader * loader);
-				static void processVertex(std::vector<std::string> vertexData,
-					std::vector<unsigned int> & vecIndices, std::vector<glm::vec2> & vecTextureCoords, std::vector<glm::vec3> & vecNormals,
-					float textureArray[], float normalsArray[]);
-			};
-		}
-	}
-}
+	public:
+		static RawModel * loadOBJModel(std::string fileName, Loader * loader);
+		static void processVertex(std::vector<std::string> vertexData,
+			std::vector<unsigned int> & vecIndices, std::vector<glm::vec2> & vecTextureCoords, std::vector<glm::vec3> & vecNormals,
+			float textureArray[], float normalsArray[]);
+	};
+		
+} } }

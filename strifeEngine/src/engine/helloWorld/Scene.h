@@ -19,6 +19,7 @@
 #include "../../engine/tm/terrains/FlatTerrain.h"
 #include "../../engine/tm/terrains/Terrain.h"
 #include "../../engine/tm/water/WaterTile.h"
+#include "../../engine/minecraft/skybox/SkyBox.h"
 
 using namespace engine::graph;
 using namespace engine::interfaces;
@@ -29,6 +30,7 @@ using namespace engine::tm::entities;
 using namespace engine::tm::textures;
 using namespace engine::tm::terrains;
 using namespace engine::tm::water;
+using namespace engine::minecraft::skybox;
 
 namespace engine
 {
@@ -45,6 +47,7 @@ namespace engine
 			std::vector<ITerrain *> m_Terrains;
 			std::vector<WaterTile *> m_WaterTiles;
 			float m_Counter = 0;
+			SkyBox * m_SkyBox;
 
 		public:
 			Scene(Window * window);
@@ -55,6 +58,7 @@ namespace engine
 			ICamera * getCamera();
 			Loader * getLoader();
 			Light * getLight();
+			SkyBox * getSkyBox();
 			void processEntity(Entity * entity);
 			void processTerrain(ITerrain * terrain);
 			void processWaterTile(WaterTile * waterTile);
