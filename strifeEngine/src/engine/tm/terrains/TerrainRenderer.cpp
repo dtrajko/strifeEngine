@@ -56,6 +56,7 @@ namespace engine { namespace tm { namespace terrains {
 		m_Shader->loadShineVariables(texture->getShineDumper(), texture->getReflectivity());
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture->getID());
+		// std::cout << "TerrainRenderer textureID: " << texture->getID() << std::endl;
 
 		glDrawElements(GL_TRIANGLES, rawModel->getVertexCount(), GL_UNSIGNED_INT, 0);
 

@@ -7,12 +7,14 @@
 #include "../../engine/tm/entities/Light.h"
 #include "../../engine/tm/water/WaterTile.h"
 #include "../../engine/interfaces/ITerrain.h"
+#include "../../engine/minecraft/skybox/SkyBox.h"
 
 using namespace engine::graph;
-using namespace engine::tm::loaders;
-using namespace engine::tm::entities;
-using namespace engine::tm::water;
 using namespace engine::interfaces;
+using namespace engine::minecraft::skybox;
+using namespace engine::tm::entities;
+using namespace engine::tm::loaders;
+using namespace engine::tm::water;
 
 namespace engine
 {
@@ -31,6 +33,7 @@ namespace engine
 			virtual std::vector<ITerrain *> getTerrains() = 0;
 			virtual std::vector<WaterTile *> getWaterTiles() = 0;
 			virtual Light * getLight() = 0;
+			virtual SkyBox * getSkyBox() = 0;
 		};
 	}
 }

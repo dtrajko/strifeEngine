@@ -23,12 +23,12 @@ namespace engine
 			Texture(std::string path);
 			virtual ~Texture();
 
-			int GetID();
-			int GetWidth();
-			int GetHeight();
+			int getID();
+			int getWidth();
+			int getHeight();
 
 		protected:
-			bool GetTextureParams();
+			bool getTextureParams();
 
 		};
 	}

@@ -33,7 +33,7 @@ namespace engine
 		void Sprite::render()
 		{
 			glEnable(GL_TEXTURE_2D);
-			glBindTexture(GL_TEXTURE_2D, texture.GetID());
+			glBindTexture(GL_TEXTURE_2D, texture.getID());
 			glLoadIdentity();
 
 			// Translate -> Rotate -> Scale
@@ -45,11 +45,11 @@ namespace engine
 			glTexCoord2f(0, 0);
 			glVertex2f(0, 0);
 			glTexCoord2f(1, 0);
-			glVertex2f((GLfloat) texture.GetWidth(), 0);
+			glVertex2f((GLfloat) texture.getWidth(), 0);
 			glTexCoord2f(1, 1);
-			glVertex2f((GLfloat) texture.GetWidth(), (GLfloat) texture.GetHeight());
+			glVertex2f((GLfloat) texture.getWidth(), (GLfloat) texture.getHeight());
 			glTexCoord2f(0, 1);
-			glVertex2f(0, (GLfloat) texture.GetHeight());
+			glVertex2f(0, (GLfloat) texture.getHeight());
 			glEnd();
 
 			glDisable(GL_TEXTURE_2D);

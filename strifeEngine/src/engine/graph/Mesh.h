@@ -10,7 +10,7 @@ using namespace engine::graph;
 
 namespace engine { namespace graph {
 
-	class Mesh : protected RawModel
+	class Mesh : public RawModel
 	{
 	private:
 		Material * m_Material;
@@ -18,6 +18,7 @@ namespace engine { namespace graph {
 	public:
 		Mesh(int _vaoID, unsigned int _vertexCount);
 		Mesh * setMaterial(Material * material);
+		Material * getMaterial() const;
 		virtual ~Mesh();
 
 	};

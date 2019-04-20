@@ -32,8 +32,8 @@
     <ClCompile Include="src\engine\helloWorld\EntityShader.cpp" />
     <ClCompile Include="src\engine\helloWorld\SceneRenderer.cpp" />
     <ClCompile Include="src\engine\helloWorld\SceneShader.cpp" />
-    <ClCompile Include="src\engine\helloWorld\SkyBoxRenderer.cpp" />
-    <ClCompile Include="src\engine\helloWorld\SkyBoxShader.cpp" />
+    <ClCompile Include="src\engine\minecraft\skybox\SkyBoxRenderer.cpp" />
+    <ClCompile Include="src\engine\minecraft\skybox\SkyBoxShader.cpp" />
     <ClCompile Include="src\engine\minecraft\skybox\SkyBox.cpp" />
     <ClCompile Include="src\engine\tm\terrains\TerrainRenderer.cpp" />
     <ClCompile Include="src\engine\tm\terrains\TerrainShader.cpp" />
@@ -83,8 +83,8 @@
     <ClInclude Include="src\engine\helloWorld\EntityShader.h" />
     <ClInclude Include="src\engine\helloWorld\SceneRenderer.h" />
     <ClInclude Include="src\engine\helloWorld\SceneShader.h" />
-    <ClInclude Include="src\engine\helloWorld\SkyBoxRenderer.h" />
-    <ClInclude Include="src\engine\helloWorld\SkyBoxShader.h" />
+    <ClInclude Include="src\engine\minecraft\skybox\SkyBoxRenderer.h" />
+    <ClInclude Include="src\engine\minecraft\skybox\SkyBoxShader.h" />
     <ClInclude Include="src\engine\minecraft\skybox\SkyBox.h" />
     <ClInclude Include="src\engine\tm\terrains\TerrainRenderer.h" />
     <ClInclude Include="src\engine\tm\terrains\TerrainShader.h" />

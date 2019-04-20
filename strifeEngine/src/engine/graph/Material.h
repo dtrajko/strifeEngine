@@ -23,9 +23,12 @@ namespace engine { namespace graph {
 	public:
 		Material();
 		Material(TextureAtlas * texture);
+		Material(TextureAtlas * texture, float reflectance);
 		Material(glm::vec4 ambientColor, glm::vec4 diffuseColor, glm::vec4 specularColor, TextureAtlas * texture, float reflectance);
 		Material * setReflectance(float reflectance);
 		Material * setTransparency(float transparency);
+		TextureAtlas * getTexture() const;
+		TextureAtlas * getNormalMap() const;
 		virtual ~Material();
 
 	};

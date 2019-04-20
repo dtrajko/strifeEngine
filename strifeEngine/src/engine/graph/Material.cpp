@@ -15,7 +15,10 @@ namespace engine { namespace graph {
 
 		Material::Material(TextureAtlas * texture) : Material(DEFAULT_COLOR, DEFAULT_COLOR, DEFAULT_COLOR, texture, 0)
 		{
+		}
 
+		Material::Material(TextureAtlas * texture, float reflectance) : Material(DEFAULT_COLOR, DEFAULT_COLOR, DEFAULT_COLOR, texture, reflectance)
+		{
 		}
 
 		Material::Material(glm::vec4 colorAmbient, glm::vec4 colorDiffuse, glm::vec4 colorSpecular, TextureAtlas * texture, float reflectance)
@@ -38,6 +41,16 @@ namespace engine { namespace graph {
 		{
 			m_Transparency = transparency;
 			return this;
+		}
+
+		TextureAtlas * Material::getTexture() const
+		{
+			return m_Texture;
+		}
+
+		TextureAtlas * Material::getNormalMap() const
+		{
+			return m_NormalMap;
 		}
 
 		Material::~Material()

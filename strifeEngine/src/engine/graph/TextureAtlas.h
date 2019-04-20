@@ -6,7 +6,7 @@
 
 namespace engine { namespace graph {
 
-	class TextureAtlas : protected Texture
+	class TextureAtlas : public Texture
 	{
 	private:
 		unsigned int m_Rows;

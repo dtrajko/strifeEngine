@@ -10,12 +10,14 @@
 #include "../../engine/helloWorld/EntityRenderer.h"
 #include "../../engine/tm/terrains/TerrainRenderer.h"
 #include "../../engine/tm/water/WaterRenderer.h"
+#include "../../engine/minecraft/skybox/SkyBoxRenderer.h"
 
 using namespace engine::interfaces;
 using namespace engine::helloWorld;
 using namespace engine::tm::entities;
 using namespace engine::tm::toolbox;
 using namespace engine::tm::terrains;
+using namespace engine::minecraft::skybox;
 
 namespace engine
 {
@@ -34,6 +36,7 @@ namespace engine
 			EntityRenderer * m_EntityRenderer;
 			TerrainRenderer * m_TerrainRenderer;
 			WaterRenderer * m_WaterRenderer;
+			SkyBoxRenderer * m_SkyBoxRenderer;
 
 		public:
 			MasterRenderer(Window * window);

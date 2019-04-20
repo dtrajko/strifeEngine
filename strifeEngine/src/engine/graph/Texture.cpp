@@ -12,7 +12,7 @@ namespace engine
 		Texture::Texture(int id)
 		{
 			m_ID = id;
-			if (!GetTextureParams())
+			if (!getTextureParams())
 			{
 				std::cout << "Texture: error loading image with ID [" << m_ID << "]" << std::endl;
 			}
@@ -21,13 +21,13 @@ namespace engine
 		Texture::Texture(std::string path)
 		{
 			m_ID = SOIL_load_OGL_texture(path.c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y & SOIL_FLAG_MULTIPLY_ALPHA);
-			if (!GetTextureParams())
+			if (!getTextureParams())
 			{
 				std::cout << "Texture: error loading image [" << path << "]" << std::endl;
 			}
 		}
 
-		bool Texture::GetTextureParams()
+		bool Texture::getTextureParams()
 		{
 			if (m_ID > 0)
 			{
@@ -46,17 +46,17 @@ namespace engine
 
 		}
 
-		int Texture::GetID()
+		int Texture::getID()
 		{
 			return m_ID;
 		}
 
-		int Texture::GetWidth()
+		int Texture::getWidth()
 		{
 			return m_Width;
 		}
 
-		int Texture::GetHeight()
+		int Texture::getHeight()
 		{
 			return m_Height;
 		}

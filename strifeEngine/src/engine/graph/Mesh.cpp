@@ -13,6 +13,11 @@ namespace engine { namespace graph {
 		return this;
 	}
 
+	Material * Mesh::getMaterial() const
+	{
+		return m_Material;
+	}
+
 	Mesh::~Mesh()
 	{
 

@@ -11,6 +11,7 @@ namespace engine
 			m_EntityRenderer = new EntityRenderer(window, m_ProjectionMatrix);
 			m_TerrainRenderer = new TerrainRenderer(window, m_ProjectionMatrix);
 			m_WaterRenderer = new WaterRenderer(window, m_ProjectionMatrix);
+			m_SkyBoxRenderer = new SkyBoxRenderer(window, m_ProjectionMatrix);
 		}
 
 		void MasterRenderer::init(IScene * scene)
@@ -18,6 +19,7 @@ namespace engine
 			m_EntityRenderer->init(scene);
 			m_TerrainRenderer->init(scene);
 			m_WaterRenderer->init(scene);
+			m_SkyBoxRenderer->init(scene);
 		}
 
 		glm::mat4 MasterRenderer::getProjectionMatrix(Window * window)
@@ -34,6 +36,7 @@ namespace engine
 			m_EntityRenderer->prepare(window);
 			m_TerrainRenderer->prepare(window);
 			m_WaterRenderer->prepare(window);
+			m_SkyBoxRenderer->prepare(window);
 		}
 
 		void MasterRenderer::render(Window * window, IScene * scene)
@@ -81,6 +84,7 @@ namespace engine
 			m_EntityRenderer->render(window, scene, m_ViewMatrix, clipPlane);
 			m_TerrainRenderer->render(window, scene, m_ViewMatrix, clipPlane);
 			m_WaterRenderer->render(window, scene, m_ViewMatrix);
+			m_SkyBoxRenderer->render(window, scene, m_ViewMatrix);
 
 			glDisable(GL_CLIP_DISTANCE0);
 		}
@@ -117,6 +121,7 @@ namespace engine
 			m_EntityRenderer->cleanUp();
 			m_TerrainRenderer->cleanUp();
 			m_WaterRenderer->cleanUp();
+			m_SkyBoxRenderer->cleanUp();
 		}
 
 		MasterRenderer::~MasterRenderer()

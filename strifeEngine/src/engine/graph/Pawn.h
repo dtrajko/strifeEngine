@@ -11,7 +11,7 @@ namespace engine { namespace graph {
 	class Pawn
 	{
 	private:
-		const std::vector<Mesh *> m_Meshes;
+		std::vector<Mesh *> m_Meshes;
 		glm::vec3 m_Position;
 		glm::vec3 m_Rotation;
 		float m_Scale;
@@ -21,6 +21,11 @@ namespace engine { namespace graph {
 	public:
 		Pawn();
 		Pawn * setScale(float scale);
+		Pawn * setMesh(Mesh * mesh);
+		Mesh * getMesh();
+		Pawn * setPosition(float x, float y, float z);
+		glm::vec3 getPosition() const;
+		float getScale() const;
 		virtual ~Pawn();
 
 	};

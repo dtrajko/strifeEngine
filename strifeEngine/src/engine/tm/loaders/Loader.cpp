@@ -16,7 +16,7 @@ namespace engine
 				float bias = 0.0f;
 				int textureID = NULL;
 				Texture * texture = new Texture(filePath);
-				textureID = texture->GetID();
+				textureID = texture->getID();
 				glGenerateMipmap(GL_TEXTURE_2D);
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 				glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_LOD_BIAS, bias);

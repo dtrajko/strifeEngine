@@ -18,8 +18,9 @@ namespace engine
 			m_MasterRenderer = new MasterRenderer(window);
 			m_Loader = new Loader();
 
-			float skyBoxScale = 150;
-			m_SkyBox = new SkyBox("resources/Minecraft/models/skybox.obj", "resources/Minecraft/textures/skybox_minecraft.png");
+			float skyBoxScale = 280;
+			// resources/Minecraft/models/cube.obj resources/Minecraft/models/skybox.obj
+			m_SkyBox = new SkyBox("resources/Minecraft/models/cube.obj", "resources/Minecraft/textures/skybox_minecraft.png", m_Loader);
 			m_SkyBox->setScale(skyBoxScale);
 
 			ModelTexture * terrainTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/terrain_1/2.png"));
