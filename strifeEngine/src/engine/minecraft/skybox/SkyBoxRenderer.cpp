@@ -28,8 +28,8 @@ namespace engine { namespace minecraft { namespace skybox {
 		m_Shader->start();
 		m_Shader->loadMatrix("viewMatrix", viewMatrix);
 		m_Shader->loadInt("hasTexture", true);
-		m_Shader->loadVec3f("color", glm::vec4(0.0f, 1.0f, 1.0f, 1.0f));
-		m_Shader->loadVec3f("ambientLight", glm::vec3(0.8f));
+		m_Shader->loadVec3f("color", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		m_Shader->loadVec3f("ambientLight", glm::vec3(1.0f));
 		SkyBox * skyBox = scene->getSkyBox();
 		renderSkyBox(skyBox);
 		m_Shader->stop();

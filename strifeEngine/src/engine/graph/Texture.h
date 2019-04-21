@@ -2,7 +2,6 @@
 
 #include <GLFW/glfw3.h>
 #include "SOIL\src\SOIL.h"
-
 #include <string>
 #include <iostream>
 
