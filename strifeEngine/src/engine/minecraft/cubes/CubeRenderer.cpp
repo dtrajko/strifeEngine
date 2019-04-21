@@ -1,10 +1,10 @@
-#include "SceneRenderer.h"
+#include "CubeRenderer.h"
 
-namespace engine { namespace helloWorld {
+namespace engine { namespace minecraft { namespace cubes {
 
-	SceneRenderer::SceneRenderer(Window * window, glm::mat4 projectionMatrix)
+	CubeRenderer::CubeRenderer(Window * window, glm::mat4 projectionMatrix)
 	{
-		m_Shader = new SceneShader(m_VertexFile, m_FragmentFile);
+		m_Shader = new CubeShader(m_VertexFile, m_FragmentFile);
 		m_Shader->start();
 		m_Shader->bindAttributes();
 		m_ProjectionMatrix = projectionMatrix;
@@ -12,17 +12,17 @@ namespace engine { namespace helloWorld {
 		m_Shader->stop();
 	}
 
-	void SceneRenderer::init(IScene * scene)
+	void CubeRenderer::init(IScene * scene)
 	{
 
 	}
 
-	glm::mat4 SceneRenderer::getProjectionMatrix(Window * window)
+	glm::mat4 CubeRenderer::getProjectionMatrix(Window * window)
 	{
 		return m_ProjectionMatrix;
 	}
 
-	void SceneRenderer::render(Window * window, IScene * scene, glm::mat4 & viewMatrix, glm::vec4 clipPlane)
+	void CubeRenderer::render(Window * window, IScene * scene, glm::mat4 & viewMatrix, glm::vec4 clipPlane)
 	{
 		m_Shader->start();
 		m_Shader->loadMatrix("viewMatrix", viewMatrix);
@@ -30,11 +30,11 @@ namespace engine { namespace helloWorld {
 		m_Shader->stop();
 	}
 
-	void SceneRenderer::prepare(Window * window)
+	void CubeRenderer::prepare(Window * window)
 	{
 	}
 
-	void SceneRenderer::renderModel()
+	void CubeRenderer::renderModel()
 	{
 		int vaoID = 0;
 		glBindVertexArray(vaoID);
@@ -59,13 +59,13 @@ namespace engine { namespace helloWorld {
 		glBindVertexArray(0);
 	}
 
-	void SceneRenderer::cleanUp()
+	void CubeRenderer::cleanUp()
 	{
 		m_Shader->cleanUp();
 	}
 
-	SceneRenderer::~SceneRenderer()
+	CubeRenderer::~CubeRenderer()
 	{
 	}
 
-} }
+} } }

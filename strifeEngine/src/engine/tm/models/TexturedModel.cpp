@@ -9,13 +9,13 @@ namespace engine
 		{
 			TexturedModel::TexturedModel(RawModel * _rawModel, ModelTexture * _modelTexture)
 			{
-				rawModel = _rawModel;
+				rawModelCubeMesh = _rawModel;
 				modelTexture = _modelTexture;
 			}
 
 			RawModel* TexturedModel::getRawModel()
 			{
-				return rawModel;
+				return rawModelCubeMesh;
 			}
 
 			ModelTexture* TexturedModel::getTexture()

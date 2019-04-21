@@ -60,6 +60,7 @@ namespace engine
 			m_ViewMatrix = Maths::createViewMatrix(camera);
 			m_EntityRenderer->render(window, scene, m_ViewMatrix, clipPlane);
 			m_TerrainRenderer->render(window, scene, m_ViewMatrix, clipPlane);
+			m_SkyBoxRenderer->render(window, scene, m_ViewMatrix, clipPlane);
 			camera->setPosition(
 				camera->getPosition().x,
 				camera->getPosition().y + distance,

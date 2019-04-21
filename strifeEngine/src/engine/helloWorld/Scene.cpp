@@ -18,9 +18,8 @@ namespace engine
 			m_MasterRenderer = new MasterRenderer(window);
 			m_Loader = new Loader();
 
-			float skyBoxScale = 280;
-			// resources/Minecraft/models/cube.obj resources/Minecraft/models/skybox.obj
-			m_SkyBox = new SkyBox("resources/Minecraft/models/cube.obj", "resources/Minecraft/textures/skybox_minecraft.png", m_Loader);
+			float skyBoxScale = 360;
+			m_SkyBox = new SkyBox("resources/Minecraft/models/skybox.obj", "resources/Minecraft/textures/skybox_minecraft.png", m_Loader);
 			m_SkyBox->setScale(skyBoxScale);
 
 			ModelTexture * terrainTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/terrain_1/2.png"));
@@ -29,19 +28,39 @@ namespace engine
 			ITerrain * terrain = new Terrain(-0.5f, -0.5f, m_Loader, terrainTexture, "resources/ThinMatrix/textures/heightmap.png");
 			processTerrain(terrain);
 
-			ModelTexture * modelTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/normalMaps/barrel.png"));
-			modelTexture->setShineDumper(10);
-			modelTexture->setReflectivity(1);
-			RawModel * rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/barrel.obj", m_Loader);
-			TexturedModel * texturedModel = new TexturedModel(rawModel, modelTexture);
-			Entity * entity = new Entity(texturedModel, glm::vec3(0.0f, 12.0f, -40.0f), 0, 0, 0, 1);
-			processEntity(entity);
+			ModelTexture * modelTextureBarrel = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/normalMaps/barrel.png"));
+			modelTextureBarrel->setShineDumper(10);
+			modelTextureBarrel->setReflectivity(1);
+			RawModel * rawModelBarrel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/barrel.obj", m_Loader);
+			TexturedModel * texturedModelBarrel = new TexturedModel(rawModelBarrel, modelTextureBarrel);
+			Entity * entityBarrel = new Entity(texturedModelBarrel, glm::vec3(-40.0f, 20.0f, -40.0f), 0, 0, 0, 2);
+			processEntity(entityBarrel);
 
-			modelTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/fern.png"));
-			modelTexture->setTransparency(1);
-			rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/fern.obj", m_Loader);
-			texturedModel = new TexturedModel(rawModel, modelTexture);
-			Entity * entityFern = new Entity(texturedModel, glm::vec3(-40.0f, 0.0f, -20.0f), 0, 0, 0, 2);
+			CubeMeshSimple meshCube = CubeMeshSimple();
+			RawModel * rawModel = m_Loader->loadToVAO(meshCube.getVertices(), meshCube.getVerticesCount(),
+				meshCube.getTextureCoords(), meshCube.getTextureCoordsCount(),
+				meshCube.getIndices(), meshCube.getIndicesCount());
+			ModelTexture * modelTextureTiles = new ModelTexture(m_Loader->loadTexture("resources/assets/textures/tiles.png"));
+			TexturedModel * texturedModelTiles = new TexturedModel(rawModel, modelTextureTiles);
+			Entity * entityCube = new Entity(texturedModelTiles, glm::vec3(-80, 40, -80), 0, 0, 0, 20);
+			processEntity(entityCube);
+			Entity * entityCube2 = new Entity(texturedModelTiles, glm::vec3(20.0f, 0.0f, -40.0f), 0, 0, 0, 20);
+			processEntity(entityCube2);
+
+			QuadMeshSimple meshQuad = QuadMeshSimple();
+			RawModel * rawModelQuad = m_Loader->loadToVAO(meshQuad.getVertices(), meshQuad.getVerticesCount(),
+				meshQuad.getTextureCoords(), meshQuad.getTextureCoordsCount(),
+				meshQuad.getIndices(), meshQuad.getIndicesCount());
+			modelTextureTiles = new ModelTexture(m_Loader->loadTexture("resources/assets/textures/tiles.png"));
+			texturedModelTiles = new TexturedModel(rawModelQuad, modelTextureTiles);
+			Entity * entityQuad = new Entity(texturedModelTiles, glm::vec3(-80, 60, -80), 90, 0, 0, 40);
+			processEntity(entityQuad);
+
+			ModelTexture * modelTextureFern = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/fern.png"));
+			modelTextureFern->setTransparency(1);
+			RawModel * rawModelFern = OBJLoader::loadOBJModel("resources/ThinMatrix/models/fern.obj", m_Loader);
+			TexturedModel * texturedModelFern = new TexturedModel(rawModelFern, modelTextureFern);
+			Entity * entityFern = new Entity(texturedModelFern, glm::vec3(60.0f, 10.0f, 00.0f), 0, 0, 0, 2);
 			processEntity(entityFern);
 
 			ModelTexture * fernTextureAtlas = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/fern_atlas.png"));
@@ -52,30 +71,12 @@ namespace engine
 			Entity * entityFernTexAtlas = new Entity(fernModel, 0, glm::vec3(-80.0f, 20.0f, -40.0f), 0, 0, 0, 2);
 			processEntity(entityFernTexAtlas);
 
-			modelTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/pine.png"));
-			modelTexture->setTransparency(1);
+			ModelTexture * modelTexturePine = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/pine.png"));
+			modelTexturePine->setTransparency(1);
 			rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/pine.obj", m_Loader);
-			texturedModel = new TexturedModel(rawModel, modelTexture);
-			Entity * entityPine = new Entity(texturedModel, glm::vec3(155.0f, 10.0f, -140.0f), 0, 0, 0, 4);
+			texturedModelTiles = new TexturedModel(rawModel, modelTexturePine);
+			Entity * entityPine = new Entity(texturedModelTiles, glm::vec3(155.0f, 10.0f, -140.0f), 0, 0, 0, 4);
 			processEntity(entityPine);
-
-			CubeMeshSimple meshCube = CubeMeshSimple();
-			rawModel = m_Loader->loadToVAO(meshCube.getVertices(), meshCube.getVerticesCount(),
-				meshCube.getTextureCoords(), meshCube.getTextureCoordsCount(),
-				meshCube.getIndices(), meshCube.getIndicesCount());
-			modelTexture = new ModelTexture(m_Loader->loadTexture("resources/assets/textures/tiles.png"));
-			texturedModel = new TexturedModel(rawModel, modelTexture);
-			Entity * entityCube = new Entity(texturedModel, glm::vec3(-80, 40, -80), 0, 0, 0, 20);
-			processEntity(entityCube);
-
-			QuadMeshSimple meshQuad = QuadMeshSimple();
-			rawModel = m_Loader->loadToVAO(meshQuad.getVertices(), meshQuad.getVerticesCount(),
-				meshQuad.getTextureCoords(), meshQuad.getTextureCoordsCount(),
-				meshQuad.getIndices(), meshQuad.getIndicesCount());
-			modelTexture = new ModelTexture(m_Loader->loadTexture("resources/assets/textures/tiles.png"));
-			texturedModel = new TexturedModel(rawModel, modelTexture);
-			Entity * entityQuad = new Entity(texturedModel, glm::vec3(-80, 60, -80), 90, 0, 0, 40);
-			processEntity(entityQuad);
 
 			Mesh * meshCobble = (Mesh *) OBJLoader::loadOBJModel("resources/Minecraft/models/cube.obj", m_Loader);
 			TextureAtlas * textureCobble = new TextureAtlas("resources/Minecraft/textures/terrain_texture_cobble.png", 2, 1);
@@ -88,7 +89,7 @@ namespace engine
 			processWaterTile(waterTile);
 
 			std::cout << "Scene rawModel vaoID: " << rawModel->getVaoID() << std::endl;
-			std::cout << "Scene modelTexture ID: " << modelTexture->getID() << std::endl;
+			std::cout << "Scene modelTexture ID: " << modelTextureTiles->getID() << std::endl;
 			std::cout << "Scene terrainTexture ID: " << terrainTexture->getID() << std::endl;
 			std::cout << "Scene WaterTile DuDvTexture: " << waterTile->getDuDvTexture() << std::endl;
 			std::cout << "Scene WaterTile NormalMap: " << waterTile->getNormalMap() << std::endl;
@@ -111,7 +112,7 @@ namespace engine
 
 			Entity * entity = m_Entities.at(0);
 			entity->increaseRotation(0, 0.1f, 0);
-			glm::vec3 initVec = glm::vec3(glm::vec3(0.0f, 0.0f, -40.0f));
+			glm::vec3 initVec = glm::vec3(glm::vec3(-40.0f, 20.0f, -80.0f));
 			glm::vec3 posVec = glm::vec3(entity->getPosition());
 			posVec.x = initVec.x + glm::sin(m_Counter) * 5;
 			posVec.z = initVec.z + glm::cos(m_Counter) * 5;

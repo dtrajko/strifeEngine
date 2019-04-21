@@ -132,12 +132,6 @@
     <ClCompile Include="src\engine\graph\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\helloWorld\SceneShader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\helloWorld\SceneRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\engine\tm\terrains\TerrainRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -166,6 +160,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\engine\minecraft\skybox\SkyBoxShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\minecraft\cubes\CubeRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\minecraft\cubes\CubeShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -290,12 +290,6 @@
     <ClInclude Include="src\engine\graph\Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\helloWorld\SceneShader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\helloWorld\SceneRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\engine\tm\terrains\TerrainRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -324,6 +318,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\minecraft\skybox\SkyBoxShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\minecraft\cubes\CubeRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\minecraft\cubes\CubeShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

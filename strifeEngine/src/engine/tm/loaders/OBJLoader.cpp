@@ -108,10 +108,12 @@ namespace engine
 				textureArray[currentVertexPointer * 2] = currentTextureCoord.x;
 				textureArray[currentVertexPointer * 2 + 1] = 1 - currentTextureCoord.y;
 
-				glm::vec3 currentNormal = vecNormals.at(std::atoi(vertexData[2].c_str()) - 1);
-				normalsArray[currentVertexPointer * 3]     = currentNormal.x;
-				normalsArray[currentVertexPointer * 3 + 1] = currentNormal.y;
-				normalsArray[currentVertexPointer * 3 + 2] = currentNormal.z;
+				if (!vertexData[2].empty()) {
+					glm::vec3 currentNormal = vecNormals.at(std::atoi(vertexData[2].c_str()) - 1);
+					normalsArray[currentVertexPointer * 3]     = currentNormal.x;
+					normalsArray[currentVertexPointer * 3 + 1] = currentNormal.y;
+					normalsArray[currentVertexPointer * 3 + 2] = currentNormal.z;
+				}
 			}
 		}
 	}

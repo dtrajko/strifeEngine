@@ -56,7 +56,7 @@ namespace engine { namespace minecraft { namespace skybox {
 
 		glm::vec3 position = skyBox->getPosition();
 
-		rotationOffsetY += 0.05f;
+		rotationOffsetY += 0.02f;
 		rotationOffsetY = std::fmodf(rotationOffsetY, 360.f);
 
 		m_TransformationMatrix = Maths::createTransformationMatrix(position, 1.f, rotationOffsetY, 1.f, skyBox->getScale());

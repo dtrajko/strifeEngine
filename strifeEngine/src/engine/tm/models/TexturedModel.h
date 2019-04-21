@@ -14,7 +14,7 @@ namespace engine
 			class TexturedModel
 			{
 			private:
-				RawModel* rawModel;
+				RawModel* rawModelCubeMesh;
 				ModelTexture* modelTexture;
 
 			public:
