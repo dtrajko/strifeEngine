@@ -19,7 +19,6 @@ namespace engine { namespace graph {
 		unsigned int getRows() const;
 		unsigned int getColumns() const;
 		unsigned int loadTexture(std::string fileName);
-
 		virtual ~TextureAtlas();
 
 	};
