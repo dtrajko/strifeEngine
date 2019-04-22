@@ -5,30 +5,28 @@
 #include <string>
 #include <iostream>
 
-namespace engine
-{
-	namespace graph
+namespace engine { namespace graph {
+
+	class Texture
 	{
-		class Texture
-		{
-		protected:
-			int m_ID;
-			int m_Width;
-			int m_Height;
+	protected:
+		int m_ID;
+		int m_Width;
+		int m_Height;
 
-		public:
-			Texture();
-			Texture(int id);
-			Texture(std::string path);
-			virtual ~Texture();
+	public:
+		Texture();
+		Texture(int id);
+		Texture(std::string path);
+		virtual ~Texture();
 
-			int getID();
-			int getWidth();
-			int getHeight();
+		int getID();
+		int getWidth();
+		int getHeight();
 
-		protected:
-			bool getTextureParams();
+	protected:
+		bool getTextureParams();
 
-		};
-	}
-}
+	};
+
+} }

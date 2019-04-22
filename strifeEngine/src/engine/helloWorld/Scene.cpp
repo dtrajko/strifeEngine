@@ -19,7 +19,7 @@ namespace engine
 			m_Loader = new Loader();
 
 			m_SkyBox = new SkyBox("resources/Minecraft/models/skybox.obj", "resources/Minecraft/textures/skybox_4.png", m_Loader);
-			m_SkyBox->setScale(360.0f);
+			m_SkyBox->setScale(680.0f);
 			m_SkyBox->setPosition(0.0f, 0.0f, 0.0f);
 
 			ModelTexture * terrainTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/terrain_1/2.png"));
@@ -87,6 +87,12 @@ namespace engine
 
 			WaterTile * waterTile = new WaterTile(m_Loader, 0, WaterTile::HEIGHT, 0);
 			processWaterTile(waterTile);
+
+			RawModel * rawModelSphere = OBJLoader::loadOBJModel("resources/Minecraft/models/sphere.obj", m_Loader);
+			ModelTexture * modelTextureSphere = new ModelTexture(m_Loader->loadTexture("resources/Minecraft/textures/stairs_texture.png"));
+			TexturedModel * texturedModelSphere = new TexturedModel(rawModelSphere, modelTextureSphere);
+			Entity * entitySphere = new Entity(texturedModelSphere, glm::vec3(160, 50, 160), 0, 0, 0, 10);
+			processEntity(entitySphere);
 
 			std::cout << "Scene rawModel vaoID: " << rawModel->getVaoID() << std::endl;
 			std::cout << "Scene modelTexture ID: " << modelTextureTiles->getID() << std::endl;
