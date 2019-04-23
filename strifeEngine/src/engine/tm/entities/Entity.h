@@ -14,7 +14,7 @@ namespace engine
 		{
 			class Entity
 			{
-			private:
+			protected:
 				TexturedModel * m_TexturedModel;
 				glm::vec3 position;
 				float rotX;

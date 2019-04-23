@@ -91,14 +91,14 @@ namespace engine
 			RawModel * rawModelSphere = OBJLoader::loadOBJModel("resources/Minecraft/models/sphere.obj", m_Loader);
 			ModelTexture * modelTextureSphere = new ModelTexture(m_Loader->loadTexture("resources/Minecraft/textures/stairs_texture.png"));
 			TexturedModel * texturedModelSphere = new TexturedModel(rawModelSphere, modelTextureSphere);
-			Entity * entitySpherePlayer = new Entity(texturedModelSphere, glm::vec3(0.0f, 40.0f, 140.0f), 0, 0, 0, 10);
-			processEntity(entitySpherePlayer);
+
+			m_Player = new Player(texturedModelSphere, glm::vec3(0.0f, 40.0f, 140.0f), 0, 0, 0, 10);
+			processEntity(m_Player);
+
 			Entity * entitySphereObject1 = new Entity(texturedModelSphere, glm::vec3(0.0f, 40.0f, 100.0f), 0, 0, 0, 10);
 			processEntity(entitySphereObject1);
 			Entity * entitySphereObject2 = new Entity(texturedModelSphere, glm::vec3(0.0f, 40.0f, 60.0f), 0, 0, 0, 10);
 			processEntity(entitySphereObject2);
-
-			// m_Player = new Player(m_Camera, entitySpherePlayer);
 
 			std::cout << "Scene rawModel vaoID: " << rawModel->getVaoID() << std::endl;
 			std::cout << "Scene modelTexture ID: " << modelTextureTiles->getID() << std::endl;
@@ -111,6 +111,7 @@ namespace engine
 		{
 			window->getInput()->update();
 			m_Camera->move(window);
+			m_Player->move(interval, window);
 			if (window->getInput()->isKeyPressed(GLFW_KEY_ESCAPE))
 			{
 				window->close();

@@ -15,6 +15,7 @@
 #include "../../engine/tm/models/RawModel.h"
 #include "../../engine/tm/models/TexturedModel.h"
 #include "../../engine/tm/entities/Camera.h"
+#include "../../engine/tm/entities/Player.h"
 #include "../../engine/tm/textures/ModelTexture.h"
 #include "../../engine/tm/loaders/OBJLoader.h"
 #include "../../engine/tm/terrains/FlatTerrain.h"
@@ -49,6 +50,7 @@ namespace engine
 			std::vector<WaterTile *> m_WaterTiles;
 			float m_Counter = 0;
 			SkyBox * m_SkyBox;
+			Player * m_Player;
 
 		public:
 			Scene(Window * window);
