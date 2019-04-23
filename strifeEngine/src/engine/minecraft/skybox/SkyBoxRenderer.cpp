@@ -56,7 +56,7 @@ namespace engine { namespace minecraft { namespace skybox {
 
 		glm::vec3 position = skyBox->getPosition();
 
-		rotationOffsetY += 0.02f;
+		rotationOffsetY += 0.01f;
 		rotationOffsetY = std::fmodf(rotationOffsetY, 360.f);
 
 		m_TransformationMatrix = Maths::createTransformationMatrix(position, 1.f, rotationOffsetY, 1.f, skyBox->getScale());
@@ -66,8 +66,7 @@ namespace engine { namespace minecraft { namespace skybox {
 		if (texture != nullptr) {
 			int textureID = texture->getID();
 			// std::cout << "SkyBoxRenderer textureID: " << textureID << std::endl;
-			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, textureID);
+			texture->bind();
 		}
 
 		TextureAtlas * normalMap = skyBox->getMesh()->getMaterial()->getNormalMap();

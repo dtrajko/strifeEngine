@@ -35,6 +35,7 @@
     <ClCompile Include="src\engine\minecraft\skybox\SkyBoxRenderer.cpp" />
     <ClCompile Include="src\engine\minecraft\skybox\SkyBoxShader.cpp" />
     <ClCompile Include="src\engine\minecraft\skybox\SkyBox.cpp" />
+    <ClCompile Include="src\engine\tm\entities\Player.cpp" />
     <ClCompile Include="src\engine\tm\terrains\TerrainRenderer.cpp" />
     <ClCompile Include="src\engine\tm\terrains\TerrainShader.cpp" />
     <ClCompile Include="src\engine\tm\water\WaterFrameBuffers.cpp" />
@@ -86,6 +87,7 @@
     <ClInclude Include="src\engine\minecraft\skybox\SkyBoxRenderer.h" />
     <ClInclude Include="src\engine\minecraft\skybox\SkyBoxShader.h" />
     <ClInclude Include="src\engine\minecraft\skybox\SkyBox.h" />
+    <ClInclude Include="src\engine\tm\entities\Player.h" />
     <ClInclude Include="src\engine\tm\terrains\TerrainRenderer.h" />
     <ClInclude Include="src\engine\tm\terrains\TerrainShader.h" />
     <ClInclude Include="src\engine\tm\water\WaterFrameBuffers.h" />

@@ -1,6 +1,7 @@
 #ifndef _TEXTURE_ATLAS_H
 #define _TEXTURE_ATLAS_H
 
+#include "GL/glew.h"
 #include <string>
 #include "Texture.h"
 

@@ -6,7 +6,7 @@ namespace engine { namespace minecraft { namespace skybox {
 	{
 		Mesh * skyBoxMesh = (Mesh *) OBJLoader::loadOBJModel(objModel, loader);
 		TextureAtlas * skyBoxTexture = new TextureAtlas(textureFile);
-		Material * skyBoxMaterial = new Material(skyBoxTexture, 0.0f);
+		Material * skyBoxMaterial = new Material(skyBoxTexture, 1.0f);
 		skyBoxMesh->setMaterial(skyBoxMaterial);
 		setMesh(skyBoxMesh);
 		std::cout << "SkyBox mesh vertext count: " << skyBoxMesh->getVertexCount() << std::endl;

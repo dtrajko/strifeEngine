@@ -12,13 +12,13 @@ namespace engine
 		void Scene::init(Window * window)
 		{
 			m_Camera = new Camera();
-			m_Camera->setPosition(0.0f, 20.0f, 0.0f);
+			m_Camera->setPosition(0.0f, 60.0f, 180.0f);
 			m_Camera->setRotation(0.0f, 0.0f, 0.0f);
 			m_Light = new Light(glm::vec3(2000, 2000, 2000), glm::vec3(1, 1, 1));
 			m_MasterRenderer = new MasterRenderer(window);
 			m_Loader = new Loader();
 
-			m_SkyBox = new SkyBox("resources/Minecraft/models/skybox.obj", "resources/Minecraft/textures/skybox_4.png", m_Loader);
+			m_SkyBox = new SkyBox("resources/Minecraft/models/skybox.obj", "resources/Minecraft/textures/skybox_desert.png", m_Loader);
 			m_SkyBox->setScale(680.0f);
 			m_SkyBox->setPosition(0.0f, 0.0f, 0.0f);
 
@@ -91,8 +91,14 @@ namespace engine
 			RawModel * rawModelSphere = OBJLoader::loadOBJModel("resources/Minecraft/models/sphere.obj", m_Loader);
 			ModelTexture * modelTextureSphere = new ModelTexture(m_Loader->loadTexture("resources/Minecraft/textures/stairs_texture.png"));
 			TexturedModel * texturedModelSphere = new TexturedModel(rawModelSphere, modelTextureSphere);
-			Entity * entitySphere = new Entity(texturedModelSphere, glm::vec3(160, 50, 160), 0, 0, 0, 10);
-			processEntity(entitySphere);
+			Entity * entitySpherePlayer = new Entity(texturedModelSphere, glm::vec3(0.0f, 40.0f, 140.0f), 0, 0, 0, 10);
+			processEntity(entitySpherePlayer);
+			Entity * entitySphereObject1 = new Entity(texturedModelSphere, glm::vec3(0.0f, 40.0f, 100.0f), 0, 0, 0, 10);
+			processEntity(entitySphereObject1);
+			Entity * entitySphereObject2 = new Entity(texturedModelSphere, glm::vec3(0.0f, 40.0f, 60.0f), 0, 0, 0, 10);
+			processEntity(entitySphereObject2);
+
+			// m_Player = new Player(m_Camera, entitySpherePlayer);
 
 			std::cout << "Scene rawModel vaoID: " << rawModel->getVaoID() << std::endl;
 			std::cout << "Scene modelTexture ID: " << modelTextureTiles->getID() << std::endl;
