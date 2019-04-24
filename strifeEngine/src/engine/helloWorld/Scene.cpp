@@ -94,6 +94,7 @@ namespace engine
 
 			m_Player = new Player(texturedModelSphere, glm::vec3(0.0f, 40.0f, 140.0f), 0, 0, 0, 10);
 			processEntity(m_Player);
+			m_Camera->setPlayer(m_Player);
 
 			Entity * entitySphereObject1 = new Entity(texturedModelSphere, glm::vec3(0.0f, 40.0f, 100.0f), 0, 0, 0, 10);
 			processEntity(entitySphereObject1);
@@ -110,8 +111,8 @@ namespace engine
 		void Scene::update(float interval, Window * window)
 		{
 			window->getInput()->update();
-			m_Camera->move(window);
 			m_Player->move(interval, window);
+			m_Camera->move(window);
 			if (window->getInput()->isKeyPressed(GLFW_KEY_ESCAPE))
 			{
 				window->close();

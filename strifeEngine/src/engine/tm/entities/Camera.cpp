@@ -8,59 +8,63 @@ namespace engine
 		{
 			Camera::Camera()
 			{
-				speed = 0.4f;
+				m_Speed = 0.4f;
 			}
 
 			void Camera::move(Window * window)
 			{
 				Input * input = window->getInput();
-
-				cameraInc = glm::vec3();
-
-				if (input->isKeyDown(GLFW_KEY_A) || input->isKeyDown(GLFW_KEY_LEFT)) {
-					cameraInc.x += -speed;
-				}
-				if (input->isKeyDown(GLFW_KEY_D) || input->isKeyDown(GLFW_KEY_RIGHT)) {
-					cameraInc.x += +speed;
-				}
-				if (input->isKeyDown(GLFW_KEY_W) || input->isKeyDown(GLFW_KEY_UP)) {
-					cameraInc.z += -speed;
-				}
-				if (input->isKeyDown(GLFW_KEY_S) || input->isKeyDown(GLFW_KEY_DOWN)) {
-					cameraInc.z += +speed;
-				}
-
-				if (input->isKeyDown(GLFW_KEY_E) || input->isKeyDown(GLFW_KEY_SPACE)) {
-				    m_Position.y += 0.1f;
-				}
-				if (input->isKeyDown(GLFW_KEY_LEFT_SHIFT)) {
-					m_Position.y += -0.1f;
-				}
-
-				glm::vec2 rotVec = input->getDisplayVector();
-				m_Pitch += rotVec.x * cursorSensitivity;
-				m_Yaw += rotVec.y * cursorSensitivity;
-
-				glm::vec3 newPos = calculateNewPosition(cameraInc.x, cameraInc.y, cameraInc.z);
-				m_Position.x = newPos.x;
-				m_Position.y = newPos.y;
-				m_Position.z = newPos.z;
-
+				calculateZoom(input);
+				calculatePitch(input);
+				calculateAngleAroundPlayer(input);
+				float distanceHorizontal = calculateDistanceHorizontal();
+				float distanceVertical = calculateDistanceVertical();
+				calculateCameraPosition(distanceHorizontal, distanceVertical);
 				updateViewMatrix();
 			}
 
-			glm::vec3 Camera::calculateNewPosition(float offsetX, float offsetY, float offsetZ) {
-				glm::vec3 newPos = glm::vec3(m_Position.x, m_Position.y, m_Position.z);
-				if (offsetZ != 0) {
-					newPos.x += (float) glm::sin(glm::radians(m_Yaw)) * -1.0f * offsetZ;
-					newPos.z += (float) glm::cos(glm::radians(m_Yaw)) * offsetZ;
-				}
-				if (offsetX != 0) {
-					newPos.x += (float) glm::sin(glm::radians(m_Yaw - 90)) * -1.0f * offsetX;
-					newPos.z += (float) glm::cos(glm::radians(m_Yaw - 90)) * offsetX;
-				}
-				newPos.y += offsetY;
-				return newPos;
+			void Camera::calculateCameraPosition(float distanceHorizontal, float distanceVertical)
+			{
+				float theta = m_Player->getRotY() + m_AngleAroundPlayer;
+				float offsetX = distanceHorizontal * glm::sin(glm::radians(theta));
+				float offsetZ = distanceHorizontal * glm::cos(glm::radians(theta));
+				m_Position.x = m_Player->getPosition().x - offsetX;
+				m_Position.z = m_Player->getPosition().z - offsetZ;
+				m_Position.y = m_Player->getPosition().y + distanceVertical + m_OffsetY;
+				m_Yaw = -m_Player->getRotY();
+			}
+
+			float Camera::calculateDistanceHorizontal()
+			{
+				return m_DistanceFromPlayer * glm::cos(glm::radians(m_Pitch));
+			}
+
+			float Camera::calculateDistanceVertical()
+			{
+				return m_DistanceFromPlayer * glm::sin(glm::radians(m_Pitch));
+			}
+
+			void Camera::calculateZoom(Input * input)
+			{
+				float zoomLevel = (float) input->getMouseWheelDeltaY() * 1.0f;
+				m_DistanceFromPlayer -= zoomLevel;
+			}
+
+			void Camera::calculatePitch(Input * input)
+			{
+				float pitchChange = input->getDisplayVector().y * 0.2f;
+				m_Pitch -= pitchChange;
+			}
+
+			void Camera::calculateAngleAroundPlayer(Input * input)
+			{
+				float angleChange = input->getDisplayVector().x * 1.0f;
+				// m_AngleAroundPlayer -= angleChange;
+			}
+
+			void Camera::setPlayer(Player * player)
+			{
+				m_Player = player;
 			}
 
 			glm::mat4 Camera::getViewMatrix()

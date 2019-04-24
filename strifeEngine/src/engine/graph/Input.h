@@ -32,6 +32,8 @@ namespace engine
 			bool m_MouseButtons[MAX_BUTTONS];
 			double mouseX;
 			double mouseY;
+			double m_MouseWheelOffsetX;
+			double m_MouseWheelOffsetY;
 
 		public:
 			Input(Window * window);
@@ -42,12 +44,14 @@ namespace engine
 			bool isMouseButtonPressed(unsigned int button) const;
 			glm::vec2 getMousePosition() const;
 			void setMousePosition(double xpos, double ypos);
+			double getMouseWheelDeltaY();
 			glm::vec2 getDisplayVector();
 			virtual ~Input();
 
 			static void key_callback(GLFWwindow * glfwWindow, int key, int scancode, int action, int mods);
 			static void cursor_position_callback(GLFWwindow * glfwWindow, double xpos, double ypos);
 			static void mouse_button_callback(GLFWwindow * glfwWindow, int button, int action, int mods);
+			static void mouse_scroll_callback(GLFWwindow * glfwWindow, double xoffset, double yoffset);
 			static void window_resize(GLFWwindow * glfwWindow, int width, int height);
 
 			// TODO: 

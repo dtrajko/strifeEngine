@@ -19,6 +19,13 @@ namespace engine
 			window->getInput()->m_MouseButtons[button] = action != GLFW_RELEASE;
 		}
 
+		void Input::mouse_scroll_callback(GLFWwindow * glfwWindow, double xoffset, double yoffset)
+		{
+			Window * window = (Window*)glfwGetWindowUserPointer(glfwWindow);
+			window->getInput()->m_MouseWheelOffsetX = xoffset;
+			window->getInput()->m_MouseWheelOffsetY = yoffset;
+		}
+
 		void Input::cursor_position_callback(GLFWwindow * glfwWindow, double xpos, double ypos)
 		{
 			Window * window = (Window*) glfwGetWindowUserPointer(glfwWindow);
@@ -63,6 +70,7 @@ namespace engine
 			glfwSetWindowSizeCallback(glfwWindow, window_resize);
 			glfwSetKeyCallback(glfwWindow, key_callback);
 			glfwSetMouseButtonCallback(glfwWindow, mouse_button_callback);
+			glfwSetScrollCallback(glfwWindow, mouse_scroll_callback);
 			glfwSetCursorPosCallback(glfwWindow, cursor_position_callback);
 
 			if (m_Window->getWindowOptions()->mode3D) {
@@ -136,6 +144,12 @@ namespace engine
 			mouseY = ypos;
 			currentPosition.x = (float) xpos;
 			currentPosition.y = (float) ypos;
+		}
+
+		double Input::getMouseWheelDeltaY() {
+			double mouseWheelDeltaY = m_MouseWheelOffsetY;
+			m_MouseWheelOffsetY = 0;
+			return mouseWheelDeltaY;
 		}
 
 		glm::vec2 Input::getDisplayVector()
