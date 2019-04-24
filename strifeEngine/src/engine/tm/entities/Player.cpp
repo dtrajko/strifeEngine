@@ -40,6 +40,20 @@ namespace engine { namespace tm { namespace entities {
 		if (input->isKeyDown(GLFW_KEY_LEFT_SHIFT)) {
 			increasePosition(0, -RUN_SPEED * 0.1f, 0);
 		}
+
+		float strifeX = 0;
+		float strifeZ = 0;
+		if (input->isKeyDown(GLFW_KEY_Z))
+		{
+			strifeX -= glm::cos(glm::radians(rotY));
+			strifeZ += glm::sin(glm::radians(rotY));
+		}
+		if (input->isKeyDown(GLFW_KEY_X))
+		{
+			strifeX += glm::cos(glm::radians(rotY));
+			strifeZ -= glm::sin(glm::radians(rotY));
+		}
+		increasePosition(strifeX, 0, strifeZ);
 	}
 
 	glm::vec3 Player::calculateNewPosition(glm::vec3 offset) {
