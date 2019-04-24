@@ -14,10 +14,7 @@ namespace engine { namespace tm { namespace entities {
 		float distance = m_CurrentSpeed * -0.1f;
 		float dx = (float)(distance * glm::sin(glm::radians(rotY)));
 		float dz = (float)(distance * glm::cos(glm::radians(rotY)));
-		if (dx != 0 || dz != 0)
-		{
-			increasePosition(dx, 0, dz);
-		}
+		increasePosition(dx, 0, dz);
 	}
 
 	void Player::checkInputs(Window * window)
