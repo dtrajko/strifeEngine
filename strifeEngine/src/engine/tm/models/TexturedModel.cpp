@@ -1,4 +1,3 @@
-#include "RawModel.h"
 #include "TexturedModel.h"
 
 namespace engine

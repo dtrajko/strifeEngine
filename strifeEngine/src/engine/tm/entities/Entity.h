@@ -3,8 +3,10 @@
 #include "../../tm/models/TexturedModel.h"
 #include "../../../vendor/glm/glm.hpp"
 #include "../../../vendor/glm/gtc/matrix_transform.hpp"
+#include "../../../engine/graph/AABB.h"
 
 using namespace engine::tm::models;
+using namespace engine::graph;
 
 namespace engine
 {
@@ -16,13 +18,15 @@ namespace engine
 			{
 			protected:
 				TexturedModel * m_TexturedModel;
-				glm::vec3 position;
+				glm::vec3 m_Position;
 				float rotX;
 				float rotY;
 				float rotZ;
-				float scale;
+				float m_Scale;
 				bool solid;
 				unsigned int m_TextureIndex = 0;
+				AABB * m_AABB;
+				Entity * m_EntityAABB;
 
 			public:
 				Entity(TexturedModel * model, glm::vec3 _position, float _rotX, float _rotY, float _rotZ, float _scale);
@@ -38,6 +42,8 @@ namespace engine
 				TexturedModel * getTexturedModel();
 				float getTextureOffsetX();
 				float getTextureOffsetY();
+				void setAABB();
+				AABB* getAABB();
 				virtual ~Entity();
 			};
 		}

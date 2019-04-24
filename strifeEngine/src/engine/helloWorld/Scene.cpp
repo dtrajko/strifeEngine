@@ -37,11 +37,11 @@ namespace engine
 			processEntity(entityBarrel);
 
 			CubeMeshSimple meshCube = CubeMeshSimple();
-			RawModel * rawModel = m_Loader->loadToVAO(meshCube.getVertices(), meshCube.getVerticesCount(),
+			RawModel * rawModelMeshCube = m_Loader->loadToVAO(meshCube.getVertices(), meshCube.getVerticesCount(),
 				meshCube.getTextureCoords(), meshCube.getTextureCoordsCount(),
 				meshCube.getIndices(), meshCube.getIndicesCount());
 			ModelTexture * modelTextureTiles = new ModelTexture(m_Loader->loadTexture("resources/assets/textures/tiles.png"));
-			TexturedModel * texturedModelTiles = new TexturedModel(rawModel, modelTextureTiles);
+			TexturedModel * texturedModelTiles = new TexturedModel(rawModelMeshCube, modelTextureTiles);
 			Entity * entityCube = new Entity(texturedModelTiles, glm::vec3(-80, 40, -80), 0, 0, 0, 20);
 			processEntity(entityCube);
 			Entity * entityCube2 = new Entity(texturedModelTiles, glm::vec3(20.0f, 0.0f, -40.0f), 0, 0, 0, 20);
@@ -53,7 +53,7 @@ namespace engine
 				meshQuad.getIndices(), meshQuad.getIndicesCount());
 			modelTextureTiles = new ModelTexture(m_Loader->loadTexture("resources/assets/textures/tiles.png"));
 			texturedModelTiles = new TexturedModel(rawModelQuad, modelTextureTiles);
-			Entity * entityQuad = new Entity(texturedModelTiles, glm::vec3(-80, 60, -80), 90, 0, 0, 40);
+			Entity * entityQuad = new Entity(texturedModelTiles, glm::vec3(-80, 60, -80), 60, 0, 0, 40);
 			processEntity(entityQuad);
 
 			ModelTexture * modelTextureFern = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/fern.png"));
@@ -73,17 +73,17 @@ namespace engine
 
 			ModelTexture * modelTexturePine = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/pine.png"));
 			modelTexturePine->setTransparency(1);
-			rawModel = OBJLoader::loadOBJModel("resources/ThinMatrix/models/pine.obj", m_Loader);
-			texturedModelTiles = new TexturedModel(rawModel, modelTexturePine);
+			RawModel * rawModelPine = OBJLoader::loadOBJModel("resources/ThinMatrix/models/pine.obj", m_Loader);
+			texturedModelTiles = new TexturedModel(rawModelPine, modelTexturePine);
 			Entity * entityPine = new Entity(texturedModelTiles, glm::vec3(155.0f, 10.0f, -140.0f), 0, 0, 0, 4);
 			processEntity(entityPine);
 
-			Mesh * meshCobble = (Mesh *) OBJLoader::loadOBJModel("resources/Minecraft/models/cube.obj", m_Loader);
-			TextureAtlas * textureCobble = new TextureAtlas("resources/Minecraft/textures/terrain_texture_cobble.png", 2, 1);
-			Material * materialCobble = new Material(textureCobble);
-			materialCobble->setReflectance(1.0f);
-			materialCobble->setTransparency(1.0f);
-			meshCobble->setMaterial(materialCobble);
+			// Mesh * meshCobble = (Mesh *) OBJLoader::loadOBJModel("resources/Minecraft/models/cube.obj", m_Loader);
+			// TextureAtlas * textureCobble = new TextureAtlas("resources/Minecraft/textures/terrain_texture_cobble.png", 2, 1);
+			// Material * materialCobble = new Material(textureCobble);
+			// materialCobble->setReflectance(1.0f);
+			// materialCobble->setTransparency(1.0f);
+			// meshCobble->setMaterial(materialCobble);
 
 			WaterTile * waterTile = new WaterTile(m_Loader, 0, WaterTile::HEIGHT, 0);
 			processWaterTile(waterTile);
@@ -101,7 +101,17 @@ namespace engine
 			Entity * entitySphereObject2 = new Entity(texturedModelSphere, glm::vec3(0.0f, 40.0f, 60.0f), 0, 0, 0, 10);
 			processEntity(entitySphereObject2);
 
-			std::cout << "Scene rawModel vaoID: " << rawModel->getVaoID() << std::endl;
+			RawModel * rawModelCubeAABB = OBJLoader::loadOBJModel("resources/Minecraft/models/cube.obj", m_Loader);
+			ModelTexture* modelTextureTilesAABB = new ModelTexture(m_Loader->loadTexture("resources/Minecraft/textures/AABB.png"));
+			TexturedModel* texturedModelTilesAABB = new TexturedModel(rawModelCubeAABB, modelTextureTilesAABB);
+			// Entity* m_PlayerEntityAABB = new Entity(texturedModelTilesAABB, m_Player->getPosition(), 0, 0, 0, m_Player->getScale());
+			// processEntity(m_PlayerEntityAABB);
+			Entity* entityAABBSphereObject1 = new Entity(texturedModelTilesAABB, entitySphereObject1->getPosition(), 0, 0, 0, entitySphereObject1->getScale());
+			processEntity(entityAABBSphereObject1);
+			Entity * entityAABBSphereObject2 = new Entity(texturedModelTilesAABB, entitySphereObject2->getPosition(), 0, 0, 0, entitySphereObject2->getScale());
+			processEntity(entityAABBSphereObject2);
+
+			std::cout << "Scene rawModel vaoID: " << rawModelMeshCube->getVaoID() << std::endl;
 			std::cout << "Scene modelTexture ID: " << modelTextureTiles->getID() << std::endl;
 			std::cout << "Scene terrainTexture ID: " << terrainTexture->getID() << std::endl;
 			std::cout << "Scene WaterTile DuDvTexture: " << waterTile->getDuDvTexture() << std::endl;

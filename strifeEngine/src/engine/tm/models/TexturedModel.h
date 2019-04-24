@@ -1,9 +1,12 @@
 #pragma once
 
-#include "RawModel.h"
-#include "../textures/ModelTexture.h"
+#include "./RawModel.h"
+#include "../../../engine/tm/textures/ModelTexture.h"
+#include "../../../engine/graph/TextureAtlas.h"
 
+using namespace engine::tm::models;
 using namespace engine::tm::textures;
+using namespace engine::graph;
 
 namespace engine
 {
@@ -14,7 +17,7 @@ namespace engine
 			class TexturedModel
 			{
 			private:
-				RawModel* rawModelCubeMesh;
+				RawModel * rawModelCubeMesh;
 				ModelTexture* modelTexture;
 
 			public:
