@@ -91,6 +91,10 @@ namespace engine
 			texturedModelTiles = new TexturedModel(rawModelPine, modelTexturePine);
 			Entity * entityPine = new Entity(texturedModelTiles, glm::vec3(155.0f, 10.0f, -140.0f), 0, 0, 0, 4);
 			processEntity(entityPine);
+			// set AABB Entity
+			Entity* entityAABBPine = new Entity(texturedModelTilesAABB, entityPine->getPosition(), 0, 0, 0, entityPine->getScale());
+			entityPine->setEntityAABB(entityAABBPine);
+			processEntity(entityPine->getEntityAABB());
 
 			// Mesh * meshCobble = (Mesh *) OBJLoader::loadOBJModel("resources/Minecraft/models/cube.obj", m_Loader);
 			// TextureAtlas * textureCobble = new TextureAtlas("resources/Minecraft/textures/terrain_texture_cobble.png", 2, 1);
@@ -106,7 +110,7 @@ namespace engine
 			ModelTexture * modelTextureSphere = new ModelTexture(m_Loader->loadTexture("resources/Minecraft/textures/stairs_texture.png"));
 			TexturedModel * texturedModelSphere = new TexturedModel(rawModelSphere, modelTextureSphere);
 
-			m_Player = new Player(texturedModelSphere, glm::vec3(0.0f, 40.0f, 142.0f), 0, 0, 0, 10);
+			m_Player = new Player(texturedModelSphere, glm::vec3(0.0f, 40.0f, 160.0f), 0, 0, 0, 10);
 			m_Camera->setPlayer(m_Player);
 			processEntity(m_Player);
 			// set AABB Entity
@@ -121,7 +125,7 @@ namespace engine
 			entitySphereObject1->setEntityAABB(entityAABBSphereObject1);
 			processEntity(entitySphereObject1->getEntityAABB());
 
-			Entity * entitySphereObject2 = new Entity(texturedModelSphere, glm::vec3(0.0f, 40.0f, 58.0f), 0, 0, 0, 10);
+			Entity * entitySphereObject2 = new Entity(texturedModelSphere, glm::vec3(0.0f, 40.0f, 40.0f), 0, 0, 0, 10);
 			processEntity(entitySphereObject2);
 			// set AABB Entity
 			Entity * entityAABBSphereObject2 = new Entity(texturedModelTilesAABB, entitySphereObject2->getPosition(), 0, 0, 0, entitySphereObject2->getScale() * 1.0f);

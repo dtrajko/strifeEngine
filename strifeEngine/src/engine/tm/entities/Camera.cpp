@@ -69,7 +69,7 @@ namespace engine
 			void Camera::calculateZoom(Input * input)
 			{
 				float zoomLevel = (float) input->getMouseWheelDeltaY() * 1.0f;
-				m_DistanceFromPlayer += zoomLevel;
+				m_DistanceFromPlayer -= zoomLevel;
 			}
 
 			/*
