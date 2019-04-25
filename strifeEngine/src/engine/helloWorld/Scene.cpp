@@ -19,7 +19,7 @@ namespace engine
 			m_Loader = new Loader();
 
 			m_SkyBox = new SkyBox("resources/Minecraft/models/skybox.obj", "resources/Minecraft/textures/skybox_desert.png", m_Loader);
-			m_SkyBox->setScale(680.0f);
+			m_SkyBox->setScale(glm::vec3(680.0f));
 			m_SkyBox->setPosition(0.0f, 0.0f, 0.0f);
 
 			ModelTexture * terrainTexture = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/terrain_1/2.png"));
@@ -92,7 +92,8 @@ namespace engine
 			Entity * entityPine = new Entity(texturedModelTiles, glm::vec3(155.0f, 10.0f, -140.0f), 0, 0, 0, 4);
 			processEntity(entityPine);
 			// set AABB Entity
-			Entity* entityAABBPine = new Entity(texturedModelTilesAABB, entityPine->getPosition(), 0, 0, 0, entityPine->getScale());
+			glm::vec3 entityPinePositionAABB = glm::vec3(entityPine->getPosition().x, entityPine->getPosition().y + 38, entityPine->getPosition().z);
+			Entity* entityAABBPine = new Entity(texturedModelTilesAABB, entityPinePositionAABB, 0, 0, 0, glm::vec3(5, 38, 5));
 			entityPine->setEntityAABB(entityAABBPine);
 			processEntity(entityPine->getEntityAABB());
 
@@ -114,21 +115,21 @@ namespace engine
 			m_Camera->setPlayer(m_Player);
 			processEntity(m_Player);
 			// set AABB Entity
-			Entity* m_PlayerEntityAABB = new Entity(texturedModelTilesAABB, m_Player->getPosition(), 0, 0, 0, m_Player->getScale() * 1.0f);
+			Entity* m_PlayerEntityAABB = new Entity(texturedModelTilesAABB, m_Player->getPosition(), 0, 0, 0, m_Player->getScale());
 			m_Player->setEntityAABB(m_PlayerEntityAABB);
 			processEntity(m_Player->getEntityAABB());
 
 			Entity * entitySphereObject1 = new Entity(texturedModelSphere, glm::vec3(0.0f, 40.0f, 100.0f), 0, 0, 0, 10);
 			processEntity(entitySphereObject1);
 			// set AABB Entity
-			Entity* entityAABBSphereObject1 = new Entity(texturedModelTilesAABB, entitySphereObject1->getPosition(), 0, 0, 0, entitySphereObject1->getScale() * 1.0f);
+			Entity* entityAABBSphereObject1 = new Entity(texturedModelTilesAABB, entitySphereObject1->getPosition(), 0, 0, 0, entitySphereObject1->getScale());
 			entitySphereObject1->setEntityAABB(entityAABBSphereObject1);
 			processEntity(entitySphereObject1->getEntityAABB());
 
 			Entity * entitySphereObject2 = new Entity(texturedModelSphere, glm::vec3(0.0f, 40.0f, 40.0f), 0, 0, 0, 10);
 			processEntity(entitySphereObject2);
 			// set AABB Entity
-			Entity * entityAABBSphereObject2 = new Entity(texturedModelTilesAABB, entitySphereObject2->getPosition(), 0, 0, 0, entitySphereObject2->getScale() * 1.0f);
+			Entity * entityAABBSphereObject2 = new Entity(texturedModelTilesAABB, entitySphereObject2->getPosition(), 0, 0, 0, entitySphereObject2->getScale());
 			entitySphereObject2->setEntityAABB(entityAABBSphereObject2);
 			processEntity(entitySphereObject2->getEntityAABB());
 

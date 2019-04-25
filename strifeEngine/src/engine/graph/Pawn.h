@@ -14,18 +14,18 @@ namespace engine { namespace graph {
 		std::vector<Mesh *> m_Meshes;
 		glm::vec3 m_Position;
 		glm::vec3 m_Rotation;
-		float m_Scale;
+		glm::vec3 m_Scale;
 		bool m_IsSelected;
-		AABB * boundingBox;
+		AABB * m_AABB;
 
 	public:
 		Pawn();
-		Pawn * setScale(float scale);
+		Pawn * setScale(glm::vec3 scale);
 		Pawn * setMesh(Mesh * mesh);
 		Mesh * getMesh();
 		Pawn * setPosition(float x, float y, float z);
 		glm::vec3 getPosition() const;
-		float getScale() const;
+		glm::vec3 getScale() const;
 		virtual ~Pawn();
 
 	};

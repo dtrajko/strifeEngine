@@ -19,18 +19,19 @@ namespace engine
 			protected:
 				TexturedModel * m_TexturedModel;
 				glm::vec3 m_Position;
-				float rotX;
-				float rotY;
-				float rotZ;
-				float m_Scale;
+				float m_RotX;
+				float m_RotY;
+				float m_RotZ;
+				glm::vec3 m_Scale;
 				bool solid;
 				unsigned int m_TextureIndex = 0;
 				AABB * m_AABB;
 				Entity * m_EntityAABB = nullptr;
 
 			public:
-				Entity(TexturedModel * model, glm::vec3 _position, float _rotX, float _rotY, float _rotZ, float _scale);
-				Entity(TexturedModel * model, unsigned int textureIndex, glm::vec3 _position, float _rotX, float _rotY, float _rotZ, float _scale);
+				Entity(TexturedModel* model, glm::vec3 position, float rotX, float rotY, float rotZ, glm::vec3 scale);
+				Entity(TexturedModel* model, glm::vec3 position, float rotX, float rotY, float rotZ, float scale);
+				Entity(TexturedModel* model, unsigned int textureIndex, glm::vec3 position, float rotX, float rotY, float rotZ, float scale);
 				void increasePosition(float dx, float dy, float dz);
 				void increaseRotation(float dx, float dy, float dz);
 				glm::vec3 getPosition();
@@ -38,7 +39,7 @@ namespace engine
 				float getRotX();
 				float getRotY();
 				float getRotZ();
-				float getScale();
+				glm::vec3 getScale();
 				TexturedModel * getTexturedModel();
 				float getTextureOffsetX();
 				float getTextureOffsetY();

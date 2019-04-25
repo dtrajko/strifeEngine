@@ -16,7 +16,7 @@ namespace engine
 			class Maths
 			{
 			public:
-				static glm::mat4 createTransformationMatrix(glm::vec3 translation, float rotX, float rotY, float rotZ, float scale);
+				static glm::mat4 createTransformationMatrix(glm::vec3 translation, float rotX, float rotY, float rotZ, glm::vec3 scale);
 				static glm::mat4 createViewMatrix(ICamera * camera);
 			};
 		}

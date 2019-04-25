@@ -74,7 +74,7 @@ namespace engine { namespace tm { namespace water {
 	void WaterRenderer::renderWaterTile(IScene * scene, WaterTile * waterTile, RawModel * rawModel)
 	{
 		m_TransformationMatrix = Maths::createTransformationMatrix(
-			glm::vec3(waterTile->getX(), waterTile->getY(), waterTile->getZ()), 0, 0, 0, WaterTile::TILE_SIZE);
+			glm::vec3(waterTile->getX(), waterTile->getY(), waterTile->getZ()), 0, 0, 0, glm::vec3(WaterTile::TILE_SIZE));
 		m_Shader->loadMatrix("transformationMatrix", m_TransformationMatrix);
 
 		glDrawArrays(GL_TRIANGLES, 0, rawModel->getVertexCount());

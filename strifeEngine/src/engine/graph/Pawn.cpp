@@ -7,10 +7,10 @@ namespace engine { namespace graph {
 		m_IsSelected = false;
 		m_Position = glm::vec3(0.0f);
 		m_Rotation = glm::vec3(0.0f);
-		m_Scale = 1;
+		m_Scale = glm::vec3(1.0f);
 	}
 
-	Pawn * Pawn::setScale(float scale)
+	Pawn * Pawn::setScale(glm::vec3 scale)
 	{
 		m_Scale = scale;
 		return this;
@@ -40,7 +40,7 @@ namespace engine { namespace graph {
 		return m_Position;
 	}
 
-	float Pawn::getScale() const
+	glm::vec3 Pawn::getScale() const
 	{
 		return m_Scale;
 	}

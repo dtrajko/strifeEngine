@@ -2,6 +2,7 @@
 #define _AABB_H
 
 #include <iostream>
+#include "../../vendor/glm/glm.hpp"
 
 namespace engine { namespace graph {
 
@@ -11,13 +12,13 @@ namespace engine { namespace graph {
 		float m_X = 0;
 		float m_Y = 0;
 		float m_Z = 0;
-		float m_Scale = 1;
+		glm::vec3 m_Scale = glm::vec3(1);
 
 	private:
 
 	public:
-		AABB(float x, float y, float z, float scale);
-		bool contains(float x2, float y2, float z2, float scale2);
+		AABB(float x, float y, float z, glm::vec3 scale);
+		bool contains(float x2, float y2, float z2, glm::vec3 scale2);
 		virtual ~AABB();
 
 	};

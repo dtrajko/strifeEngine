@@ -6,19 +6,24 @@ namespace engine
 	{
 		namespace entities
 		{
-			Entity::Entity(TexturedModel * model, glm::vec3 _position, float _rotX, float _rotY, float _rotZ, float _scale)
+			Entity::Entity(TexturedModel* model, glm::vec3 position, float rotX, float rotY, float rotZ, glm::vec3 scale)
 			{
 				m_TexturedModel = model;
-				m_Position = _position;
-				rotX = _rotX;
-				rotY = _rotY;
-				rotZ = _rotZ;
-				m_Scale = _scale;
+				m_Position = position;
+				m_RotX = rotX;
+				m_RotY = rotY;
+				m_RotZ = rotZ;
+				m_Scale = scale;
 				solid = false;
 			}
 
-			Entity::Entity(TexturedModel * model, unsigned int textureIndex, glm::vec3 _position, float _rotX, float _rotY, float _rotZ, float _scale):
-				Entity(model, _position, _rotX, _rotY, _rotZ, _scale)
+			Entity::Entity(TexturedModel * model, glm::vec3 position, float rotX, float rotY, float rotZ, float scale):
+				Entity(model, position, rotX, rotY, rotZ, glm::vec3(scale, scale, scale))
+			{
+			}
+
+			Entity::Entity(TexturedModel * model, unsigned int textureIndex, glm::vec3 position, float rotX, float rotY, float rotZ, float scale):
+				Entity(model, position, rotX, rotY, rotZ, glm::vec3(scale, scale, scale))
 			{
 				m_TextureIndex = textureIndex;
 			}
@@ -38,9 +43,9 @@ namespace engine
 
 			void Entity::increaseRotation(float dx, float dy, float dz)
 			{
-				rotX += dx;
-				rotY += dy;
-				rotZ += dz;
+				m_RotX += dx;
+				m_RotY += dy;
+				m_RotZ += dz;
 			}
 
 			glm::vec3 Entity::getPosition()
@@ -55,20 +60,20 @@ namespace engine
 
 			float Entity::getRotX()
 			{
-				return rotX;
+				return m_RotX;
 			}
 
 			float Entity::getRotY()
 			{
-				return rotY;
+				return m_RotY;
 			}
 
 			float Entity::getRotZ()
 			{
-				return rotZ;
+				return m_RotZ;
 			}
 
-			float Entity::getScale()
+			glm::vec3 Entity::getScale()
 			{
 				return m_Scale;
 			}
@@ -94,11 +99,14 @@ namespace engine
 
 			void Entity::setAABB()
 			{
-				float scaleAABB = (m_EntityAABB != nullptr) ? m_EntityAABB->m_Scale : m_Scale;
-				float topLeftX = m_Position.x - scaleAABB;
-				float topLeftY = m_Position.y - scaleAABB;
-				float topLeftZ = m_Position.z - scaleAABB;
-				m_AABB = new AABB(topLeftX, topLeftY, topLeftZ, scaleAABB * 2);
+				glm::vec3 scaleAABB = (m_EntityAABB != nullptr) ? m_EntityAABB->m_Scale : m_Scale;
+				float posX = (m_EntityAABB != nullptr) ? m_EntityAABB->m_Position.x : m_Position.x;
+				float posY = (m_EntityAABB != nullptr) ? m_EntityAABB->m_Position.y : m_Position.y;
+				float posZ = (m_EntityAABB != nullptr) ? m_EntityAABB->m_Position.z : m_Position.z;
+				float topLeftX = posX - scaleAABB.x;
+				float topLeftY = posY - scaleAABB.y;
+				float topLeftZ = posZ - scaleAABB.z;
+				m_AABB = new AABB(topLeftX, topLeftY, topLeftZ, glm::vec3(scaleAABB.x * 2, scaleAABB.y * 2, scaleAABB.z * 2));
 			}
 
 			AABB * Entity::getAABB()

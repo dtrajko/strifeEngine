@@ -12,9 +12,9 @@ namespace engine { namespace tm { namespace entities {
 		checkInputs(window);
 		increaseRotation(0, m_CurrentTurnSpeed * 0.01f, 0);
 		float distance = m_CurrentSpeed * -0.1f;
-		float dx = (float)(distance * glm::sin(glm::radians(rotY)) + m_StrifeX);
+		float dx = (float)(distance * glm::sin(glm::radians(m_RotY)) + m_StrifeX);
 		float dy = m_StrifeY;
-		float dz = (float)(distance * glm::cos(glm::radians(rotY)) + m_StrifeZ);
+		float dz = (float)(distance * glm::cos(glm::radians(m_RotY)) + m_StrifeZ);
 		increasePosition(dx, dy, dz);
 		if (inCollision(entities))
 		{
@@ -44,13 +44,13 @@ namespace engine { namespace tm { namespace entities {
 		m_StrifeZ = 0;
 		if (input->isKeyDown(GLFW_KEY_Z))
 		{
-			m_StrifeX -= glm::cos(glm::radians(rotY));
-			m_StrifeZ += glm::sin(glm::radians(rotY));
+			m_StrifeX -= glm::cos(glm::radians(m_RotY));
+			m_StrifeZ += glm::sin(glm::radians(m_RotY));
 		}
 		if (input->isKeyDown(GLFW_KEY_X))
 		{
-			m_StrifeX += glm::cos(glm::radians(rotY));
-			m_StrifeZ -= glm::sin(glm::radians(rotY));
+			m_StrifeX += glm::cos(glm::radians(m_RotY));
+			m_StrifeZ -= glm::sin(glm::radians(m_RotY));
 		}
 		m_StrifeX *= 0.5f;
 		m_StrifeZ *= 0.5f;
