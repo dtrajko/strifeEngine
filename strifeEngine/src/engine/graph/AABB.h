@@ -1,6 +1,8 @@
 #ifndef _AABB_H
 #define _AABB_H
 
+#include <iostream>
+
 namespace engine { namespace graph {
 
 	class AABB

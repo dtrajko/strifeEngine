@@ -26,7 +26,7 @@ namespace engine
 				bool solid;
 				unsigned int m_TextureIndex = 0;
 				AABB * m_AABB;
-				Entity * m_EntityAABB;
+				Entity * m_EntityAABB = nullptr;
 
 			public:
 				Entity(TexturedModel * model, glm::vec3 _position, float _rotX, float _rotY, float _rotZ, float _scale);
@@ -43,7 +43,9 @@ namespace engine
 				float getTextureOffsetX();
 				float getTextureOffsetY();
 				void setAABB();
-				AABB* getAABB();
+				AABB * getAABB();
+				void setEntityAABB(Entity * entityAABB);
+				Entity * getEntityAABB();
 				virtual ~Entity();
 			};
 		}

@@ -28,6 +28,11 @@ namespace engine
 			ITerrain * terrain = new Terrain(-0.5f, -0.5f, m_Loader, terrainTexture, "resources/ThinMatrix/textures/heightmap.png");
 			processTerrain(terrain);
 
+			// TexturedModel for AABB entities (bounding boxes)
+			RawModel* rawModelCubeAABB = OBJLoader::loadOBJModel("resources/Minecraft/models/cube.obj", m_Loader);
+			ModelTexture* modelTextureTilesAABB = new ModelTexture(m_Loader->loadTexture("resources/Minecraft/textures/AABB.png"));
+			TexturedModel* texturedModelTilesAABB = new TexturedModel(rawModelCubeAABB, modelTextureTilesAABB);
+
 			ModelTexture * modelTextureBarrel = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/normalMaps/barrel.png"));
 			modelTextureBarrel->setShineDumper(10);
 			modelTextureBarrel->setReflectivity(1);
@@ -42,10 +47,19 @@ namespace engine
 				meshCube.getIndices(), meshCube.getIndicesCount());
 			ModelTexture * modelTextureTiles = new ModelTexture(m_Loader->loadTexture("resources/assets/textures/tiles.png"));
 			TexturedModel * texturedModelTiles = new TexturedModel(rawModelMeshCube, modelTextureTiles);
-			Entity * entityCube = new Entity(texturedModelTiles, glm::vec3(-80, 40, -80), 0, 0, 0, 20);
-			processEntity(entityCube);
+			Entity * entityCube1 = new Entity(texturedModelTiles, glm::vec3(-80, 40, -80), 0, 0, 0, 20);
+			processEntity(entityCube1);
+			// set AABB Entity
+			Entity* entityAABBCube1 = new Entity(texturedModelTilesAABB, entityCube1->getPosition(), 0, 0, 0, entityCube1->getScale() * 0.54f);
+			entityCube1->setEntityAABB(entityAABBCube1);
+			processEntity(entityCube1->getEntityAABB());
+
 			Entity * entityCube2 = new Entity(texturedModelTiles, glm::vec3(20.0f, 0.0f, -40.0f), 0, 0, 0, 20);
 			processEntity(entityCube2);
+			// set AABB Entity
+			Entity* entityAABBCube2 = new Entity(texturedModelTilesAABB, entityCube2->getPosition(), 0, 0, 0, entityCube2->getScale() * 0.54f);
+			entityCube2->setEntityAABB(entityAABBCube2);
+			processEntity(entityCube2->getEntityAABB());
 
 			QuadMeshSimple meshQuad = QuadMeshSimple();
 			RawModel * rawModelQuad = m_Loader->loadToVAO(meshQuad.getVertices(), meshQuad.getVerticesCount(),
@@ -93,23 +107,26 @@ namespace engine
 			TexturedModel * texturedModelSphere = new TexturedModel(rawModelSphere, modelTextureSphere);
 
 			m_Player = new Player(texturedModelSphere, glm::vec3(0.0f, 40.0f, 140.0f), 0, 0, 0, 10);
-			processEntity(m_Player);
 			m_Camera->setPlayer(m_Player);
+			processEntity(m_Player);
+			// set AABB Entity
+			Entity* m_PlayerEntityAABB = new Entity(texturedModelTilesAABB, m_Player->getPosition(), 0, 0, 0, m_Player->getScale());
+			m_Player->setEntityAABB(m_PlayerEntityAABB);
+			processEntity(m_Player->getEntityAABB());
 
 			Entity * entitySphereObject1 = new Entity(texturedModelSphere, glm::vec3(0.0f, 40.0f, 100.0f), 0, 0, 0, 10);
 			processEntity(entitySphereObject1);
+			// set AABB Entity
+			Entity* entityAABBSphereObject1 = new Entity(texturedModelTilesAABB, entitySphereObject1->getPosition(), 0, 0, 0, entitySphereObject1->getScale());
+			entitySphereObject1->setEntityAABB(entityAABBSphereObject1);
+			processEntity(entitySphereObject1->getEntityAABB());
+
 			Entity * entitySphereObject2 = new Entity(texturedModelSphere, glm::vec3(0.0f, 40.0f, 60.0f), 0, 0, 0, 10);
 			processEntity(entitySphereObject2);
-
-			RawModel * rawModelCubeAABB = OBJLoader::loadOBJModel("resources/Minecraft/models/cube.obj", m_Loader);
-			ModelTexture* modelTextureTilesAABB = new ModelTexture(m_Loader->loadTexture("resources/Minecraft/textures/AABB.png"));
-			TexturedModel* texturedModelTilesAABB = new TexturedModel(rawModelCubeAABB, modelTextureTilesAABB);
-			// Entity* m_PlayerEntityAABB = new Entity(texturedModelTilesAABB, m_Player->getPosition(), 0, 0, 0, m_Player->getScale());
-			// processEntity(m_PlayerEntityAABB);
-			Entity* entityAABBSphereObject1 = new Entity(texturedModelTilesAABB, entitySphereObject1->getPosition(), 0, 0, 0, entitySphereObject1->getScale());
-			processEntity(entityAABBSphereObject1);
+			// set AABB Entity
 			Entity * entityAABBSphereObject2 = new Entity(texturedModelTilesAABB, entitySphereObject2->getPosition(), 0, 0, 0, entitySphereObject2->getScale());
-			processEntity(entityAABBSphereObject2);
+			entitySphereObject2->setEntityAABB(entityAABBSphereObject2);
+			processEntity(entitySphereObject2->getEntityAABB());
 
 			std::cout << "Scene rawModel vaoID: " << rawModelMeshCube->getVaoID() << std::endl;
 			std::cout << "Scene modelTexture ID: " << modelTextureTiles->getID() << std::endl;
@@ -121,7 +138,7 @@ namespace engine
 		void Scene::update(float interval, Window * window)
 		{
 			window->getInput()->update();
-			m_Player->move(interval, window);
+			m_Player->move(interval, window, getEntities());
 			m_Camera->move(window);
 			if (window->getInput()->isKeyPressed(GLFW_KEY_ESCAPE))
 			{

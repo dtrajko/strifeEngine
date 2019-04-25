@@ -16,6 +16,10 @@ namespace engine { namespace graph {
 			x2 > m_X && x2 <= m_X + m_Scale &&
 			y2 > m_Y && y2 <= m_Y + m_Scale &&
 			z2 > m_Z && z2 <= m_Z + m_Scale;
+		// std::cout << "AABB::contains: " << std::endl;
+		// std::cout << "Player X: " << m_X << " Y: " << m_Y << " Z: " << m_Z << " Scale: " << m_Scale << std::endl;
+		// std::cout << "Entity X: " << x2 << " Y: " << y2 << " Z: " << z2 << std::endl;
+		// std::cout << "Result " << contains << std::endl;
 		return contains;
 	}
 

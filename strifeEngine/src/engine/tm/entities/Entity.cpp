@@ -15,7 +15,7 @@ namespace engine
 				rotZ = _rotZ;
 				m_Scale = _scale;
 				solid = false;
-				m_AABB = nullptr;
+				setAABB();
 			}
 
 			Entity::Entity(TexturedModel * model, unsigned int textureIndex, glm::vec3 _position, float _rotX, float _rotY, float _rotZ, float _scale):
@@ -29,6 +29,13 @@ namespace engine
 				m_Position.x += dx;
 				m_Position.y += dy;
 				m_Position.z += dz;
+
+				if (m_EntityAABB != nullptr)
+				{
+					m_EntityAABB->increasePosition(dx, dy, dz);
+				}
+
+				setAABB();
 			}
 
 			void Entity::increaseRotation(float dx, float dy, float dz)
@@ -102,6 +109,16 @@ namespace engine
 					setAABB();
 				}
 				return m_AABB;
+			}
+
+			void Entity::setEntityAABB(Entity* entityAABB)
+			{
+				m_EntityAABB = entityAABB;
+			}
+
+			Entity * Entity::getEntityAABB()
+			{
+				return m_EntityAABB;
 			}
 
 			Entity::~Entity()
