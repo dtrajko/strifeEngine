@@ -13,7 +13,7 @@ namespace engine { namespace tm { namespace entities {
 	class Player : public Entity
 	{
 	private:
-		const static int RUN_SPEED = 4;
+		const static int RUN_SPEED = 5;
 		const static int TURN_SPEED = 80;
 		float m_CurrentSpeed = 0;
 		float m_CurrentTurnSpeed = 0;

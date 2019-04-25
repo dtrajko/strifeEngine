@@ -10,16 +10,11 @@ namespace engine { namespace graph {
 		m_Scale = scale;
 	}
 
-	bool AABB::contains(float x2, float y2, float z2)
+	bool AABB::contains(float x2, float y2, float z2, float scale2)
 	{
-		bool contains = 
-			x2 > m_X && x2 <= m_X + m_Scale &&
-			y2 > m_Y && y2 <= m_Y + m_Scale &&
-			z2 > m_Z && z2 <= m_Z + m_Scale;
-		// std::cout << "AABB::contains: " << std::endl;
-		// std::cout << "Player X: " << m_X << " Y: " << m_Y << " Z: " << m_Z << " Scale: " << m_Scale << std::endl;
-		// std::cout << "Entity X: " << x2 << " Y: " << y2 << " Z: " << z2 << std::endl;
-		// std::cout << "Result " << contains << std::endl;
+		bool contains = !(m_X + m_Scale < x2 || x2 + scale2 < m_X ||
+			              m_Y + m_Scale < y2 || y2 + scale2 < m_Y ||
+			              m_Z + m_Scale < z2 || z2 + scale2 < m_Z);
 		return contains;
 	}
 

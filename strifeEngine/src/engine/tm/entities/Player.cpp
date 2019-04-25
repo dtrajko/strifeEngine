@@ -52,6 +52,8 @@ namespace engine { namespace tm { namespace entities {
 			m_StrifeX += glm::cos(glm::radians(rotY));
 			m_StrifeZ -= glm::sin(glm::radians(rotY));
 		}
+		m_StrifeX *= 0.5f;
+		m_StrifeZ *= 0.5f;
 		// vertical strife
 		if (input->isKeyDown(GLFW_KEY_E) || input->isKeyDown(GLFW_KEY_SPACE)) {
 			m_StrifeY = RUN_SPEED * 0.1f;
@@ -68,7 +70,7 @@ namespace engine { namespace tm { namespace entities {
 			if (entity != this && entity->getEntityAABB() != nullptr && entity->getAABB() != nullptr)
 			{
 				AABB* entityAABB = entity->getAABB();
-				if (m_AABB->contains(entityAABB->m_X, entityAABB->m_Y, entityAABB->m_Z))
+				if (m_AABB->contains(entityAABB->m_X, entityAABB->m_Y, entityAABB->m_Z, entityAABB->m_Scale))
 				{
 					return true;
 				}

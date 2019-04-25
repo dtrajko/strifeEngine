@@ -106,25 +106,25 @@ namespace engine
 			ModelTexture * modelTextureSphere = new ModelTexture(m_Loader->loadTexture("resources/Minecraft/textures/stairs_texture.png"));
 			TexturedModel * texturedModelSphere = new TexturedModel(rawModelSphere, modelTextureSphere);
 
-			m_Player = new Player(texturedModelSphere, glm::vec3(0.0f, 40.0f, 140.0f), 0, 0, 0, 10);
+			m_Player = new Player(texturedModelSphere, glm::vec3(0.0f, 40.0f, 142.0f), 0, 0, 0, 10);
 			m_Camera->setPlayer(m_Player);
 			processEntity(m_Player);
 			// set AABB Entity
-			Entity* m_PlayerEntityAABB = new Entity(texturedModelTilesAABB, m_Player->getPosition(), 0, 0, 0, m_Player->getScale());
+			Entity* m_PlayerEntityAABB = new Entity(texturedModelTilesAABB, m_Player->getPosition(), 0, 0, 0, m_Player->getScale() * 1.0f);
 			m_Player->setEntityAABB(m_PlayerEntityAABB);
 			processEntity(m_Player->getEntityAABB());
 
 			Entity * entitySphereObject1 = new Entity(texturedModelSphere, glm::vec3(0.0f, 40.0f, 100.0f), 0, 0, 0, 10);
 			processEntity(entitySphereObject1);
 			// set AABB Entity
-			Entity* entityAABBSphereObject1 = new Entity(texturedModelTilesAABB, entitySphereObject1->getPosition(), 0, 0, 0, entitySphereObject1->getScale());
+			Entity* entityAABBSphereObject1 = new Entity(texturedModelTilesAABB, entitySphereObject1->getPosition(), 0, 0, 0, entitySphereObject1->getScale() * 1.0f);
 			entitySphereObject1->setEntityAABB(entityAABBSphereObject1);
 			processEntity(entitySphereObject1->getEntityAABB());
 
-			Entity * entitySphereObject2 = new Entity(texturedModelSphere, glm::vec3(0.0f, 40.0f, 60.0f), 0, 0, 0, 10);
+			Entity * entitySphereObject2 = new Entity(texturedModelSphere, glm::vec3(0.0f, 40.0f, 58.0f), 0, 0, 0, 10);
 			processEntity(entitySphereObject2);
 			// set AABB Entity
-			Entity * entityAABBSphereObject2 = new Entity(texturedModelTilesAABB, entitySphereObject2->getPosition(), 0, 0, 0, entitySphereObject2->getScale());
+			Entity * entityAABBSphereObject2 = new Entity(texturedModelTilesAABB, entitySphereObject2->getPosition(), 0, 0, 0, entitySphereObject2->getScale() * 1.0f);
 			entitySphereObject2->setEntityAABB(entityAABBSphereObject2);
 			processEntity(entitySphereObject2->getEntityAABB());
 

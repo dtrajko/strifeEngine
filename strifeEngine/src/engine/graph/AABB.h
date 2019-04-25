@@ -17,7 +17,7 @@ namespace engine { namespace graph {
 
 	public:
 		AABB(float x, float y, float z, float scale);
-		bool contains(float x2, float y2, float z2);
+		bool contains(float x2, float y2, float z2, float scale2);
 		virtual ~AABB();
 
 	};
