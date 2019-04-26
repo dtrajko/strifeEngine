@@ -23,7 +23,7 @@ namespace engine { namespace tm { namespace entities {
 		glm::vec3 cameraInc = glm::vec3();
 
 	public:
-		Player(TexturedModel * model, glm::vec3 _position, float _rotX, float _rotY, float _rotZ, float _scale);
+		Player(TexturedModel* model, glm::vec3 position, glm::vec3 rotation, float scale);
 		void move(float interval, Window* window, std::vector<Entity*> entities);
 		void update();
 		virtual ~Player();

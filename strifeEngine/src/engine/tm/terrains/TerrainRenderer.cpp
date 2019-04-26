@@ -49,7 +49,7 @@ namespace engine { namespace tm { namespace terrains {
 		glEnableVertexAttribArray(2);
 
 		m_TransformationMatrix = Maths::createTransformationMatrix(
-			glm::vec3(terrain->getX(), 0, terrain->getZ()), 0, 0, 0, glm::vec3(1));
+			glm::vec3(terrain->getX(), 0, terrain->getZ()), glm::vec3(0), glm::vec3(1));
 		m_Shader->loadMatrix("transformationMatrix", m_TransformationMatrix);
 
 		ModelTexture * texture = terrain->getTexture();

@@ -59,7 +59,7 @@ namespace engine { namespace minecraft { namespace skybox {
 		rotationOffsetY += 0.01f;
 		rotationOffsetY = std::fmodf(rotationOffsetY, 360.f);
 
-		m_TransformationMatrix = Maths::createTransformationMatrix(position, 1.f, rotationOffsetY, 1.f, skyBox->getScale());
+		m_TransformationMatrix = Maths::createTransformationMatrix(position, glm::vec3(1.f, rotationOffsetY, 1.f), skyBox->getScale());
 		m_Shader->loadMatrix("transformationMatrix", m_TransformationMatrix);
 
 		TextureAtlas * texture = skyBox->getMesh()->getMaterial()->getTexture();

@@ -43,7 +43,7 @@ namespace engine { namespace minecraft { namespace cubes {
 		glEnableVertexAttribArray(2);
 
 		glm::vec3 translation;
-		m_TransformationMatrix = Maths::createTransformationMatrix(translation, 1.f, 1.f, 1.f, glm::vec3(1.f));
+		m_TransformationMatrix = Maths::createTransformationMatrix(translation, glm::vec3(0), glm::vec3(1.f));
 		m_Shader->loadMatrix("transformationMatrix", m_TransformationMatrix);
 
 		int textureID = 0;

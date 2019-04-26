@@ -19,9 +19,9 @@ namespace engine
 			protected:
 				TexturedModel * m_TexturedModel;
 				glm::vec3 m_Position;
-				float m_RotX;
-				float m_RotY;
-				float m_RotZ;
+				glm::vec3 m_Rotation;
+				glm::vec3 m_Velocity; // physics
+				float m_Mass; // kg physics
 				glm::vec3 m_Scale;
 				bool solid;
 				unsigned int m_TextureIndex = 0;
@@ -29,17 +29,15 @@ namespace engine
 				Entity * m_EntityAABB = nullptr;
 
 			public:
-				Entity(TexturedModel* model, glm::vec3 position, float rotX, float rotY, float rotZ, glm::vec3 scale);
-				Entity(TexturedModel* model, glm::vec3 position, float rotX, float rotY, float rotZ, float scale);
-				Entity(TexturedModel* model, unsigned int textureIndex, glm::vec3 position, float rotX, float rotY, float rotZ, float scale);
+				Entity(TexturedModel* model, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);
+				Entity(TexturedModel* model, glm::vec3 position, glm::vec3 rotation, float scale);
+				Entity(TexturedModel* model, unsigned int textureIndex, glm::vec3 position, glm::vec3 rotation, float scale);
 				void increasePosition(float dx, float dy, float dz);
 				void increaseRotation(float dx, float dy, float dz);
 				glm::vec3 getPosition();
-				void setPosition(glm::vec3 _position);
-				float getRotX();
-				float getRotY();
-				float getRotZ();
+				glm::vec3 getRotation();
 				glm::vec3 getScale();
+				void setPosition(glm::vec3 position);
 				TexturedModel * getTexturedModel();
 				float getTextureOffsetX();
 				float getTextureOffsetY();

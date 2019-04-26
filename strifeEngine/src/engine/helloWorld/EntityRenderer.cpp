@@ -50,7 +50,7 @@ namespace engine { namespace helloWorld {
 		glEnableVertexAttribArray(2);
 
 		m_TransformationMatrix = Maths::createTransformationMatrix(
-			entity->getPosition(), entity->getRotX(), entity->getRotY(), entity->getRotZ(), entity->getScale());
+			entity->getPosition(), entity->getRotation(), entity->getScale());
 		m_Shader->loadMatrix("transformationMatrix", m_TransformationMatrix);
 
 

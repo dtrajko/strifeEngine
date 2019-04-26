@@ -6,24 +6,24 @@ namespace engine
 	{
 		namespace entities
 		{
-			Entity::Entity(TexturedModel* model, glm::vec3 position, float rotX, float rotY, float rotZ, glm::vec3 scale)
+			Entity::Entity(TexturedModel* model, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale)
 			{
 				m_TexturedModel = model;
 				m_Position = position;
-				m_RotX = rotX;
-				m_RotY = rotY;
-				m_RotZ = rotZ;
+				m_Rotation = rotation;
+				m_Velocity = glm::vec3();
+				m_Mass = 1.0f;
 				m_Scale = scale;
 				solid = false;
 			}
 
-			Entity::Entity(TexturedModel * model, glm::vec3 position, float rotX, float rotY, float rotZ, float scale):
-				Entity(model, position, rotX, rotY, rotZ, glm::vec3(scale, scale, scale))
+			Entity::Entity(TexturedModel * model, glm::vec3 position, glm::vec3 rotation, float scale):
+				Entity(model, position, rotation, glm::vec3(scale, scale, scale))
 			{
 			}
 
-			Entity::Entity(TexturedModel * model, unsigned int textureIndex, glm::vec3 position, float rotX, float rotY, float rotZ, float scale):
-				Entity(model, position, rotX, rotY, rotZ, glm::vec3(scale, scale, scale))
+			Entity::Entity(TexturedModel * model, unsigned int textureIndex, glm::vec3 position, glm::vec3 rotation, float scale):
+				Entity(model, position, rotation, glm::vec3(scale, scale, scale))
 			{
 				m_TextureIndex = textureIndex;
 			}
@@ -43,9 +43,9 @@ namespace engine
 
 			void Entity::increaseRotation(float dx, float dy, float dz)
 			{
-				m_RotX += dx;
-				m_RotY += dy;
-				m_RotZ += dz;
+				m_Rotation.x += dx;
+				m_Rotation.y += dy;
+				m_Rotation.z += dz;
 			}
 
 			glm::vec3 Entity::getPosition()
@@ -53,24 +53,14 @@ namespace engine
 				return m_Position;
 			}
 
-			void Entity::setPosition(glm::vec3 _position)
+			void Entity::setPosition(glm::vec3 position)
 			{
-				m_Position = _position;
+				m_Position = position;
 			}
 
-			float Entity::getRotX()
+			glm::vec3 Entity::getRotation()
 			{
-				return m_RotX;
-			}
-
-			float Entity::getRotY()
-			{
-				return m_RotY;
-			}
-
-			float Entity::getRotZ()
-			{
-				return m_RotZ;
+				return m_Rotation;
 			}
 
 			glm::vec3 Entity::getScale()

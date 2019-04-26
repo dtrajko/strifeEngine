@@ -24,7 +24,7 @@ namespace engine
 				float distanceHorizontal = calculateDistanceHorizontal();
 				float distanceVertical = calculateDistanceVertical();
 				calculateCameraPosition(distanceHorizontal, distanceVertical);
-				float theta = m_Player->getRotY() + m_AngleAroundPlayer;
+				float theta = m_Player->getRotation().y + m_AngleAroundPlayer;
 				m_Yaw = 360.0f - theta;
 				updateViewMatrix();
 			}
@@ -48,7 +48,7 @@ namespace engine
 
 			void Camera::calculateCameraPosition(float distanceHorizontal, float distanceVertical)
 			{
-				float theta = m_Player->getRotY() + m_AngleAroundPlayer;
+				float theta = m_Player->getRotation().y + m_AngleAroundPlayer;
 				float offsetX = distanceHorizontal * glm::sin(glm::radians(theta));
 				float offsetZ = distanceHorizontal * glm::cos(glm::radians(theta));
 				m_Position.x = m_Player->getPosition().x - offsetX;
