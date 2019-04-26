@@ -2,7 +2,7 @@
 
 namespace engine { namespace tm { namespace entities {
 
-	Player::Player(TexturedModel * model, glm::vec3 position, glm::vec3 rotation, float scale) :
+	Player::Player(TexturedModel * model, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale) :
 		Entity(model, position, rotation, scale)
 	{
 	}
@@ -10,14 +10,15 @@ namespace engine { namespace tm { namespace entities {
 	void Player::move(float interval, Window* window, std::vector<Entity*> entities)
 	{
 		checkInputs(window);
-		increaseRotation(0, m_CurrentTurnSpeed, 0);
-		float dx = (float)(m_ForwardSpeed * glm::sin(glm::radians(m_Rotation.y)) + m_StrafeX * glm::cos(glm::radians(m_Rotation.y)));
-		float dy = m_VerticalSpeed;
-		float dz = (float)(m_ForwardSpeed * glm::cos(glm::radians(m_Rotation.y)) + m_StrafeZ * glm::sin(glm::radians(m_Rotation.y)));
-		increasePosition(dx, dy, dz);
+		increaseRotation(glm::vec3(0, m_CurrentTurnSpeed, 0));
+		glm::vec3 positionDelta;
+		positionDelta.x = (float)(m_ForwardSpeed * glm::sin(glm::radians(m_Rotation.y)) + m_StrafeX * glm::cos(glm::radians(m_Rotation.y)));
+		positionDelta.y = m_VerticalSpeed;
+		positionDelta.z = (float)(m_ForwardSpeed * glm::cos(glm::radians(m_Rotation.y)) + m_StrafeZ * glm::sin(glm::radians(m_Rotation.y)));
+		increasePosition(positionDelta);
 		if (inCollision(entities))
 		{
-			increasePosition(-dx, -dy, -dz);
+			increasePosition(glm::vec3(-positionDelta.x, -positionDelta.y, -positionDelta.z));
 		}
 	}
 

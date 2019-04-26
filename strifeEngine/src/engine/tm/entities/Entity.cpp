@@ -17,35 +17,30 @@ namespace engine
 				solid = false;
 			}
 
-			Entity::Entity(TexturedModel * model, glm::vec3 position, glm::vec3 rotation, float scale):
-				Entity(model, position, rotation, glm::vec3(scale, scale, scale))
-			{
-			}
-
-			Entity::Entity(TexturedModel * model, unsigned int textureIndex, glm::vec3 position, glm::vec3 rotation, float scale):
-				Entity(model, position, rotation, glm::vec3(scale, scale, scale))
+			Entity::Entity(TexturedModel * model, unsigned int textureIndex, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale):
+				Entity(model, position, rotation, scale)
 			{
 				m_TextureIndex = textureIndex;
 			}
 
-			void Entity::increasePosition(float dx, float dy, float dz)
+			void Entity::increasePosition(glm::vec3 positionDelta)
 			{
-				m_Position.x += dx;
-				m_Position.y += dy;
-				m_Position.z += dz;
+				m_Position.x += positionDelta.x;
+				m_Position.y += positionDelta.y;
+				m_Position.z += positionDelta.z;
 
 				if (m_EntityAABB != nullptr)
 				{
-					m_EntityAABB->increasePosition(dx, dy, dz);
+					m_EntityAABB->increasePosition(positionDelta);
 				}
 				setAABB();
 			}
 
-			void Entity::increaseRotation(float dx, float dy, float dz)
+			void Entity::increaseRotation(glm::vec3 rotationDelta)
 			{
-				m_Rotation.x += dx;
-				m_Rotation.y += dy;
-				m_Rotation.z += dz;
+				m_Rotation.x += rotationDelta.x;
+				m_Rotation.y += rotationDelta.y;
+				m_Rotation.z += rotationDelta.z;
 			}
 
 			glm::vec3 Entity::getPosition()

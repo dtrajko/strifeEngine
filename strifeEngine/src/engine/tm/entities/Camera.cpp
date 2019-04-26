@@ -16,7 +16,7 @@ namespace engine
 				m_DisplayVector = input->getDisplayVector();
 
 				m_Pitch += m_DisplayVector.x * cursorSensitivity;
-				m_Player->increaseRotation(0, -m_DisplayVector.y * cursorSensitivity, 0);
+				m_Player->increaseRotation(glm::vec3(0, -m_DisplayVector.y * cursorSensitivity, 0));
 
 				calculateZoom(input);
 				calculatePitch(input);

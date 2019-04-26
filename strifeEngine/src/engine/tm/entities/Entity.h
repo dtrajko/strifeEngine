@@ -30,10 +30,9 @@ namespace engine
 
 			public:
 				Entity(TexturedModel* model, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);
-				Entity(TexturedModel* model, glm::vec3 position, glm::vec3 rotation, float scale);
-				Entity(TexturedModel* model, unsigned int textureIndex, glm::vec3 position, glm::vec3 rotation, float scale);
-				void increasePosition(float dx, float dy, float dz);
-				void increaseRotation(float dx, float dy, float dz);
+				Entity(TexturedModel* model, unsigned int textureIndex, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);
+				void increasePosition(glm::vec3 positionDelta);
+				void increaseRotation(glm::vec3 rotationDelta);
 				glm::vec3 getPosition();
 				glm::vec3 getRotation();
 				glm::vec3 getScale();
