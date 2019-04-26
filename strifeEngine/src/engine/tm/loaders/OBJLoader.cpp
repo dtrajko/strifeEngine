@@ -76,10 +76,10 @@ namespace engine
 					}
 				}
 
-				unsigned int verticesCount = vecVertices.size() * 3;
-				unsigned int textureCoordsCount = vecVertices.size() * 2;
-				unsigned int normalsCount = vecVertices.size() * 3;
-				unsigned int indicesCount = vecIndices.size();
+				unsigned int verticesCount = (unsigned int) vecVertices.size() * 3;
+				unsigned int textureCoordsCount = (unsigned int) vecVertices.size() * 2;
+				unsigned int normalsCount = (unsigned int) vecVertices.size() * 3;
+				unsigned int indicesCount = (unsigned int) vecIndices.size();
 
 				float * verticesArray = new float[vecVertices.size() * 3];
 				unsigned int * indicesArray = new unsigned int[vecIndices.size()];

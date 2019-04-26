@@ -21,7 +21,7 @@ namespace engine { namespace tm { namespace water {
 			-1,  1,
 			 1,  1
 		};
-		RawModel * quad = loader->loadToVAO((float *)& vertices[0], vertices.size(), 2);
+		RawModel * quad = loader->loadToVAO((float *)& vertices[0], (unsigned int) vertices.size(), 2);
 		return quad;
 	}
 

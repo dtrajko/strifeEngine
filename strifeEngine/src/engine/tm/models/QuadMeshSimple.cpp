@@ -28,17 +28,17 @@ namespace engine
 
 			unsigned int QuadMeshSimple::getVerticesCount()
 			{
-				return vecVertices.size();
+				return (unsigned int) vecVertices.size();
 			}
 
 			unsigned int QuadMeshSimple::getTextureCoordsCount()
 			{
-				return vecTextureCoords.size();
+				return (unsigned int) vecTextureCoords.size();
 			}
 
 			unsigned int QuadMeshSimple::getIndicesCount()
 			{
-				return vecIndices.size();
+				return (unsigned int) vecIndices.size();
 			}
 
 			QuadMeshSimple::~QuadMeshSimple()

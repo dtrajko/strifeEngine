@@ -27,17 +27,17 @@ namespace engine
 
 			unsigned int CubeMeshSimple::getVerticesCount()
 			{
-				return vecVertices.size();
+				return (unsigned int)vecVertices.size();
 			}
 
 			unsigned int CubeMeshSimple::getTextureCoordsCount()
 			{
-				return vecTextureCoords.size();
+				return (unsigned int) vecTextureCoords.size();
 			}
 
 			unsigned int CubeMeshSimple::getIndicesCount()
 			{
-				return vecIndices.size();
+				return (unsigned int) vecIndices.size();
 			}
 
 			CubeMeshSimple::~CubeMeshSimple()
