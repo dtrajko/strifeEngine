@@ -14,12 +14,12 @@ namespace engine { namespace tm { namespace entities {
 	{
 	private:
 		float RUN_SPEED = 0.5f;
-		float TURN_SPEED = 0.2f;
-		float m_CurrentSpeed = 0;
+		float TURN_SPEED = 0.5f;
+		float m_ForwardSpeed = 0;
+		float m_VerticalSpeed = 0;
 		float m_CurrentTurnSpeed = 0;
-		float m_StrifeX = 0;
-		float m_StrifeY = 0;
-		float m_StrifeZ = 0;
+		float m_StrafeX = 0;
+		float m_StrafeZ = 0;
 		glm::vec3 cameraInc = glm::vec3();
 
 	public:

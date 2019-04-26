@@ -11,13 +11,9 @@ namespace engine { namespace tm { namespace entities {
 	{
 		checkInputs(window);
 		increaseRotation(0, m_CurrentTurnSpeed, 0);
-		float distance = m_CurrentSpeed;
-		float distanceX = m_StrifeX;
-		float distanceY = m_StrifeY;
-		float distanceZ = m_StrifeZ;
-		float dx = (float)(distance * glm::sin(glm::radians(m_RotY)) + distanceX * glm::cos(glm::radians(m_RotY)));
-		float dy = distanceY;
-		float dz = (float)(distance * glm::cos(glm::radians(m_RotY)) + distanceZ * glm::sin(glm::radians(m_RotY)));
+		float dx = (float)(m_ForwardSpeed * glm::sin(glm::radians(m_RotY)) + m_StrafeX * glm::cos(glm::radians(m_RotY)));
+		float dy = m_VerticalSpeed;
+		float dz = (float)(m_ForwardSpeed * glm::cos(glm::radians(m_RotY)) + m_StrafeZ * glm::sin(glm::radians(m_RotY)));
 		increasePosition(dx, dy, dz);
 		if (inCollision(entities))
 		{
@@ -29,42 +25,44 @@ namespace engine { namespace tm { namespace entities {
 	{
 		Input * input = window->getInput();
 
-		m_CurrentSpeed = 0;
+		m_ForwardSpeed = 0;
+		m_VerticalSpeed = 0;
 		m_CurrentTurnSpeed = 0;
-		m_StrifeX = 0;
-		m_StrifeY = 0;
-		m_StrifeZ = 0;
+		m_StrafeX = 0;
+		m_StrafeZ = 0;
 
+		// forward / backward movement
 		if (input->isKeyDown(GLFW_KEY_W) || input->isKeyDown(GLFW_KEY_UP)) {
-			m_CurrentSpeed -= RUN_SPEED;
+			m_ForwardSpeed -= RUN_SPEED;
 		}
 		if (input->isKeyDown(GLFW_KEY_S) || input->isKeyDown(GLFW_KEY_DOWN)) {
-			m_CurrentSpeed += RUN_SPEED;
-		}
-		if (input->isKeyDown(GLFW_KEY_D) || input->isKeyDown(GLFW_KEY_RIGHT)) {
-			m_CurrentTurnSpeed -= TURN_SPEED;
-		}
-		if (input->isKeyDown(GLFW_KEY_A) || input->isKeyDown(GLFW_KEY_LEFT)) {
-			m_CurrentTurnSpeed += TURN_SPEED;
+			m_ForwardSpeed += RUN_SPEED;
 		}
 
-		// vertical strife
+		// strafe left / right
+		if (input->isKeyDown(GLFW_KEY_D)) {
+			m_StrafeX += RUN_SPEED;
+			m_StrafeZ -= RUN_SPEED;
+		}
+		if (input->isKeyDown(GLFW_KEY_A)) {
+			m_StrafeX -= RUN_SPEED;
+			m_StrafeZ += RUN_SPEED;
+		}
+
+		// vertical strafe
 		if (input->isKeyDown(GLFW_KEY_E) || input->isKeyDown(GLFW_KEY_SPACE)) {
-			m_StrifeY += RUN_SPEED;
+			m_VerticalSpeed += RUN_SPEED;
 		}
 		if (input->isKeyDown(GLFW_KEY_LEFT_SHIFT)) {
-			m_StrifeY -= RUN_SPEED;
+			m_VerticalSpeed -= RUN_SPEED;
 		}
 
-		if (input->isKeyDown(GLFW_KEY_Z))
-		{
-			m_StrifeX -= RUN_SPEED;
-			m_StrifeZ += RUN_SPEED;
+		// rotate left / right
+		if (input->isKeyDown(GLFW_KEY_Z) || input->isKeyDown(GLFW_KEY_LEFT)) {
+			m_CurrentTurnSpeed += TURN_SPEED;
 		}
-		if (input->isKeyDown(GLFW_KEY_X))
-		{
-			m_StrifeX += RUN_SPEED;
-			m_StrifeZ -= RUN_SPEED;
+		if (input->isKeyDown(GLFW_KEY_X) || input->isKeyDown(GLFW_KEY_RIGHT)) {
+			m_CurrentTurnSpeed -= TURN_SPEED;
 		}
 	}
 

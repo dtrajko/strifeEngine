@@ -41,6 +41,8 @@ namespace engine
 				glm::vec3 m_CameraInc;
 				glm::vec2 m_DisplayVector;
 				float m_Speed = 0.4f;
+				float m_ZoomSpeed = 4.0f;
+
 			public:
 				Camera();
 				void setPlayer(Player * player);
