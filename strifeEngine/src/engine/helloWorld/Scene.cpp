@@ -29,9 +29,12 @@ namespace engine
 			processTerrain(terrain);
 
 			// TexturedModel for AABB entities (bounding boxes)
-			RawModel* rawModelCubeAABB = OBJLoader::loadOBJModel("resources/Minecraft/models/cube.obj", m_Loader);
+			CubeMeshSimple meshCubeAABB = CubeMeshSimple();
+			RawModel* rawModelMeshCubeAABB = m_Loader->loadToVAO(meshCubeAABB.getVertices(), meshCubeAABB.getVerticesCount(),
+				meshCubeAABB.getTextureCoords(), meshCubeAABB.getTextureCoordsCount(),
+				meshCubeAABB.getIndices(), meshCubeAABB.getIndicesCount());
 			ModelTexture* modelTextureTilesAABB = new ModelTexture(m_Loader->loadTexture("resources/Minecraft/textures/AABB.png"));
-			TexturedModel* texturedModelTilesAABB = new TexturedModel(rawModelCubeAABB, modelTextureTilesAABB);
+			TexturedModel* texturedModelTilesAABB = new TexturedModel(rawModelMeshCubeAABB, modelTextureTilesAABB);
 
 			ModelTexture * modelTextureBarrel = new ModelTexture(m_Loader->loadTexture("resources/ThinMatrix/textures/normalMaps/barrel.png"));
 			modelTextureBarrel->setShineDumper(10);
@@ -47,17 +50,17 @@ namespace engine
 				meshCube.getIndices(), meshCube.getIndicesCount());
 			ModelTexture * modelTextureTiles = new ModelTexture(m_Loader->loadTexture("resources/assets/textures/tiles.png"));
 			TexturedModel * texturedModelTiles = new TexturedModel(rawModelMeshCube, modelTextureTiles);
-			Entity * entityCube1 = new Entity(texturedModelTiles, glm::vec3(-80, 40, -80), 0, 0, 0, 20);
+			Entity * entityCube1 = new Entity(texturedModelTiles, glm::vec3(-80, 40, -80), 0, 0, 0, 10);
 			processEntity(entityCube1);
 			// set AABB Entity
-			Entity* entityAABBCube1 = new Entity(texturedModelTilesAABB, entityCube1->getPosition(), 0, 0, 0, entityCube1->getScale() * 0.54f);
+			Entity* entityAABBCube1 = new Entity(texturedModelTilesAABB, entityCube1->getPosition(), 0, 0, 0, entityCube1->getScale() *= 1.05f);
 			entityCube1->setEntityAABB(entityAABBCube1);
 			processEntity(entityCube1->getEntityAABB());
 
-			Entity * entityCube2 = new Entity(texturedModelTiles, glm::vec3(20.0f, 0.0f, -40.0f), 0, 0, 0, 20);
+			Entity * entityCube2 = new Entity(texturedModelTiles, glm::vec3(20.0f, 0.0f, -40.0f), 0, 0, 0, 10);
 			processEntity(entityCube2);
 			// set AABB Entity
-			Entity* entityAABBCube2 = new Entity(texturedModelTilesAABB, entityCube2->getPosition(), 0, 0, 0, entityCube2->getScale() * 0.54f);
+			Entity* entityAABBCube2 = new Entity(texturedModelTilesAABB, entityCube2->getPosition(), 0, 0, 0, entityCube2->getScale() *= 1.05f);
 			entityCube2->setEntityAABB(entityAABBCube2);
 			processEntity(entityCube2->getEntityAABB());
 
