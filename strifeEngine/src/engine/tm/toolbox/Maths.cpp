@@ -24,7 +24,7 @@ namespace engine
 				viewMatrix = glm::rotate(viewMatrix, glm::radians(camera->getYaw()),   glm::vec3(0, 1, 0));
 				viewMatrix = glm::rotate(viewMatrix, glm::radians(camera->getRoll()),  glm::vec3(0, 0, 1));
 				glm::vec3 cameraPos = camera->getPosition();
-				glm::vec3 negativeCameraPos = glm::vec3(-cameraPos.x, -cameraPos.y, -cameraPos.z);
+				glm::vec3 negativeCameraPos = -cameraPos;
 				viewMatrix = glm::translate(viewMatrix, negativeCameraPos);
 				return viewMatrix;
 			}

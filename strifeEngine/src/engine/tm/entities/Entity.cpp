@@ -15,6 +15,7 @@ namespace engine
 				m_Mass = 1.0f;
 				m_Scale = scale;
 				solid = false;
+				setAABB();
 			}
 
 			Entity::Entity(TexturedModel * model, unsigned int textureIndex, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale):
@@ -25,9 +26,7 @@ namespace engine
 
 			void Entity::increasePosition(glm::vec3 positionDelta)
 			{
-				m_Position.x += positionDelta.x;
-				m_Position.y += positionDelta.y;
-				m_Position.z += positionDelta.z;
+				m_Position += positionDelta;
 
 				if (m_EntityAABB != nullptr)
 				{
@@ -38,9 +37,7 @@ namespace engine
 
 			void Entity::increaseRotation(glm::vec3 rotationDelta)
 			{
-				m_Rotation.x += rotationDelta.x;
-				m_Rotation.y += rotationDelta.y;
-				m_Rotation.z += rotationDelta.z;
+				m_Rotation += rotationDelta;
 			}
 
 			glm::vec3 Entity::getPosition()

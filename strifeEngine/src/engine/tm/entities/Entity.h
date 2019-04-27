@@ -25,7 +25,7 @@ namespace engine
 				glm::vec3 m_Scale;
 				bool solid;
 				unsigned int m_TextureIndex = 0;
-				AABB * m_AABB;
+				AABB * m_AABB = nullptr;
 				Entity * m_EntityAABB = nullptr;
 
 			public:

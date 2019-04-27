@@ -18,7 +18,7 @@ namespace engine { namespace tm { namespace entities {
 		increasePosition(positionDelta);
 		if (inCollision(entities))
 		{
-			increasePosition(glm::vec3(-positionDelta.x, -positionDelta.y, -positionDelta.z));
+			increasePosition(-positionDelta);
 		}
 	}
 
