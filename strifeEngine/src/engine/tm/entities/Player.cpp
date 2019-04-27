@@ -10,7 +10,7 @@ namespace engine { namespace tm { namespace entities {
 	void Player::move(float interval, Window* window, std::vector<Entity*> entities)
 	{
 		checkInputs(window);
-		increaseRotation(glm::vec3(0, m_CurrentTurnSpeed, 0));
+		increaseRotation(glm::vec3(0, m_turnSpeedYaw, m_turnSpeedRoll));
 		glm::vec3 positionDelta;
 		positionDelta.x = (float)(m_ForwardSpeed * glm::sin(glm::radians(m_Rotation.y)) + m_StrafeX * glm::cos(glm::radians(m_Rotation.y)));
 		positionDelta.y = m_VerticalSpeed;
@@ -28,7 +28,8 @@ namespace engine { namespace tm { namespace entities {
 
 		m_ForwardSpeed = 0;
 		m_VerticalSpeed = 0;
-		m_CurrentTurnSpeed = 0;
+		m_turnSpeedYaw = 0;
+		m_turnSpeedRoll = 0;
 		m_StrafeX = 0;
 		m_StrafeZ = 0;
 
@@ -58,12 +59,20 @@ namespace engine { namespace tm { namespace entities {
 			m_VerticalSpeed -= RUN_SPEED;
 		}
 
-		// rotate left / right
+		// rotation yaw
 		if (input->isKeyDown(GLFW_KEY_Z) || input->isKeyDown(GLFW_KEY_LEFT)) {
-			m_CurrentTurnSpeed += TURN_SPEED;
+			m_turnSpeedYaw += TURN_SPEED;
 		}
 		if (input->isKeyDown(GLFW_KEY_X) || input->isKeyDown(GLFW_KEY_RIGHT)) {
-			m_CurrentTurnSpeed -= TURN_SPEED;
+			m_turnSpeedYaw -= TURN_SPEED;
+		}
+
+		// rotation roll
+		if (input->isKeyDown(GLFW_KEY_1)) {
+			m_turnSpeedRoll += TURN_SPEED;
+		}
+		if (input->isKeyDown(GLFW_KEY_2)) {
+			m_turnSpeedRoll -= TURN_SPEED;
 		}
 	}
 

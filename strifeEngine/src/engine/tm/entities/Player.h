@@ -17,7 +17,8 @@ namespace engine { namespace tm { namespace entities {
 		float TURN_SPEED = 0.5f;
 		float m_ForwardSpeed = 0;
 		float m_VerticalSpeed = 0;
-		float m_CurrentTurnSpeed = 0;
+		float m_turnSpeedYaw = 0;
+		float m_turnSpeedRoll = 0;
 		float m_StrafeX = 0;
 		float m_StrafeZ = 0;
 		glm::vec3 cameraInc = glm::vec3();

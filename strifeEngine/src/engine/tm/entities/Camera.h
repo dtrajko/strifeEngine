@@ -28,7 +28,6 @@ namespace engine
 			private:
 				Player * m_Player = nullptr;
 				float m_DistanceFromPlayer = -60.0f;
-				float m_AngleAroundPlayer = 0.0f;
 				float m_OffsetY = 20.0f;
 
 				const float cursorSensitivity = 0.2f;
@@ -64,7 +63,6 @@ namespace engine
 				void moveStandalone(Window* window);
 				void calculateZoom(Input * input);
 				void calculatePitch(Input * input);
-				void calculateAngleAroundPlayer(Input * input);
 				float calculateDistanceHorizontal();
 				float calculateDistanceVertical();
 				void calculateCameraPosition(float distanceHorizontal, float distanceVertical);

@@ -18,6 +18,27 @@ namespace engine { namespace graph {
 		return contains;
 	}
 
+	/*
+	 * https://www.toptal.com/game/video-game-physics-part-ii-collision-detection-for-solid-objects
+	 */
+	bool AABB::testAABBOverlap(AABB * a, AABB * b)
+	{
+		float d1x = b->m_X - a->m_X + a->m_Scale.x;
+		float d1y = b->m_Y - a->m_Y + a->m_Scale.y;
+		float d1z = b->m_Z - a->m_Z + a->m_Scale.z;
+		float d2x = a->m_X - b->m_X + b->m_Scale.x;
+		float d2y = a->m_Y - b->m_Y + b->m_Scale.y;
+		float d2z = a->m_Z - b->m_Z + b->m_Scale.z;
+
+		if (d1x > 0.0f || d1y > 0.0f || d1z > 0.0f)
+			return false;
+
+		if (d2x > 0.0f || d2y > 0.0f || d2z > 0.0f)
+			return false;
+
+		return true;
+	}
+
 	AABB::~AABB()
 	{
 

@@ -20,12 +20,11 @@ namespace engine
 
 				calculateZoom(input);
 				calculatePitch(input);
-				calculateAngleAroundPlayer(input);
 				float distanceHorizontal = calculateDistanceHorizontal();
 				float distanceVertical = calculateDistanceVertical();
 				calculateCameraPosition(distanceHorizontal, distanceVertical);
-				float theta = m_Player->getRotation().y + m_AngleAroundPlayer;
-				m_Yaw = 360.0f - theta;
+				float thetaYaw = m_Player->getRotation().y;
+				m_Yaw = 360.0f - thetaYaw;
 				updateViewMatrix();
 			}
 
@@ -34,7 +33,6 @@ namespace engine
 				Input * input = window->getInput();
 				calculateZoom(input);
 				calculatePitch(input);
-				calculateAngleAroundPlayer(input);
 				float distanceHorizontal = calculateDistanceHorizontal();
 				float distanceVertical = calculateDistanceVertical();
 				calculateCameraPosition(distanceHorizontal, distanceVertical);
@@ -48,12 +46,12 @@ namespace engine
 
 			void Camera::calculateCameraPosition(float distanceHorizontal, float distanceVertical)
 			{
-				float theta = m_Player->getRotation().y + m_AngleAroundPlayer;
-				float offsetX = distanceHorizontal * glm::sin(glm::radians(theta));
-				float offsetZ = distanceHorizontal * glm::cos(glm::radians(theta));
-				m_Position.x = m_Player->getPosition().x - offsetX;
+				float thetaYaw = m_Player->getRotation().y;
+				float offsetYawX = distanceHorizontal* glm::sin(glm::radians(thetaYaw));
+				float offsetYawZ = distanceHorizontal* glm::cos(glm::radians(thetaYaw));
+				m_Position.x = m_Player->getPosition().x - offsetYawX;
 				m_Position.y = m_Player->getPosition().y + distanceVertical + m_OffsetY;
-				m_Position.z = m_Player->getPosition().z - offsetZ;
+				m_Position.z = m_Player->getPosition().z - offsetYawZ;
 			}
 
 			float Camera::calculateDistanceHorizontal()
@@ -83,20 +81,6 @@ namespace engine
 				{
 					float pitchChange = input->getDisplayVector().y * 0.5f;
 					m_Pitch -= pitchChange;
-				}
-			}
-
-			/*
-			 * #define GLFW_MOUSE_BUTTON_LEFT    GLFW_MOUSE_BUTTON_1
-			 * #define GLFW_MOUSE_BUTTON_MIDDLE  GLFW_MOUSE_BUTTON_3
-			 * #define GLFW_MOUSE_BUTTON_RIGHT   GLFW_MOUSE_BUTTON_2
-			 */
-			void Camera::calculateAngleAroundPlayer(Input * input)
-			{
-				if (input->isMouseButtonPressed(1))
-				{
-					float angleChange = input->getDisplayVector().x * 1.0f;
-					m_AngleAroundPlayer -= angleChange;
 				}
 			}
 

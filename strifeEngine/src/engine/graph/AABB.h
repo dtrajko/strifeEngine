@@ -19,6 +19,7 @@ namespace engine { namespace graph {
 	public:
 		AABB(float x, float y, float z, glm::vec3 scale);
 		bool contains(float x2, float y2, float z2, glm::vec3 scale2);
+		bool testAABBOverlap(AABB* a, AABB* b);
 		virtual ~AABB();
 
 	};
