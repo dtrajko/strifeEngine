@@ -48,15 +48,18 @@ namespace engine
 			std::vector<Entity *> m_Entities;
 			std::vector<ITerrain *> m_Terrains;
 			std::vector<WaterTile *> m_WaterTiles;
-			float m_Counter = 0;
 			SkyBox * m_SkyBox;
 			Player * m_Player;
+
+			// temporary attributes
+			float m_Counter = 0; // entityCircularMotion()
+			Entity * m_EntityCubePlatform = nullptr; // moveThePlatform()
+			float m_stepY = 0; // moveThePlatform()
 
 		public:
 			Scene(Window * window);
 			void init(Window * window);
 			void update(float interval, Window * window);
-			void entityCircularMotion();
 			void render(Window * window);
 			ICamera * getCamera();
 			Loader * getLoader();
@@ -70,6 +73,10 @@ namespace engine
 			std::vector<WaterTile *> getWaterTiles();
 			void cleanUp();
 			virtual ~Scene();
+
+		private:
+			void entityCircularMotion();
+			void moveThePlatform();
 		};
 	}
 }

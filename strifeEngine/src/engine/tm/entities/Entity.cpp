@@ -48,6 +48,12 @@ namespace engine
 			void Entity::setPosition(glm::vec3 position)
 			{
 				m_Position = position;
+
+				if (m_EntityAABB != nullptr)
+				{
+					m_EntityAABB->setPosition(position);
+				}
+				setAABB();
 			}
 
 			glm::vec3 Entity::getRotation()

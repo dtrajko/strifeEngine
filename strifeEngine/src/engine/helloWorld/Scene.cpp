@@ -57,12 +57,13 @@ namespace engine
 			entityCube1->setEntityAABB(entityAABBCube1);
 			processEntity(entityCube1->getEntityAABB());
 
-			Entity * entityCube2 = new Entity(texturedModelTiles, glm::vec3(20.0f, 0.0f, -40.0f), glm::vec3(0), glm::vec3(10));
-			processEntity(entityCube2);
+			m_EntityCubePlatform = new Entity(texturedModelTiles, glm::vec3(20.0f, 0.0f, -80.0f), glm::vec3(0), glm::vec3(20, 5, 60));
+			processEntity(m_EntityCubePlatform);
 			// set AABB Entity
-			Entity* entityAABBCube2 = new Entity(texturedModelAABB, entityCube2->getPosition(), glm::vec3(0), glm::vec3(entityCube2->getScale() *= 1.05f));
-			entityCube2->setEntityAABB(entityAABBCube2);
-			processEntity(entityCube2->getEntityAABB());
+			Entity* entityAABBCube2 = new Entity(texturedModelAABB, m_EntityCubePlatform->getPosition(), glm::vec3(0),
+				glm::vec3(m_EntityCubePlatform->getScale() *= glm::vec3(1.03f, 1.03f, 1.01f)));
+			m_EntityCubePlatform->setEntityAABB(entityAABBCube2);
+			processEntity(m_EntityCubePlatform->getEntityAABB());
 
 			QuadMeshSimple meshQuad = QuadMeshSimple();
 			RawModel * rawModelQuad = m_Loader->loadToVAO(meshQuad.getVertices(), meshQuad.getVerticesCount(),
@@ -157,6 +158,17 @@ namespace engine
 				window->close();
 			}
 			entityCircularMotion();
+			moveThePlatform();
+		}
+
+		void Scene::moveThePlatform()
+		{
+			float minY = 0;
+			float maxY = 50;
+			glm::vec3 platformPos = m_EntityCubePlatform->getPosition();
+			if (platformPos.y <= minY) m_stepY = 0.05f;
+			if (platformPos.y >= maxY) m_stepY = -0.05f;
+			m_EntityCubePlatform->setPosition(platformPos + glm::vec3(0, m_stepY, 0));
 		}
 
 		void Scene::entityCircularMotion()
