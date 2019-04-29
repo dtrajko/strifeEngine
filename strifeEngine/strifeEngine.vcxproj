@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\components\RigidBody.cpp" />
     <ClCompile Include="src\engine\components\Transform.cpp" />
     <ClCompile Include="src\engine\graph\AABB.cpp" />
     <ClCompile Include="src\engine\graph\Image.cpp" />
@@ -73,6 +74,7 @@
     <ClCompile Include="src\engine\graph\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\components\RigidBody.h" />
     <ClInclude Include="src\engine\components\Transform.h" />
     <ClInclude Include="src\engine\graph\AABB.h" />
     <ClInclude Include="src\engine\graph\Image.h" />
