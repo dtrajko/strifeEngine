@@ -9,10 +9,10 @@ namespace engine { namespace components {
 	{
 	private:
 		float m_Mass;
-		bool m_UseGravity;
+		glm::vec3 m_Gravity;
 
 	public:
-		RigidBody(float mass, bool useGravity);
+		RigidBody(float mass, glm::vec3 gravity);
 		~RigidBody();
 	};
 

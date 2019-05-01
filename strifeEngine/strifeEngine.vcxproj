@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\engine\components\RigidBody.cpp" />
+    <ClCompile Include="src\engine\components\Time.cpp" />
     <ClCompile Include="src\engine\components\Transform.cpp" />
     <ClCompile Include="src\engine\graph\AABB.cpp" />
     <ClCompile Include="src\engine\graph\Image.cpp" />
@@ -75,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\components\RigidBody.h" />
+    <ClInclude Include="src\engine\components\Time.h" />
     <ClInclude Include="src\engine\components\Transform.h" />
     <ClInclude Include="src\engine\graph\AABB.h" />
     <ClInclude Include="src\engine\graph\Image.h" />

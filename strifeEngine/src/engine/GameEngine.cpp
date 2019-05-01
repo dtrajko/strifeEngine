@@ -1,24 +1,27 @@
 #include "GameEngine.h"
 
+Timer* GameEngine::timer;
+
 namespace engine
 {
-	GameEngine::GameEngine(std::string & _windowTitle, int _width, int _height, bool _vSync, WindowOptions * _opts, IGameLogic * _gameLogic)
+	GameEngine::GameEngine(std::string & windowTitle, int width, int height, bool vSync, WindowOptions * options, IGameLogic * gameLogic)
 	{
-		windowTitle = _windowTitle;
-		width = _width;
-		height = _height;
-		vSync = _vSync;
-		opts = _opts;
-		gameLogic = _gameLogic;
-		window = new Window(windowTitle, width, height, vSync, opts);
+		m_Options = options;
+		m_WindowTitle = windowTitle;
+		m_Width = width;
+		m_Height = height;
+		m_vSync = vSync;
+		m_GameLogic = gameLogic;
+		window = new Window(m_WindowTitle, m_Width, m_Height, m_vSync, m_Options);
 		timer = new Timer();
-		std::cout << "GameEngine object initialized! Window size " << width << "x" << height << std::endl;
+		lastFps = 0;
+		std::cout << "GameEngine object initialized! Window size " << m_Width << "x" << m_Height << std::endl;
 	}
 
 	bool GameEngine::init()
 	{
 		timer->init();
-		gameLogic->init(window);
+		m_GameLogic->init(window);
 		lastFps = timer->getTime();
 		fps = 0;
 		return true;
@@ -32,12 +35,12 @@ namespace engine
 	void GameEngine::update(float interval, Window * window)
 	{
 		window->update();
-		gameLogic->update(interval, window);
+		m_GameLogic->update(interval, window);
 	}
 
 	void GameEngine::render()
 	{
-		gameLogic->render(window);
+		m_GameLogic->render(window);
 	}
 
 	void GameEngine::start()
@@ -63,17 +66,17 @@ namespace engine
 
 	int GameEngine::getFPS()
 	{
-		return 0;
+		return fps;
 	}
 
-	Timer GameEngine::getTimer()
+	Timer * GameEngine::getTimer()
 	{
-		return Timer();
+		return timer;
 	}
 
 	void GameEngine::cleanUp()
 	{
-		gameLogic->cleanUp();
+		m_GameLogic->cleanUp();
 	}
 
 	GameEngine::~GameEngine()

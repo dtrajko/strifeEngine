@@ -8,13 +8,13 @@ namespace engine
 	class Timer
 	{
 	private:
-		double lastLoopTime;
+		static double lastLoopTime;
 
 	public:
 		Timer();
+		static float getElapsedTime();
+		static double getTime();
 		void init();
-		double getTime();
-		float getElapsedTime();
 		double getLastLoopTime();
 		virtual ~Timer();
 	};

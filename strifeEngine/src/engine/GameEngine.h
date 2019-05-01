@@ -18,31 +18,31 @@ namespace engine
 	class GameEngine
 	{
 	public:
-		int width;
-		int height;
-		bool vSync;
-		WindowOptions * opts;
+		WindowOptions * m_Options;
+		int m_Width;
+		int m_Height;
+		bool m_vSync;
 
 	private:
+		static Timer * timer;
 		GLFWwindow * glfwWindow;
 		Window * window;
-		std::string windowTitle;
-		IGameLogic * gameLogic;
-		Timer * timer;
-		double lastFps;
+		std::string m_WindowTitle;
+		IGameLogic* m_GameLogic;
 		int fps;
+		double lastFps;
 
 	public:
-		GameEngine(std::string & _windowTitle, int _width, int _height, bool _vSync, WindowOptions * _opts, IGameLogic * _gameLogic);
+		GameEngine(std::string& windowTitle, int width, int height, bool vSync, WindowOptions* options, IGameLogic* gameLogic);
+		static Timer * getTimer();
+		int getFPS();
+		GLFWwindow * getWindow();
 		void start();
 		bool init();
-		GLFWwindow * getWindow();
 		void gameLoop();
 		void sync();
 		void update(float interval, Window * window);
 		void render();
-		int getFPS();
-		engine::Timer getTimer();
 		void cleanUp();
 		virtual ~GameEngine();
 	};

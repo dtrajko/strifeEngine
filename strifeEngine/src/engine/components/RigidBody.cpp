@@ -2,10 +2,10 @@
 
 namespace engine { namespace components {
 
-	RigidBody::RigidBody(float mass, bool useGravity)
+	RigidBody::RigidBody(float mass, glm::vec3 gravity)
 	{
 		m_Mass = mass;
-		m_UseGravity = useGravity;
+		m_Gravity = gravity;
 	}
 
 	RigidBody::~RigidBody()

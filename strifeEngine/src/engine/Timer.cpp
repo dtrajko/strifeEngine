@@ -1,15 +1,19 @@
 #include "Timer.h"
 
+using namespace engine;
+
+double Timer::lastLoopTime;
+
 namespace engine
 {
 	Timer::Timer()
 	{
-
+		lastLoopTime = getTime();
 	}
 
 	void Timer::init()
 	{
-		lastLoopTime = getTime();
+		// lastLoopTime = getTime();
 	}
 
 	double Timer::getTime()
