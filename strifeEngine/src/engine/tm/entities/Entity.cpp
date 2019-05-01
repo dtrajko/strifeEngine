@@ -24,6 +24,16 @@ namespace engine
 				m_TextureIndex = textureIndex;
 			}
 
+			void Entity::Start()
+			{
+
+			}
+
+			void Entity::Update()
+			{
+
+			}
+
 			void Entity::increasePosition(glm::vec3 positionDelta)
 			{
 				m_Position += positionDelta;

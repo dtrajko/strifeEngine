@@ -13,8 +13,8 @@ namespace engine { namespace tm { namespace entities {
 	class Player : public Entity
 	{
 	private:
-		float RUN_SPEED = 0.5f;
-		float TURN_SPEED = 0.5f;
+		static const float RUN_SPEED;
+		static const float TURN_SPEED;
 		float m_ForwardSpeed = 0;
 		float m_VerticalSpeed = 0;
 		float m_turnSpeedYaw = 0;
@@ -26,7 +26,6 @@ namespace engine { namespace tm { namespace entities {
 	public:
 		Player(TexturedModel* model, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);
 		void move(float interval, Window* window, std::vector<Entity*> entities);
-		void update();
 		virtual ~Player();
 	private:
 		void checkInputs(Window * window);

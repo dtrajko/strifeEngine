@@ -2,6 +2,9 @@
 
 namespace engine { namespace tm { namespace entities {
 
+	const float Player::RUN_SPEED = 0.5f;
+	const float Player::TURN_SPEED = 0.5f;
+
 	Player::Player(TexturedModel * model, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale) :
 		Entity(model, position, rotation, scale)
 	{
@@ -94,10 +97,6 @@ namespace engine { namespace tm { namespace entities {
 
 	glm::vec3 Player::calculateNewPosition(glm::vec3 offset) {
 		return glm::vec3();
-	}
-
-	void Player::update()
-	{
 	}
 
 	Player::~Player()
