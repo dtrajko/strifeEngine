@@ -141,6 +141,19 @@ namespace engine
 			entityBlockingVolume->setEntityAABB(entityBlockingVolume);
 			// processEntity(entityBlockingVolume);
 
+			ModelTexture* modelTextureSoldier = new ModelTexture(m_Loader->loadTexture("resources/assets/models/full_body_texture_002.png"));
+			modelTextureSoldier->setShineDumper(10);
+			modelTextureSoldier->setReflectivity(1);
+			RawModel* rawModelSoldier = OBJLoader::loadOBJModel("resources/assets/models/player_model.obj", m_Loader);
+			TexturedModel* texturedModelSoldier = new TexturedModel(rawModelSoldier, modelTextureSoldier);
+			Entity* entitySoldier = new Entity(texturedModelSoldier, glm::vec3(150.0f, 0.0f, 0.0f), glm::vec3(0, -90, 0), glm::vec3(1));
+			processEntity(entitySoldier);
+			// set AABB Entity
+			glm::vec3 entitySoldierAABBPosition = glm::vec3(entitySoldier->getPosition().x, entitySoldier->getPosition().y + 28, entitySoldier->getPosition().z);
+			Entity* entitySoldierAABB = new Entity(texturedModelAABB, entitySoldierAABBPosition, glm::vec3(0), glm::vec3(6, 29, 4));
+			entitySoldier->setEntityAABB(entitySoldierAABB);
+			processEntity(entitySoldier->getEntityAABB());
+
 			std::cout << "Scene rawModel vaoID: " << rawModelMeshCube->getVaoID() << std::endl;
 			std::cout << "Scene modelTexture ID: " << modelTextureTiles->getID() << std::endl;
 			std::cout << "Scene terrainTexture ID: " << terrainTexture->getID() << std::endl;
