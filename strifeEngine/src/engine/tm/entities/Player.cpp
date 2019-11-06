@@ -58,7 +58,7 @@ namespace engine { namespace tm { namespace entities {
 		if (input->isKeyDown(GLFW_KEY_E) || input->isKeyDown(GLFW_KEY_SPACE)) {
 			m_VerticalSpeed += RUN_SPEED;
 		}
-		if (input->isKeyDown(GLFW_KEY_LEFT_SHIFT)) {
+		if (input->isKeyDown(GLFW_KEY_Q) || input->isKeyDown(GLFW_KEY_LEFT_SHIFT)) {
 			m_VerticalSpeed -= RUN_SPEED;
 		}
 
