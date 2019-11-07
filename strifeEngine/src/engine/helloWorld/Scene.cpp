@@ -154,10 +154,10 @@ namespace engine
 			entitySoldier->setEntityAABB(entitySoldierAABB);
 			processEntity(entitySoldier->getEntityAABB());
 
-			RawModel* rawModelSword = OBJLoader::loadOBJModel("resources/assets/models/Sword.obj", m_Loader);
-			TexturedModel* texturedModelSword = new TexturedModel(rawModelSword, modelTextureSphere);
-			Entity* entitySword = new Entity(texturedModelSword, glm::vec3(150.0f, 50.0f, 0.0f), glm::vec3(0, -90, 0), glm::vec3(1));
-			processEntity(entitySword);
+			// RawModel* rawModelSword = OBJLoader::loadOBJModel("resources/assets/models/Sword.obj", m_Loader);
+			// TexturedModel* texturedModelSword = new TexturedModel(rawModelSword, modelTextureSphere);
+			// Entity* entitySword = new Entity(texturedModelSword, glm::vec3(150.0f, 50.0f, 0.0f), glm::vec3(0, -90, 0), glm::vec3(1));
+			// processEntity(entitySword);
 
 			std::cout << "Scene rawModel vaoID: " << rawModelMeshCube->getVaoID() << std::endl;
 			std::cout << "Scene modelTexture ID: " << modelTextureTiles->getID() << std::endl;
