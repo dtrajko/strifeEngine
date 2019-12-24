@@ -5,17 +5,17 @@
 
 namespace engine
 {
-	class Timer
+	class TimerOld
 	{
 	private:
 		static double lastLoopTime;
 
 	public:
-		Timer();
+		TimerOld();
 		static float getElapsedTime();
 		static double getTime();
 		void init();
 		double getLastLoopTime();
-		virtual ~Timer();
+		virtual ~TimerOld();
 	};
 }

@@ -38,6 +38,7 @@
     <ClCompile Include="src\engine\minecraft\skybox\SkyBoxRenderer.cpp" />
     <ClCompile Include="src\engine\minecraft\skybox\SkyBoxShader.cpp" />
     <ClCompile Include="src\engine\minecraft\skybox\SkyBox.cpp" />
+    <ClCompile Include="src\engine\TimerSingleton.cpp" />
     <ClCompile Include="src\engine\tm\entities\Camera.cpp" />
     <ClCompile Include="src\engine\tm\entities\Player.cpp" />
     <ClCompile Include="src\engine\tm\terrains\TerrainRenderer.cpp" />
@@ -71,7 +72,7 @@
     <ClCompile Include="src\engine\tm\water\WaterTile.cpp" />
     <ClCompile Include="src\engine\utils\Log.cpp" />
     <ClCompile Include="src\game\Main.cpp" />
-    <ClCompile Include="src\engine\Timer.cpp" />
+    <ClCompile Include="src\engine\TimerOld.cpp" />
     <ClCompile Include="src\engine\graph\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +95,7 @@
     <ClInclude Include="src\engine\minecraft\skybox\SkyBoxRenderer.h" />
     <ClInclude Include="src\engine\minecraft\skybox\SkyBoxShader.h" />
     <ClInclude Include="src\engine\minecraft\skybox\SkyBox.h" />
+    <ClInclude Include="src\engine\TimerSingleton.h" />
     <ClInclude Include="src\engine\tm\entities\Camera.h" />
     <ClInclude Include="src\engine\tm\entities\Player.h" />
     <ClInclude Include="src\engine\tm\terrains\TerrainRenderer.h" />
@@ -130,7 +132,7 @@
     <ClInclude Include="src\engine\utils\Log.h" />
     <ClInclude Include="src\engine\utils\Util.h" />
     <ClInclude Include="src\engine\WindowOptions.h" />
-    <ClInclude Include="src\engine\Timer.h" />
+    <ClInclude Include="src\engine\TimerOld.h" />
     <ClInclude Include="src\engine\graph\Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

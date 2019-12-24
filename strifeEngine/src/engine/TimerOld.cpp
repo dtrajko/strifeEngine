@@ -1,29 +1,29 @@
-#include "Timer.h"
+#include "TimerOld.h"
 
 using namespace engine;
 
-double Timer::lastLoopTime;
+double TimerOld::lastLoopTime;
 
 namespace engine
 {
-	Timer::Timer()
+	TimerOld::TimerOld()
 	{
 		lastLoopTime = getTime();
 	}
 
-	void Timer::init()
+	void TimerOld::init()
 	{
 		// lastLoopTime = getTime();
 	}
 
-	double Timer::getTime()
+	double TimerOld::getTime()
 	{
 		time_t seconds;
 		seconds = time(NULL);
 		return (double) seconds;
 	}
 
-	float Timer::getElapsedTime()
+	float TimerOld::getElapsedTime()
 	{
 		double time = getTime();
 		float elapsedTime = (float) (time - lastLoopTime);
@@ -31,12 +31,12 @@ namespace engine
 		return elapsedTime;
 	}
 
-	double Timer::getLastLoopTime()
+	double TimerOld::getLastLoopTime()
 	{
 		return lastLoopTime;
 	}
 
-	Timer::~Timer()
+	TimerOld::~TimerOld()
 	{
 
 	}

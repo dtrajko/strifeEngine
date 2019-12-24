@@ -4,7 +4,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "interfaces\IGameLogic.h"
-#include "Timer.h"
+#include "TimerSingleton.h"
 #include "WindowOptions.h"
 #include "../engine/graph/Window.h"
 #include "../engine/graph/Input.h"
@@ -24,7 +24,7 @@ namespace engine
 		bool m_vSync;
 
 	private:
-		static Timer * timer;
+		TimerSingleton* timer;
 		GLFWwindow * glfwWindow;
 		Window * window;
 		std::string m_WindowTitle;
@@ -34,7 +34,7 @@ namespace engine
 
 	public:
 		GameEngine(std::string& windowTitle, int width, int height, bool vSync, WindowOptions* options, IGameLogic* gameLogic);
-		static Timer * getTimer();
+		TimerSingleton* getTimer();
 		int getFPS();
 		GLFWwindow * getWindow();
 		void start();

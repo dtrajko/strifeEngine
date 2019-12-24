@@ -1,6 +1,5 @@
 #include "GameEngine.h"
 
-Timer* GameEngine::timer;
 
 namespace engine
 {
@@ -13,7 +12,7 @@ namespace engine
 		m_vSync = vSync;
 		m_GameLogic = gameLogic;
 		window = new Window(m_WindowTitle, m_Width, m_Height, m_vSync, m_Options);
-		timer = new Timer();
+		timer = TimerSingleton::get();
 		lastFps = 0;
 		std::cout << "GameEngine object initialized! Window size " << m_Width << "x" << m_Height << std::endl;
 	}
@@ -56,6 +55,8 @@ namespace engine
 		{
 			update(0.0f, window);
 			render();
+
+			std::cout << "getTime: " << timer->getTime() << " getElapsedTime: " << timer->getElapsedTime() << " getLastLoopTime: " << timer->getLastLoopTime() << std::endl;
 		}
 	}
 
@@ -69,7 +70,7 @@ namespace engine
 		return fps;
 	}
 
-	Timer * GameEngine::getTimer()
+	TimerSingleton * GameEngine::getTimer()
 	{
 		return timer;
 	}
