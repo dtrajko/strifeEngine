@@ -56,7 +56,9 @@ namespace engine
 			update(0.0f, window);
 			render();
 
-			std::cout << "getTime: " << timer->getTime() << " getElapsedTime: " << timer->getElapsedTime() << " getLastLoopTime: " << timer->getLastLoopTime() << std::endl;
+			// std::cout << "getTime: " << timer->getTime() <<
+			// 	" getElapsedTime: " << timer->getElapsedTime() <<
+			// 	" getLastLoopTime: " << timer->getLastLoopTime() << std::endl;
 		}
 	}
 
