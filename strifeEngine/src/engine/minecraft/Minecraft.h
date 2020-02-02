@@ -3,29 +3,31 @@
 #include "../interfaces/IGameLogic.h"
 #include "../interfaces/IScene.h"
 #include "../../engine/graph/Input.h"
-#include "../helloWorld/Scene.h"
+#include "../minecraft/SceneMC.h"
+
 
 using namespace engine::interfaces;
 using namespace engine::graph;
-using namespace engine::helloWorld;
+using namespace engine::minecraft;
 
 
-class engine::helloWorld::Scene;
+class engine::minecraft::SceneMC;
+class engine::graph::Window;
 
 
 namespace engine
 {
-	namespace helloWorld
+	namespace minecraft
 	{
-		class HelloWorld : public IGameLogic
+		class Minecraft : public IGameLogic
 		{
 		public:
-			HelloWorld();
+			Minecraft();
 			void init(Window * window);
 			void update(float interval, Window * window);
 			void render(Window * window);
 			void cleanUp();
-			virtual ~HelloWorld();
+			virtual ~Minecraft();
 
 		public:
 			IScene* scene;

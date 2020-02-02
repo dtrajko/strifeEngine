@@ -4,25 +4,21 @@
 #include "../interfaces/IScene.h"
 #include "../tm/toolbox/Maths.h"
 #include "../../engine/tm/entities/Entity.h"
-#include "../../vendor/glm/glm.hpp"
-#include "../../vendor/glm/gtc/matrix_transform.hpp"
-#include "../../engine/helloWorld/EntityRenderer.h"
-#include "../../engine/tm/terrains/TerrainRenderer.h"
-#include "../../engine/tm/water/WaterRenderer.h"
 #include "../../engine/minecraft/skybox/SkyBoxRenderer.h"
 
+#include "../../vendor/glm/glm.hpp"
+#include "../../vendor/glm/gtc/matrix_transform.hpp"
+
 using namespace engine::interfaces;
-using namespace engine::helloWorld;
 using namespace engine::tm::entities;
 using namespace engine::tm::toolbox;
-using namespace engine::tm::terrains;
 using namespace engine::minecraft::skybox;
 
 namespace engine
 {
-	namespace helloWorld
+	namespace minecraft
 	{
-		class MasterRenderer : public IMasterRenderer
+		class MasterRendererMC : public IMasterRenderer
 		{
 		private:
 			float RED   = 0.53f;
@@ -32,13 +28,10 @@ namespace engine
 			glm::mat4 m_ViewMatrix;
 			glm::mat4 m_TransformationMatrix;
 
-			EntityRenderer * m_EntityRenderer;
-			TerrainRenderer * m_TerrainRenderer;
-			WaterRenderer * m_WaterRenderer;
 			SkyBoxRenderer * m_SkyBoxRenderer;
 
 		public:
-			MasterRenderer(Window * window);
+			MasterRendererMC(Window * window);
 			void init(IScene * scene);
 			glm::mat4 createProjectionMatrix(Window * window);
 			glm::mat4 getProjectionMatrix(Window * window);
@@ -47,7 +40,7 @@ namespace engine
 			static void enableCulling();
 			static void disableCulling();
 			void cleanUp();
-			virtual ~MasterRenderer();
+			virtual ~MasterRendererMC();
 		};
 	}
 }

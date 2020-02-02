@@ -13,9 +13,6 @@ namespace engine
 		class IGameLogic
 		{
 		public:
-			IScene * scene;
-
-		public:
 			virtual void init(Window * window) = 0;
 			virtual void update(float interval, Window * window) = 0;
 			virtual void render(Window * window) = 0;

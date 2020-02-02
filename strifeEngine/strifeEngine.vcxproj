@@ -35,6 +35,9 @@
     <ClCompile Include="src\engine\helloWorld\EntityShader.cpp" />
     <ClCompile Include="src\engine\minecraft\cubes\CubeRenderer.cpp" />
     <ClCompile Include="src\engine\minecraft\cubes\CubeShader.cpp" />
+    <ClCompile Include="src\engine\minecraft\Minecraft.cpp" />
+    <ClCompile Include="src\engine\minecraft\MasterRendererMC.cpp" />
+    <ClCompile Include="src\engine\minecraft\SceneMC.cpp" />
     <ClCompile Include="src\engine\minecraft\skybox\SkyBoxRenderer.cpp" />
     <ClCompile Include="src\engine\minecraft\skybox\SkyBoxShader.cpp" />
     <ClCompile Include="src\engine\minecraft\skybox\SkyBox.cpp" />
@@ -92,6 +95,9 @@
     <ClInclude Include="src\engine\helloWorld\EntityShader.h" />
     <ClInclude Include="src\engine\minecraft\cubes\CubeRenderer.h" />
     <ClInclude Include="src\engine\minecraft\cubes\CubeShader.h" />
+    <ClInclude Include="src\engine\minecraft\Minecraft.h" />
+    <ClInclude Include="src\engine\minecraft\MasterRendererMC.h" />
+    <ClInclude Include="src\engine\minecraft\SceneMC.h" />
     <ClInclude Include="src\engine\minecraft\skybox\SkyBoxRenderer.h" />
     <ClInclude Include="src\engine\minecraft\skybox\SkyBoxShader.h" />
     <ClInclude Include="src\engine\minecraft\skybox\SkyBox.h" />

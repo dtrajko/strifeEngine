@@ -18,7 +18,7 @@ namespace engine
 			init();
 			m_input = new Input(this);
 
-			std::cout << "Window amd Input objects initialized!" << std::endl;
+			std::cout << "Window and Input objects initialized!" << std::endl;
 		}
 
 		Input * Window::getInput()

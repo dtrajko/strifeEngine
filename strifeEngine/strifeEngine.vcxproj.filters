@@ -21,9 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\game\Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\engine\GameEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -184,6 +181,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\engine\TimerOld.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\minecraft\Minecraft.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\minecraft\MasterRendererMC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\minecraft\SceneMC.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -360,6 +369,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\TimerOld.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\minecraft\Minecraft.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\minecraft\MasterRendererMC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\minecraft\SceneMC.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
